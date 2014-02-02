@@ -1,0 +1,55 @@
+name: MCPainter
+main: org.PrimeSoft.MCPainter.PluginMain
+version: 1.0-RC4-DEV
+website: http://dev.bukkit.org/server-mods/mcpainter/
+description: Provides some basic features to draw using blocks.
+authors: [SBPrime]
+softdepend: [BlocksHub, Vault, WorldEdit]
+commands:
+  mcpainter:
+    description: 'Displays the help for MCPsinter.'
+    usage: /<command>
+    aliases: MCPainter
+  /block:
+    description: 'Draw a block, alias for: /MCPainter block'
+    usage: /<command>
+  /statue:
+    description: 'Draw a player statue, alias for: /MCPainter statue u:'
+    usage: /<command>
+  /statue_file:
+    description: 'Draw a player statue, alias for: /MCPainter statue'
+    usage: /<command>
+  /image:
+    description: 'Draw pixel art image, alias for: /MCPainter image'
+    usage: /<command>
+  /map:
+    description: 'Draw image on map, alias for: /MCPainter imageMap'
+    usage: /<command>
+  /mob:
+    description: 'Draw mob statue, alias for: /MCPainter mob'
+    usage: /<command>
+permissions:
+  MCPainter.user.drawImage:
+    default: op
+    description: Allows the use of the Image command.
+  MCPainter.user.drawMap:
+    default: op
+    description: Allows the use of the ImageMap command.
+  MCPainter.user.filter.resize:
+    default: op
+    description: Allows the use of image resize feature.
+  MCPainter.user.filter.crop:
+    default: op
+    description: Allows the use of image crop feature.
+  MCPainter.user.drawBlock:
+    default: op
+    description: Allows the use of Block command.
+  MCPainter.user.drawStatue.self:
+    default: op
+    description: Allows the use of the Statue, to draw his own statue.
+  MCPainter.user.drawStatue.other:
+    default: op
+    description: Allows the use of the Statue to draw other players statue using the player name (the u:<playerName> variant).
+  MCPainter.user.drawStatue.file:
+    default: op
+    description: Allows the use of the Statue to draw a statue using a specified skin file.

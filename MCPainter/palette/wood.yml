@@ -1,0 +1,22 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of wood
+################################################################################
+name: Wood
+blocks: 
+  - LOG:12-VANILLA:assets/minecraft/textures/blocks/log_oak.png
+  - LOG:13-VANILLA:assets/minecraft/textures/blocks/log_spruce.png
+  - LOG:14-VANILLA:assets/minecraft/textures/blocks/log_birch.png
+  - LOG:15-VANILLA:assets/minecraft/textures/blocks/log_jungle.png
+   
+  - LOG_2:12-VANILLA:assets/minecraft/textures/blocks/log_acacia.png
+  - LOG_2:13-VANILLA:assets/minecraft/textures/blocks/log_big_oak.png
+  
+  - WOOD:0-VANILLA:assets/minecraft/textures/blocks/planks_oak.png  
+  - WOOD:1-VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
+  - WOOD:2-VANILLA:assets/minecraft/textures/blocks/planks_birch.png
+  - WOOD:3-VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
+  - WOOD:4-VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
+  - WOOD:5-VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png

@@ -1,0 +1,15 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of stone
+################################################################################
+name: Stone
+blocks:
+  - STONE-VANILLA:assets/minecraft/textures/blocks/stone.png
+  - COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+  - SMOOTH_BRICK:0-VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+  - SMOOTH_BRICK:1-VANILLA:assets/minecraft/textures/blocks/stonebrick_mossy.png
+  - SMOOTH_BRICK:2-VANILLA:assets/minecraft/textures/blocks/stonebrick_cracked.png
+  - SMOOTH_BRICK:3-VANILLA:assets/minecraft/textures/blocks/stonebrick_carved.png
+  - MOSSY_COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/cobblestone_mossy.png

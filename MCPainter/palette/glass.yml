@@ -1,0 +1,24 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of glass
+################################################################################
+name: Glass
+blocks:
+  - STAINED_GLASS:0-VANILLA:assets/minecraft/textures/blocks/glass_white.png
+  - STAINED_GLASS:1-VANILLA:assets/minecraft/textures/blocks/glass_orange.png
+  - STAINED_GLASS:2-VANILLA:assets/minecraft/textures/blocks/glass_magenta.png
+  - STAINED_GLASS:3-VANILLA:assets/minecraft/textures/blocks/glass_light_blue.png
+  - STAINED_GLASS:4-VANILLA:assets/minecraft/textures/blocks/glass_yellow.png
+  - STAINED_GLASS:5-VANILLA:assets/minecraft/textures/blocks/glass_lime.png
+  - STAINED_GLASS:6-VANILLA:assets/minecraft/textures/blocks/glass_pink.png
+  - STAINED_GLASS:7-VANILLA:assets/minecraft/textures/blocks/glass_gray.png
+  - STAINED_GLASS:8-VANILLA:assets/minecraft/textures/blocks/glass_silver.png
+  - STAINED_GLASS:9-VANILLA:assets/minecraft/textures/blocks/glass_cyan.png
+  - STAINED_GLASS:10-VANILLA:assets/minecraft/textures/blocks/glass_purple.png
+  - STAINED_GLASS:11-VANILLA:assets/minecraft/textures/blocks/glass_blue.png
+  - STAINED_GLASS:12-VANILLA:assets/minecraft/textures/blocks/glass_brown.png
+  - STAINED_GLASS:13-VANILLA:assets/minecraft/textures/blocks/glass_green.png
+  - STAINED_GLASS:14-VANILLA:assets/minecraft/textures/blocks/glass_red.png
+  - STAINED_GLASS:15-VANILLA:assets/minecraft/textures/blocks/glass_black.png

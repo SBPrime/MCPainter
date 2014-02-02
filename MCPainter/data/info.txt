@@ -1,0 +1,1 @@
+Put content of this folder into /plugins/MCPainter/data/

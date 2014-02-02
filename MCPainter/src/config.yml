@@ -1,0 +1,67 @@
+# $$\      $$\  $$$$$$\  $$$$$$$\            $$\             $$\                         
+# $$$\    $$$ |$$  __$$\ $$  __$$\           \__|            $$ |                        
+# $$$$\  $$$$ |$$ /  \__|$$ |  $$ | $$$$$$\  $$\ $$$$$$$\  $$$$$$\    $$$$$$\   $$$$$$\  
+# $$\$$\$$ $$ |$$ |      $$$$$$$  | \____$$\ $$ |$$  __$$\ \_$$  _|  $$  __$$\ $$  __$$\ 
+# $$ \$$$  $$ |$$ |      $$  ____/  $$$$$$$ |$$ |$$ |  $$ |  $$ |    $$$$$$$$ |$$ |  \__|
+# $$ |\$  /$$ |$$ |  $$\ $$ |      $$  __$$ |$$ |$$ |  $$ |  $$ |$$\ $$   ____|$$ |      
+# $$ | \_/ $$ |\$$$$$$  |$$ |      \$$$$$$$ |$$ |$$ |  $$ |  \$$$$  |\$$$$$$$\ $$ |      
+# \__|     \__| \______/ \__|       \_______|\__|\__|  \__|   \____/  \_______|\__|      
+
+mcpainter:
+  # Version number (Do not change)
+  version: 4
+  # Use a custom texture pack to draw
+  texturePacks:
+    # the path to the texture pack followed by the resolution (16, 32, etc...)
+    - texture/!test.zip:16
+  rendering:
+    # Interval (In ticks) to render block statues
+    interval: 15
+    # Blocks to place every render (Applies to entire server)
+    blocks: 1000
+    queue-limit-soft: 10000
+    # The maximum blocks a user can place
+    # Once a user hits this limit he must wait until his que size reaches the queue-limit-soft
+    # before being able to run more mcpainter commands
+    queue-limit-hard: 20000
+  # Check to have you have the latest version
+  checkVersion: true
+  maxSize: 80x60
+  blocksHub:
+    # Use the blocks hub plugin to log blocks to a block logging plugin (CoreProtect, LogBlock, etc...)
+    logBlocks: true
+    # Check WorldGuard region access and other plugin build permissions before drawing
+    checkAccess: false
+  # maximum dimensions for drawing images
+  # Example
+  #
+  # maxSizeNodes:
+  # - 100x100
+  # - 160x120
+  # If a user has the permission MCPainter.user.size.100x100
+  # he can place an image up to 100x120 in dimensions
+  # A user with the permission MCPainter.user.size.160x120
+  # can define images up to 160x120
+  # Note: you must specify the dimensions in here before giving the user the permission
+  maxSizeNodes:
+    - 100x100
+    - 160x120
+  # The folder to put mod jars in
+  modsFolder: mods
+  # The default palette to draw blocks with
+  palette: default
+  # Here you can chose how much is costs to run these commands
+  # Example
+  # block:10
+  # It will cost 10 units to run /mcpainter block
+  price:
+    - block:0
+    - image:0
+    - map:0
+    - statue:0
+    # cost to use filters on commands
+    - filters.crop:0
+    - filters.dithering:0
+    - filters.grayscale:0
+    - filters.resize:0
+  # no joke, your done configuring your plugin :D

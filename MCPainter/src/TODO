@@ -1,0 +1,29 @@
+Blocks to do:
+Corner stairs
+null, //37 - Redstone
+null, //44 - Wall sign
+null, //45 - Lever
+null, //55 - Fence
+null, //5a - Nether portal
+null, //5d - Redstone repeater
+null, //5e - Redstone repeater on
+null, //6b - Fence gate
+null, //71 - Nether brick fence
+null, //74 - Enchantment table
+null, //75 - Brewing stand
+null, //76 - Cauldron
+null, //77 - End portal
+null, //78 - End portal frame
+null, //7a - Dragon egg
+null, //7f - Cocoa pod
+null, //83 - Tripwire hook
+null, //84 - Tripwire
+null, //8A - Beacon 
+null, //8B - Cobblestone Wall
+null, //8C - Flower Pot
+null, //90 - Head
+null, //91 - Anvil
+null, //95 - Redstone Comparator (inactive) I
+null, //96 - Redstone Comparator (active) I
+null, //97 - Daylight Sensor
+null, //9A - Hopper

@@ -1,0 +1,26 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of clay
+################################################################################
+name: Clay
+blocks:
+  - STAINED_CLAY:0-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_white.png
+  - STAINED_CLAY:1-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_orange.png
+  - STAINED_CLAY:2-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_magenta.png
+  - STAINED_CLAY:3-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_light_blue.png
+  - STAINED_CLAY:4-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_yellow.png
+  - STAINED_CLAY:5-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_lime.png
+  - STAINED_CLAY:6-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_pink.png
+  - STAINED_CLAY:7-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_gray.png
+  - STAINED_CLAY:8-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_silver.png
+  - STAINED_CLAY:9-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_cyan.png
+  - STAINED_CLAY:10-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_purple.png
+  - STAINED_CLAY:11-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_blue.png
+  - STAINED_CLAY:12-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_brown.png
+  - STAINED_CLAY:13-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_green.png
+  - STAINED_CLAY:14-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_red.png
+  - STAINED_CLAY:15-VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_black.png
+  - HARD_CLAY-VANILLA:assets/minecraft/textures/blocks/hardened_clay.png
+  - CLAY-VANILLA:assets/minecraft/textures/blocks/clay.png

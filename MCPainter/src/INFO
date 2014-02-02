@@ -1,0 +1,88 @@
+Texture entry format:
+<texture pack name/mod id>:<texture file>[:column[:row]]
+
+Allowed faces:
+    Front,    Back,    Left,    Right,    Top,    Bottom
+
+Available blocks for ModBlockProvider:
+BASE - standard block
+- UsePitch
+- UseYaw
+- Size (array)
+- Textures (array) or Texture (single entry)
+
+GRAY - standard, grayscale based block
+- UsePitch
+- UseYaw
+- Size (array)
+- Textures (array) or Texture (single entry)
+- Color (HSB, H and S values)
+- Gray (array of grayed faces, array of ints, numbers from 0 to 5)
+
+DIAGONAL - diagonal block (like sapling)
+- UsePitch
+- UseYaw
+- Size (array)
+- Textures (array) or Texture (single entry)
+- Color (HSB, H and S values)
+- Faces
+
+MULTI - multiple simple cube blocks
+- Textures
+- Ids (block data values)
+
+FLAT - flat block
+- Color (HSB, H and S values)
+- Size
+- Texture
+- Face
+
+CHEST - standard chest
+- Texture
+- IsLarge
+
+TRAP_DOOR - trap door
+- Texture
+- Face
+
+DOOR - simple door
+- Textures (requires 2)
+- Flip
+- Face
+
+TORCH - simple torch
+- UsePitch
+- UseYaw
+- Size (array)
+- Textures (array) or Texture (single entry)
+
+SLAB - simple slab
+- Textures
+- IsTop
+
+STAIRS - stairs
+- Textures
+
+CROPS - crops
+- UsePitch
+- UseYaw
+- Size (array)
+- Textures (array) or Texture (single entry)
+- Delta
+
+STEM - crop stem
+- Textures
+
+CUSTOM - fully custom block
+- UsePitch
+- UseYaw
+- TextureColumns (array)
+- TextureRows (array)
+- Size (array)
+- TexturesRes (array)
+- Textures (array)
+- Parts (sub section - block parts), 
+  Each sub section has:
+  - Pos
+  - Size
+  - Faces

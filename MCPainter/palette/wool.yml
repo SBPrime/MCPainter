@@ -1,0 +1,24 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of wool
+################################################################################
+name: Wool
+blocks:
+  - WOOL:0-VANILLA:assets/minecraft/textures/blocks/wool_colored_white.png
+  - WOOL:1-VANILLA:assets/minecraft/textures/blocks/wool_colored_orange.png
+  - WOOL:2-VANILLA:assets/minecraft/textures/blocks/wool_colored_magenta.png
+  - WOOL:3-VANILLA:assets/minecraft/textures/blocks/wool_colored_light_blue.png
+  - WOOL:4-VANILLA:assets/minecraft/textures/blocks/wool_colored_yellow.png
+  - WOOL:5-VANILLA:assets/minecraft/textures/blocks/wool_colored_lime.png
+  - WOOL:6-VANILLA:assets/minecraft/textures/blocks/wool_colored_pink.png
+  - WOOL:7-VANILLA:assets/minecraft/textures/blocks/wool_colored_gray.png
+  - WOOL:8-VANILLA:assets/minecraft/textures/blocks/wool_colored_silver.png
+  - WOOL:9-VANILLA:assets/minecraft/textures/blocks/wool_colored_cyan.png
+  - WOOL:10-VANILLA:assets/minecraft/textures/blocks/wool_colored_purple.png
+  - WOOL:11-VANILLA:assets/minecraft/textures/blocks/wool_colored_blue.png
+  - WOOL:12-VANILLA:assets/minecraft/textures/blocks/wool_colored_brown.png
+  - WOOL:13-VANILLA:assets/minecraft/textures/blocks/wool_colored_green.png
+  - WOOL:14-VANILLA:assets/minecraft/textures/blocks/wool_colored_red.png
+  - WOOL:15-VANILLA:assets/minecraft/textures/blocks/wool_colored_black.png

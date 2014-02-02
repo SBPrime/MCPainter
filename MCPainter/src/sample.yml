@@ -1,0 +1,171 @@
+#Smple mod definition
+#Mod ID regexp pattern
+ModId: 1\.6\..+
+#Mod alternative id 
+ModIdAlternative: VANILLA
+#Mod Version regexp pattern
+Version: 1\.6\..+
+#Provided by the mod texture pack res
+TextureRes: 16
+#definition of all blocks
+Blocks:
+  Chest:
+    #Block name (used to get block from name)
+    Name: CHEST
+    #Block id (used to get block from id)
+    Id: 54
+    #Block data value (automaticly aggregate)
+    Data: 0
+    #Block type
+    Type: CUSTOM
+    #Block drawing instruction (check INFO)
+    #Those instructions are specific for CUSTOM block
+    Instruction:
+      #Do not use pitch when drawing
+      UsePitch: false
+      #Use yaw when drawing
+      UseYaw: true
+      #Block size used to move drawing point when rotating
+      Size: [16, 16, 16]
+      #Texture columns
+      TextureColumns: [0, 14, 28, 42, 56, 1, 3]
+      #Texture rows
+      TextureRows: [0, 14, 19, 33, 43, 1, 5]
+      #Native (provided in the mod file) texture res for all textures
+      TexturesRes: [16]
+      #All texture packs
+      Textures:
+        - VANILLA:assets/minecraft/textures/entity/chest/normal.png
+      #Block drawing parts
+      Parts:
+        #Block part
+        Top:
+          #Block part possition
+          Pos: [1, 9, 1]
+          #Block part size
+          Size: [14, 5, 14]
+          #Block faces
+          Faces:
+            #Face definition, top left corner, column and row id (uses TextureRows and TextureColumns)
+            # - column,row,column count,row count
+            - 1,2,1,-1
+            - 3,2,1,-1
+            - 0,2,1,-1
+            - 2,2,1,-1
+            - 1,0,1,1
+            - 2,0,1,1
+        Bottom:
+          Pos: [1, 0, 1]
+          Size: [14, 10, 14]
+          Faces:
+            - 1,4,1,-1
+            - 3,4,1,-1
+            - 0,4,1,-1
+            - 2,4,1,-1
+            - 1,2,1,1
+            - 2,2,1,1
+        Handle:
+          Pos: [7, 7, 15]
+          Size: [2, 4, 1]
+          Faces:
+            - 5,6,1,-1
+
+#Mobs definition
+Mobs:
+  #Mob name - used in mod command
+  Chicken:
+    #Mob texture file
+    Texture: VANILLA:assets/minecraft/textures/entity/chicken.png
+    #Native (provided in the mod file) texture res
+    TextureRes: 16
+    #Permission required to draw this statue
+    Permission: user.drawStatue.mob.chicken
+    #Mob statue size used to move drawing point when rotating
+    Size: [6, 15, 3]
+    #Texture columns
+    Columns: [26, 29, 32, 35, 38, 0, 6, 12, 18, 24, 30, 31, 32, 37, 38, 0, 3, 7, 10, 11, 14, 14, 16, 18, 20, 22, 24, 26]
+    #Texture rows
+    Rows: [0, 3, 8, 9, 15, 23, 13, 19, 23, 0, 3, 9, 0, 2, 4, 6, 8] 
+    #Mob parts
+    Parts:
+      #Mob part
+      LageLeft:
+        Pos: [0, 0, 0]
+        Size: [3, 5, 3]
+        Faces:
+          - 3,2,1,-1
+          - 2,2,-1,-1
+          - 2,2,1,-1
+          - 1,2,-1,-1
+          - 2,1,-1,-1
+          - 3,1,-1,-1
+      LageRight:
+        Pos: [3, 0, 0]
+        Size: [3, 5, 3]
+        Faces:
+          - 3,2,1,-1
+          - 2,2,-1,-1
+          - 2,2,1,-1
+          - 1,2,-1,-1
+          - 2,1,-1,-1
+          - 3,1,-1,-1
+      Body:
+        Pos: [0, 5, -3]
+        Size: [6, 6, 8]
+        Faces:
+          - 8,4,-1,-1
+          - 7,4,-1,-1
+          - 7,4,1,1,true
+          - 6,4,-1,1,true
+          - 8,4,1,1
+          - 7,4,-1,1
+      LeftWing:
+        Pos: [-1, 7, -2]
+        Size: [1, 4, 6]
+        Faces:
+          - 13,8,1,-1
+          - 10,8,1,-1
+          - 11,8,2,-1
+          - 10,8,-1,-1
+          - 10,7,1,-1
+          - 11,7,1,-1
+      RightWing:
+        Pos: [6, 7, -2]
+        Size: [1, 4, 6]
+        Faces:
+          - 13,8,1,-1
+          - 10,8,1,-1
+          - 11,8,2,-1
+          - 10,8,-1,-1
+          - 10,7,1,-1
+          - 11,7,1,-1
+      Head:
+        Pos: [1, 9, -5]
+        Size: [4, 6, 3]
+        Faces:
+          - 18,11,2,-1
+          - 17,11,-1,-1
+          - 17,11,1,-1
+          - 15,11,1,-1
+          - 17,10,-1,-1
+          - 19,10,-2,-1
+      Beak:
+        Pos: [1, 11, -7]
+        Size: [4, 2, 2]
+        Faces:
+          - 27,14,-2,-1
+          - 24,14,-2,-1
+          - 24,14,1,-1
+          - 21,14,1,-1
+          - 24,13,-2,-1
+          - 26,13,-2,-1
+      Wattle:
+        Pos: [2, 9, -6]
+        Size: [2, 2, 2]
+        Faces:
+          - 25,16,-1,-1
+          - 23,16,-1,-1
+          - 23,16,1,-1
+          - 21,16,1,-1
+          - 23,15,-1,-1
+          - 24,15,-1,-1

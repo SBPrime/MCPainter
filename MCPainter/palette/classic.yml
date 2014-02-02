@@ -1,0 +1,43 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of classic minecraft blocks
+################################################################################
+name: Classic
+blocks:
+  - WOOL:0-VANILLA:assets/minecraft/textures/blocks/wool_colored_white.png
+  - WOOL:1-VANILLA:assets/minecraft/textures/blocks/wool_colored_orange.png
+  - WOOL:2-VANILLA:assets/minecraft/textures/blocks/wool_colored_magenta.png
+  - WOOL:3-VANILLA:assets/minecraft/textures/blocks/wool_colored_light_blue.png
+  - WOOL:4-VANILLA:assets/minecraft/textures/blocks/wool_colored_yellow.png
+  - WOOL:5-VANILLA:assets/minecraft/textures/blocks/wool_colored_lime.png
+  - WOOL:6-VANILLA:assets/minecraft/textures/blocks/wool_colored_pink.png
+  - WOOL:7-VANILLA:assets/minecraft/textures/blocks/wool_colored_gray.png
+  - WOOL:8-VANILLA:assets/minecraft/textures/blocks/wool_colored_silver.png
+  - WOOL:9-VANILLA:assets/minecraft/textures/blocks/wool_colored_cyan.png
+  - WOOL:10-VANILLA:assets/minecraft/textures/blocks/wool_colored_purple.png
+  - WOOL:11-VANILLA:assets/minecraft/textures/blocks/wool_colored_blue.png
+  - WOOL:12-VANILLA:assets/minecraft/textures/blocks/wool_colored_brown.png
+  - WOOL:13-VANILLA:assets/minecraft/textures/blocks/wool_colored_green.png
+  - WOOL:14-VANILLA:assets/minecraft/textures/blocks/wool_colored_red.png
+  - WOOL:15-VANILLA:assets/minecraft/textures/blocks/wool_colored_black.png
+
+  - STONE-VANILLA:assets/minecraft/textures/blocks/stone.png
+  - DIRT-VANILLA:assets/minecraft/textures/blocks/dirt.png
+
+  - BRICK-VANILLA:assets/minecraft/textures/blocks/brick.png
+  - COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+  - BEDROCK-VANILLA:assets/minecraft/textures/blocks/bedrock.png
+  
+  - LOG:12-VANILLA:assets/minecraft/textures/blocks/log_oak.png  
+  - WOOD:0-VANILLA:assets/minecraft/textures/blocks/planks_oak.png    
+  
+  - IRON_BLOCK-VANILLA:assets/minecraft/textures/blocks/iron_block.png
+  - GOLD_BLOCK-VANILLA:assets/minecraft/textures/blocks/gold_block.png
+  - GOLD_ORE-VANILLA:assets/minecraft/textures/blocks/gold_ore.png
+  - IRON_ORE-VANILLA:assets/minecraft/textures/blocks/iron_ore.png
+  - COAL_ORE-VANILLA:assets/minecraft/textures/blocks/coal_ore.png
+  - MOSSY_COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/cobblestone_mossy.png
+  - OBSIDIAN-VANILLA:assets/minecraft/textures/blocks/obsidian.png
+  - SPONGE-VANILLA:assets/minecraft/textures/blocks/sponge.png
