@@ -68,7 +68,7 @@ public class HdImageCommand {
 
     public void Execute(PluginMain sender, Player player, IWorldEdit worldEdit, String[] args) {
         if (args.length != 2) {
-            Help.ShowHelp(player, Commands.COMMAND_IMAGEHD);
+//            Help.ShowHelp(player, Commands.COMMAND_IMAGEHD);
             return;
         }
 

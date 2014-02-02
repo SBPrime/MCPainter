@@ -35,7 +35,7 @@ public final class Commands {
     public final static String COMMAND_MAIN = "MCPainter";
     public final static String COMMAND_IMAGE = "Image";
     public final static String COMMAND_IMAGEMAP = "ImageMap";
-    public final static String COMMAND_IMAGEHD = "ImageHd";
+//    public final static String COMMAND_IMAGEHD = "ImageHd";
     public final static String COMMAND_BLOCK = "Block";
     public final static String COMMAND_STATUE = "Statue";
     public final static String COMMAND_RELOAD = "Reload";

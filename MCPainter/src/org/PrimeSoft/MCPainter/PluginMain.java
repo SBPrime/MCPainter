@@ -267,9 +267,9 @@ public class PluginMain extends JavaPlugin {
         } else if (name.equalsIgnoreCase(Commands.COMMAND_IMAGEMAP)) {
             doMap(player, args);
             return true;
-        } else if (name.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {
+/*        } else if (name.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {
             doHdImage(player, args);
-            return true;
+            return true;*/
         } else if (name.equalsIgnoreCase(Commands.COMMAND_PURGE)) {
             doPurge(player, args);
             return true;

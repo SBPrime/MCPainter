@@ -139,8 +139,8 @@ public final class Help {
                 help = HelpJobs;
             } else if (command.equalsIgnoreCase(Commands.COMMAND_FILTER)) {
                 help = HelpFilter;
-            } else if (command.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {
-                help = HelpHdImage;
+/*            } else if (command.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {
+                help = HelpHdImage;*/
             }
         }
 
