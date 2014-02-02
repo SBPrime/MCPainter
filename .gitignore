@@ -1,6 +1,8 @@
-*.class
-
-# Package Files #
 *.jar
-*.war
-*.ear
+*.class
+*build/
+*lib/
+*test/
+*dist/
+/MCPainter/nbproject/private/
+*genfiles.properties
