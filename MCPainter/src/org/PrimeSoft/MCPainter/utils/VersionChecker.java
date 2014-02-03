@@ -43,7 +43,7 @@ public class VersionChecker {
     /**
      * Version url
      */
-    private final static String s_versionUrl = "https://api.curseforge.com/servermods/files?projectIds=46968";
+    private final static String s_versionUrl = "https://api.github.com/repos/SBPrime/MCPainter/releases";
 
     /**
      * Download version page from the www
