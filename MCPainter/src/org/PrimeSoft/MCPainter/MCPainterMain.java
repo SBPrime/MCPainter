@@ -63,7 +63,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * @author SBPrime
  */
-public class PluginMain extends JavaPlugin {
+public class MCPainterMain extends JavaPlugin {
 
     private static final Logger s_log = Logger.getLogger("Minecraft.MCPainter");
     private static ConsoleCommandSender s_console;
@@ -388,11 +388,11 @@ public class PluginMain extends JavaPlugin {
                 Palette pal = Palette.load(file);
                 if (pal != null) {
                     if (!m_paletteManager.addPalette(pal)) {
-                        PluginMain.log("* " + pal + "...duplicate, ingoring");
+                        MCPainterMain.log("* " + pal + "...duplicate, ingoring");
                     }
                 }
             } catch (Exception ex) {
-                PluginMain.log("* " + file.getName() + "...unknown error, " + ex.getMessage());
+                MCPainterMain.log("* " + file.getName() + "...unknown error, " + ex.getMessage());
             }
         }
 

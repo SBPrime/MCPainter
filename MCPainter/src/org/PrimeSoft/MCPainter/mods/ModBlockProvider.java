@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.*;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -85,11 +85,11 @@ public class ModBlockProvider implements IBlockProvider {
             ConfigurationSection instruction = blockDefinition.getConfigurationSection("Instruction");
 
             if (name.length() == 0 && id == -1) {
-                PluginMain.log(sName + ": block Id or name is required.");
+                MCPainterMain.log(sName + ": block Id or name is required.");
                 continue;
             }
             if (instruction == null) {
-                PluginMain.log(sName + ": no block drawing instructions.");
+                MCPainterMain.log(sName + ": no block drawing instructions.");
                 continue;
             }
 
@@ -124,16 +124,16 @@ public class ModBlockProvider implements IBlockProvider {
                 } else if (type.equalsIgnoreCase(Plane.NAME)) {
                     block = new Plane(texture, instruction);
                 } else {
-                    PluginMain.log(sName + ": unknown block type \"" + type + "\".");
+                    MCPainterMain.log(sName + ": unknown block type \"" + type + "\".");
                     continue;
                 }
             } catch (Exception ex) {
-                PluginMain.log(sName + ": Error parsing block " + ex.getMessage());
+                MCPainterMain.log(sName + ": Error parsing block " + ex.getMessage());
                 continue;
             }
 
             if (block instanceof MultiBlock && data != null) {
-                PluginMain.log(sName + ": Warning multi block detected, ignoring data value");
+                MCPainterMain.log(sName + ": Warning multi block detected, ignoring data value");
                 data = null;
             }
             boolean added = addBlock(name, definedBlocks, id, definedBlocksId, data, sName, block);
@@ -159,11 +159,11 @@ public class ModBlockProvider implements IBlockProvider {
             HashMap<Short, IDrawableElement> blockEntries = definedBlocks.get(name);
             for (int i : data) {
                 if (i > Short.MAX_VALUE || i < 0) {
-                    PluginMain.log(sectionName + ": invalid block data " + i + ".");
+                    MCPainterMain.log(sectionName + ": invalid block data " + i + ".");
                     continue;
                 }
                 if (blockEntries.containsKey((short) i)) {
-                    PluginMain.log(sectionName + ": duplicate block data value " + i + ".");
+                    MCPainterMain.log(sectionName + ": duplicate block data value " + i + ".");
                 } else {
                     blockEntries.put((short) i, block);
                     added = true;
@@ -184,11 +184,11 @@ public class ModBlockProvider implements IBlockProvider {
                 HashMap<Short, IDrawableElement> blockEntries = definedBlocksId.get(id);
                 for (int i : data) {
                     if (i > Short.MAX_VALUE || i < 0) {
-                        PluginMain.log(sectionName + ": invalid block data " + i + ".");
+                        MCPainterMain.log(sectionName + ": invalid block data " + i + ".");
                         continue;
                     }
                     if (blockEntries.containsKey((short) i)) {
-                        PluginMain.log(sectionName + ": duplicate block data value " + i + ".");
+                        MCPainterMain.log(sectionName + ": duplicate block data value " + i + ".");
                     } else {
                         blockEntries.put((short) i, block);
                         added = true;

@@ -1,7 +1,8 @@
 name: MCPainter
-main: org.PrimeSoft.MCPainter.PluginMain
-version: 1.0-RC4
-website: http://dev.bukkit.org/server-mods/mcpainter/
+main: org.PrimeSoft.MCPainter.MCPainterMain
+version: 1.0-RC5
+website: https://github.com/SBPrime/MCPainter/wiki
+dev-url: https://github.com/SBPrime/MCPainter/wiki
 description: Provides some basic features to draw using blocks.
 authors: [SBPrime]
 softdepend: [BlocksHub, Vault, WorldEdit]

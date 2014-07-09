@@ -31,7 +31,7 @@ import java.util.List;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.map.MapPalette;
@@ -73,25 +73,25 @@ public class FilterManager {
                 if (filter.hasPerms(player)) {
                     FilterEntry result = filter.getEntry(args);
                     if (result == null) {
-                        PluginMain.say(player, ChatColor.RED + "Bad filter parameters.");
+                        MCPainterMain.say(player, ChatColor.RED + "Bad filter parameters.");
                         displayHelp(player, filter.getHelp());
                         return null;
                     }
 
                     return result;
                 } else {
-                    PluginMain.say(player, ChatColor.RED + "You have no permissions to use " + ChatColor.WHITE + name + ChatColor.RED + "filter.");
+                    MCPainterMain.say(player, ChatColor.RED + "You have no permissions to use " + ChatColor.WHITE + name + ChatColor.RED + "filter.");
                     return null;
                 }
             }
         }
-        PluginMain.say(player, ChatColor.RED + "Error filter \"" + ChatColor.WHITE + name + ChatColor.RED + "\" not found");
+        MCPainterMain.say(player, ChatColor.RED + "Error filter \"" + ChatColor.WHITE + name + ChatColor.RED + "\" not found");
         return null;
     }
 
     private static void displayHelp(Player player, String[] help) {
         for (String string : help) {
-            PluginMain.say(player, string);
+            MCPainterMain.say(player, string);
         }
     }
 
@@ -137,16 +137,16 @@ public class FilterManager {
 
                 String name = filter.getName();
 
-                PluginMain.say(m_player, "Applying filter: " + ChatColor.WHITE + name);
+                MCPainterMain.say(m_player, "Applying filter: " + ChatColor.WHITE + name);
                 if (filter.hasPerms(m_player)) {
                     BufferedImage result = filter.process(img, params);
                     if (result == null) {
-                        PluginMain.say(m_player, ChatColor.RED + "Error applying filter \"" + ChatColor.WHITE + name + ChatColor.RED + "\" check parameters.");
+                        MCPainterMain.say(m_player, ChatColor.RED + "Error applying filter \"" + ChatColor.WHITE + name + ChatColor.RED + "\" check parameters.");
                     } else {
                         img = result;
                     }
                 } else {
-                    PluginMain.say(m_player, ChatColor.RED + "You have no permissions to use " + ChatColor.WHITE + name + ChatColor.RED + "filter.");
+                    MCPainterMain.say(m_player, ChatColor.RED + "You have no permissions to use " + ChatColor.WHITE + name + ChatColor.RED + "filter.");
                 }
             }
             return img;

@@ -30,7 +30,7 @@ import org.PrimeSoft.MCPainter.Drawing.Blocks.IDrawableElement;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.FoundManager;
 import org.PrimeSoft.MCPainter.Help;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
@@ -50,11 +50,11 @@ public class BlockCommand {
      */
     private IBlockProvider m_blockProvider;
 
-    public BlockCommand(PluginMain plugin) {
+    public BlockCommand(MCPainterMain plugin) {
         m_blockProvider = plugin.getBlockProvider();
     }
 
-    public void Execte(PluginMain sender, final Player player, IWorldEdit worldEdit,
+    public void Execte(MCPainterMain sender, final Player player, IWorldEdit worldEdit,
             final ColorMap colorMap, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_BLOCK);
@@ -122,7 +122,7 @@ public class BlockCommand {
             }
 
             if (blockMaterial == null && matId == -1 && blockName == null) {
-                PluginMain.say(player, ChatColor.RED + "Unknown material");
+                MCPainterMain.say(player, ChatColor.RED + "Unknown material");
                 return;
             }
         }
@@ -131,13 +131,13 @@ public class BlockCommand {
             blockName = blockMaterial.toString();
         }
         String name = (blockName != null ? blockName : matId).toString();
-        PluginMain.say(player, "Drawing block " + name + "...");
+        MCPainterMain.say(player, "Drawing block " + name + "...");
 
 
         final IDrawableElement element = (blockName != null) ? m_blockProvider.getBlock(blockName) : m_blockProvider.getBlock(matId);
 
         if (element == null) {
-            PluginMain.say(player, ChatColor.RED + "Block " + name + " not supported");
+            MCPainterMain.say(player, ChatColor.RED + "Block " + name + " not supported");
             return;
         }
 
@@ -149,14 +149,14 @@ public class BlockCommand {
 
         private final ILocalSession m_lSession;
         private final IEditSession m_session;
-        private final PluginMain m_sender;
+        private final MCPainterMain m_sender;
         private final ColorMap m_colorMap;
         private final IDrawableElement m_element;
         private final ILocalPlayer m_localPlayer;
         private final short m_blockData;
         private final Player m_player;
 
-        private CommandThread(PluginMain sender, Player player, IDrawableElement element,
+        private CommandThread(MCPainterMain sender, Player player, IDrawableElement element,
                 short blockData, IWorldEdit worldEdit, ColorMap colorMap) {
             m_player = player;
 
@@ -174,7 +174,7 @@ public class BlockCommand {
             double price = ConfigProvider.getCommandPrice("block");
             synchronized (FoundManager.getMutex()) {
                 if (price > 0 && FoundManager.getMoney(m_player) < price) {
-                    PluginMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw blocks.");
+                    MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw blocks.");
                     return;
                 }
                 BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);

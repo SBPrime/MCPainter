@@ -44,7 +44,7 @@ import org.bukkit.entity.Player;
  */
 public class ImageCommand implements Runnable {
 
-    public static void Execte(PluginMain sender, Player player, IWorldEdit worldEdit,
+    public static void Execte(MCPainterMain sender, Player player, IWorldEdit worldEdit,
             ColorMap colorMap, String[] args) {
         if (args.length != 2) {
             Help.ShowHelp(player, Commands.COMMAND_IMAGE);
@@ -63,9 +63,9 @@ public class ImageCommand implements Runnable {
     private final IEditSession m_session;
     private final ILocalSession m_lSession;
     private final ColorMap m_colorMap;
-    private final PluginMain m_sender;
+    private final MCPainterMain m_sender;
 
-    private ImageCommand(PluginMain sender, Player player, String[] args, IWorldEdit worldEdit,
+    private ImageCommand(MCPainterMain sender, Player player, String[] args, IWorldEdit worldEdit,
             ColorMap colorMap) {
         m_args = args;
         m_player = player;
@@ -88,14 +88,14 @@ public class ImageCommand implements Runnable {
         double price = ConfigProvider.getCommandPrice("image") + fm.getPrice();
         synchronized (FoundManager.getMutex()) {
             if (price > 0 && FoundManager.getMoney(m_player) < price) {
-                PluginMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to apply all the filters and draw the image.");
+                MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to apply all the filters and draw the image.");
                 return;
             }
 
-            PluginMain.say(m_player, "Loading image...");
+            MCPainterMain.say(m_player, "Loading image...");
             BufferedImage img = ImageHelper.downloadImage(url);
             if (img == null) {
-                PluginMain.say(m_player, ChatColor.RED + "Error downloading image " + ChatColor.WHITE + url);
+                MCPainterMain.say(m_player, ChatColor.RED + "Error downloading image " + ChatColor.WHITE + url);
                 return;
             }
 
@@ -109,7 +109,7 @@ public class ImageCommand implements Runnable {
                 return;
             }
 
-            PluginMain.say(m_player, "Drawing image...");
+            MCPainterMain.say(m_player, "Drawing image...");
             BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
             ImageHelper.drawImage(loger, m_colorMap, img, position, m_orientation);
 

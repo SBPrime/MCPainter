@@ -28,7 +28,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.ExtFileFilter;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -45,7 +45,7 @@ public class DataFile {
     };
     
     public static DataFile[] processFiles(File dataDir) {
-        PluginMain.log("Loading data files...");
+        MCPainterMain.log("Loading data files...");
         
         List<DataFile> result = new ArrayList<DataFile>();
         File[] files = dataDir.listFiles(new ExtFileFilter(new String[]{ExtFileFilter.YML}));
@@ -106,6 +106,6 @@ public class DataFile {
             m_type = DataFileType.Unknown;
             type = "unknown type";
         }
-        PluginMain.log("* " + m_name + "..." + type);
+        MCPainterMain.log("* " + m_name + "..." + type);
     }
 }

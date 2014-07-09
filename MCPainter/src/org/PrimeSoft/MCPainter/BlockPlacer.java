@@ -79,7 +79,7 @@ public class BlockPlacer implements Runnable {
      * @param plugin parent     
      * @param blocksHub     
      */
-    public BlockPlacer(PluginMain plugin, BlocksHubIntegration blocksHub) {        
+    public BlockPlacer(MCPainterMain plugin, BlocksHubIntegration blocksHub) {        
         m_blocksHub = blocksHub;
         m_blocks = new HashMap<String, Queue<BlockLogerEntry>>();
         m_scheduler = plugin.getServer().getScheduler();
@@ -163,14 +163,14 @@ public class BlockPlacer implements Runnable {
         }
 
         if (queue.size() > m_queueHard) {
-            PluginMain.say(player, "Queue size limit reached. Block placing postponed...");
+            MCPainterMain.say(player, "Queue size limit reached. Block placing postponed...");
             while (queue.size() > m_queueSoft && !m_shutdown) {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
                 }
             }
-            PluginMain.say(player, "Block placing resumed.");
+            MCPainterMain.say(player, "Block placing resumed.");
         }
     }
 
@@ -262,8 +262,8 @@ public class BlockPlacer implements Runnable {
                     eSession.setBlock(location, block);
                     logBlock(location, oldBlock, block, p.getName(), loger.getWorld());
                 } catch (MaxChangedBlocksException ex) {
-                    PluginMain.say(p, "Max block change reached");
-                    PluginMain.log(ex.getMessage());
+                    MCPainterMain.say(p, "Max block change reached");
+                    MCPainterMain.log(ex.getMessage());
                 }
             }
             if (entry.isFinalize()) {
@@ -276,7 +276,7 @@ public class BlockPlacer implements Runnable {
 
         String message = entry.getMessage();
         if (message != null) {
-            PluginMain.say(p, message);
+            MCPainterMain.say(p, message);
         }
     }
 

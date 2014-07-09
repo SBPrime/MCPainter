@@ -48,7 +48,7 @@ import org.bukkit.entity.Player;
  */
 public class StatueCommand implements Runnable {
 
-    public static void Execte(PluginMain sender, final Player player,
+    public static void Execte(MCPainterMain sender, final Player player,
             final IWorldEdit worldEdit, final ColorMap colorMap, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_STATUE);
@@ -58,14 +58,14 @@ public class StatueCommand implements Runnable {
         ModStatueProvider statueProvider = sender.getStatueProvider();
         PlayerStatueDescription description = statueProvider.getPlayer();
         if (description == null){
-            PluginMain.say(player, ChatColor.RED + "No player statue defined in the config files.");
+            MCPainterMain.say(player, ChatColor.RED + "No player statue defined in the config files.");
             return;
         }
         final String url;
         final String imgError;
         if (args.length == 1) {
             if (!PermissionManager.isAllowed(player, PermissionManager.Perms.DrawStatue_Self)) {
-                PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                 return;
             }
 
@@ -86,7 +86,7 @@ public class StatueCommand implements Runnable {
             }
 
             if (!perms) {
-                PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                 return;
             }
         }
@@ -114,14 +114,14 @@ public class StatueCommand implements Runnable {
     private final String m_url;
     private final ILocalSession m_lSession;
     private final IEditSession m_session;
-    private final PluginMain m_sender;
+    private final MCPainterMain m_sender;
     private final double m_yaw;
     private final double m_pitch;
     private final Orientation m_orientation;
     private final String m_imgError;
     private final CustomStatue m_playerStatue;
 
-    private StatueCommand(PluginMain sender, Player player, String url, String imgError,
+    private StatueCommand(MCPainterMain sender, Player player, String url, String imgError,
             IWorldEdit worldEdit, ColorMap colorMap, PlayerStatueDescription description) {
         m_player = player;
 
@@ -145,19 +145,19 @@ public class StatueCommand implements Runnable {
         double price = ConfigProvider.getCommandPrice("statue");
         synchronized (FoundManager.getMutex()) {
             if (price > 0 && FoundManager.getMoney(m_player) < price) {
-                PluginMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw the statue.");
+                MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw the statue.");
                 return;
             }
 
 
-            PluginMain.say(m_player, "Loading image...");
+            MCPainterMain.say(m_player, "Loading image...");
             BufferedImage img = ImageHelper.downloadImage(m_url);
             if (img == null) {
-                PluginMain.say(m_player, m_imgError);
+                MCPainterMain.say(m_player, m_imgError);
                 return;
             }
 
-            PluginMain.say(m_player, "Drawing statue...");
+            MCPainterMain.say(m_player, "Drawing statue...");
             BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
 
             boolean[] useAlpha = new boolean[1];

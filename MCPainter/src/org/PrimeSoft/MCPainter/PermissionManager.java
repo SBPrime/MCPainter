@@ -176,7 +176,7 @@ public class PermissionManager {
         SizeNode[] nodes = ConfigProvider.getSizeNodes();
         if (nodes == null || nodes.length == 0) {
             if (w > maxSize.getW() || h > maxSize.getH()) {
-                PluginMain.say(player, ChatColor.RED + "You don't have permissions to draw such large images.");
+                MCPainterMain.say(player, ChatColor.RED + "You don't have permissions to draw such large images.");
                 return false;
             }
 
@@ -192,7 +192,7 @@ public class PermissionManager {
         }
 
         if (w > maxSize.getW() || h > maxSize.getH()) {
-            PluginMain.say(player, ChatColor.RED + "You don't have permissions to draw such large images.");
+            MCPainterMain.say(player, ChatColor.RED + "You don't have permissions to draw such large images.");
             return false;
         }
 

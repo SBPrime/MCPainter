@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import org.PrimeSoft.MCPainter.utils.ExtFileFilter;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 
 /**
  * This class is used to provide access to available mods
@@ -100,7 +100,7 @@ public class ModsProvider {
     private void InitializeMods(File modDir) {
         File[] modFiles = modDir.listFiles(new ExtFileFilter(new String[]{ExtFileFilter.JAR, ExtFileFilter.ZIP}));
 
-        PluginMain.log("Scanning mod files:");
+        MCPainterMain.log("Scanning mod files:");
         for (File file : modFiles) {
             try {
                 Mod mod = new Mod(file);
@@ -108,9 +108,9 @@ public class ModsProvider {
                 String version = mod.getModVersion();
                 m_modsMap.put(modId, mod);
 
-                PluginMain.log("* " + file.getName() + " mod: " + modId + " (" + version + ")");
+                MCPainterMain.log("* " + file.getName() + " mod: " + modId + " (" + version + ")");
             } catch (IOException ex) {
-                PluginMain.log("* " + file.getName() + " error: " + ex.getMessage());
+                MCPainterMain.log("* " + file.getName() + " error: " + ex.getMessage());
             }
         }
     }

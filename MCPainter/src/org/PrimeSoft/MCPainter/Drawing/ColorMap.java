@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureDescription;
 import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
@@ -34,7 +34,7 @@ public class ColorMap {
 
         BlockEntry[] blocks = palette != null ? palette.getBlocks() : null;
         if (blocks == null || blocks.length < 2) {
-            PluginMain.log("Not enough blocks deffined in pallete.");
+            MCPainterMain.log("Not enough blocks deffined in pallete.");
             return;
         }
 
@@ -51,7 +51,7 @@ public class ColorMap {
                 int cnt = 0;                  
                 TextureEntry img = textureManager.get(tex);
                 if (img == null) {
-                    PluginMain.log("Error processing block node " + blockEntry.toString());
+                    MCPainterMain.log("Error processing block node " + blockEntry.toString());
                     continue;
                 }
 
@@ -81,7 +81,7 @@ public class ColorMap {
 
                 blockEntry.setColor(new Color(sumR / cnt, sumG / cnt, sumB / cnt, sumA / cnt));
             } catch (Exception ex) {
-                PluginMain.log("Error processing block node " + blockEntry.toString());
+                MCPainterMain.log("Error processing block node " + blockEntry.toString());
             }
         }
 

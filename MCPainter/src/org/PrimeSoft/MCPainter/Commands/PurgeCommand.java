@@ -25,7 +25,7 @@ package org.PrimeSoft.MCPainter.Commands;
 
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -35,7 +35,7 @@ import org.bukkit.entity.Player;
  */
 public class PurgeCommand {
 
-    public static void Execte(PluginMain sender, Player player, String[] args) {
+    public static void Execte(MCPainterMain sender, Player player, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_PURGE);
             return;
@@ -43,7 +43,7 @@ public class PurgeCommand {
 
         if (args.length == 1) {
             if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Purge_Self)) {
-                PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                 return;
             }
 
@@ -52,7 +52,7 @@ public class PurgeCommand {
             String arg = args[1];
             if (arg.startsWith("u:")) {
                 if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Purge_Other)) {
-                    PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                    MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                     return;
                 }
 
@@ -65,7 +65,7 @@ public class PurgeCommand {
                 }
                 
                 if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Purge_All)) {
-                    PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                    MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                     return;
                 }
                 

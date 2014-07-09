@@ -27,7 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
 
@@ -248,7 +248,7 @@ public class ConfigProvider {
      * @param plugin parent plugin
      * @return true if config loaded
      */
-    public static boolean load(PluginMain plugin) {
+    public static boolean load(MCPainterMain plugin) {
         if (plugin == null) {
             return false;
         }
@@ -297,7 +297,7 @@ public class ConfigProvider {
         m_sizeEntries = parseSizeNodeSection(mainSection);
         parseBlocksHubSection(mainSection.getConfigurationSection("blocksHub"));
         
-        PluginMain.log(m_sizeEntries.length + " size nodes defined in config file.");
+        MCPainterMain.log(m_sizeEntries.length + " size nodes defined in config file.");
         return true;
     }
 
@@ -330,7 +330,7 @@ public class ConfigProvider {
                 sizeEntries.add(new SizeNode(string));
             }
             catch (Exception e) {
-                PluginMain.log("Error parsing config entry: " + string);
+                MCPainterMain.log("Error parsing config entry: " + string);
             }
         }
         return sizeEntries.toArray(new SizeNode[0]);
@@ -366,7 +366,7 @@ public class ConfigProvider {
             try {
                 String[] parts = string.split(":");
                 if (parts.length != 2) {
-                    PluginMain.log("* Error parsing price entry: " + string);
+                    MCPainterMain.log("* Error parsing price entry: " + string);
                     continue;
                 }
 
@@ -376,7 +376,7 @@ public class ConfigProvider {
                 m_commandPrice.put(command, price);
             }
             catch (Exception e) {
-                PluginMain.log("* Error parsing price entry: " + string);
+                MCPainterMain.log("* Error parsing price entry: " + string);
             }
         }
     }

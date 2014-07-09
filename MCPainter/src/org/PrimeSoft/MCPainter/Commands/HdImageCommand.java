@@ -35,7 +35,7 @@ import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.ILoggerCommand;
 import org.PrimeSoft.MCPainter.MapDrawer.MapHelper;
 import org.PrimeSoft.MCPainter.PermissionManager;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.worldEdit.ICuboidSelection;
 import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
@@ -66,7 +66,7 @@ public class HdImageCommand {
         m_mapHelper = mapHelper;
     }
 
-    public void Execute(PluginMain sender, Player player, IWorldEdit worldEdit, String[] args) {
+    public void Execute(MCPainterMain sender, Player player, IWorldEdit worldEdit, String[] args) {
         if (args.length != 2) {
 //            Help.ShowHelp(player, Commands.COMMAND_IMAGEHD);
             return;
@@ -75,7 +75,7 @@ public class HdImageCommand {
         String url = args[1];
         final ICuboidSelection selection = worldEdit.getSelection(player);
         if (selection == null) {
-            PluginMain.say(player, ChatColor.RED + "No selection.");
+            MCPainterMain.say(player, ChatColor.RED + "No selection.");
             return;
         }
 
@@ -133,12 +133,12 @@ public class HdImageCommand {
         private final ICuboidSelection m_selection;
         private final String m_url;
         private final Player m_player;
-        private final PluginMain m_sender;
+        private final MCPainterMain m_sender;
         private final HdImageCommand m_this;
         private final IEditSession m_session;
         private final ILocalSession m_lSession;
 
-        private CommandThread(HdImageCommand command, PluginMain sender, Player player,
+        private CommandThread(HdImageCommand command, MCPainterMain sender, Player player,
                 String url, IWorldEdit worldEdit, ICuboidSelection selection) {
             m_this = command;
             m_sender = sender;
@@ -156,14 +156,14 @@ public class HdImageCommand {
             double price = ConfigProvider.getCommandPrice("image") + fm.getPrice();
             synchronized (FoundManager.getMutex()) {
                 if (price > 0 && FoundManager.getMoney(m_player) < price) {
-                    PluginMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to apply all the filters and draw the map.");
+                    MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to apply all the filters and draw the map.");
                     return;
                 }
 
-                PluginMain.say(m_player, "Loading image...");
+                MCPainterMain.say(m_player, "Loading image...");
                 BufferedImage img = ImageHelper.downloadImage(m_url);
                 if (img == null) {
-                    PluginMain.say(m_player, ChatColor.RED + "Error downloading image " + ChatColor.WHITE + m_url);
+                    MCPainterMain.say(m_player, ChatColor.RED + "Error downloading image " + ChatColor.WHITE + m_url);
                     return;
                 }
 
@@ -183,7 +183,7 @@ public class HdImageCommand {
                 int h = m_selection.getHeight();
                 int kx, kz;
                 if (w > 1 && l > 1) {
-                    PluginMain.say(m_player, ChatColor.RED + "Invalid selection area.");
+                    MCPainterMain.say(m_player, ChatColor.RED + "Invalid selection area.");
                     return;
                 } else if (w > l) {
                     kx = 1;
@@ -196,12 +196,12 @@ public class HdImageCommand {
                 int bHeight = hh / 128 + (hh % 128 != 0 ? 1 : 0);
                 int bWidth = ww / 128 + (ww % 128 != 0 ? 1 : 0);
                 if (h < bHeight || (w < bWidth && l < bWidth)) {
-                    PluginMain.say(m_player, ChatColor.RED + "The selection is to smal, required: " + bWidth + "x" + bHeight);
+                    MCPainterMain.say(m_player, ChatColor.RED + "The selection is to smal, required: " + bWidth + "x" + bHeight);
                     return;
                 }
 
                 Location pos = new Location(minPoint.getWorld(), minPoint.getBlockX(), maxPoint.getBlockY(), minPoint.getBlockZ());
-                PluginMain.say(m_player, "Drawing image...");
+                MCPainterMain.say(m_player, "Drawing image...");
                 BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
 
                 for (int py = 0; py < bHeight; py++) {

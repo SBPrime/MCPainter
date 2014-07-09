@@ -26,7 +26,7 @@ package org.PrimeSoft.MCPainter.Commands;
 import org.PrimeSoft.MCPainter.BlockPlacer;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -36,7 +36,7 @@ import org.bukkit.entity.Player;
  */
 public class JobsCommand {
 
-    public static void Execte(PluginMain sender, Player player, String[] args) {
+    public static void Execte(MCPainterMain sender, Player player, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_JOBS);
             return;
@@ -45,24 +45,24 @@ public class JobsCommand {
         BlockPlacer bPlacer = sender.getBlockPlacer();
         if (args.length == 1) {
             if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Jobs_Self)) {
-                PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                 return;
             }
 
             int cnt = bPlacer.getPlayerEvents(player.getName());
-            PluginMain.say(player, ChatColor.YELLOW + "You have " + ChatColor.WHITE + cnt
+            MCPainterMain.say(player, ChatColor.YELLOW + "You have " + ChatColor.WHITE + cnt
                     + ChatColor.YELLOW + " block operations queued.");
         } else {
             String arg = args[1];
             if (arg.startsWith("u:")) {
                 if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Jobs_Other)) {
-                    PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                    MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                     return;
                 }
 
                 String user = arg.substring(2);
                 int cnt = bPlacer.getPlayerEvents(user);
-                PluginMain.say(player, ChatColor.YELLOW + "Player " + ChatColor.BLUE
+                MCPainterMain.say(player, ChatColor.YELLOW + "Player " + ChatColor.BLUE
                         + user + ChatColor.YELLOW + " has " + ChatColor.WHITE + cnt
                         + ChatColor.YELLOW + " block operations queued.");
             } else {
@@ -72,17 +72,17 @@ public class JobsCommand {
                 }
 
                 if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Jobs_All)) {
-                    PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                    MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                     return;
                 }
 
                 String[] users = bPlacer.getAllPlayers();
                 if (users.length == 0) {
-                    PluginMain.say(player, ChatColor.YELLOW + "No operations queued.");
+                    MCPainterMain.say(player, ChatColor.YELLOW + "No operations queued.");
                 } else {
                     for (String user : users) {
                         int cnt = bPlacer.getPlayerEvents(user);
-                        PluginMain.say(player, ChatColor.YELLOW + "Player " + ChatColor.BLUE
+                        MCPainterMain.say(player, ChatColor.YELLOW + "Player " + ChatColor.BLUE
                                 + user + ChatColor.YELLOW + "has " + ChatColor.WHITE + cnt
                                 + ChatColor.YELLOW + " block operations queued.");
                     }

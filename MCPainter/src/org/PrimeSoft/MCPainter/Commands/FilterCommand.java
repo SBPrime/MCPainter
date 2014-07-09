@@ -31,7 +31,7 @@ import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
 import org.PrimeSoft.MCPainter.Drawing.Filters.IImageFilter;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -41,14 +41,14 @@ import org.bukkit.entity.Player;
  */
 public class FilterCommand {
 
-    public static void Execte(PluginMain sender, Player player, String[] args) {
+    public static void Execte(MCPainterMain sender, Player player, String[] args) {
         if (args.length < 1) {
             Help.ShowHelp(player, Commands.COMMAND_FILTER);
             return;
         }
 
         if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Filter)) {
-            PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+            MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
             return;
         }
 
@@ -103,7 +103,7 @@ public class FilterCommand {
                     FilterEntry filter = FilterManager.getFilter(player, name, nArgs);
                     if (filter != null) {
                         fm.insert(id, filter);
-                        PluginMain.say(player, "Filter added.");
+                        MCPainterMain.say(player, "Filter added.");
                         listFilters(fm, player);
                     }
                 } catch (NumberFormatException ex) {
@@ -127,7 +127,7 @@ public class FilterCommand {
         FilterEntry filter = FilterManager.getFilter(player, name, args);
         if (filter != null) {
             fm.add(filter);
-            PluginMain.say(player, "Filter added.");
+            MCPainterMain.say(player, "Filter added.");
             listFilters(fm, player);
         }
     }
@@ -141,10 +141,10 @@ public class FilterCommand {
     private static void showFilterHelp(String name, Player player) {
         IImageFilter filter = FilterManager.getFilter(name);
         if (filter == null) {
-            PluginMain.say(player, ChatColor.RED + "Error filter \"" + ChatColor.WHITE + name + ChatColor.RED + "\" not found");
+            MCPainterMain.say(player, ChatColor.RED + "Error filter \"" + ChatColor.WHITE + name + ChatColor.RED + "\" not found");
         } else {
             for (String s : filter.getHelp()) {
-                PluginMain.say(player, s);
+                MCPainterMain.say(player, s);
             }
         }
     }
@@ -170,7 +170,7 @@ public class FilterCommand {
             }
             sb.append(filter.getName());
         }
-        PluginMain.say(player, sb.toString());
+        MCPainterMain.say(player, sb.toString());
     }
 
     
@@ -181,7 +181,7 @@ public class FilterCommand {
      */
     private static void listFilters(FilterManager fm, Player player) {
         FilterEntry[] filters = fm.getAll();
-        PluginMain.say(player, ChatColor.YELLOW + "Defined filters:");
+        MCPainterMain.say(player, ChatColor.YELLOW + "Defined filters:");
         double price = 0;
         for (int i = 0; i < filters.length; i++) {
             StringBuilder sb = new StringBuilder();
@@ -189,7 +189,7 @@ public class FilterCommand {
             sb.append(i + 1);
             sb.append(". ");
             sb.append(filters[i].print());
-            PluginMain.say(player, sb.toString());
+            MCPainterMain.say(player, sb.toString());
             
             price += ConfigProvider.getCommandPrice(filters[i].getPriceName());
         }
@@ -197,7 +197,7 @@ public class FilterCommand {
         if (price > 0)
         {
             DecimalFormat df = new DecimalFormat("#.##");
-            PluginMain.say(player, ChatColor.YELLOW + "You need to pay " + 
+            MCPainterMain.say(player, ChatColor.YELLOW + "You need to pay " + 
                     df.format(price) + " to apply those filters.");
         }   
     }

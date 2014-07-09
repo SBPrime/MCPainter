@@ -26,7 +26,7 @@ package org.PrimeSoft.MCPainter.Commands;
 import org.PrimeSoft.MCPainter.BlockPlacer;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.palettes.Palette;
 import org.PrimeSoft.MCPainter.palettes.PaletteManager;
 import org.bukkit.ChatColor;
@@ -38,7 +38,7 @@ import org.bukkit.entity.Player;
  */
 public class PaletteCommand {
 
-    public static void Execte(PluginMain sender, Player player, String[] args) {
+    public static void Execte(MCPainterMain sender, Player player, String[] args) {
         if (args.length < 1 || args.length > 3) {
             Help.ShowHelp(player, Commands.COMMAND_PALETTE);
             return;
@@ -48,7 +48,7 @@ public class PaletteCommand {
         BlockPlacer bPlacer = sender.getBlockPlacer();
         if (args.length == 1) {
             if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Palette_list)) {
-                PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                 return;
             }
 
@@ -60,7 +60,7 @@ public class PaletteCommand {
                 };
                 sb.append(names[i]);
             }
-            PluginMain.say(player, ChatColor.YELLOW + "Known palettes: " + ChatColor.WHITE
+            MCPainterMain.say(player, ChatColor.YELLOW + "Known palettes: " + ChatColor.WHITE
                     + sb);
         } else {
             String playerName;
@@ -78,17 +78,17 @@ public class PaletteCommand {
             }
 
             if (!PermissionManager.isAllowed(player, perm)) {
-                PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+                MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
                 return;
             }
 
             Palette pal = pm.getPalette(palName);
             if (pal == null) {
-                PluginMain.say(player, ChatColor.RED + "Palette " + ChatColor.WHITE
+                MCPainterMain.say(player, ChatColor.RED + "Palette " + ChatColor.WHITE
                         + palName + ChatColor.RED + " not found.");
             } else {
                 sender.setPalette(playerName, pal);
-                PluginMain.say(player, ChatColor.YELLOW + "Palette set to " + ChatColor.WHITE
+                MCPainterMain.say(player, ChatColor.YELLOW + "Palette set to " + ChatColor.WHITE
                         + palName);
             }
         }

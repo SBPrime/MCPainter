@@ -45,7 +45,7 @@ public class BlockLoger {
     private final ILocalSession m_session;
     private final IEditSession m_editSession;
     private final World m_world;
-    private final PluginMain m_mainPlugin;
+    private final MCPainterMain m_mainPlugin;
     private final BlockPlacer m_blocksPlacer;
 
     public World getWorld() {
@@ -71,7 +71,7 @@ public class BlockLoger {
     }
 
     public BlockLoger(Player player, ILocalSession session, IEditSession eSession,
-            PluginMain main) {
+            MCPainterMain main) {
         m_blocks = new ArrayList<BlockLogerEntry>();
         m_player = player;
         m_session = session;

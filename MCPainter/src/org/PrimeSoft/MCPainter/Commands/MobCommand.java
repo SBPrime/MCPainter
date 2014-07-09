@@ -46,7 +46,7 @@ import org.bukkit.entity.Player;
  */
 public class MobCommand implements Runnable {
 
-    public static void Execte(PluginMain sender, final Player player,
+    public static void Execte(MCPainterMain sender, final Player player,
             final IWorldEdit worldEdit, final ColorMap colorMap, String[] args) {
         if (args.length > 3) {
             Help.ShowHelp(player, Commands.COMMAND_MOB);
@@ -82,7 +82,7 @@ public class MobCommand implements Runnable {
         RawImage[] image;
 
         if (statue == null) {
-            PluginMain.say(player, "Unknown mob name: \"" + mobName + "\"");
+            MCPainterMain.say(player, "Unknown mob name: \"" + mobName + "\"");
             listMobs(player, statueProvider);
             return;
         } else {
@@ -92,13 +92,13 @@ public class MobCommand implements Runnable {
         }
 
         if (!allowed) {
-            PluginMain.say(player, ChatColor.RED + "You have no permissions to do that.");
+            MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
             return;
         }
 
         if (image == null) {
-            PluginMain.say(player, ChatColor.RED + "Error drawing statue.");
-            PluginMain.log("Error loading " + mobName + " texture file");
+            MCPainterMain.say(player, ChatColor.RED + "Error drawing statue.");
+            MCPainterMain.log("Error loading " + mobName + " texture file");
             return;
         }
         sender.getServer().getScheduler().runTaskAsynchronously(sender,
@@ -125,16 +125,16 @@ public class MobCommand implements Runnable {
             sb.append(names[i]);
         }
         
-        PluginMain.say(player, sb.toString());
+        MCPainterMain.say(player, sb.toString());
     }
     private final Player m_player;
     private final ILocalSession m_lSession;
     private final IEditSession m_session;
-    private final PluginMain m_sender;
+    private final MCPainterMain m_sender;
     private final BaseStatue m_statue;
     private final RawImage[] m_textures;
 
-    private MobCommand(PluginMain sender, Player player, ILocalPlayer localPlayer,
+    private MobCommand(MCPainterMain sender, Player player, ILocalPlayer localPlayer,
             BaseStatue statue, RawImage[] textures,
             IWorldEdit worldEdit) {
         m_player = player;
@@ -152,11 +152,11 @@ public class MobCommand implements Runnable {
         double price = ConfigProvider.getCommandPrice("statue");
         synchronized (FoundManager.getMutex()) {
             if (price > 0 && FoundManager.getMoney(m_player) < price) {
-                PluginMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw the statue.");
+                MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw the statue.");
                 return;
             }
 
-            PluginMain.say(m_player, "Drawing statue...");
+            MCPainterMain.say(m_player, "Drawing statue...");
             BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
 
             m_statue.DrawStatue(loger, m_textures, true);

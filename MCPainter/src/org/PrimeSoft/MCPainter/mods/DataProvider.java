@@ -25,7 +25,7 @@ package org.PrimeSoft.MCPainter.mods;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.configuration.Configuration;
 
 /**
@@ -42,8 +42,8 @@ public class DataProvider {
      * @param dataDir
      * @return
      */
-    public static ModConfig[] loadMods(PluginMain pluginMain, DataFile[] dataFiles) {
-        PluginMain.log("Loading mod files...");
+    public static ModConfig[] loadMods(MCPainterMain pluginMain, DataFile[] dataFiles) {
+        MCPainterMain.log("Loading mod files...");
 
         List<ModConfig> result = new ArrayList<ModConfig>();
         ModsProvider modsProvider = pluginMain.getModsProvider();
@@ -57,7 +57,7 @@ public class DataProvider {
                         result.add(modConfig);
                     }
                 } catch (Exception ex) {
-                    PluginMain.log("* " + file.getName() + "...unknown error, " + ex.getMessage());
+                    MCPainterMain.log("* " + file.getName() + "...unknown error, " + ex.getMessage());
                 }
             }
         }
@@ -79,7 +79,7 @@ public class DataProvider {
         boolean blocks = result.getBlocks() != null;
         boolean valid = statues || blocks;
         if (!result.isValid() && !valid) {
-            PluginMain.log("* " + file.getName() + "...bad file format.");
+            MCPainterMain.log("* " + file.getName() + "...bad file format.");
             return null;
         }
 
@@ -94,19 +94,19 @@ public class DataProvider {
         if (result.isValid()) {
             Mod mod = modsProvider.get(result.getModIdRegex(), result.getVersionRegex());
             if (mod == null) {
-                PluginMain.log("* " + file.getName()
+                MCPainterMain.log("* " + file.getName()
                         + "...mod not available."
                         + (text.length() > 0 ? (" Using " + text) : "")
                         + ".");
             } else {
                 result.setMod(mod);
-                PluginMain.log("* " + file.getName() + " (" + result.getName()
+                MCPainterMain.log("* " + file.getName() + " (" + result.getName()
                         + ") initialized texture"
                         + (text.length() > 0 ? (", " + text) : "")
                         + ".");
             }
         } else {
-            PluginMain.log("* " + file.getName() + " (" + result.getName()
+            MCPainterMain.log("* " + file.getName() + " (" + result.getName()
                     + ") " + text + " definition initialized.");
         }
 

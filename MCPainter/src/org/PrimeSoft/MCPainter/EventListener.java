@@ -39,9 +39,9 @@ import org.bukkit.plugin.PluginDescriptionFile;
  */
 public class EventListener implements Listener {
 
-    private PluginMain m_parent;
+    private MCPainterMain m_parent;
 
-    public EventListener(PluginMain parent) {
+    public EventListener(MCPainterMain parent) {
         m_parent = parent;
     }
 
@@ -53,7 +53,7 @@ public class EventListener implements Listener {
         }
 
         if (!ConfigProvider.isConfigUpdated()) {
-            PluginMain.say(player, ChatColor.BLUE + PluginMain.getPrefix()
+            MCPainterMain.say(player, ChatColor.BLUE + MCPainterMain.getPrefix()
                     + "Please update your config file!");
         }
 
@@ -62,7 +62,7 @@ public class EventListener implements Listener {
             public void run() {
                 if (ConfigProvider.getCheckUpdate()) {
                     PluginDescriptionFile desc = m_parent.getDescription();
-                    PluginMain.say(player, ChatColor.BLUE + PluginMain.getPrefix()
+                    MCPainterMain.say(player, ChatColor.BLUE + MCPainterMain.getPrefix()
                             + VersionChecker.CheckVersion(desc.getVersion()));
                 }
             }

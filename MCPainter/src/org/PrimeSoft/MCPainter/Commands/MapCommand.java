@@ -30,7 +30,7 @@ import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.FoundManager;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MapDrawer.MapHelper;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -49,7 +49,7 @@ public class MapCommand {
         m_mapHelper = mapHelper;
     }
 
-    public void Execte(PluginMain sender, Player player, String[] args) {
+    public void Execte(MCPainterMain sender, Player player, String[] args) {
         if (args.length < 2 || args.length > 5) {
             Help.ShowHelp(player, Commands.COMMAND_IMAGEMAP);
             return;
@@ -90,7 +90,7 @@ public class MapCommand {
             }
 
             if (mapView == null) {
-                PluginMain.say(player, ChatColor.RED + "Map ID " + mapId + " not fond.");
+                MCPainterMain.say(player, ChatColor.RED + "Map ID " + mapId + " not fond.");
                 return;
             }
         }
@@ -110,9 +110,9 @@ public class MapCommand {
         private final Player m_player;
         private final MapView m_mapView;
         private final int m_offset;
-        private final PluginMain m_sender;
+        private final MCPainterMain m_sender;
 
-        private CommandThread(PluginMain sender, Player player, String[] args,
+        private CommandThread(MCPainterMain sender, Player player, String[] args,
                 String url, MapView mapView, int offset) {
             m_sender = sender;
             m_args = args;
@@ -128,14 +128,14 @@ public class MapCommand {
             double price = ConfigProvider.getCommandPrice("map") + fm.getPrice();
             synchronized (FoundManager.getMutex()) {
                 if (price > 0 && FoundManager.getMoney(m_player) < price) {
-                    PluginMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to apply all the filters and draw the map.");
+                    MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to apply all the filters and draw the map.");
                     return;
                 }
 
-                PluginMain.say(m_player, "Loading image...");
+                MCPainterMain.say(m_player, "Loading image...");
                 BufferedImage img = ImageHelper.downloadImage(m_url);
                 if (img == null) {
-                    PluginMain.say(m_player, ChatColor.RED + "Error downloading image " + ChatColor.WHITE + m_url);
+                    MCPainterMain.say(m_player, ChatColor.RED + "Error downloading image " + ChatColor.WHITE + m_url);
                     return;
                 }
 
@@ -145,7 +145,7 @@ public class MapCommand {
                 int ww = img.getWidth();
 
                 if (ww > 128 || hh > 128) {
-                    PluginMain.say(m_player, ChatColor.RED + "The images size cannot be greater than 128x128.");
+                    MCPainterMain.say(m_player, ChatColor.RED + "The images size cannot be greater than 128x128.");
                     return;
                 }
 
@@ -153,12 +153,12 @@ public class MapCommand {
 
                     @Override
                     public void run() {
-                        PluginMain.say(m_player, "Drawing image...");
+                        MCPainterMain.say(m_player, "Drawing image...");
 
                         m_mapHelper.storeMap(m_mapView, fImg);
                         m_mapHelper.drawImage(m_mapView, fImg);
 
-                        PluginMain.say(m_player, "Drawing image done.");
+                        MCPainterMain.say(m_player, "Drawing image done.");
                     }
                 });
                 

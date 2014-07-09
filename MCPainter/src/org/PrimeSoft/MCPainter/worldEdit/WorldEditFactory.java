@@ -24,7 +24,7 @@
 package org.PrimeSoft.MCPainter.worldEdit;
 
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -52,11 +52,11 @@ public class WorldEditFactory {
         Plugin wePlugin = getWorldEdit(plugin);
         
         if (wePlugin != null) {
-            PluginMain.log("WorldEdit found - using the \"real thing\".");
+            MCPainterMain.log("WorldEdit found - using the \"real thing\".");
             return new WorldEditWrapper(wePlugin);
         }
         
-        PluginMain.log("WorldEdit not found - using stub wrapper classes.");
+        MCPainterMain.log("WorldEdit not found - using stub wrapper classes.");
         return new StubWrapper();
     }
 }

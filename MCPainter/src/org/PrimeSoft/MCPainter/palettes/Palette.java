@@ -27,7 +27,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -88,17 +88,17 @@ public class Palette {
         BlockEntry[] blockEntries = parseBlocksSection(config);
         
         if (name == null) {
-            PluginMain.log("* " + file.getName() + "...invalid file format, no name palette defined.");
+            MCPainterMain.log("* " + file.getName() + "...invalid file format, no name palette defined.");
             return null;
         }
         
         name = name.toLowerCase();
         if (blockEntries == null || blockEntries.length < 2) {
-            PluginMain.log("* " + name + "...invalid file format, minimum number of blocks in palette is 2.");
+            MCPainterMain.log("* " + name + "...invalid file format, minimum number of blocks in palette is 2.");
             return null;
         }
         
-        PluginMain.log("* " + name + "..." + blockEntries.length + " blocks defined.");
+        MCPainterMain.log("* " + name + "..." + blockEntries.length + " blocks defined.");
         return new Palette(name, blockEntries);
     }
 
@@ -114,12 +114,12 @@ public class Palette {
             try {
                 BlockEntry entry = BlockEntry.parse(string);
                 if (entry == null) {
-                    PluginMain.log("* Error parsing block entry: " + string);
+                    MCPainterMain.log("* Error parsing block entry: " + string);
                 } else {
                     blocks.add(entry);
                 }
             } catch (Exception e) {
-                PluginMain.log("* Error parsing block entry: " + string);
+                MCPainterMain.log("* Error parsing block entry: " + string);
             }
         }
         return blocks.toArray(new BlockEntry[0]);

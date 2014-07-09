@@ -38,7 +38,7 @@ import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.utils.Orientation;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.utils.Vector;
@@ -58,14 +58,14 @@ public class ImageHelper {
             } catch (MalformedURLException e) {
                 File file = new File(ConfigProvider.getPluginFolder(), fileUrl);
                 if (!file.exists() || !file.isFile() || !file.canRead()) {
-                    PluginMain.log("Error file: file not found or not accessible.");
+                    MCPainterMain.log("Error file: file not found or not accessible.");
                     return null;
                 } else {
                     return (BufferedImage) ImageIO.read(file);
                 }
             }
         } catch (IOException e) {
-            PluginMain.log("Error downloading file: " + e.getMessage());
+            MCPainterMain.log("Error downloading file: " + e.getMessage());
             return null;
         }
     }
@@ -73,16 +73,16 @@ public class ImageHelper {
     public static BufferedImage openImage(File file) {
         try {
             if (!file.exists() || !file.isFile() || !file.canRead()) {
-                PluginMain.log("Error file: file not found or not accessible.");
+                MCPainterMain.log("Error file: file not found or not accessible.");
                 return null;
             } else {
                 return (BufferedImage) ImageIO.read(file);
             }
         } catch (IOException e) {
-            PluginMain.log("Error opening file: " + e.getMessage());
+            MCPainterMain.log("Error opening file: " + e.getMessage());
             return null;
         } catch (Exception e) {
-            PluginMain.log("Unable to opening file: " + e.getMessage());
+            MCPainterMain.log("Unable to opening file: " + e.getMessage());
             return null;
         }
     }

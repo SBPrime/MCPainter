@@ -23,7 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.Texture;
 
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 
 /**
  * Vanilla minecraft (1.6.x) texture provider
@@ -48,11 +48,11 @@ public class VanillaTextureProvider {
         m_vanillaTextureProvider = textureManager.get(TEXTURE_NAME);
         
         if (m_vanillaTextureProvider == null) {
-            PluginMain.log("Unable to initialize the default texture pack.");
+            MCPainterMain.log("Unable to initialize the default texture pack.");
             return false;
         }
         
-        PluginMain.log("The default texture pack initialized.");
+        MCPainterMain.log("The default texture pack initialized.");
 
         return true;
     }

@@ -26,7 +26,7 @@ package org.PrimeSoft.MCPainter.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -65,7 +65,7 @@ public class VersionChecker {
 
             return sb.toString();
         } catch (Exception e) {
-            PluginMain.log("Error downloading file: " + e.getMessage());
+            MCPainterMain.log("Error downloading file: " + e.getMessage());
             return null;
         }
     }
@@ -84,27 +84,33 @@ public class VersionChecker {
         }
 
         String eVersion = null;
+        String vLatest = null;
+        
         JSONArray array = (JSONArray) JSONValue.parse(content);
         if (array.size() > 0) {
-            final int latestId = array.size() - 1;
+            final int latestId = 0;
             for (int i = 0; i < array.size(); i++) {
                 JSONObject jObject = (JSONObject) array.get(i);
                 String versionName = (String) jObject.get(API_NAME_VALUE);
                 String[] parts = versionName.split("[ \t-]");
 
                 StringBuilder sb = new StringBuilder();
-                for (int j = 1; j < parts.length; j++) {
-                    if (j > 1) {
+                for (int j = 1;j<parts.length;j++)
+                {
+                    if (j > 1)
+                    {
                         sb.append("-");
                     }
                     sb.append(parts[j]);
                 }
                 eVersion = sb.toString();
-
+                if (vLatest == null) {
+                    vLatest = eVersion;
+                }
                 if (eVersion != null && eVersion.length() > 0 && version.equalsIgnoreCase(eVersion)) {
                     if (i != latestId) {
                         return "You have an old version of the plugin. Your version: " + version
-                                + ", available version: " + eVersion;
+                                + ", available version: " + vLatest;
                     } else {
                         return "You have the latest version of the plugin.";
                     }

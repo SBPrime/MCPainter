@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import javax.imageio.ImageIO;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.Bukkit;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
@@ -96,7 +96,7 @@ public class MapHelper {
         try {
             ImageIO.write(img, "png", fileName);
         } catch (IOException ex) {
-            PluginMain.log("Error storing map image.");
+            MCPainterMain.log("Error storing map image.");
         }
     }
 
@@ -114,20 +114,20 @@ public class MapHelper {
         });
 
 
-        PluginMain.log("Restoring drawing maps...");
+        MCPainterMain.log("Restoring drawing maps...");
         for (File file : files) {
             String name = file.getName().split("\\.")[0];
             short id;
             try {
                 id = (short) Integer.parseInt(name);
             } catch (NumberFormatException ex) {
-                PluginMain.log("* Invalid file " + file.getName());
+                MCPainterMain.log("* Invalid file " + file.getName());
                 continue;
             }
 
             MapView mapView = Bukkit.getMap(id);
             if (mapView == null) {
-                PluginMain.log("* Unable to restore map " + id);
+                MCPainterMain.log("* Unable to restore map " + id);
                 continue;
             }
 
@@ -135,7 +135,7 @@ public class MapHelper {
             try {
                 img = ImageIO.read(file);
             } catch (IOException ex) {
-                PluginMain.log("* Unable to open file " + file.getName());
+                MCPainterMain.log("* Unable to open file " + file.getName());
             }
 
 
@@ -152,7 +152,7 @@ public class MapHelper {
                 }
             }
             drawImage(mapView, img);
-            PluginMain.log("* map " + id + " restored.");
+            MCPainterMain.log("* map " + id + " restored.");
         }
     }
 

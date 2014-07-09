@@ -27,7 +27,7 @@ import java.util.HashMap;
 import org.PrimeSoft.MCPainter.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
-import org.PrimeSoft.MCPainter.PluginMain;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.bukkit.configuration.ConfigurationSection;
@@ -132,7 +132,7 @@ public class MultiBlock implements IDrawableElement {
             data = MapData(data);
 
             if (!m_blocks.containsKey(data)) {
-                PluginMain.log("Error drawing multiblock, data value " + data + " not found.");
+                MCPainterMain.log("Error drawing multiblock, data value " + data + " not found.");
                 loger.logMessage("Error drawing multiblock, data value " + data + " not found.");
                 return;
             }

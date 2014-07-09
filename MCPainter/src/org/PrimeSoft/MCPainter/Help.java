@@ -145,7 +145,7 @@ public final class Help {
         }
 
         for (String string : help) {
-            PluginMain.say(player, string);
+            MCPainterMain.say(player, string);
         }
 
         return true;
