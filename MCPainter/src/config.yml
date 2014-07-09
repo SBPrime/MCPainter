@@ -57,6 +57,7 @@ mcpainter:
   price:
     - block:0
     - image:0
+    - imagehd:0
     - map:0
     - statue:0
     # cost to use filters on commands
