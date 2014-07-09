@@ -61,7 +61,8 @@ public class ConfigProvider {
 
     private static File m_imgFolder;
 
-    //private static File m_modelFolder;
+    private static File m_modelFolder;
+    
     private static File m_paletteFolder;
 
     private static File m_modFolder;
@@ -120,14 +121,14 @@ public class ConfigProvider {
         return m_paletteFolder;
     }    
     
-    ///**
-    // * Folder where the models are stored
-    // *
-    // * @return
-    // */
-    //public static File getModelFolder() {
-    //    return m_modelFolder;
-    //}
+    /**
+     * Folder where the models are stored
+     *
+     * @return
+     */
+    public static File getModelFolder() {
+        return m_modelFolder;
+    }
 
     /**
      * Folder where the image maps are stored
@@ -261,10 +262,10 @@ public class ConfigProvider {
         if (!m_imgFolder.exists()) {
             m_imgFolder.mkdir();
         }
-        //m_modelFolder = new File(m_pluginFolder, "models");
-        //if (!m_modelFolder.exists()) {
-        //    m_modelFolder.mkdir();
-        //}
+        m_modelFolder = new File(m_pluginFolder, "models");
+        if (!m_modelFolder.exists()) {
+            m_modelFolder.mkdir();
+        }
         m_paletteFolder = new File(m_pluginFolder, "palette");
         if (!m_paletteFolder.exists()) {
             m_paletteFolder.mkdir();
