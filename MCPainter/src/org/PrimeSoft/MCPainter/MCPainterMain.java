@@ -242,6 +242,8 @@ public class MCPainterMain extends JavaPlugin {
             args = Commands.insertArgs(args, Commands.COMMAND_STATUE);
         } else if (commandName.equalsIgnoreCase(Commands.ALT_BLOCK)) {
             args = Commands.insertArgs(args, Commands.COMMAND_BLOCK);
+        } else if (commandName.equalsIgnoreCase(Commands.ALT_RENDER)) {
+            args = Commands.insertArgs(args, Commands.COMMAND_RENDER);
         } else if (!commandName.equalsIgnoreCase(Commands.COMMAND_MAIN)) {
             return false;
         }
@@ -290,8 +292,8 @@ public class MCPainterMain extends JavaPlugin {
         } else if (name.equalsIgnoreCase(Commands.COMMAND_MOB)) {
             doMobStatue(player, args);
             return true;
-        } else if (name.equalsIgnoreCase("test")) {
-            doTest(player, args);
+        } else if (name.equalsIgnoreCase(Commands.COMMAND_RENDER)) {
+            doRender(player, args);
             return true;
         }
 
@@ -755,7 +757,7 @@ public class MCPainterMain extends JavaPlugin {
         FilterCommand.Execte(this, player, args);
     }
 
-    private void doTest(final Player player, final String[] args) {
+    private void doRender(final Player player, final String[] args) {
         if (!player.isOp()) {
             return;
         }

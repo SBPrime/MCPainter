@@ -45,12 +45,14 @@ public final class Commands {
     public final static String COMMAND_FILTER = "Filter";
     public final static String COMMAND_MOB = "Mob";
     public final static String COMMAND_PALETTE = "Palette";
+    public final static String COMMAND_RENDER = "Render";
     public final static String ALT_STATUE = "/Statue";
     public final static String ALT_STATUE_URL = "/Statue_File";
     public final static String ALT_IMAGE = "/Image";
     public final static String ALT_MAP = "/Map";
     public final static String ALT_MOB = "/Mob";
     public final static String ALT_BLOCK = "/Block";
+    public final static String ALT_RENDER = "/Render";
     
     public static String[] insertArgs(String[] args, String toInsert) {
         List<String> nArgs = new ArrayList<String>();

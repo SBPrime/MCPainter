@@ -101,7 +101,7 @@ public class WavefrontObj {
                         double[][] mapping = new double[3][];
                         for (int i = 0; i < 3; i++) {
                             double[] val = textureMaping[textureIdx[i]];
-                            mapping[i] = new double[]{val[0] * w, val[1] * h};
+                            mapping[i] = new double[]{val[0] * w, h - val[1] * h};
                         }
                         face = new Face(verticeIdx, img, mapping);
                     } else {

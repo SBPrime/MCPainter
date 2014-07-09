@@ -17,6 +17,9 @@ commands:
   /statue:
     description: 'Draw a player statue, alias for: /MCPainter statue u:'
     usage: /<command>
+  /render:
+    description: 'Draw 3d model from file: /MCPainter render'
+    usage: /<command>
   /statue_file:
     description: 'Draw a player statue, alias for: /MCPainter statue'
     usage: /<command>
