@@ -113,7 +113,7 @@ public class RenderCommand implements Runnable {
             z = Double.NaN;
         }
 
-        if (x == Double.NaN && y == Double.NaN && z == Double.NaN) {
+        if (Double.isNaN(x) && Double.isNaN(y) && Double.isNaN(z)) {
             return null;
         }
 
@@ -249,15 +249,15 @@ public class RenderCommand implements Runnable {
         double maxX = m_size.getX();
         double maxY = m_size.getY();
         double maxZ = m_size.getZ();
-        if (maxX == Double.NaN || maxY == Double.NaN || maxZ == Double.NaN) {
+        if (Double.isNaN(maxX) || Double.isNaN(maxY) || Double.isNaN(maxZ)) {
             double scale = 1;
-            if (maxX != Double.NaN) {
+            if (!Double.isNaN(maxX)) {
                 scale = maxX / modelSize.getX();
             }
-            if (maxY != Double.NaN) {
+            if (!Double.isNaN(maxY)) {
                 scale = maxY / modelSize.getY();
             }
-            if (maxZ != Double.NaN) {
+            if (!Double.isNaN(maxZ)) {
                 scale = maxZ / modelSize.getZ();
             }
             return new Vector(scale, scale, scale);
