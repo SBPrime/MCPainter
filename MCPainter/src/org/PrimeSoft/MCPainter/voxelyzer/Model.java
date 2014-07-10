@@ -26,6 +26,7 @@ package org.PrimeSoft.MCPainter.voxelyzer;
 import org.PrimeSoft.MCPainter.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.Vector;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -56,7 +57,7 @@ public class Model {
     /**
      * Model size
      */
-    private final Vertex m_size;
+    private final Vector m_size;
 
     /**
      * Model name
@@ -71,7 +72,7 @@ public class Model {
         return m_max;
     }
 
-    public Vertex getSize() {
+    public Vector getSize() {
         return m_size;
     }
 
@@ -102,7 +103,8 @@ public class Model {
 
         m_min = new Vertex(min);
         m_max = new Vertex(max);
-        m_size = Vertex.sub(m_max, m_min);
+        Vertex tmp = Vertex.sub(m_max, m_min);
+        m_size = new Vector(tmp.getX(), tmp.getY(), tmp.getZ());
     }
 
     /**

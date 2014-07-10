@@ -65,7 +65,7 @@ public class Vertex {
     }
 
     public Vertex(Vertex source) {
-        this(source.m_data, null);
+        this(source.m_data, source.m_attached);
     }
 
     public Vertex(double[] data) {

@@ -63,11 +63,11 @@ public class VoxelCanvas {
             }
         }
 
-        m_minX = (int) min[0];
-        m_minY = (int) min[1];
+        m_minX = (int) min[0] - 1;
+        m_minY = (int) min[1] - 1;
 
-        int maxX = (int) max[0];
-        int maxY = (int) max[1];
+        int maxX = (int) max[0] + 1;
+        int maxY = (int) max[1] + 1;
         m_resX = maxX - m_minX + 1;
         m_resY = maxY - m_minY + 1;
         m_canvasA = new double[m_resX][m_resY][];
@@ -81,6 +81,13 @@ public class VoxelCanvas {
         int y = (int) data[1] - m_minY;
         int z = (int) data[2];
 
+        if (x < 0 || y < 0 || x >= m_resX || y >= m_resY) {
+            //This should not happen but in case it does...
+            //System.out.println("E: " + p + " " + x + " " + y + " " + 
+            //        m_minX + " " + m_minY + " " +
+            //        m_resX + " " + m_resY);
+            return;
+        }
         if (m_canvasA[x][y] == null) {
             m_canvasA[x][y] = (double[]) (data.clone());
             m_canvasB[x][y] = (double[]) (data.clone());
@@ -164,20 +171,15 @@ public class VoxelCanvas {
                         double sumB = Double.NaN;
                         for (int l = 0; l < Vertex.ARRAY_SIZE; l++) {
                             final double m = map[k][l];
-                            if (!Double.isNaN(m))
-                            {
-                                if (!Double.isNaN(pA[l]))
-                                {
-                                    if (Double.isNaN(sumA))
-                                    {
+                            if (!Double.isNaN(m)) {
+                                if (!Double.isNaN(pA[l])) {
+                                    if (Double.isNaN(sumA)) {
                                         sumA = 0;
                                     }
                                     sumA += map[k][l] * pA[l];
                                 }
-                                if (!Double.isNaN(pB[l]))
-                                {
-                                    if (Double.isNaN(sumB))
-                                    {
+                                if (!Double.isNaN(pB[l])) {
+                                    if (Double.isNaN(sumB)) {
                                         sumB = 0;
                                     }
                                     sumB += map[k][l] * pB[l];
@@ -308,7 +310,6 @@ public class VoxelCanvas {
             } else {
                 block = STONE;
             }
-
 
             loger.logBlock(new Vector(data[0], data[1], data[2]), block);
             pp = Vertex.add(pp, delta);

@@ -80,13 +80,13 @@ public class ClippingRegion {
         double y = v.getY();
         double z = v.getZ();
         
-        if (x < m_xMax || x > m_xMax) {
+        if (x < m_xMin || x > m_xMax) {
             return false;
         }
-        if (y < m_yMax || y > m_yMax) {
+        if (y < m_yMin || y > m_yMax) {
             return false;
         }
-        if (z < m_zMax || z > m_zMax) {
+        if (z < m_zMin || z > m_zMax) {
             return false;
         }
         

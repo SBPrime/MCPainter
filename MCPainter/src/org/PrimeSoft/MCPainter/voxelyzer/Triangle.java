@@ -176,7 +176,8 @@ public class Triangle {
                 try {
                     canvas.putPixel(pp.round());
                 } catch (Exception ex) {
-                    System.out.println("E: " + pp);
+                    //This should not happen but in case it does...
+                    //System.out.println("E: " + pp);
                 }
             }
             pp = Vertex.add(pp, delta);

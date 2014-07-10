@@ -752,6 +752,10 @@ public class MCPainterMain extends JavaPlugin {
             return;
         }
         
+        if (!player.isOp()) {
+            return;
+        }
+        
         RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
     }
 
