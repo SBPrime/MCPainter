@@ -404,7 +404,7 @@ public class Matrix {
             l2[0] * data[0] + l2[1] * data[1] + l2[2] * data[2] + l2[3],
             data[3], data[3], data[4]};
 
-        return new Vertex(r);
+        return new Vertex(r, new Vertex(data));
     }
 
     @Override

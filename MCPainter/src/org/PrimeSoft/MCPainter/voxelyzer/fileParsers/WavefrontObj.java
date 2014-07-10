@@ -62,12 +62,12 @@ public class WavefrontObj {
      * @param faces
      * @return
      */
-    private static Model buildModel(double[][] vertices,
+    private static Model buildModel(String name, double[][] vertices,
             double[][] textureMaping, int[][] faces, Material[] materials) {
         Vertex[] rVertex = buildVertex(vertices);
         Face[] rFaces = buildFaces(faces, materials, textureMaping);
 
-        return new Model(rVertex, rFaces);
+        return new Model(rVertex, rFaces, name);
     }
 
     /**
@@ -396,7 +396,8 @@ public class WavefrontObj {
                 line = reader.readLine();
             }
 
-            return buildModel(vertices.toArray(new double[0][]), texture.toArray(new double[0][]),
+            return buildModel(fileName, vertices.toArray(new double[0][]), 
+                    texture.toArray(new double[0][]),
                     faces.toArray(new int[0][]), facesMaterial.toArray(new Material[0]));
         } catch (IOException ex) {
             return null;
@@ -412,9 +413,16 @@ public class WavefrontObj {
         if (matParts.length < 2) {
             return null;
         }
-        File imgFile = new File(modelFolder, matParts[1]);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i<matParts.length;i++){
+            if (i != 1){
+                sb.append(" ");
+            }
+            sb.append(matParts[i]);            
+        }        
+        File imgFile = new File(modelFolder, sb.toString());
         if (!imgFile.exists()) {
-            imgFile = tryFind(modelFolder, matParts[1]);
+            imgFile = tryFind(modelFolder, sb.toString());
             if (imgFile == null) {
                 return null;
             }
@@ -456,7 +464,6 @@ public class WavefrontObj {
             texture = texture.substring(0, idx - 1);
         }
         texture = texture.replace(' ', '_');
-
         for (final File f : modelFolder.listFiles()) {
             String name = f.getName();
             idx = name.lastIndexOf(".");

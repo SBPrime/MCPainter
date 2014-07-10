@@ -48,14 +48,6 @@ import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
 import org.PrimeSoft.MCPainter.palettes.Palette;
-import org.PrimeSoft.MCPainter.utils.Vector;
-import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
-import org.PrimeSoft.MCPainter.voxelyzer.Model;
-import org.PrimeSoft.MCPainter.voxelyzer.Vertex;
-import org.PrimeSoft.MCPainter.voxelyzer.fileParsers.WavefrontObj;
-import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
 import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
 import org.PrimeSoft.MCPainter.worldEdit.WorldEditFactory;
 import org.bukkit.ChatColor;
@@ -64,7 +56,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -254,7 +245,7 @@ public class MCPainterMain extends JavaPlugin {
             doReloadConfig(player);
             return true;
         } else if (name.equalsIgnoreCase(Commands.COMMAND_HELP)) {
-            String arg = args.length > 1 ? args[1] : null;
+            String arg = args != null && args.length > 1 ? args[1] : null;
             return Help.ShowHelp(player, arg);
         }
 
@@ -475,11 +466,9 @@ public class MCPainterMain extends JavaPlugin {
                 ConfigurationSection mob = mobs.getConfigurationSection(mobName);
                 if (mob != null) {
                     StatueDescription description = new StatueDescription(m_textureManager, mob);
-                    if (description != null) {
-                        boolean registered = m_statueProvider.register(description);
-                        log(" * " + description.getName() + "..."
-                                + (registered ? "added" : "duplicate"));
-                    }
+                    boolean registered = m_statueProvider.register(description);
+                    log(" * " + description.getName() + "..."
+                            + (registered ? "added" : "duplicate"));
                 }
             }
         }
@@ -758,58 +747,12 @@ public class MCPainterMain extends JavaPlugin {
     }
 
     private void doRender(final Player player, final String[] args) {
-        if (!player.isOp()) {
+        if (!m_isInitialized) {
+            say(player, ChatColor.RED + "Module not initialized, contact administrator.");
             return;
         }
-        final ILocalSession m_lSession = m_worldEdit.getSession(player);
-        final ILocalPlayer m_localPlayer = m_worldEdit.wrapPlayer(player);
-        final IEditSession m_session = m_lSession.createEditSession(m_localPlayer);
-        final MCPainterMain sender = this;
-        final Vector location = m_localPlayer.getPosition();
-        final int yaw = (int) (360 + m_localPlayer.getYaw()) % 360;
-        final int p = (int) (360 + m_localPlayer.getPitch()) % 360;
-        final int pitch = -(p - p % 30);
-        getServer().getScheduler().runTaskAsynchronously(this,
-                new Runnable() {
-
-                    @Override
-                    public void run() {
-                        BlockLoger loger = new BlockLoger(player, m_lSession, m_session, sender);
-
-                        String fileName = args.length > 1 ? args[1] : "cat.obj";
-                        int max;
-                        try {
-                            max = args.length > 2 ? Integer.parseInt(args[2]) : 100;
-                        } catch (NumberFormatException ex) {
-                            max = 100;
-                        }
-
-                        MCPainterMain.say(player, "Loading model...");
-                        final Model model = WavefrontObj.load(ConfigProvider.getModelFolder(), fileName);
-                        if (model == null) {
-                            MCPainterMain.say(player, "Error loading model.");
-                            return;
-                        }
-                        final Vertex minPos = model.getMin();
-                        final Vertex size = model.getSize();
-
-                        final Matrix matrix = Matrix.getIdentity();
-                        double scale = max / size.getY();
-
-                        matrix.translate(location.getBlockX(), location.getBlockY(), location.getBlockZ());
-                        matrix.rotateY(yaw * Math.PI / 180);
-                        matrix.rotateX(pitch * Math.PI / 180);
-                        matrix.scale(scale, scale, scale);
-                        matrix.translate(-minPos.getX(), -minPos.getY(), -minPos.getZ());
-                        MCPainterMain.say(player, "Rendering model...");
-                        loger.logMessage("Drawing blocks...");
-                        model.render(loger, getColorMap(player), matrix);
-                        MCPainterMain.say(player, "Render done.");
-                        loger.logMessage("Drawing block done.");
-                        loger.logEndSession();
-                        loger.flush();
-                    }
-                });
+        
+        RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
     }
 
 }

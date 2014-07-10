@@ -25,12 +25,17 @@ package org.PrimeSoft.MCPainter.voxelyzer;
 
 import org.PrimeSoft.MCPainter.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 /**
  *
  * @author SBPrime
  */
 public class Model {
+
+    private static final int PROGRESS_ANNOUNCE = 10000;
 
     /**
      * Vertex
@@ -53,6 +58,11 @@ public class Model {
      */
     private final Vertex m_size;
 
+    /**
+     * Model name
+     */
+    private final String m_name;
+
     public Vertex getMin() {
         return m_min;
     }
@@ -71,9 +81,10 @@ public class Model {
      * @param vertex
      * @param faces
      */
-    public Model(Vertex[] vertex, Face[] faces) {
+    public Model(Vertex[] vertex, Face[] faces, String name) {
         m_faces = faces;
         m_vertex = vertex;
+        m_name = name;
 
         final double[] min = new double[]{Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 0, 0, 0};
         final double[] max = new double[]{Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, 0, 0, 0};
@@ -101,9 +112,26 @@ public class Model {
      * @param colorMap
      * @param matrix
      */
-    public void render(BlockLoger loger, ColorMap colorMap, Matrix matrix) {
+    public void render(Player player,
+            BlockLoger loger, ColorMap colorMap, ClippingRegion clipping, 
+            Matrix matrix) {
+        int cnt = m_faces.length;
+        int pos = 0;
+        int interval = PROGRESS_ANNOUNCE;
+        int mCount = cnt / interval;
+        if (mCount < 10) {
+            interval = cnt / 10;
+        } else if (mCount > 100) {
+            interval = cnt / 100;
+        }
         for (Face face : m_faces) {
-            face.render(loger, colorMap, matrix, m_vertex);
+            face.render(loger, colorMap, matrix, clipping, m_vertex);
+            pos++;
+
+            if (pos % interval == 0) {
+                MCPainterMain.say(player, "Model: " + ChatColor.YELLOW
+                        + m_name + ChatColor.WHITE + " done " + ChatColor.YELLOW + (100 * pos / cnt) + "%");
+            }
         }
     }
 }

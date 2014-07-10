@@ -28,16 +28,20 @@ import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 
 /**
- *
+ * 3D face
  * @author SBPrime
  */
 public class Face {
-
+    
     private final int[] m_vIdx;
     private final int[] m_color;
     private final RawImage m_texture;
     private final double[][] m_textureMapping;
-
+    
+    /**
+     * New instance of the face
+     * @param v Vertices index
+     */
     public Face(int[] v) {
         m_vIdx = v;
         m_color = null;
@@ -45,6 +49,12 @@ public class Face {
         m_textureMapping = null;
     }
 
+    
+    /**
+     * New instance of the face
+     * @param v vertices index
+     * @param color vertices colors
+     */
     public Face(int[] v, int[] color) {
         m_vIdx = v;
         m_color = color;
@@ -52,6 +62,13 @@ public class Face {
         m_textureMapping = null;
     }
 
+    
+    /**
+     * New instance of the face
+     * @param v Vertices index
+     * @param texture Face texture
+     * @param mapping Texture UV mapping
+     */
     public Face(int[] v, RawImage texture, double[][] mapping) {
         m_vIdx = v;
         m_texture = texture;
@@ -59,8 +76,16 @@ public class Face {
         m_color = null;
     }
 
+    
+    /**
+     * Render the face
+     * @param loger Bock logger
+     * @param colorMap clolor mapper
+     * @param matrix transformation matrix
+     * @param v vertices
+     */
     public void render(BlockLoger loger, ColorMap colorMap, Matrix matrix,
-            Vertex[] v) {
+            ClippingRegion clipping, Vertex[] v) {
         final Vertex[] vOut = new Vertex[3];
         if (v == null) {
             return;
@@ -84,6 +109,6 @@ public class Face {
                 vOut[i].setColor(m_color);
             }
         }
-        Triangle.drawTriangle(loger, colorMap, m_texture, vOut[0], vOut[1], vOut[2]);
+        Triangle.drawTriangle(loger, colorMap, clipping, m_texture, vOut[0], vOut[1], vOut[2]);
     }
 }

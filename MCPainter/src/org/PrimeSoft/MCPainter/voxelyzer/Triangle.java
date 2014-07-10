@@ -46,7 +46,18 @@ public class Triangle {
         }
     };
 
+    /**
+     * Render a voxel triangle
+     *
+     * @param loger Block logger
+     * @param colorMap Color block mapper
+     * @param texture Texture
+     * @param p1 Vertex 1
+     * @param p2 Vertex 2
+     * @param p3 Vertex 3
+     */
     public static void drawTriangle(BlockLoger loger, ColorMap colorMap,
+            ClippingRegion clipping,
             RawImage texture, Vertex p1, Vertex p2, Vertex p3) {
         if (p1 == null || p2 == null || p3 == null) {
             return;
@@ -57,20 +68,12 @@ public class Triangle {
 
         double[][] map = prepareMap(new Vertex[]{p1, p2, p3});
         double[][] tMap = transponMap(map);
-        //System.out.println(p1);
-        //System.out.println(p2);
-        //System.out.println(p3);
-        //System.out.println("------------------------");
 
         Vertex[] t = new Vertex[]{
             Vertex.map(p1, map),
             Vertex.map(p2, map),
             Vertex.map(p3, map)
         };
-        //System.out.println(t[0]);
-        //System.out.println(t[1]);
-        //System.out.println(t[2]);
-        //System.out.println("------------------------");
 
         Arrays.sort(t, s_vertexCompatator);
 
@@ -92,28 +95,15 @@ public class Triangle {
         Vertex dUpper = Vertex.div(lenUpper, Math.abs(lenUpper.getX()));
         Vertex dLower = Vertex.div(lenLower, Math.abs(lenLower.getX()));
 
-        //System.out.println(lenFar);
-        //System.out.println(lenUpper);
-        //System.out.println(lenLower);
-        //System.out.println(dFar);
-        //System.out.println(dUpper);
-        //System.out.println(dLower);
-        //System.out.println("------------------------");
-
         Vertex xf = new Vertex(t[0]);
         Vertex xt = new Vertex(t[0]);
 
         final VoxelCanvas canvas = new VoxelCanvas(t);
-        //canvas.putPixel(t[0].round());
-        //canvas.putPixel(t[1].round());
-        //canvas.putPixel(t[2].round());
         double div = getDiv(dFar, dUpper, dLower);
         dFar = Vertex.div(dFar, div);
         dUpper = Vertex.div(dUpper, div);
         dLower = Vertex.div(dLower, div);
         double kPos = 1 / div;
-
-        //System.out.println("Div: " + div);
 
         final double x1 = t[1].getX();
         final double x2 = t[2].getX();
@@ -122,24 +112,24 @@ public class Triangle {
         while (pos < x1) {
             xf.setX(pos);
             xt.setX(pos);
-            drawLine(xf.round(), xt.round(), canvas);
+            drawLine(clipping, xf.round(), xt.round(), canvas);
             xf = Vertex.add(xf, dFar);
             xt = Vertex.add(xt, dUpper);
             pos += kPos;
         }
-        drawLine(xf.round(), xt.round(), canvas);
+        drawLine(clipping, xf.round(), xt.round(), canvas);
         pos = x1;
         xt = new Vertex(t[1]);
         while (pos < x2) {
             xf.setX(pos);
             xt.setX(pos);
-            drawLine(xf.round(), xt.round(), canvas);
+            drawLine(clipping, xf.round(), xt.round(), canvas);
 
             xf = Vertex.add(xf, dFar);
             xt = Vertex.add(xt, dLower);
             pos += kPos;
         }
-        drawLine(xf.round(), xt.round(), canvas);
+        drawLine(clipping, xf.round(), xt.round(), canvas);
 
         canvas.render(loger, colorMap, texture, tMap);
     }
@@ -164,14 +154,14 @@ public class Triangle {
     }
 
     /**
-     * Draw line
+     * Draw a voxel line
      *
      * @param xf
      * @param xt
      * @param canvas
      */
-    private static void drawLine(Vertex xf, Vertex xt, VoxelCanvas canvas) {
-        //System.out.println(xf + "\t" + xt);
+    private static void drawLine(ClippingRegion clipping,
+            Vertex xf, Vertex xt, VoxelCanvas canvas) {
         final Vertex length = Vertex.sub(xt, xf);
         final int lY = (int) Math.round(Math.abs(length.getY()));
         final int lZ = (int) Math.round(Math.abs(length.getZ()));
@@ -182,10 +172,12 @@ public class Triangle {
         Vertex pp = new Vertex(xf);
 
         for (int p = 0; p <= l; p++) {
-            try {
-                canvas.putPixel(pp.round());
-            } catch (Exception ex) {
-                //System.out.println("E: " + pp);
+            if (clipping == null || clipping.testVertex(pp)) {
+                try {
+                    canvas.putPixel(pp.round());
+                } catch (Exception ex) {
+                    System.out.println("E: " + pp);
+                }
             }
             pp = Vertex.add(pp, delta);
         }
@@ -234,32 +226,20 @@ public class Triangle {
         }
 
         int[] pp = new int[]{0, 1, 2};
-        //System.out.println("---------------------------------------");
-        //System.out.println(min[0] + " " + min[1] + " " + min[2]);
-        //System.out.println(max[0] + " " + max[1] + " " + max[2]);
-        //System.out.println(delta[0] + " " + delta[1] + " " + delta[2]);
-        //System.out.println(len01[0] + " " + len01[1] + " " + len01[2]);
-        //System.out.println(len02[0] + " " + len02[1] + " " + len02[2]);
-        //System.out.println(len12[0] + " " + len12[1] + " " + len12[2]);
-        //System.out.println("---------------------------------------");
-        //System.out.println(pp[0] + " " + pp[1] + " " + pp[2]);
+
         int p0 = 0;
         int p1 = 1;
         for (int i = 0; i < 3; i++) {
             for (int j = i + 1; j < 3; j++) {
-                //System.out.println(i + " " + j);
-                //System.out.println(pp[0] + " " + pp[1] + " " + pp[2]);
                 boolean doSwap = false;
 
                 if (!doSwap && delta[i] < delta[j]) {
-                    //System.out.println("Swap delta: " + i + " " + j + " " + delta[i] + " " + delta[j]);
                     doSwap = true;
                 }
 
                 if (!doSwap) {
                     final double[] d = new double[]{len01[i] - len01[j],
                         len02[i] - len02[j], len12[i] - len12[j]};
-
 
                     double before = 0;
                     double after = 0;
@@ -272,7 +252,6 @@ public class Triangle {
                     }
 
                     if (after > before) {
-                        //System.out.println("Swap len: " + i + " " + j + " " + before + " " + after);
                         doSwap = true;
                     }
                 }
@@ -303,7 +282,6 @@ public class Triangle {
                         for (int l = k + 1; l < 3; l++) {
                             double[] dataL = p[l].getData();
 
-
                             if (dataK[p0] == dataL[p0] && dataK[p1] == dataL[p1]) {
                                 same++;
                             }
@@ -314,9 +292,7 @@ public class Triangle {
 
                         }
                     }
-                    //System.out.println("Same: " + same + " " + sameSwap);
                     if (sameSwap < same) {
-                        //System.out.println("Same swap: " + i + " " + j + " " + same + " " + sameSwap);
                         doSwap = true;
                     }
                 }
@@ -356,8 +332,6 @@ public class Triangle {
                 }
             }
         }
-
-        //System.out.println(pp[0] + " " + pp[1] + " " + pp[2]);
 
         for (int i = 0;
                 i < 3; i++) {

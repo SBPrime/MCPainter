@@ -35,23 +35,45 @@ public class Vertex {
      */
     private final double[] m_data;
 
+    /**
+     * The attached vertex
+     */
+    private final Vertex m_attached;
+
+    /**
+     * Get the attached vertex
+     *
+     * @return
+     */
+    public Vertex getAttached() {
+        return m_attached;
+    }
+
     public Vertex(double x, double y, double z) {
         m_data = new double[]{x, y, z, Double.NaN, Double.NaN, Double.NaN};
+        m_attached = null;
     }
 
     public Vertex(double x, double y, double z, double u, double v) {
         m_data = new double[]{x, y, z, u, v, Double.NaN};
+        m_attached = null;
     }
 
     public Vertex(double x, double y, double z, double r, double g, double b) {
         m_data = new double[]{x, y, z, r, g, b};
+        m_attached = null;
     }
 
     public Vertex(Vertex source) {
-        this(source.m_data);
+        this(source.m_data, null);
     }
 
     public Vertex(double[] data) {
+        this(data, null);
+    }
+
+    public Vertex(double[] data, Vertex attached) {
+        m_attached = attached;
         m_data = new double[ARRAY_SIZE];
         for (int i = 0; i < ARRAY_SIZE; i++) {
             m_data[i] = i < data.length ? data[i] : Double.NaN;
@@ -119,7 +141,7 @@ public class Vertex {
             data[i] = m_data[i];
         }
 
-        return new Vertex(data);
+        return new Vertex(data, m_attached);
     }
 
     public static int round(double d) {
@@ -127,6 +149,9 @@ public class Vertex {
     }
 
     public static Vertex abs(Vertex a) {
+        if (a == null) {
+            return null;
+        }
         double[] result = new double[ARRAY_SIZE];
         double[] data = a.getData();
 
@@ -134,10 +159,13 @@ public class Vertex {
             result[i] = Math.abs(data[i]);
         }
 
-        return new Vertex(result);
+        return new Vertex(result, abs(a.m_attached));
     }
 
     public static Vertex sub(Vertex a, Vertex b) {
+        if (a == null || b == null) {
+            return null;
+        }
         double[] d1 = a.m_data;
         double[] d2 = b.m_data;
         double[] d3 = new double[ARRAY_SIZE];
@@ -146,10 +174,13 @@ public class Vertex {
             d3[i] = d1[i] - d2[i];
         }
 
-        return new Vertex(d3);
+        return new Vertex(d3, sub(a.m_attached, b.m_attached));
     }
 
     public static Vertex add(Vertex a, Vertex b) {
+        if (a == null || b == null) {
+            return null;
+        }
         double[] d1 = a.m_data;
         double[] d2 = b.m_data;
         double[] d3 = new double[ARRAY_SIZE];
@@ -158,10 +189,13 @@ public class Vertex {
             d3[i] = d1[i] + d2[i];
         }
 
-        return new Vertex(d3);
+        return new Vertex(d3, add(a.m_attached, b.m_attached));
     }
 
     public static Vertex mul(Vertex a, double b) {
+        if (a == null) {
+            return null;
+        }
         double[] d1 = a.m_data;
         double[] d3 = new double[ARRAY_SIZE];
 
@@ -169,10 +203,13 @@ public class Vertex {
             d3[i] = d1[i] * b;
         }
 
-        return new Vertex(d3);
+        return new Vertex(d3, mul(a.m_attached, b));
     }
 
     public static Vertex div(Vertex a, double b) {
+        if (a == null) {
+            return null;
+        }
         double[] d1 = a.m_data;
         double[] d3 = new double[ARRAY_SIZE];
 
@@ -180,7 +217,7 @@ public class Vertex {
             d3[i] = d1[i] / b;
         }
 
-        return new Vertex(d3);
+        return new Vertex(d3, div(a.m_attached, b));
     }
 
     public static Vertex map(Vertex a, double[][] map) {
@@ -202,7 +239,7 @@ public class Vertex {
             d2[i] = sum;
         }
 
-        return new Vertex(d2);
+        return new Vertex(d2, a.m_attached);
     }
 
     @Override
