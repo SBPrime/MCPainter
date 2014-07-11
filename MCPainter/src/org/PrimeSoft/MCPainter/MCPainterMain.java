@@ -750,11 +750,7 @@ public class MCPainterMain extends JavaPlugin {
         if (!m_isInitialized) {
             say(player, ChatColor.RED + "Module not initialized, contact administrator.");
             return;
-        }
-        
-        if (!player.isOp()) {
-            return;
-        }
+        }        
         
         RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
     }

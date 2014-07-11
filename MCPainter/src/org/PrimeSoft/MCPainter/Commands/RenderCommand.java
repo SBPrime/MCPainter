@@ -29,6 +29,7 @@ import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.PermissionManager;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.voxelyzer.ClippingRegion;
@@ -58,6 +59,11 @@ public class RenderCommand implements Runnable {
             ColorMap colorMap, String[] args) {
         if (args.length < 3 || args.length > 5) {
             Help.ShowHelp(player, Commands.COMMAND_RENDER);
+            return;
+        }
+
+        if (!PermissionManager.isAllowed(player, PermissionManager.Perms.RenderModel)) {
+            MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
             return;
         }
 
@@ -137,9 +143,9 @@ public class RenderCommand implements Runnable {
             return null;
         }
         try {
-            return new Vector[] {
-              new Vector(Double.parseDouble(xc[0]), Double.parseDouble(yc[0]), Double.parseDouble(zc[0])),
-              new Vector(Double.parseDouble(xc[1]), Double.parseDouble(yc[1]), Double.parseDouble(zc[1]))
+            return new Vector[]{
+                new Vector(Double.parseDouble(xc[0]), Double.parseDouble(yc[0]), Double.parseDouble(zc[0])),
+                new Vector(Double.parseDouble(xc[1]), Double.parseDouble(yc[1]), Double.parseDouble(zc[1]))
             };
         } catch (NumberFormatException ex) {
             return null;
@@ -157,8 +163,8 @@ public class RenderCommand implements Runnable {
         }
 
         try {
-            return new Vector(Double.parseDouble(parts[0]), 
-                    Double.parseDouble(parts[1]), 
+            return new Vector(Double.parseDouble(parts[0]),
+                    Double.parseDouble(parts[1]),
                     Double.parseDouble(parts[2]));
         } catch (NumberFormatException ex) {
             return null;

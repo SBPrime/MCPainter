@@ -35,7 +35,6 @@ public final class Help {
 
     private final static String[] HelpGlobal = new String[]{
         ChatColor.YELLOW + "MCPainter help:\n",
-        ChatColor.BLUE + "Palette" + ChatColor.WHITE + " - set current drawing palette",
         ChatColor.BLUE + "Block" + ChatColor.WHITE + " - draw minecraft block",
         ChatColor.BLUE + "Filter" + ChatColor.WHITE + " - manage image filters",
         ChatColor.BLUE + "Help" + ChatColor.WHITE + " - diaplay help screen",
@@ -43,11 +42,34 @@ public final class Help {
         ChatColor.BLUE + "ImageHd" + ChatColor.WHITE + " - draw HD image using maps and frames",
         ChatColor.BLUE + "ImageMap" + ChatColor.WHITE + " - draw image directly to the map",
         ChatColor.BLUE + "Jobs" + ChatColor.WHITE + " - display queued block operations",
+        ChatColor.BLUE + "Mob" + ChatColor.WHITE + " - draw mob statue",
+        ChatColor.BLUE + "Palette" + ChatColor.WHITE + " - set current drawing palette",
         ChatColor.BLUE + "Purge" + ChatColor.WHITE + " - remove all queued block operations",
         ChatColor.BLUE + "Reload" + ChatColor.WHITE + " - reload configuration",
+        ChatColor.BLUE + "Render" + ChatColor.WHITE + " - render a 3d model",
         ChatColor.BLUE + "Statue" + ChatColor.WHITE + " - draw player statue",
-        ChatColor.BLUE + "Mob" + ChatColor.WHITE + " - draw mob statue",
         ChatColor.YELLOW + "To display help on command use: " + ChatColor.BLUE + "/Help <command>"
+    };
+    private final static String[] HelpRender = new String[]{
+        ChatColor.YELLOW + "Render " + ChatColor.WHITE + "  - render a 3d model",
+        ChatColor.BLUE + " Render <model.obj> <model size> [<clipping> [<offset>]]",
+        ChatColor.YELLOW + "  <model.obj>" + ChatColor.WHITE + " - the 3d model file (must by uploaded to the server)",
+        ChatColor.YELLOW + "  <model size>" + ChatColor.WHITE + " - the size of the model in blocks",
+        ChatColor.WHITE + "  Format: " + ChatColor.YELLOW + "<x>,<y>,<z>" +
+            ChatColor.WHITE + " or " + ChatColor.YELLOW + "<x>,?,?" + 
+            ChatColor.WHITE + " or " + ChatColor.YELLOW + "?,<y>,?" + 
+            ChatColor.WHITE + " or " + ChatColor.YELLOW + "?,?,<z>",
+        ChatColor.WHITE + "   use ? to autocalculate the value",
+        ChatColor.YELLOW + "  <clipping>" + ChatColor.WHITE + " - optional, model clipping",
+        ChatColor.WHITE + "  Format: " + ChatColor.YELLOW + "<XL>/<XR>,<YT>/<YT>,<ZF>/<ZB>",
+        ChatColor.YELLOW + "   XL" + ChatColor.WHITE + " - left x axis, (negative)",
+        ChatColor.YELLOW + "   XR" + ChatColor.WHITE + " - right x axis (positive)",
+        ChatColor.YELLOW + "   YT" + ChatColor.WHITE + " - top y axis",
+        ChatColor.YELLOW + "   YB" + ChatColor.WHITE + " - bottom y axis",
+        ChatColor.YELLOW + "   ZF" + ChatColor.WHITE + " - front z axis (positive)",
+        ChatColor.YELLOW + "   ZB" + ChatColor.WHITE + " - left x axis, (negative)",
+        ChatColor.YELLOW + "  <offset>" + ChatColor.WHITE + " - optional, model offset",
+        ChatColor.YELLOW + "  Format: <x>,<y>,<z>"
     };
     private final static String[] HelpBlock = new String[]{
         ChatColor.YELLOW + "Block " + ChatColor.WHITE + " - draw minecraft block",
@@ -59,8 +81,7 @@ public final class Help {
         ChatColor.YELLOW + "Palette " + ChatColor.WHITE + " - set current drawing palette",
         ChatColor.BLUE + " Palette" + ChatColor.WHITE + " - list available palettes",
         ChatColor.BLUE + " Palette <name>" + ChatColor.WHITE + " - set palette",
-        ChatColor.BLUE + " Palette <playerName> <name>" + ChatColor.WHITE + " - set palette for player",
-    };
+        ChatColor.BLUE + " Palette <playerName> <name>" + ChatColor.WHITE + " - set palette for player",};
     private final static String[] HelpImage = new String[]{
         ChatColor.YELLOW + "Image " + ChatColor.WHITE + " - draw image",
         ChatColor.BLUE + " Image <image file>" + ChatColor.WHITE + " - draw image",
@@ -70,8 +91,7 @@ public final class Help {
         ChatColor.YELLOW + "ImageHd" + ChatColor.WHITE + " - draw image directly on frames",
         ChatColor.BLUE + " ImageHd <image file>" + ChatColor.WHITE + " - draw image",
         ChatColor.YELLOW + "  <image file>" + ChatColor.WHITE + " - the url of the image",
-        ChatColor.YELLOW + "  You need to select an area using world edit to use this command",
-    };
+        ChatColor.YELLOW + "  You need to select an area using world edit to use this command",};
     private final static String[] HelpImageMap = new String[]{
         ChatColor.YELLOW + "ImageMap " + ChatColor.WHITE + " - draw image directly on the map",
         ChatColor.BLUE + " ImageMap reset" + ChatColor.WHITE + " - reset map to standard map",
@@ -141,6 +161,8 @@ public final class Help {
                 help = HelpFilter;
             } else if (command.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {
                 help = HelpHdImage;
+            } else if (command.equalsIgnoreCase(Commands.COMMAND_RENDER)) {
+                help = HelpRender;
             }
         }
 

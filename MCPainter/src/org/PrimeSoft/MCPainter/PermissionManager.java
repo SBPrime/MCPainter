@@ -39,6 +39,7 @@ public class PermissionManager {
         ReloadConfig, 
         DrawImage, DrawHdImage,
         DrawBlock, 
+        RenderModel,
         DrawStatue_File, DrawStatue_Self, DrawStatue_Other, 
         ImageSize,
         FilterCrop, FilterResize, FilterGrayscale, FilterDithering,
@@ -131,6 +132,8 @@ public class PermissionManager {
                 return s_prefix + "user.filter.dithering";
             case DrawMap:
                 return s_prefix + "user.drawMap";
+            case RenderModel:
+                return s_prefix + "user.renderModel";
             case SizeBypass:
                 return s_prefix + "admin.size.bypass";
             case Purge_Self:
