@@ -21,14 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter;
+package org.PrimeSoft.MCPainter.blocksplacer;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
+import org.PrimeSoft.MCPainter.BlocksHubIntegration;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
@@ -43,19 +45,23 @@ import org.bukkit.scheduler.BukkitTask;
  * @author SBPrime
  */
 public class BlockPlacer implements Runnable {
+    /**
+     * The MTA mutex
+     */
+    private final Object m_mutex = new Object();
 
     /**
      * The block hub
      */
-    private BlocksHubIntegration m_blocksHub;
+    private final BlocksHubIntegration m_blocksHub;
     /**
      * Bukkit scheduler
      */
-    private BukkitScheduler m_scheduler;
+    private final BukkitScheduler m_scheduler;
     /**
      * Current scheduler task
      */
-    private BukkitTask m_task;
+    private final BukkitTask m_task;
     /**
      * Logged events queue (per player)
      */
@@ -67,19 +73,19 @@ public class BlockPlacer implements Runnable {
     /**
      * queue soft size
      */
-    private int m_queueSoft;
+    private final int m_queueSoft;
     /**
      * queue hard size
      */
-    private int m_queueHard;
+    private final int m_queueHard;
 
     /**
      * Initialize new instance of the block placer
      *
-     * @param plugin parent     
-     * @param blocksHub     
+     * @param plugin parent
+     * @param blocksHub
      */
-    public BlockPlacer(MCPainterMain plugin, BlocksHubIntegration blocksHub) {        
+    public BlockPlacer(MCPainterMain plugin, BlocksHubIntegration blocksHub) {
         m_blocksHub = blocksHub;
         m_blocks = new HashMap<String, Queue<BlockLogerEntry>>();
         m_scheduler = plugin.getServer().getScheduler();
@@ -95,7 +101,7 @@ public class BlockPlacer implements Runnable {
     @Override
     public void run() {
         List<BlockLogerEntry> entries = new ArrayList<BlockLogerEntry>(ConfigProvider.getBlockCount());
-        synchronized (this) {
+        synchronized (m_mutex) {
             String[] keys = m_blocks.keySet().toArray(new String[0]);
             int keyPos = 0;
             boolean added = keys.length > 0;
@@ -144,11 +150,12 @@ public class BlockPlacer implements Runnable {
      * Add task to perform in async mode
      *
      * @param events Event to log
+     * @param player
      */
     public void addTasks(BlockLogerEntry[] events, Player player) {
         Queue<BlockLogerEntry> queue = null;
         final String name = player.getName();
-        synchronized (this) {
+        synchronized (m_mutex) {
             for (BlockLogerEntry entry : events) {
                 if (queue == null) {
                     if (!m_blocks.containsKey(name)) {
@@ -180,14 +187,14 @@ public class BlockPlacer implements Runnable {
      * @param player
      */
     public void purge(String player) {
-        synchronized (this) {
+        synchronized (m_mutex) {
             if (m_blocks.containsKey(player)) {
                 BlockLogerEntry[] entries = m_blocks.get(player).toArray(new BlockLogerEntry[0]);
                 m_blocks.remove(player);
 
                 Queue<BlockLogerEntry> queue = new ArrayDeque<BlockLogerEntry>();
                 for (BlockLogerEntry e : entries) {
-                    if (e.isFinalize()) {
+                    if (!e.canRemove()) {
                         queue.add(e);
                     }
                 }
@@ -203,7 +210,7 @@ public class BlockPlacer implements Runnable {
      * Remove all entries
      */
     public void purgeAll() {
-        synchronized (this) {
+        synchronized (m_mutex) {
             for (String user : getAllPlayers()) {
                 purge(user);
             }
@@ -216,7 +223,7 @@ public class BlockPlacer implements Runnable {
      * @return players list
      */
     public String[] getAllPlayers() {
-        synchronized (this) {
+        synchronized (m_mutex) {
             return m_blocks.keySet().toArray(new String[0]);
         }
     }
@@ -228,7 +235,7 @@ public class BlockPlacer implements Runnable {
      * @return number of stored events
      */
     public int getPlayerEvents(String player) {
-        synchronized (this) {
+        synchronized (m_mutex) {
             if (m_blocks.containsKey(player)) {
                 return m_blocks.get(player).size();
             }
@@ -246,38 +253,7 @@ public class BlockPlacer implements Runnable {
         if (entry == null) {
             return;
         }
-
-        BlockLoger loger = entry.getLoger();
-
-        Vector location = entry.getLocation();
-        BaseBlock block = entry.getNewBlock();
-        Player p = loger.getPlayer();
-
-        if ((location != null && block != null) || entry.isFinalize()) {
-            IEditSession eSession = loger.getEditSession();
-
-            if (location != null && block != null) {
-                try {
-                    BaseBlock oldBlock = eSession.getBlock(location);
-                    eSession.setBlock(location, block);
-                    logBlock(location, oldBlock, block, p.getName(), loger.getWorld());
-                } catch (MaxChangedBlocksException ex) {
-                    MCPainterMain.say(p, "Max block change reached");
-                    MCPainterMain.log(ex.getMessage());
-                }
-            }
-            if (entry.isFinalize()) {
-                loger.getLocalSession().remember(eSession);
-            }
-        }
-        if (entry.getCommand() != null) {
-            entry.getCommand().execute(this, loger);
-        }
-
-        String message = entry.getMessage();
-        if (message != null) {
-            MCPainterMain.say(p, message);
-        }
+        entry.execute(this);
     }
 
     /**
@@ -289,7 +265,7 @@ public class BlockPlacer implements Runnable {
      * @param name player name
      * @param world world
      */
-    private void logBlock(Vector v, BaseBlock oldBlock, BaseBlock newBlock,
+    public void logBlock(Vector v, BaseBlock oldBlock, BaseBlock newBlock,
             String name, World world) {
         m_blocksHub.logBlock(name, world, v, oldBlock, newBlock);
     }

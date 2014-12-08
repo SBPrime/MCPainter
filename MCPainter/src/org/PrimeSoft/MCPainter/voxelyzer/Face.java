@@ -23,7 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.voxelyzer;
 
-import org.PrimeSoft.MCPainter.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 

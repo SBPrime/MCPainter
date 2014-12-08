@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javax.imageio.ImageIO;
-import org.PrimeSoft.MCPainter.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;

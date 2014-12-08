@@ -23,6 +23,7 @@
  */
 package org.PrimeSoft.MCPainter;
 
+import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.utils.ExtFileFilter;
 import org.PrimeSoft.MCPainter.utils.VersionChecker;
 import org.PrimeSoft.MCPainter.palettes.PaletteManager;
@@ -750,8 +751,8 @@ public class MCPainterMain extends JavaPlugin {
         if (!m_isInitialized) {
             say(player, ChatColor.RED + "Module not initialized, contact administrator.");
             return;
-        }        
-        
+        }
+
         RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
     }
 

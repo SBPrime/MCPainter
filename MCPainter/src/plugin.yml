@@ -1,11 +1,11 @@
 name: MCPainter
 main: org.PrimeSoft.MCPainter.MCPainterMain
-version: 1.0-RC5
+version: 2.0.0-dev
 website: https://github.com/SBPrime/MCPainter/wiki
 dev-url: https://github.com/SBPrime/MCPainter/wiki
 description: Provides some basic features to draw using blocks.
 authors: [SBPrime]
-softdepend: [BlocksHub, Vault, WorldEdit]
+softdepend: [BlocksHub, Vault, WorldEdit, CustomHeadApi]
 commands:
   mcpainter:
     description: 'Displays the help for MCPsinter.'

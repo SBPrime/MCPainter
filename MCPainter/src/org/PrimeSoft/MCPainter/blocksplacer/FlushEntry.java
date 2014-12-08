@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2012 SBPrime.
+ * Copyright 2014 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.Drawing.Blocks;
+package org.PrimeSoft.MCPainter.blocksplacer;
 
-import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 
 /**
- * Basic drawable element
+ *
  * @author SBPrime
  */
-public interface IDrawableElement {
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap);
+public class FlushEntry extends BlockLogerEntry {
+    public FlushEntry(BlockLoger loger) {
+        super(loger);
+    }
+
+    @Override
+    public boolean canRemove() {
+        return false;
+    }
+    
+    
+    
+    @Override
+    public void execute(BlockPlacer blockPlacer) {
+        IEditSession eSession = m_loger.getEditSession();
+        m_loger.getLocalSession().remember(eSession);
+    }    
 }

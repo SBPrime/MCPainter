@@ -23,7 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import org.PrimeSoft.MCPainter.BlockPlacer;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
 import org.PrimeSoft.MCPainter.MCPainterMain;

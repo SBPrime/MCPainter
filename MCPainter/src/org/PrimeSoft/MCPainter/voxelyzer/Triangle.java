@@ -25,7 +25,7 @@ package org.PrimeSoft.MCPainter.voxelyzer;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import org.PrimeSoft.MCPainter.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 

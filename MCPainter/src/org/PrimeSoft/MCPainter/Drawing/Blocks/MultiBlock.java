@@ -24,7 +24,7 @@
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
 import java.util.HashMap;
-import org.PrimeSoft.MCPainter.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.MCPainterMain;

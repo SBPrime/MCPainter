@@ -24,15 +24,15 @@
 package org.PrimeSoft.MCPainter.Commands;
 
 import java.awt.image.BufferedImage;
-import org.PrimeSoft.MCPainter.BlockLoger;
-import org.PrimeSoft.MCPainter.BlockPlacer;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Filters.CropFilter;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.FoundManager;
 import org.PrimeSoft.MCPainter.Help;
-import org.PrimeSoft.MCPainter.ILoggerCommand;
+import org.PrimeSoft.MCPainter.blocksplacer.ILoggerCommand;
 import org.PrimeSoft.MCPainter.MapDrawer.MapHelper;
 import org.PrimeSoft.MCPainter.PermissionManager;
 import org.PrimeSoft.MCPainter.MCPainterMain;

@@ -23,6 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import java.awt.image.BufferedImage;

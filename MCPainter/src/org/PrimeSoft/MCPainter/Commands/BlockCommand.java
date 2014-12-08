@@ -23,7 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import org.PrimeSoft.MCPainter.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IDrawableElement;

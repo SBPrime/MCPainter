@@ -21,78 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter;
+package org.PrimeSoft.MCPainter.blocksplacer;
 
 import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Vector;
+import org.bukkit.entity.Player;
 
 
 /**
  *
  * @author SBPrime
  */
-public class BlockLogerEntry {
+public abstract class BlockLogerEntry {
+    protected final BlockLoger m_loger;
 
-    private Vector m_location;
-    private BaseBlock m_newBlock;
-    private boolean m_finalize;
-    private String m_message;
-    private BlockLoger m_loger;
-    private ILoggerCommand m_command;
-
-    public Vector getLocation() {
-        return m_location;
-    }
-
-    public BaseBlock getNewBlock() {
-        return m_newBlock;
-    }
-
-    public String getMessage() {
-        return m_message;
-    }
-
-    public ILoggerCommand getCommand() {
-        return m_command;
-    }
-
-    public boolean isFinalize() {
-        return m_finalize;
-    }
-
+    public abstract boolean canRemove();
+    
     public BlockLoger getLoger() {
         return m_loger;
     }
+    
+    public Player getPlayer() {
+        return m_loger.getPlayer();
+    }
 
     public BlockLogerEntry(BlockLoger loger) {
-        initialize(loger);
-
-        m_finalize = true;
-    }
-
-    public BlockLogerEntry(BlockLoger loger, Vector location,
-            BaseBlock newBlock) {
-        initialize(loger);
-        m_location = location;
-        m_newBlock = newBlock;
-    }
-
-    public BlockLogerEntry(BlockLoger loger, String msg) {
-        initialize(loger);
-        m_message = msg;
-    }
-
-    public BlockLogerEntry(BlockLoger loger, ILoggerCommand command) {
-        initialize(loger);
-        m_command = command;
-    }
-
-    private void initialize(BlockLoger loger) {
         m_loger = loger;
-        m_finalize = false;
-        m_message = null;
-        m_location = null;
-        m_newBlock = null;
-        m_command = null;
     }
+    
+    /**
+     * Execute the command
+     * @param blockPlacer
+     */
+    public abstract void execute(BlockPlacer blockPlacer);
 }
