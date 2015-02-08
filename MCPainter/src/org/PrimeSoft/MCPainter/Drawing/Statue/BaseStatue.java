@@ -31,6 +31,7 @@ import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *
@@ -110,7 +111,8 @@ public abstract class BaseStatue {
      * @param rawImg statue texture
      * @param useAlpha use the alpha channel
      */
-    public void DrawStatue(BlockLoger loger, RawImage[] rawImg, boolean useAlpha) {
+    public void DrawStatue(BlockLoger loger, RawImage[] rawImg, boolean useAlpha) 
+            throws MaxChangedBlocksException {
         if (rawImg == null) {
             return;
         }

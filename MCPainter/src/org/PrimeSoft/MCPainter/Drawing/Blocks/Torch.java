@@ -34,6 +34,7 @@ import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -71,7 +72,8 @@ public class Torch extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) 
+            throws MaxChangedBlocksException {
         if (data == 0) {
             super.draw(data, loger, localPlayer, colorMap);
             return;

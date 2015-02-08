@@ -46,8 +46,7 @@ public class PermissionManager {
         AnnounceVersion,
         DrawMap, 
         SizeBypass, 
-        Purge_Self, Purge_Other, Purge_All,
-        Jobs_Self, Jobs_Other, Jobs_All, Filter,
+        Filter,
         Palette_list, Palette_change, Palette_changeOther
     }
         
@@ -136,18 +135,6 @@ public class PermissionManager {
                 return s_prefix + "user.renderModel";
             case SizeBypass:
                 return s_prefix + "admin.size.bypass";
-            case Purge_Self:
-                return s_prefix + "user.purge";
-            case Purge_Other:
-                return s_prefix + "admin.purge";
-            case Purge_All:
-                return s_prefix + "admin.purge.all";
-            case Jobs_Self:
-                return s_prefix + "user.jobs";
-            case Jobs_Other:
-                return s_prefix + "admin.jobs";
-            case Jobs_All:
-                return s_prefix + "admin.jobs.all";
             case Palette_list:
                 return s_prefix + "user.palette.list";
             case Palette_change:

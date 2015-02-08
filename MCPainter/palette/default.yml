@@ -103,10 +103,10 @@ blocks:
 
   - REDSTONE_LAMP_OFF-VANILLA:assets/minecraft/textures/blocks/redstone_lamp_off.png
   - SMOOTH_BRICK:3-VANILLA:assets/minecraft/textures/blocks/stonebrick_carved.png
-
-  - NETHER_BRICK-VANILLA:assets/minecraft/textures/blocks/nether_brick.png
   - SANDSTONE:1-VANILLA:assets/minecraft/textures/blocks/sandstone_carved.png
   - SANDSTONE:2-VANILLA:assets/minecraft/textures/blocks/sandstone_smooth.png
+
+  - NETHER_BRICK-VANILLA:assets/minecraft/textures/blocks/nether_brick.png
 
 #  - LEAVES:0-VANILLA:assets/minecraft/textures/blocks/leaves_oak.png-84,75
 #  - LEAVES:1-VANILLA:assets/minecraft/textures/blocks/leaves_spruce.png-120,38
@@ -129,3 +129,23 @@ blocks:
   - STAINED_GLASS:13-VANILLA:assets/minecraft/textures/blocks/glass_green.png
   - STAINED_GLASS:14-VANILLA:assets/minecraft/textures/blocks/glass_red.png
   - STAINED_GLASS:15-VANILLA:assets/minecraft/textures/blocks/glass_black.png
+
+  - STONE:1-VANILLA:assets/minecraft/textures/blocks/stone_granite.png
+  - STONE:2-VANILLA:assets/minecraft/textures/blocks/stone_granite_smooth.png
+  - STONE:3-VANILLA:assets/minecraft/textures/blocks/stone_diorite.png
+  - STONE:4-VANILLA:assets/minecraft/textures/blocks/stone_diorite_smooth.png
+  - STONE:5-VANILLA:assets/minecraft/textures/blocks/stone_andesite.png
+  - STONE:6-VANILLA:assets/minecraft/textures/blocks/stone_andesite_smooth.png
+
+  - SPONGE-VANILLA:assets/minecraft/textures/blocks/sponge.png
+  - SPONGE:1-VANILLA:assets/minecraft/textures/blocks/sponge_wet.png
+
+  - PRISMARINE-VANILLA:assets/minecraft/textures/blocks/prismarine_rough.png
+  - PRISMARINE:2-VANILLA:assets/minecraft/textures/blocks/prismarine_dark.png
+  - PRISMARINE:1-VANILLA:assets/minecraft/textures/blocks/sea_lantern.png
+
+  - SEA_LANTERN-VANILLA:assets/minecraft/textures/blocks/prismarine_bricks.png
+
+  - RED_SANDSTONE:0-VANILLA:assets/minecraft/textures/blocks/red_sandstone_normal.png
+  - RED_SANDSTONE:1-VANILLA:assets/minecraft/textures/blocks/red_sandstone_carved.png
+  - RED_SANDSTONE:2-VANILLA:assets/minecraft/textures/blocks/red_sandstone_smooth.png

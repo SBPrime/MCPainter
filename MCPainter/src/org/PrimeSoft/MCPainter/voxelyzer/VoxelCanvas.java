@@ -31,6 +31,7 @@ import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.Material;
 
 /**
@@ -154,7 +155,8 @@ public class VoxelCanvas {
         A[2] = B[2];
     }
 
-    public void render(BlockLoger loger, ColorMap colorMap, RawImage texture, double[][] map) {
+    public void render(BlockLoger loger, ColorMap colorMap, RawImage texture, double[][] map)
+            throws MaxChangedBlocksException {
         expand();
         for (int i = 0; i < m_resX; i++) {
             for (int j = 0; j < m_resY; j++) {
@@ -270,7 +272,8 @@ public class VoxelCanvas {
         return val >= 0 && val <= 255;
     }
 
-    private void drawLine(BlockLoger loger, ColorMap colorMap, RawImage texture, Vertex p1, Vertex p2) {
+    private void drawLine(BlockLoger loger, ColorMap colorMap, RawImage texture, Vertex p1, Vertex p2)
+            throws MaxChangedBlocksException {
         final Vertex len = Vertex.sub(p2, p1);
         final int cnt = (int) Math.round(Math.max(len.getX(), Math.max(len.getY(), len.getZ())));
         final Vertex delta = Vertex.div(len, cnt);

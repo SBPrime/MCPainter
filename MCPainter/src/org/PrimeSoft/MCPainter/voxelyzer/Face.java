@@ -26,6 +26,7 @@ package org.PrimeSoft.MCPainter.voxelyzer;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  * 3D face
@@ -82,10 +83,13 @@ public class Face {
      * @param loger Bock logger
      * @param colorMap clolor mapper
      * @param matrix transformation matrix
+     * @param clipping
      * @param v vertices
+     * @throws org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException
      */
     public void render(BlockLoger loger, ColorMap colorMap, Matrix matrix,
-            ClippingRegion clipping, Vertex[] v) {
+            ClippingRegion clipping, Vertex[] v) 
+            throws MaxChangedBlocksException {
         final Vertex[] vOut = new Vertex[3];
         if (v == null) {
             return;

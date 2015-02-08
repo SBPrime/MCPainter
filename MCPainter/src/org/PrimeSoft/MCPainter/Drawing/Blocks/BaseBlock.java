@@ -38,6 +38,7 @@ import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -129,15 +130,14 @@ public class BaseBlock implements IDrawableElement {
                 }
             }
         }
-        
+
         if (cropH.length > 0 || cropV.length > 0) {
-            for (int i = 0; i < m_faces.length; i++)
-            {
+            for (int i = 0; i < m_faces.length; i++) {
                 int cH1 = (i * 2 + 0) < cropH.length ? cropH[i * 2 + 0] : 0;
                 int cH2 = (i * 2 + 1) < cropH.length ? cropH[i * 2 + 1] : 0;
                 int cV1 = (i * 2 + 0) < cropV.length ? cropV[i * 2 + 0] : 0;
                 int cV2 = (i * 2 + 1) < cropV.length ? cropV[i * 2 + 1] : 0;
-                
+
                 if (m_faces[i] != null) {
                     m_faces[i].setCropH(new Pair<Integer, Integer>(cH1, cH2));
                     m_faces[i].setCropV(new Pair<Integer, Integer>(cV1, cV2));
@@ -253,7 +253,7 @@ public class BaseBlock implements IDrawableElement {
         for (int i = 0; i < img.length; i++) {
             int res = img[i] != null ? img[i].getRes() : 0;
             u2[i] = res - 1;
-            v2[i] = res  - 1;
+            v2[i] = res - 1;
         }
 
         if (length > 0 && img[0] != null) {
@@ -337,7 +337,8 @@ public class BaseBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap)
+            throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(m_useYaw ? yaw : 0, m_usePitch ? pitch : 0);

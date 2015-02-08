@@ -27,6 +27,7 @@ import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -116,7 +117,8 @@ public class Model {
      */
     public void render(Player player,
             BlockLoger loger, ColorMap colorMap, ClippingRegion clipping, 
-            Matrix matrix) {
+            Matrix matrix) 
+            throws MaxChangedBlocksException {
         int cnt = m_faces.length;
         int pos = 0;
         int interval = PROGRESS_ANNOUNCE;

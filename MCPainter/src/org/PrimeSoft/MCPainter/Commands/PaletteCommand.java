@@ -23,7 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
 import org.PrimeSoft.MCPainter.MCPainterMain;
@@ -45,7 +44,6 @@ public class PaletteCommand {
         }
 
         PaletteManager pm = sender.getPaletteManager();
-        BlockPlacer bPlacer = sender.getBlockPlacer();
         if (args.length == 1) {
             if (!PermissionManager.isAllowed(player, PermissionManager.Perms.Palette_list)) {
                 MCPainterMain.say(player, ChatColor.RED + "You have no permissions to do that.");
@@ -57,7 +55,7 @@ public class PaletteCommand {
             for (int i = 0; i < names.length; i++) {
                 if (i != 0) {
                     sb.append(", ");
-                };
+                }
                 sb.append(names[i]);
             }
             MCPainterMain.say(player, ChatColor.YELLOW + "Known palettes: " + ChatColor.WHITE

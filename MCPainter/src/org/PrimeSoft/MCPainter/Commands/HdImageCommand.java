@@ -25,7 +25,6 @@ package org.PrimeSoft.MCPainter.Commands;
 
 import java.awt.image.BufferedImage;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Filters.CropFilter;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
@@ -104,7 +103,7 @@ public class HdImageCommand {
         }
 
         @Override
-        public void execute(BlockPlacer blockPlacer, BlockLoger loger) {
+        public void execute(BlockLoger loger) {
             Chunk chunk = m_location.getChunk();
             if (!chunk.isLoaded()) {
                 if (!chunk.load()) {
@@ -259,7 +258,6 @@ public class HdImageCommand {
 
                 loger.logMessage("Drawing image done.");
                 loger.logEndSession();
-                loger.flush();
 
                 FoundManager.subtractMoney(m_player, price);
             }

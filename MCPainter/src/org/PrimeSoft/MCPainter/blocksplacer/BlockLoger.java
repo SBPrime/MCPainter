@@ -23,15 +23,12 @@
  */
 package org.PrimeSoft.MCPainter.blocksplacer;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
-import org.bukkit.Location;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
@@ -40,32 +37,22 @@ import org.bukkit.entity.Player;
  * @author SBPrime
  */
 public class BlockLoger {
+
     /**
      * The MTA mutex
      */
     private final Object m_mutex = new Object();
-    
+
     private final Player m_player;
-    private final List<BlockLogerEntry> m_blocks;
     private final ILocalSession m_session;
     private final IEditSession m_editSession;
     private final World m_world;
     private final MCPainterMain m_mainPlugin;
-    private final BlockPlacer m_blocksPlacer;
-
-    public World getWorld() {
-        return m_world;
-    }
 
     public Player getPlayer() {
         return m_player;
     }
 
-    public BlockLogerEntry[] getEntries() {
-        synchronized (m_mutex) {
-            return m_blocks.toArray(new BlockLogerEntry[0]);
-        }
-    }
 
     public IEditSession getEditSession() {
         return m_editSession;
@@ -77,65 +64,32 @@ public class BlockLoger {
 
     public BlockLoger(Player player, ILocalSession session, IEditSession eSession,
             MCPainterMain main) {
-        m_blocks = new ArrayList<BlockLogerEntry>();
         m_player = player;
         m_session = session;
         m_editSession = eSession;
         m_world = m_player.getWorld();
         m_mainPlugin = main;
-        m_blocksPlacer = main.getBlockPlacer();
     }
 
     public void logCommand(ILoggerCommand command) {
-        Location location = command.getLocation();
-        if (m_mainPlugin.getBlocksHub().canPlace(m_player.getName(), m_world, location)) {
-            synchronized (m_mutex) {
-                m_blocks.add(new CommandEntry(this, command));
-            }
-            checkFlush();
-        }
+        //Location location = command.getLocation();
+        //synchronized (m_mutex) {
+        //    m_blocks.add(new CommandEntry(this, command));
+        //}
+        //checkFlush();
+        
+        //TODO: Implement me!
     }
-    
-    public void logBlock(Vector location, BaseBlock block) {
-        if (m_mainPlugin.getBlocksHub().canPlace(m_player.getName(), m_world, location)) {
-            synchronized (m_mutex) {
-                m_blocks.add(new BlockEntry(this, location, block));                
-            }
-            checkFlush();
-        }
+
+    public void logBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {        
+        m_editSession.setBlock(location, block);        
     }
 
     public void logEndSession() {
-        synchronized (m_mutex) {
-            m_blocks.add(new FlushEntry(this));
-        }
-        checkFlush();
+        m_session.remember(m_editSession);        
     }
 
     public void logMessage(String msg) {
-        synchronized (m_mutex) {
-            m_blocks.add(new MessageEntry(this, msg));
-        }
-        checkFlush();
+        MCPainterMain.say(getPlayer(), msg);
     }
-
-    private void checkFlush() {
-        boolean shuldFlush;
-        synchronized (m_mutex) {
-            shuldFlush = m_blocks.size() > ConfigProvider.getQueueHardLimit();
-        }
-        
-        if (shuldFlush) {
-            flush();
-        }
-    }
-
-    public void flush() {
-        BlockLogerEntry[] events;
-        synchronized (m_mutex) {
-            events = m_blocks.toArray(new BlockLogerEntry[0]);
-            m_blocks.clear();
-        }
-        m_blocksPlacer.addTasks(events, getPlayer());
-    }   
 }

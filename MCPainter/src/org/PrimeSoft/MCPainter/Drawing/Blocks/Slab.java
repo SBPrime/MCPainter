@@ -23,7 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
-
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
@@ -35,6 +34,7 @@ import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -68,16 +68,14 @@ public class Slab extends BaseBlock {
      * @param tex
      */
     private void initialize(RawImage[] tex) {
-        if (tex == null || tex.length == 0)
-        {
+        if (tex == null || tex.length == 0) {
             return;
         }
-        
+
         /**
          * TODO: change this?
          */
         int res = tex[0].getRes();
-
 
         RawImage[] img = assignTextures(tex);
 
@@ -107,7 +105,8 @@ public class Slab extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap)
+            throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(0, 0);

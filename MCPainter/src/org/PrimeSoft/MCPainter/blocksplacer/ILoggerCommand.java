@@ -31,6 +31,6 @@ import org.bukkit.Location;
  * @author SBPrime
  */
 public interface ILoggerCommand {
-    void execute(BlockPlacer blockPlacer, BlockLoger loger);
+    void execute(BlockLoger loger);
     Location getLocation();
 }

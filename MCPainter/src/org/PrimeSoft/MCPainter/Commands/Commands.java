@@ -40,8 +40,6 @@ public final class Commands {
     public final static String COMMAND_STATUE = "Statue";
     public final static String COMMAND_RELOAD = "Reload";
     public final static String COMMAND_HELP = "Help";
-    public final static String COMMAND_PURGE = "Purge";
-    public final static String COMMAND_JOBS = "Jobs";
     public final static String COMMAND_FILTER = "Filter";
     public final static String COMMAND_MOB = "Mob";
     public final static String COMMAND_PALETTE = "Palette";

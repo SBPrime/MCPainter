@@ -35,12 +35,12 @@ import org.PrimeSoft.MCPainter.*;
 import org.PrimeSoft.MCPainter.Drawing.Statue.CustomStatue;
 import org.PrimeSoft.MCPainter.Drawing.Statue.PlayerStatueDescription;
 import org.PrimeSoft.MCPainter.mods.ModStatueProvider;
-import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
 import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
 import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -58,7 +58,7 @@ public class StatueCommand implements Runnable {
 
         ModStatueProvider statueProvider = sender.getStatueProvider();
         PlayerStatueDescription description = statueProvider.getPlayer();
-        if (description == null){
+        if (description == null) {
             MCPainterMain.say(player, ChatColor.RED + "No player statue defined in the config files.");
             return;
         }
@@ -134,7 +134,7 @@ public class StatueCommand implements Runnable {
         m_yaw = localPlayer.getYaw();
         m_pitch = localPlayer.getPitch();
         m_orientation = new Orientation(m_yaw, m_pitch);
-        m_playerStatue = new CustomStatue(colorMap, Utils.getPlayerPos(localPlayer), 
+        m_playerStatue = new CustomStatue(colorMap, Utils.getPlayerPos(localPlayer),
                 m_yaw, m_pitch, m_orientation, description);
 
         m_sender = sender;
@@ -150,7 +150,6 @@ public class StatueCommand implements Runnable {
                 return;
             }
 
-
             MCPainterMain.say(m_player, "Loading image...");
             BufferedImage img = ImageHelper.downloadImage(m_url);
             if (img == null) {
@@ -163,12 +162,14 @@ public class StatueCommand implements Runnable {
 
             boolean[] useAlpha = new boolean[1];
             RawImage rawImg = new RawImage(ImageHelper.convertToRGB(img, useAlpha), img.getWidth());
-            m_playerStatue.DrawStatue(loger, new RawImage[]{rawImg}, useAlpha[0]);
+            try {
+                m_playerStatue.DrawStatue(loger, new RawImage[]{rawImg}, useAlpha[0]);
+            } catch (MaxChangedBlocksException ex) {
+                loger.logMessage("Maximum number of blocks changed, operation canceled.");
+            }
             loger.logMessage("Done.");
             loger.logEndSession();
 
-            //m_sender.getBlockPlacer().AddTasks(loger);
-            loger.flush();
             FoundManager.subtractMoney(m_player, price);
         }
     }

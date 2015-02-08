@@ -39,6 +39,7 @@ import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
 import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -104,7 +105,7 @@ public class MobCommand implements Runnable {
         }
         sender.getServer().getScheduler().runTaskAsynchronously(sender,
                 new MobCommand(sender, player, localPlayer, mob,
-                image, worldEdit));
+                        image, worldEdit));
     }
 
     /**
@@ -117,15 +118,13 @@ public class MobCommand implements Runnable {
         StringBuilder sb = new StringBuilder("Known mobs: ");
 
         String[] names = statueProvider.getNames();
-        for (int i = 0;i<names.length;i++)
-        {
-            if (i != 0)
-            {
+        for (int i = 0; i < names.length; i++) {
+            if (i != 0) {
                 sb.append(", ");
             }
             sb.append(names[i]);
         }
-        
+
         MCPainterMain.say(player, sb.toString());
     }
     private final Player m_player;
@@ -159,13 +158,15 @@ public class MobCommand implements Runnable {
 
             MCPainterMain.say(m_player, "Drawing statue...");
             BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
-
-            m_statue.DrawStatue(loger, m_textures, true);
+            try {
+                m_statue.DrawStatue(loger, m_textures, true);
+            } catch (MaxChangedBlocksException ex) {
+                loger.logMessage("Maximum number of blocks changed, operation canceled.");
+            }
             loger.logMessage("Done.");
             loger.logEndSession();
 
             //m_sender.getBlockPlacer().AddTasks(loger);
-            loger.flush();
             FoundManager.subtractMoney(m_player, price);
         }
     }

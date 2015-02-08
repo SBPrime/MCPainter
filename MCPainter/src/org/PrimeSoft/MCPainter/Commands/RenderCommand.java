@@ -41,6 +41,7 @@ import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
 import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -283,11 +284,14 @@ public class RenderCommand implements Runnable {
             final Matrix matrix, final ClippingRegion clipping) {
         MCPainterMain.say(m_player, "Rendering model...");
         loger.logMessage("Drawing blocks...");
-        model.render(m_player, loger, m_colorMap, clipping, matrix);
+        try {
+            model.render(m_player, loger, m_colorMap, clipping, matrix);
+        } catch (MaxChangedBlocksException ex) {
+            loger.logMessage("Maximum number of blocks changed, operation canceled.");
+        }
         MCPainterMain.say(m_player, "Render done.");
         loger.logMessage("Drawing block done.");
         loger.logEndSession();
-        loger.flush();
     }
 
     private Vector getSafeSize(Vector size) {

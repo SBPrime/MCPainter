@@ -28,6 +28,7 @@ import java.util.Comparator;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *
@@ -58,7 +59,8 @@ public class Triangle {
      */
     public static void drawTriangle(BlockLoger loger, ColorMap colorMap,
             ClippingRegion clipping,
-            RawImage texture, Vertex p1, Vertex p2, Vertex p3) {
+            RawImage texture, Vertex p1, Vertex p2, Vertex p3)
+            throws MaxChangedBlocksException {
         if (p1 == null || p2 == null || p3 == null) {
             return;
         }

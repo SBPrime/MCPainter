@@ -25,7 +25,6 @@ package org.PrimeSoft.MCPainter.Drawing;
 
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
-import org.apache.commons.lang.NullArgumentException;
 
 /**
  *
@@ -81,6 +80,7 @@ public class RawImage {
 
     /**
      * Gets the raw image
+     * @return 
      */
     public int[][] getImage() {
         return m_img;
@@ -102,7 +102,7 @@ public class RawImage {
      */
     public RawImage(int[][] img, int res) {
         if (img == null) {
-            throw new NullArgumentException("img");
+            throw new IllegalArgumentException("img is null");
         }
         m_img = img;
         m_hasAlpha = false;

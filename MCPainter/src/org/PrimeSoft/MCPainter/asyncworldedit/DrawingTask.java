@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 SBPrime.
+ * Copyright 2015 prime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,30 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.blocksplacer;
+package org.PrimeSoft.MCPainter.asyncworldedit;
+
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import org.primesoft.asyncworldedit.utils.FuncParamEx;
+import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
 
 /**
  *
  * @author SBPrime
  */
-public class CommandEntry extends BlockLogerEntry {
-    private final ILoggerCommand m_command;
-        
-    public CommandEntry(BlockLoger loger, ILoggerCommand command) {
-        super(loger);
-        
-        m_command = command;
-    }
-
-    @Override
-    public boolean canRemove() {
-        return true;
-    }    
-    
-    
-    @Override
-    public void execute(BlockPlacer blockPlacer) {
-        m_command.execute(blockPlacer, m_loger);
-    }
+public abstract class DrawingTask implements FuncParamEx<Integer, CancelabeEditSession, MaxChangedBlocksException> {
     
 }

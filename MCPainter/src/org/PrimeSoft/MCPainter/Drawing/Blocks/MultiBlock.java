@@ -30,6 +30,7 @@ import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -120,7 +121,8 @@ public class MultiBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) 
+            throws MaxChangedBlocksException {
         if (m_useTopFlag) {
             double pitch = localPlayer.getPitch();
             if (pitch < -45) {

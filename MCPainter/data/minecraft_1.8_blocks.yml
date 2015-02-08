@@ -1,11 +1,11 @@
 ################################################################################
 # MCPainter mod definition file
-# Mod name: Minecraft 1.7.x
+# Mod name: Minecraft 1.8.x
 # Author:   SBPrime
 # Description:
 #   Vanilla minecraft blocks definition file
 ################################################################################
-DisplayName: Minecraft 1.7.x - blocks
+DisplayName: Minecraft 1.8.x - blocks
 Blocks:
   Stone:
     Name: STONE

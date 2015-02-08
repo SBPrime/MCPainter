@@ -27,6 +27,8 @@ import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
@@ -37,6 +39,7 @@ import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
 import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -112,13 +115,14 @@ public class ImageCommand implements Runnable {
 
             MCPainterMain.say(m_player, "Drawing image...");
             BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
-            ImageHelper.drawImage(loger, m_colorMap, img, position, m_orientation);
+            try {
+                ImageHelper.drawImage(loger, m_colorMap, img, position, m_orientation);
+            } catch (MaxChangedBlocksException ex) {
+                loger.logMessage("Maximum number of blocks changed, operation canceled.");
+            }
 
             loger.logMessage("Drawing image done.");
             loger.logEndSession();
-
-            //m_sender.getBlockPlacer().AddTasks(loger);
-            loger.flush();
             
             FoundManager.subtractMoney(m_player, price);
         }

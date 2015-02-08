@@ -9,21 +9,11 @@
 
 mcpainter:
   # Version number (Do not change)
-  version: 4
+  version: 5
   # Use a custom texture pack to draw
   texturePacks:
     # the path to the texture pack followed by the resolution (16, 32, etc...)
     - texture/!test.zip:16
-  rendering:
-    # Interval (In ticks) to render block statues
-    interval: 15
-    # Blocks to place every render (Applies to entire server)
-    blocks: 1000
-    queue-limit-soft: 10000
-    # The maximum blocks a user can place
-    # Once a user hits this limit he must wait until his que size reaches the queue-limit-soft
-    # before being able to run more mcpainter commands
-    queue-limit-hard: 20000
   # Check to have you have the latest version
   checkVersion: true
   maxSize: 80x60

@@ -2,7 +2,7 @@
 # MCPainter player statue definition file
 # Author:   SBPrime
 # Description:
-#   Minecraft 1.7.x player statue files
+#   Minecraft 1.8.x player statue files
 ################################################################################
 SkinUrl: http://s3.amazonaws.com/MinecraftSkins/%s.png
 TextureRes: 64

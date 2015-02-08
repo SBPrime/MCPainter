@@ -35,6 +35,7 @@ import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
 import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -45,10 +46,11 @@ import org.bukkit.material.MaterialData;
  * @author SBPrime
  */
 public class BlockCommand {
+
     /**
      * Blocks provider
      */
-    private IBlockProvider m_blockProvider;
+    private final IBlockProvider m_blockProvider;
 
     public BlockCommand(MCPainterMain plugin) {
         m_blockProvider = plugin.getBlockProvider();
@@ -81,7 +83,6 @@ public class BlockCommand {
                 ItemStack inHand = player.getItemInHand();
                 MaterialData tmp = inHand.getData();
 
-                                
                 blockMaterial = tmp.getItemType();
                 if (materialParts.length > 1) {
                     int value = 0;
@@ -90,10 +91,10 @@ public class BlockCommand {
                     } catch (NumberFormatException e) {
                         value = tmp.getData();
                     }
-                    blockData = (short)value;
+                    blockData = (short) value;
                 } else {
                     blockData = tmp.getData();
-                }                
+                }
             } else {
                 try {
                     matId = Integer.parseInt(materialParts[0]);
@@ -107,7 +108,6 @@ public class BlockCommand {
                     blockMaterial = Material.getMaterial(matId);
                 }
 
-
                 if (materialParts.length > 1) {
                     int value = 0;
                     try {
@@ -115,7 +115,7 @@ public class BlockCommand {
                     } catch (NumberFormatException e) {
                         value = 0;
                     }
-                    blockData = (short)value;
+                    blockData = (short) value;
                 } else {
                     blockData = 0;
                 }
@@ -132,7 +132,6 @@ public class BlockCommand {
         }
         String name = (blockName != null ? blockName : matId).toString();
         MCPainterMain.say(player, "Drawing block " + name + "...");
-
 
         final IDrawableElement element = (blockName != null) ? m_blockProvider.getBlock(blockName) : m_blockProvider.getBlock(matId);
 
@@ -178,13 +177,15 @@ public class BlockCommand {
                     return;
                 }
                 BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
-                m_element.draw(m_blockData, loger, m_localPlayer, m_colorMap);
 
+                try {
+                    m_element.draw(m_blockData, loger, m_localPlayer, m_colorMap);
+                } catch (MaxChangedBlocksException ex) {
+                    loger.logMessage("Maximum number of blocks changed, operation canceled.");
+                }
                 loger.logMessage("Drawing block done.");
                 loger.logEndSession();
 
-                //m_sender.getBlockPlacer().AddTasks(loger);
-                loger.flush();
                 FoundManager.subtractMoney(m_player, price);
             }
         }

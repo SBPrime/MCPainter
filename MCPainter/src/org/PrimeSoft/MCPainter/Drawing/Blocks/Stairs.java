@@ -32,6 +32,7 @@ import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *
@@ -51,8 +52,8 @@ public class Stairs extends BaseBlock {
         if (tex == null) {
             return;
         }
-        RawImage[] img = assignTextures(tex);        
-        
+        RawImage[] img = assignTextures(tex);
+
         /**
          * TODO: change this?
          */
@@ -163,7 +164,8 @@ public class Stairs extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap) {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap)
+            throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(0, 0);

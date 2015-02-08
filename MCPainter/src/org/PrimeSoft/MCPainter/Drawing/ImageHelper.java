@@ -43,6 +43,7 @@ import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
+import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  * @author SBPrime
@@ -88,7 +89,7 @@ public class ImageHelper {
     }
 
     public static void drawImage(BlockLoger loger, ColorMap colorMap, BufferedImage img,
-            Vector pos, Orientation orientation) {
+            Vector pos, Orientation orientation) throws MaxChangedBlocksException {
         int hh = img.getHeight();
         int ww = img.getWidth();
 
@@ -112,19 +113,19 @@ public class ImageHelper {
 
     public static void drawCube(BlockLoger loger, ColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, boolean useAlpha,
-            OperationType type) {
+            OperationType type) throws MaxChangedBlocksException {
         drawCube(loger, colorMap, pos, orientation, size, faces, null, useAlpha, type);
     }
 
     public static void drawCube(BlockLoger loger, ColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, int[] grayColor,
-            boolean useAlpha, OperationType type) {
+            boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
         drawCube(loger, colorMap, pos, orientation, size, faces, null, grayColor, useAlpha, type);
     }
 
     public static void drawCube(BlockLoger loger, ColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, double[] maping,
-            int[] grayColor, boolean useAlpha, OperationType type) {
+            int[] grayColor, boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
 
         double[] ddX, ddY, ddZ;
         if (maping == null || maping.length != 9) {
@@ -296,7 +297,7 @@ public class ImageHelper {
 
     public static void drawDiagonal(BlockLoger loger, ColorMap colorMap,
             Vector pos, Orientation orientation, Vector size,
-            Face[] faces, int[] grayColor, boolean useAlpha, OperationType type) {
+            Face[] faces, int[] grayColor, boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
         int w = (int) (size.getX() - 1);
         int h = (int) (size.getY() - 1);
         int d = (int) (size.getZ() - 1);
