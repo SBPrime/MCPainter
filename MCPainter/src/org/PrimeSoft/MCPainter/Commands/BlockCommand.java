@@ -23,6 +23,8 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
@@ -31,11 +33,7 @@ import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.FoundManager;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
-import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
+import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -56,7 +54,7 @@ public class BlockCommand {
         m_blockProvider = plugin.getBlockProvider();
     }
 
-    public void Execte(MCPainterMain sender, final Player player, IWorldEdit worldEdit,
+    public void Execte(MCPainterMain sender, final Player player, WorldEditPlugin worldEdit,
             final ColorMap colorMap, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_BLOCK);
@@ -140,28 +138,24 @@ public class BlockCommand {
             return;
         }
 
-        sender.getServer().getScheduler().runTaskAsynchronously(sender,
-                new CommandThread(sender, player, element, blockData, worldEdit, colorMap));
+        DrawingTask task = new CommandThread(worldEdit, player,
+                sender, element, blockData, colorMap);
+        
+        sender.getAWE().runTask(player, "Block", task);
     }
 
-    private class CommandThread implements Runnable {
+    private class CommandThread extends DrawingTask {
 
-        private final ILocalSession m_lSession;
-        private final IEditSession m_session;
         private final MCPainterMain m_sender;
         private final ColorMap m_colorMap;
         private final IDrawableElement m_element;
-        private final ILocalPlayer m_localPlayer;
         private final short m_blockData;
-        private final Player m_player;
 
-        private CommandThread(MCPainterMain sender, Player player, IDrawableElement element,
-                short blockData, IWorldEdit worldEdit, ColorMap colorMap) {
-            m_player = player;
+        private CommandThread(WorldEditPlugin worldEditPlugin, Player player, 
+                MCPainterMain sender, IDrawableElement element,
+                short blockData, ColorMap colorMap) {
+            super(worldEditPlugin, player);
 
-            m_lSession = worldEdit.getSession(player);
-            m_localPlayer = worldEdit.wrapPlayer(player);
-            m_session = m_lSession.createEditSession(m_localPlayer);
             m_colorMap = colorMap;
             m_sender = sender;
             m_element = element;
@@ -169,14 +163,13 @@ public class BlockCommand {
         }
 
         @Override
-        public void run() {
+        public void draw(BlockLoger loger) throws MaxChangedBlocksException {
             double price = ConfigProvider.getCommandPrice("block");
             synchronized (FoundManager.getMutex()) {
                 if (price > 0 && FoundManager.getMoney(m_player) < price) {
                     MCPainterMain.say(m_player, ChatColor.RED + "You don't have sufficient funds to draw blocks.");
                     return;
                 }
-                BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
 
                 try {
                     m_element.draw(m_blockData, loger, m_localPlayer, m_colorMap);
@@ -184,8 +177,6 @@ public class BlockCommand {
                     loger.logMessage("Maximum number of blocks changed, operation canceled.");
                 }
                 loger.logMessage("Drawing block done.");
-                loger.logEndSession();
-
                 FoundManager.subtractMoney(m_player, price);
             }
         }

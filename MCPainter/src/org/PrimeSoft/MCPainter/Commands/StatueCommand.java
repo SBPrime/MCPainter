@@ -136,7 +136,7 @@ public class StatueCommand extends DrawingTask {
     }
 
     @Override
-    public void draw(BlockLoger loger) throws MaxChangedBlocksException {        
+    public void draw(BlockLoger loger) throws MaxChangedBlocksException {
         double price = ConfigProvider.getCommandPrice("statue");
         synchronized (FoundManager.getMutex()) {
             if (price > 0 && FoundManager.getMoney(m_player) < price) {

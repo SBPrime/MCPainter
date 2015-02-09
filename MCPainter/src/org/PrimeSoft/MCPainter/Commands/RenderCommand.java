@@ -23,6 +23,9 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import java.io.File;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
@@ -30,18 +33,13 @@ import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.PermissionManager;
+import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
 import org.PrimeSoft.MCPainter.utils.Utils;
-import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.voxelyzer.ClippingRegion;
 import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
 import org.PrimeSoft.MCPainter.voxelyzer.Model;
 import org.PrimeSoft.MCPainter.voxelyzer.Vertex;
 import org.PrimeSoft.MCPainter.voxelyzer.fileParsers.WavefrontObj;
-import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
-import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -49,14 +47,14 @@ import org.bukkit.entity.Player;
  *
  * @author SBPrime
  */
-public class RenderCommand implements Runnable {
+public class RenderCommand extends DrawingTask {
 
     private final static int YAW = 30;
     private final static int YAW2 = 14;
     private final static int PITCH = 45;
     private final static int PITCH2 = 22;
 
-    public static void Execute(MCPainterMain sender, Player player, IWorldEdit worldEdit,
+    public static void Execute(MCPainterMain sender, Player player, WorldEditPlugin worldEdit,
             ColorMap colorMap, String[] args) {
         if (args.length < 3 || args.length > 5) {
             Help.ShowHelp(player, Commands.COMMAND_RENDER);
@@ -88,9 +86,10 @@ public class RenderCommand implements Runnable {
             return;
         }
 
-        sender.getServer().getScheduler().runTaskAsynchronously(sender,
-                new RenderCommand(sender, player, worldEdit, colorMap,
-                        modelName, size, clip[0], clip[1], offset));
+        DrawingTask task = new RenderCommand(worldEdit, player, 
+                sender, colorMap,
+                modelName, size, clip[0], clip[1], offset);
+        sender.getAWE().runTask(player, "Render", task);
     }
 
     private static Vector parseSize(String sizeArg) {
@@ -172,12 +171,9 @@ public class RenderCommand implements Runnable {
         }
     }
 
-    private final Player m_player;
     private final double m_yaw;
     private final double m_pitch;
     private final Vector m_pPosition;
-    private final IEditSession m_session;
-    private final ILocalSession m_lSession;
     private final ColorMap m_colorMap;
     private final MCPainterMain m_sender;
     private final String m_modeFile;
@@ -186,34 +182,29 @@ public class RenderCommand implements Runnable {
     private final Vector m_clipMax;
     private final Vector m_offset;
 
-    private RenderCommand(MCPainterMain sender, Player player, IWorldEdit worldEdit,
+    private RenderCommand(WorldEditPlugin worldEditPlugin, Player player, MCPainterMain sender,
             ColorMap colorMap, String modeFile, Vector size, Vector clipMin,
             Vector clipMax, Vector offset) {
+        super(worldEditPlugin, player);
+        
         m_modeFile = modeFile;
         m_size = size;
         m_clipMax = clipMax;
         m_clipMin = clipMin;
         m_offset = offset;
-        m_player = player;
-
-        m_lSession = worldEdit.getSession(m_player);
-        ILocalPlayer localPlayer = worldEdit.wrapPlayer(m_player);
-        m_session = m_lSession.createEditSession(localPlayer);
-
-        final int y = (int) (360 + localPlayer.getYaw() + YAW2) % 360;
-        final int p = (int) (360 + localPlayer.getPitch() + PITCH2) % 360;
+        
+        final int y = (int) (360 + m_localPlayer.getYaw() + YAW2) % 360;
+        final int p = (int) (360 + m_localPlayer.getPitch() + PITCH2) % 360;
 
         m_yaw = y - y % YAW;
         m_pitch = -(p - p % PITCH);
-        m_pPosition = Utils.getPlayerPos(localPlayer);
+        m_pPosition = Utils.getPlayerPos(m_localPlayer);
         m_colorMap = colorMap;
         m_sender = sender;
     }
 
     @Override
-    public void run() {
-        BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
-
+    public void draw(BlockLoger loger) throws MaxChangedBlocksException {
         MCPainterMain.say(m_player, ChatColor.WHITE + "Loading model "
                 + ChatColor.YELLOW + m_modeFile + ChatColor.WHITE + "...");
         final Model model = WavefrontObj.load(ConfigProvider.getModelFolder(), m_modeFile);
@@ -291,7 +282,6 @@ public class RenderCommand implements Runnable {
         }
         MCPainterMain.say(m_player, "Render done.");
         loger.logMessage("Drawing block done.");
-        loger.logEndSession();
     }
 
     private Vector getSafeSize(Vector size) {

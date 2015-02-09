@@ -50,15 +50,16 @@ import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
 import org.PrimeSoft.MCPainter.palettes.Palette;
-import org.PrimeSoft.MCPainter.worldEdit.WorldEditFactory;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.primesoft.asyncworldedit.AsyncWorldEditMain;
 
 /**
  * @author SBPrime
@@ -162,7 +163,7 @@ public class MCPainterMain extends JavaPlugin {
 
         m_blocksProvider = new MultiBlockProvider();
         m_statueProvider = new ModStatueProvider();
-        m_worldEdit = WorldEditFactory.getWorldEdit(this);
+        m_worldEdit = getWorldEdit();
         if (m_worldEdit == null) {
             log("World edit not found.");
         }
@@ -714,4 +715,24 @@ public class MCPainterMain extends JavaPlugin {
 
         RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
     }    
+    
+    
+        /**
+     * Get instance of AWE plugin
+     *
+     * @return
+     */
+    private WorldEditPlugin getWorldEdit() {
+        try {
+            Plugin wPlugin = getServer().getPluginManager().getPlugin("WorldEdit");
+
+            if ((wPlugin == null) || (!(wPlugin instanceof AsyncWorldEditMain))) {
+                return null;
+            }
+
+            return (WorldEditPlugin) wPlugin;
+        } catch (NoClassDefFoundError ex) {
+            return null;
+        }
+    }
 }
