@@ -23,8 +23,8 @@
  */
 package org.PrimeSoft.MCPainter;
 
-import org.PrimeSoft.MCPainter.asyncworldedit.AWEWrapper;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import org.PrimeSoft.MCPainter.asyncworldedit.AWEWrapper;
 import org.PrimeSoft.MCPainter.utils.ExtFileFilter;
 import org.PrimeSoft.MCPainter.utils.VersionChecker;
 import org.PrimeSoft.MCPainter.palettes.PaletteManager;
@@ -50,7 +50,6 @@ import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
 import org.PrimeSoft.MCPainter.palettes.Palette;
-import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
 import org.PrimeSoft.MCPainter.worldEdit.WorldEditFactory;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -58,12 +57,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.primesoft.asyncworldedit.AsyncWorldEditMain;
-import org.primesoft.asyncworldedit.PlayerEntry;
-import org.primesoft.asyncworldedit.blockPlacer.BlockPlacer;
 
 /**
  * @author SBPrime
@@ -76,7 +71,7 @@ public class MCPainterMain extends JavaPlugin {
     private static final String s_logFormat = "%s %s";
     private Boolean m_isInitialized = false;
     private ColorMap m_colorMap = null;
-    private IWorldEdit m_worldEdit = null;
+    private WorldEditPlugin m_worldEdit = null;
     private MetricsLite m_metrics;
     private TextureManager m_textureManager;
     private PaletteManager m_paletteManager;
@@ -167,7 +162,7 @@ public class MCPainterMain extends JavaPlugin {
 
         m_blocksProvider = new MultiBlockProvider();
         m_statueProvider = new ModStatueProvider();
-        m_worldEdit = WorldEditFactory.getWorldEditWrapper(this);
+        m_worldEdit = WorldEditFactory.getWorldEdit(this);
         if (m_worldEdit == null) {
             log("World edit not found.");
         }

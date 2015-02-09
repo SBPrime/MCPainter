@@ -23,12 +23,12 @@
  */
 package org.PrimeSoft.MCPainter.voxelyzer;
 
+import com.sk89q.worldedit.MaxChangedBlocksException;
 import java.util.Arrays;
 import java.util.Comparator;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *

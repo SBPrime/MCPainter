@@ -23,15 +23,15 @@
  */
 package org.PrimeSoft.MCPainter.voxelyzer;
 
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.Color;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
-import org.PrimeSoft.MCPainter.utils.BaseBlock;
-import org.PrimeSoft.MCPainter.utils.Vector;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.Material;
 
 /**
@@ -40,7 +40,7 @@ import org.bukkit.Material;
  */
 public class VoxelCanvas {
 
-    private final static BaseBlock STONE = new BaseBlock(Material.STONE);
+    private final static BaseBlock STONE = new BaseBlock(Material.STONE.getId());
     private final int m_minX;
     private final int m_minY;
     private final int m_resX;

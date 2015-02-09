@@ -23,11 +23,11 @@
  */
 package org.PrimeSoft.MCPainter.voxelyzer;
 
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.utils.Vector;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

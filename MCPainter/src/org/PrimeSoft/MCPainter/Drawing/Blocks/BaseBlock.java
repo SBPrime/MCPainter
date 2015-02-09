@@ -23,6 +23,9 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
+import com.sk89q.worldedit.LocalPlayer;
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
 import java.util.List;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
@@ -36,9 +39,6 @@ import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.utils.Utils;
-import org.PrimeSoft.MCPainter.utils.Vector;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -337,7 +337,7 @@ public class BaseBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, ColorMap colorMap)
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap)
             throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();

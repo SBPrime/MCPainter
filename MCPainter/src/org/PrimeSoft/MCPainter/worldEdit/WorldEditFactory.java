@@ -34,7 +34,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class WorldEditFactory {
 
-    private static Plugin getWorldEdit(JavaPlugin plugin) {
+    public static WorldEditPlugin getWorldEdit(JavaPlugin plugin) {
         try {
             Plugin wPlugin = plugin.getServer().getPluginManager().getPlugin("WorldEdit");
 
@@ -46,17 +46,5 @@ public class WorldEditFactory {
         } catch (NoClassDefFoundError ex) {
             return null;
         }
-    }
-
-    public static IWorldEdit getWorldEditWrapper(JavaPlugin plugin) {
-        Plugin wePlugin = getWorldEdit(plugin);
-        
-        if (wePlugin != null) {
-            MCPainterMain.log("WorldEdit found - using the \"real thing\".");
-            return new WorldEditWrapper(wePlugin);
-        }
-        
-        MCPainterMain.log("WorldEdit not found - using stub wrapper classes.");
-        return new StubWrapper();
     }
 }
