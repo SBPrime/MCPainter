@@ -23,7 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.asyncworldedit;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,10 +30,6 @@ import org.primesoft.asyncworldedit.AsyncWorldEditMain;
 import org.primesoft.asyncworldedit.PlayerEntry;
 import org.primesoft.asyncworldedit.PlayerManager;
 import org.primesoft.asyncworldedit.blockPlacer.BlockPlacer;
-import org.primesoft.asyncworldedit.blockPlacer.entries.JobEntry;
-import org.primesoft.asyncworldedit.utils.FuncParamEx;
-import org.primesoft.asyncworldedit.worldedit.AsyncTask;
-import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
 import org.primesoft.asyncworldedit.worldedit.ThreadSafeEditSession;
 
 /**
@@ -88,11 +83,11 @@ public class AWEWrapper {
 
     public void runTask(Player player, String jobName, DrawingTask task) {
         final PlayerEntry playerEntry = m_playerManager.getPlayer(player);
-        final ThreadSafeEditSession editSession;
+        final ThreadSafeEditSession editSession = task.getEditSession();
 
         m_blockPlacer.PerformAsAsyncJob(editSession, playerEntry, jobName,
                 task);
         
-        !
+        task.getLocalSession().remember(editSession);
     }
 }

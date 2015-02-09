@@ -23,14 +23,16 @@
  */
 package org.PrimeSoft.MCPainter.utils;
 
-import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import com.sk89q.worldedit.LocalPlayer;
+import com.sk89q.worldedit.Vector;
+
 
 /**
  *
  * @author SBPrime
  */
 public class Utils {
-    public static Vector getPlayerPos(ILocalPlayer player) {
+    public static Vector getPlayerPos(LocalPlayer player) {
         Vector location = player.getPosition();
         double x = (int) location.getX();
         double y = (int) location.getY();

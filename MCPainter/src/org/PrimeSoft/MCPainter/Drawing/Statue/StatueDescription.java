@@ -23,12 +23,12 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Statue;
 
+import com.sk89q.worldedit.Vector;
 import java.util.List;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.BlockHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
-import org.PrimeSoft.MCPainter.utils.Vector;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**

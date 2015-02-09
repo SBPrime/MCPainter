@@ -23,6 +23,9 @@
  */
 package org.PrimeSoft.MCPainter.Drawing;
 
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -39,11 +42,8 @@ import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Pair;
-import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 
 /**
  * @author SBPrime

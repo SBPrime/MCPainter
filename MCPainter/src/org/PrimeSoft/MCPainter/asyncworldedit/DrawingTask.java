@@ -23,14 +23,73 @@
  */
 package org.PrimeSoft.MCPainter.asyncworldedit;
 
+import com.sk89q.worldedit.LocalPlayer;
+import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.WorldEdit;
+import com.sk89q.worldedit.bukkit.BukkitPlayer;
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.extension.platform.Actor;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
+import org.bukkit.entity.Player;
 import org.primesoft.asyncworldedit.utils.FuncParamEx;
+import org.primesoft.asyncworldedit.worldedit.AsyncEditSessionFactory;
 import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
+import org.primesoft.asyncworldedit.worldedit.ThreadSafeEditSession;
 
 /**
  *
  * @author SBPrime
  */
 public abstract class DrawingTask implements FuncParamEx<Integer, CancelabeEditSession, MaxChangedBlocksException> {
-    
+
+    private final ThreadSafeEditSession m_editSession;
+    protected final LocalSession m_lSession;
+    protected final Player m_player;
+    protected final LocalPlayer m_localPlayer;
+
+    /**
+     * The local session
+     *
+     * @return
+     */
+    public LocalSession getLocalSession() {
+        return m_lSession;
+    }
+
+    /**
+     * The edit session
+     * @return 
+     */
+    public ThreadSafeEditSession getEditSession() {
+        return m_editSession;
+    }
+
+    public DrawingTask(WorldEditPlugin worldEditPlugin, Player player) {
+        WorldEdit worldEdit = worldEditPlugin.getWorldEdit();
+        
+        final AsyncEditSessionFactory factory = (AsyncEditSessionFactory)worldEdit.getEditSessionFactory();
+        
+        m_player = player;
+        m_localPlayer = worldEditPlugin.wrapPlayer(player);
+        m_lSession = worldEditPlugin.getSession(player);   
+        
+        m_editSession = factory.getThreadSafeEditSession(m_localPlayer.getWorld(), 
+                m_lSession.getBlockChangeLimit() , m_lSession.getBlockBag(m_localPlayer), m_localPlayer);
+    }
+
+    @Override
+    public Integer Execute(CancelabeEditSession editSession) throws MaxChangedBlocksException {
+        final BlockLoger loger = new BlockLoger(m_player, m_lSession, editSession);
+
+        try {
+            draw(loger);
+        } catch (MaxChangedBlocksException ex) {
+            loger.logMessage("Maximum number of blocks changed, operation canceled.");
+        }
+
+        return 0;
+    }
+
+    public abstract void draw(BlockLoger blockLoger) throws MaxChangedBlocksException;
 }

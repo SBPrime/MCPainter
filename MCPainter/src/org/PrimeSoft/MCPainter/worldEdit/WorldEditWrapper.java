@@ -39,7 +39,7 @@ import org.bukkit.plugin.Plugin;
  *
  * @author SBPrime
  */
-public class WorldEditWrapper implements IWorldEdit {
+public class WorldEditWrapper {
     private final WorldEditPlugin m_worldEdit;
     
     public WorldEditWrapper(Plugin wePlugin) {
@@ -52,10 +52,9 @@ public class WorldEditWrapper implements IWorldEdit {
         return true;
     }
 
-    @Override
-    public ILocalSession getSession(Player player) {
+    public LocalSession getSession(Player player) {
         LocalSession lSession = m_worldEdit.getSession(player);
-        return new WorldEditLocalSession(lSession);
+        return lSession;
     }
 
     @Override

@@ -23,14 +23,15 @@
  */
 package org.PrimeSoft.MCPainter.blocksplacer;
 
+import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.LocalSession;
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.blocks.BaseBlock;
 import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.utils.BaseBlock;
-import org.PrimeSoft.MCPainter.utils.Vector;
-import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
-import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
 
 /**
  *
@@ -44,31 +45,28 @@ public class BlockLoger {
     private final Object m_mutex = new Object();
 
     private final Player m_player;
-    private final ILocalSession m_session;
-    private final IEditSession m_editSession;
+    private final LocalSession m_session;
+    private final CancelabeEditSession m_editSession;
     private final World m_world;
-    private final MCPainterMain m_mainPlugin;
 
     public Player getPlayer() {
         return m_player;
     }
 
 
-    public IEditSession getEditSession() {
+    public EditSession getEditSession() {
         return m_editSession;
     }
 
-    public ILocalSession getLocalSession() {
+    public LocalSession getLocalSession() {
         return m_session;
     }
 
-    public BlockLoger(Player player, ILocalSession session, IEditSession eSession,
-            MCPainterMain main) {
+    public BlockLoger(Player player, LocalSession session, CancelabeEditSession eSession) {
         m_player = player;
         m_session = session;
         m_editSession = eSession;
         m_world = m_player.getWorld();
-        m_mainPlugin = main;
     }
 
     public void logCommand(ILoggerCommand command) {
@@ -83,10 +81,6 @@ public class BlockLoger {
 
     public void logBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {        
         m_editSession.setBlock(location, block);        
-    }
-
-    public void logEndSession() {
-        m_session.remember(m_editSession);        
     }
 
     public void logMessage(String msg) {

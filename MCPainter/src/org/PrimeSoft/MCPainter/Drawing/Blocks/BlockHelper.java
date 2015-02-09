@@ -23,6 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
+import com.sk89q.worldedit.Vector;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -36,7 +37,6 @@ import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.Texture.TextureDescription;
 import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
-import org.PrimeSoft.MCPainter.utils.Vector;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**

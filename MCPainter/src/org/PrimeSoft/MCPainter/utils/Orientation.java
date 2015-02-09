@@ -23,6 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.utils;
 
+import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 
 /**

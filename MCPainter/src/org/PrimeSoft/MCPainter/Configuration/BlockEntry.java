@@ -1,12 +1,12 @@
 package org.PrimeSoft.MCPainter.Configuration;
 
+import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.PrimeSoft.MCPainter.Texture.TextureDescription;
-import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.bukkit.Material;
 
 /**
@@ -64,7 +64,7 @@ public class BlockEntry {
         m_textureFile = textureFile;
         m_type = type;
 
-        m_block = new BaseBlock(m, data);
+        m_block = new BaseBlock(m.getId(), data);
     }
 
     @Override
