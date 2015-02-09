@@ -89,12 +89,12 @@ public class MCPainterMain extends JavaPlugin {
 
     public static String getPrefix() {
         return s_prefix;
-    }        
+    }
 
     public PaletteManager getPaletteManager() {
         return m_paletteManager;
     }
-    
+
     public AWEWrapper getAWE() {
         return m_awe;
     }
@@ -172,7 +172,7 @@ public class MCPainterMain extends JavaPlugin {
         if (m_awe == null) {
             log("AsyncWorldEdit not found.");
             return;
-        }        
+        }
 
         m_textureManager = new TextureManager();
         m_paletteManager = new PaletteManager();
@@ -714,11 +714,10 @@ public class MCPainterMain extends JavaPlugin {
         }
 
         RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
-    }    
-    
-    
-        /**
-     * Get instance of AWE plugin
+    }
+
+    /**
+     * Get instance of WorldEdit plugin
      *
      * @return
      */
@@ -726,7 +725,7 @@ public class MCPainterMain extends JavaPlugin {
         try {
             Plugin wPlugin = getServer().getPluginManager().getPlugin("WorldEdit");
 
-            if ((wPlugin == null) || (!(wPlugin instanceof AsyncWorldEditMain))) {
+            if ((wPlugin == null) || (!(wPlugin instanceof WorldEditPlugin))) {
                 return null;
             }
 
