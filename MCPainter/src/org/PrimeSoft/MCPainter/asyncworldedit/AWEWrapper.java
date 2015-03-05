@@ -27,9 +27,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.primesoft.asyncworldedit.AsyncWorldEditMain;
-import org.primesoft.asyncworldedit.PlayerEntry;
-import org.primesoft.asyncworldedit.PlayerManager;
 import org.primesoft.asyncworldedit.blockPlacer.BlockPlacer;
+import org.primesoft.asyncworldedit.playerManager.PlayerEntry;
+import org.primesoft.asyncworldedit.playerManager.PlayerManager;
 import org.primesoft.asyncworldedit.worldedit.ThreadSafeEditSession;
 
 /**
@@ -85,8 +85,7 @@ public class AWEWrapper {
         final PlayerEntry playerEntry = m_playerManager.getPlayer(player);
         final ThreadSafeEditSession editSession = task.getEditSession();
 
-        m_blockPlacer.PerformAsAsyncJob(editSession, playerEntry, jobName,
-                task);
+        m_blockPlacer.performAsAsyncJob(editSession, playerEntry, jobName, task);
         
         task.getLocalSession().remember(editSession);
     }

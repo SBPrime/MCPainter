@@ -27,9 +27,7 @@ import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.WorldEdit;
-import com.sk89q.worldedit.bukkit.BukkitPlayer;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.extension.platform.Actor;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.bukkit.entity.Player;
 import org.primesoft.asyncworldedit.utils.FuncParamEx;
@@ -79,7 +77,7 @@ public abstract class DrawingTask implements FuncParamEx<Integer, CancelabeEditS
     }
 
     @Override
-    public Integer Execute(CancelabeEditSession editSession) throws MaxChangedBlocksException {
+    public Integer execute(CancelabeEditSession editSession) throws MaxChangedBlocksException {
         final BlockLoger loger = new BlockLoger(m_player, m_lSession, editSession);
 
         try {
