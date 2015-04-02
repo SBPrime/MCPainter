@@ -27,10 +27,18 @@ import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
+import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.blocks.BaseBlock;
+import com.sk89q.worldedit.extent.Extent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.primesoft.asyncworldedit.blockPlacer.BlockPlacer;
+import org.primesoft.asyncworldedit.playerManager.PlayerEntry;
+import org.primesoft.asyncworldedit.utils.ActionP1;
 import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
 
 /**
@@ -53,7 +61,6 @@ public class BlockLoger {
         return m_player;
     }
 
-
     public EditSession getEditSession() {
         return m_editSession;
     }
@@ -62,7 +69,8 @@ public class BlockLoger {
         return m_session;
     }
 
-    public BlockLoger(Player player, LocalSession session, CancelabeEditSession eSession) {
+    public BlockLoger(Player player,
+            LocalSession session, CancelabeEditSession eSession) {
         m_player = player;
         m_session = session;
         m_editSession = eSession;
@@ -70,20 +78,23 @@ public class BlockLoger {
     }
 
     public void logCommand(ILoggerCommand command) {
-        //Location location = command.getLocation();
-        //synchronized (m_mutex) {
-        //    m_blocks.add(new CommandEntry(this, command));
-        //}
-        //checkFlush();
-        
-        //TODO: Implement me!
+        try {
+            m_editSession.doCustomAction(new ChangeCommand(command, this));
+        } catch (WorldEditException ex) {
+            ExceptionHelper.printException(ex, "Unable to perform custom command");
+        }
     }
 
-    public void logBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {        
-        m_editSession.setBlock(location, block);        
+    public void logBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {
+        m_editSession.setBlock(location, block);
     }
 
     public void logMessage(String msg) {
-        MCPainterMain.say(getPlayer(), msg);
+        try {
+            m_editSession.doCustomAction(new ChangeMessage(getPlayer(), msg));
+        } catch (WorldEditException ex) {
+            ExceptionHelper.printException(ex, "Unable to perform logMessage for "
+                    + getPlayer());
+        }
     }
 }

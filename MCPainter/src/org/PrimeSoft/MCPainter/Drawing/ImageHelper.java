@@ -42,6 +42,7 @@ import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
 
@@ -66,7 +67,7 @@ public class ImageHelper {
                 }
             }
         } catch (IOException e) {
-            MCPainterMain.log("Error downloading file: " + e.getMessage());
+            ExceptionHelper.printException(e, "Error downloading file");
             return null;
         }
     }
@@ -80,10 +81,10 @@ public class ImageHelper {
                 return (BufferedImage) ImageIO.read(file);
             }
         } catch (IOException e) {
-            MCPainterMain.log("Error opening file: " + e.getMessage());
+            ExceptionHelper.printException(e, "Error opening file");
             return null;
         } catch (Exception e) {
-            MCPainterMain.log("Unable to opening file: " + e.getMessage());
+            ExceptionHelper.printException(e, "Unable to opening file");
             return null;
         }
     }

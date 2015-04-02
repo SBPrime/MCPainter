@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 SBPrime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.PrimeSoft.MCPainter.utils;
 
-package org.PrimeSoft.MCPainter.blocksplacer;
-
-import com.sk89q.worldedit.extent.Extent;
-import org.bukkit.Location;
+import org.PrimeSoft.MCPainter.MCPainterMain;
 
 /**
- * Block logger commadn
+ *
  * @author SBPrime
  */
-public interface ILoggerCommand  {
-    void redo(BlockLoger loger, Extent extent);
-    void undo(BlockLoger loger, Extent extent);
-    Location getLocation();
+public class ExceptionHelper {
+    private static void log(String m) {
+        MCPainterMain.log(m);
+    }
+
+    public static void printException(Throwable ex, String message) {
+        if (ex == null) {
+            return;
+        }
+
+        log("***********************************");
+        log(message);
+        log("***********************************");
+        log("* Exception: " + ex.getClass().getCanonicalName());
+        log("* Error message: " + ex.getLocalizedMessage());
+        log("* Stack: ");
+        printStack(ex, "* ");
+        log("***********************************");
+    }
+
+    public static void printStack(Throwable ex, String lead) {
+        for (StackTraceElement element : ex.getStackTrace()) {
+            log(lead + element.toString());
+        }
+    }
 }

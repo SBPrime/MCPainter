@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 SBPrime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,18 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.PrimeSoft.MCPainter.blocksplacer;
 
-import com.sk89q.worldedit.extent.Extent;
-import org.bukkit.Location;
+import com.sk89q.worldedit.WorldEditException;
+import com.sk89q.worldedit.history.UndoContext;
+import com.sk89q.worldedit.history.change.Change;
+import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.bukkit.entity.Player;
 
 /**
- * Block logger commadn
+ *
  * @author SBPrime
  */
-public interface ILoggerCommand  {
-    void redo(BlockLoger loger, Extent extent);
-    void undo(BlockLoger loger, Extent extent);
-    Location getLocation();
+public class ChangeMessage implements Change {
+    private final Player m_player;
+    private final String m_msg;
+    
+    public ChangeMessage(Player player, String msg) {
+        m_player = player;
+        m_msg = msg;
+    }
+    
+    
+    @Override
+    public void undo(UndoContext uc) throws WorldEditException {
+    }
+
+    @Override
+    public void redo(UndoContext uc) throws WorldEditException {
+        MCPainterMain.say(m_player, m_msg);
+    }
 }

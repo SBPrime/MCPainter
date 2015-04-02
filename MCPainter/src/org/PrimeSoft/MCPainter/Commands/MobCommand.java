@@ -65,6 +65,7 @@ public class MobCommand extends DrawingTask {
             try {
                 textureId = Integer.parseInt(args[2]);
             } catch (NumberFormatException e) {
+                //Ignore
             }
         }
 

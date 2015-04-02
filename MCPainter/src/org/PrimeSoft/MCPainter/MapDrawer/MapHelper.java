@@ -32,6 +32,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.map.MapRenderer;
 import org.bukkit.map.MapView;
@@ -41,7 +42,7 @@ import org.bukkit.map.MapView;
  * @author SBPrime
  */
 public class MapHelper {
-    private HashMap<Integer, List<MapRenderer>> m_mapList = new HashMap<Integer, List<MapRenderer>>();
+    private final HashMap<Integer, List<MapRenderer>> m_mapList = new HashMap<Integer, List<MapRenderer>>();
 
     /**
      * Delete image map
@@ -59,7 +60,7 @@ public class MapHelper {
         }
 
         synchronized (m_mapList) {
-            Integer key = new Integer(mapId);
+            Integer key = (int) mapId;
             if (!m_mapList.containsKey(key)) {
                 return;
             }
@@ -96,7 +97,7 @@ public class MapHelper {
         try {
             ImageIO.write(img, "png", fileName);
         } catch (IOException ex) {
-            MCPainterMain.log("Error storing map image.");
+            ExceptionHelper.printException(ex, "Error storing map image.");
         }
     }
 

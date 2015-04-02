@@ -31,6 +31,7 @@ import org.PrimeSoft.MCPainter.FoundManager;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MapDrawer.MapHelper;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -87,6 +88,7 @@ public class MapCommand {
             try {
                 mapView = Bukkit.getMap(mapId);
             } catch (Exception ex) {
+                ExceptionHelper.printException(ex, "Unable to get map #" + mapId);
             }
 
             if (mapView == null) {

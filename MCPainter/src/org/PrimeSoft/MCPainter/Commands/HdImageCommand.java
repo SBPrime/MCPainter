@@ -27,7 +27,9 @@ import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
+import com.sk89q.worldedit.extent.Extent;
 import java.awt.image.BufferedImage;
+import net.minecraft.server.v1_8_R2.Items;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Filters.CropFilter;
@@ -74,19 +76,41 @@ public class HdImageCommand {
         String url = args[1];
         Selection tSelection = worldEdit.getSelection(player);
         if (!(tSelection instanceof CuboidSelection)) {
-            return;
-        }
-        
-        final CuboidSelection selection = (CuboidSelection)tSelection;
-        if (selection == null) {
             MCPainterMain.say(player, ChatColor.RED + "No selection.");
             return;
         }
 
-        DrawingTask task = new CommandThread(worldEdit, player, 
+        final CuboidSelection selection = (CuboidSelection) tSelection;
+        DrawingTask task = new CommandThread(worldEdit, player,
                 this, sender, url, selection);
-        
-        sender.getAWE().runTask(player, "HDImage", task);        
+
+        sender.getAWE().runTask(player, "HDImage", task);
+    }
+
+    private static boolean isSolid(Material m) {
+        if (m == Material.AIR) {
+            return false;
+        }
+        if (m == Material.LAVA) {
+            return false;
+        }
+        if (m == Material.STATIONARY_LAVA) {
+            return false;
+        }
+        if (m == Material.WATER) {
+            return false;
+        }
+        if (m == Material.STATIONARY_WATER) {
+            return false;
+        }
+        if (m == Material.ENDER_PORTAL) {
+            return false;
+        }
+        if (m == Material.PORTAL) {
+            return false;
+        }
+
+        return m.isSolid() && m.isBlock();
     }
 
     private class DrawMapCommand implements ILoggerCommand {
@@ -95,6 +119,11 @@ public class HdImageCommand {
         private final BufferedImage m_img;
         private final MapHelper m_mapHelper;
         private final BlockFace m_rotation;
+        
+        private Material m_oldMaterial;
+        private ItemFrame m_frame;
+        private MapView m_mapView;
+        
 
         private DrawMapCommand(Location location, BlockFace face,
                 int offsetX, int offsetY, BufferedImage img,
@@ -110,7 +139,34 @@ public class HdImageCommand {
         }
 
         @Override
-        public void execute(BlockLoger loger) {
+        public void undo(BlockLoger loger, Extent extent) {
+            Chunk chunk = m_location.getChunk();
+            if (!chunk.isLoaded()) {
+                if (!chunk.load()) {
+                    return;
+                }
+            }
+        
+            World w = m_location.getWorld();
+            if (m_mapView != null)
+            {
+                m_mapHelper.deleteMap(m_mapView);
+            }
+            
+            if (m_frame != null)
+            {
+                m_frame.setItem(null);
+                m_frame.remove();
+            }
+            
+            if (m_oldMaterial != null) 
+            {                
+                w.getBlockAt(m_location).setType(m_oldMaterial);
+            }
+        }
+        
+        @Override
+        public void redo(BlockLoger loger, Extent extent) {
             Chunk chunk = m_location.getChunk();
             if (!chunk.isLoaded()) {
                 if (!chunk.load()) {
@@ -120,51 +176,27 @@ public class HdImageCommand {
 
             World w = m_location.getWorld();
             Block block = w.getBlockAt(m_location);
-            if (!isSolid(block.getType())) {
-                block.setType(Material.STONE);
+            Material material = block.getType();
+            if (!isSolid(material)) {
+                m_oldMaterial = material;
+                block.setType(Material.BARRIER);
+            } else {
+                m_oldMaterial = null;
             }
 
-            ItemFrame frame = w.spawn(m_location, ItemFrame.class);
-            frame.teleport(block.getRelative(m_rotation).getLocation());
-            frame.setFacingDirection(m_rotation, true);
-            frame.setRotation(Rotation.NONE);
+            m_frame = (ItemFrame) w.spawn(block.getRelative(m_rotation).getLocation(), ItemFrame.class);
+            m_frame.setFacingDirection(m_rotation, true);
+            m_frame.setRotation(Rotation.NONE);
 
-            MapView mapView = Bukkit.createMap(w);
-            m_mapHelper.storeMap(mapView, m_img);
-            m_mapHelper.drawImage(mapView, m_img);
-            short id = mapView.getId();
-            frame.setItem(new ItemStack(Material.MAP, 1, id));
+            m_mapView = Bukkit.createMap(w);
+            m_mapHelper.storeMap(m_mapView, m_img);
+            m_mapHelper.drawImage(m_mapView, m_img);
+            m_frame.setItem(new ItemStack(Material.MAP, 1, m_mapView.getId()));
         }
 
         @Override
         public Location getLocation() {
             return m_location;
-        }
-
-        private boolean isSolid(Material m) {
-            if (m == Material.AIR) {
-                return false;
-            }
-            if (m == Material.LAVA) {
-                return false;
-            }
-            if (m == Material.STATIONARY_LAVA) {
-                return false;
-            }
-            if (m == Material.WATER) {
-                return false;
-            }
-            if (m == Material.STATIONARY_WATER) {
-                return false;
-            }
-            if (m == Material.ENDER_PORTAL) {
-                return false;
-            }
-            if (m == Material.PORTAL) {
-                return false;
-            }
-
-            return m.isSolid() && m.isBlock();
         }
     }
 
@@ -177,11 +209,11 @@ public class HdImageCommand {
         private final BlockFace m_rotation;
 
         private CommandThread(WorldEditPlugin worldEditPlugin, Player player,
-                HdImageCommand command, MCPainterMain sender, 
+                HdImageCommand command, MCPainterMain sender,
                 String url, CuboidSelection selection) {
-            
+
             super(worldEditPlugin, player);
-            
+
             m_this = command;
             m_sender = sender;
             m_url = url;

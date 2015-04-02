@@ -50,6 +50,7 @@ import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
 import org.PrimeSoft.MCPainter.palettes.Palette;
+import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -152,7 +153,7 @@ public class MCPainterMain extends JavaPlugin {
             m_metrics = new MetricsLite(this);
             m_metrics.start();
         } catch (IOException e) {
-            log("Error initializing MCStats: " + e.getMessage());
+            ExceptionHelper.printException(e, "Error initializing MCStats");
         }
 
         if (!FoundManager.load(this)) {
@@ -382,7 +383,7 @@ public class MCPainterMain extends JavaPlugin {
                         MCPainterMain.log("* " + pal + "...duplicate, ingoring");
                     }
                 }
-            } catch (Exception ex) {
+            } catch (Exception ex) {                
                 MCPainterMain.log("* " + file.getName() + "...unknown error, " + ex.getMessage());
             }
         }

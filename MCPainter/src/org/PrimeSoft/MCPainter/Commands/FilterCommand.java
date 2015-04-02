@@ -79,6 +79,7 @@ public class FilterCommand {
                     listFilters(fm, player);
                     return;
                 } catch (NumberFormatException ex) {
+                    Help.ShowHelp(player, Commands.COMMAND_FILTER);
                 }
             }
             if (cmd.equalsIgnoreCase("help")) {

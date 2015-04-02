@@ -157,6 +157,7 @@ public class StatueFace {
             try {
                 texId = Integer.parseInt(parts[5]);
             } catch (Exception ex) {
+                //Ignore exception
             }
         }
 
