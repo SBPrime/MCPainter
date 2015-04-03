@@ -23,9 +23,9 @@
  */
 package org.PrimeSoft.MCPainter.Drawing;
 
+import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -37,7 +37,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.utils.Orientation;
@@ -94,18 +93,19 @@ public class ImageHelper {
         int hh = img.getHeight();
         int ww = img.getWidth();
 
+        int pY = pos.getBlockY();
+        
         for (int yy = 0; yy < hh; yy++) {
             for (int xx = 0; xx < ww; xx++) {
                 int x = orientation.calcX(xx, yy, 0);
                 int y = orientation.calcY(xx, yy, 0);
                 int z = orientation.calcZ(xx, yy, 0);
 
-                if (y >= 0 && y <= 255) {
+                if (pY + y >= 0 && pY + y <= 255) {
                     Color c = new Color(img.getRGB(xx, hh - yy - 1), true);
                     IDrawingBlock block = colorMap.getBlockForColor(c, OperationType.Image);
-
-                    Vector location = pos.add(x, y, z);
-                    block.place(location, loger);
+                    
+                    block.place(pos, new BlockVector(x, y, z), loger);
                 }
             }
         }
@@ -153,8 +153,10 @@ public class ImageHelper {
         int[] depth = new int[6];
         int[] h1 = new int[6];
         int[] h2 = new int[6];
-        int[] v1 = new int[6];
+        int[] v1 = new int[6];        
         int[] v2 = new int[6];
+        
+        int pY = pos.getBlockY();
 
         for (int i = 0; i < faces.length; i++) {
             if (faces[i] != null) {
@@ -284,9 +286,9 @@ public class ImageHelper {
                             int dx = orientation.calcX(px, py, pz);
                             int dy = orientation.calcY(px, py, pz);
                             int dz = orientation.calcZ(px, py, pz);
-                            Vector nPos = pos.add(dx, dy, dz);
-                            if (nPos.getBlockY() >= 0 && nPos.getBlockY() <= 255) {
-                                block.place(nPos, loger);
+                            
+                            if (dy + pY >= 0 && dy + pY <= 255) {
+                                block.place(pos, new BlockVector(dx, dy, dz), loger);
                             }
                         }
                     }
@@ -324,6 +326,8 @@ public class ImageHelper {
 
         Color[] colors = new Color[6];
         double scale = Math.min(h, Math.min(w, d));
+        
+        int pY = pos.getBlockY();
 
         for (int y = 0; y <= h; y++) {
             map[1] = y;
@@ -415,9 +419,8 @@ public class ImageHelper {
                         IDrawingBlock block = colorMap.getBlockForColor(new Color(r / colorCnt, g / colorCnt, b / colorCnt, a / colorCnt), type);
 
                         if (block!= null && !block.isAir()) {
-                            Vector nPos = pos.add(dx, dy, dz);
-                            if (nPos.getBlockY() >= 0 && nPos.getBlockY() <= 255 && block != null) {
-                                block.place(nPos, loger);                                
+                            if (pY + dy >= 0 && pY + dy <= 255 && block != null) {
+                                block.place(pos, new BlockVector(dx, dy, dz), loger);
                             }
                         }
                     }

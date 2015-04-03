@@ -37,7 +37,6 @@ import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
  * @author SBPrime
  */
 public class DrawingBlock implements IDrawingBlock {
-
     public static DrawingBlock AIR = new DrawingBlock(BlockEntry.AIR, BlockEntry.AIR_COLOR);
 
     /**
@@ -72,8 +71,8 @@ public class DrawingBlock implements IDrawingBlock {
     }
 
     @Override
-    public void place(Vector location, BlockLoger loger) throws MaxChangedBlocksException {
-        loger.logBlock(location, m_block);
+    public void place(Vector origin, Vector offset, BlockLoger loger) throws MaxChangedBlocksException {
+        loger.logBlock(origin.add(offset), m_block);
     }
     
     @Override

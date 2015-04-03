@@ -87,7 +87,7 @@ public class RenderCommand extends DrawingTask {
         }
 
         DrawingTask task = new RenderCommand(worldEdit, player, 
-                sender, colorMap,
+                colorMap,
                 modelName, size, clip[0], clip[1], offset);
         sender.getAWE().runTask(player, "Render", task);
     }
@@ -175,14 +175,13 @@ public class RenderCommand extends DrawingTask {
     private final double m_pitch;
     private final Vector m_pPosition;
     private final ColorMap m_colorMap;
-    private final MCPainterMain m_sender;
     private final String m_modeFile;
     private final Vector m_size;
     private final Vector m_clipMin;
     private final Vector m_clipMax;
     private final Vector m_offset;
 
-    private RenderCommand(WorldEditPlugin worldEditPlugin, Player player, MCPainterMain sender,
+    private RenderCommand(WorldEditPlugin worldEditPlugin, Player player,
             ColorMap colorMap, String modeFile, Vector size, Vector clipMin,
             Vector clipMax, Vector offset) {
         super(worldEditPlugin, player);
@@ -200,7 +199,6 @@ public class RenderCommand extends DrawingTask {
         m_pitch = -(p - p % PITCH);
         m_pPosition = Utils.getPlayerPos(m_localPlayer);
         m_colorMap = colorMap;
-        m_sender = sender;
     }
 
     @Override
@@ -221,9 +219,7 @@ public class RenderCommand extends DrawingTask {
 
         final Matrix matrix = Matrix.getIdentity();
 
-        matrix.translate(m_pPosition.getBlockX() + m_offset.getBlockX(),
-                m_pPosition.getBlockY() + m_offset.getBlockY(),
-                m_pPosition.getBlockZ() + m_offset.getBlockZ());
+        matrix.translate(m_offset.getBlockX(), m_offset.getBlockY(), m_offset.getBlockZ());
         matrix.rotateY(m_yaw * Math.PI / 180);
         matrix.rotateX(m_pitch * Math.PI / 180);
         matrix.scale(scale.getX(), scale.getY(), scale.getZ());
@@ -234,7 +230,7 @@ public class RenderCommand extends DrawingTask {
                 minPos.getY() + oneBlock.getY() * m_clipMin.getY(), maxPos.getY() - oneBlock.getY() * m_clipMax.getY(),
                 minPos.getZ() + oneBlock.getZ() * m_clipMin.getZ(), maxPos.getZ() - oneBlock.getZ() * m_clipMax.getZ());
 
-        render(loger, model, matrix, clipping);
+        render(m_pPosition, loger, model, matrix, clipping);
     }
 
     /**
@@ -271,12 +267,12 @@ public class RenderCommand extends DrawingTask {
      * @param model
      * @param matrix
      */
-    private void render(BlockLoger loger, final Model model,
+    private void render(Vector origin, BlockLoger loger, final Model model,
             final Matrix matrix, final ClippingRegion clipping) {
         MCPainterMain.say(m_player, "Rendering model...");
         loger.logMessage("Drawing blocks...");
         try {
-            model.render(m_player, loger, m_colorMap, clipping, matrix);
+            model.render(origin, m_player, loger, m_colorMap, clipping, matrix);
         } catch (MaxChangedBlocksException ex) {
             loger.logMessage("Maximum number of blocks changed, operation canceled.");
         }

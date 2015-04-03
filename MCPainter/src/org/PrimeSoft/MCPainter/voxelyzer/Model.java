@@ -82,6 +82,7 @@ public class Model {
      *
      * @param vertex
      * @param faces
+     * @param name
      */
     public Model(Vertex[] vertex, Face[] faces, String name) {
         m_faces = faces;
@@ -111,11 +112,15 @@ public class Model {
     /**
      * Render model
      *
+     * @param origin
+     * @param player
      * @param loger
      * @param colorMap
+     * @param clipping
      * @param matrix
+     * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
-    public void render(Player player,
+    public void render(Vector origin, Player player,
             BlockLoger loger, ColorMap colorMap, ClippingRegion clipping, 
             Matrix matrix) 
             throws MaxChangedBlocksException {
@@ -129,7 +134,7 @@ public class Model {
             interval = cnt / 100;
         }
         for (Face face : m_faces) {
-            face.render(loger, colorMap, matrix, clipping, m_vertex);
+            face.render(origin, loger, colorMap, matrix, clipping, m_vertex);
             pos++;
 
             if (pos % interval == 0) {

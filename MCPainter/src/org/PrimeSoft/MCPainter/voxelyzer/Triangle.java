@@ -24,6 +24,7 @@
 package org.PrimeSoft.MCPainter.voxelyzer;
 
 import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
 import java.util.Arrays;
 import java.util.Comparator;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
@@ -52,12 +53,14 @@ public class Triangle {
      *
      * @param loger Block logger
      * @param colorMap Color block mapper
+     * @param clipping
      * @param texture Texture
      * @param p1 Vertex 1
      * @param p2 Vertex 2
      * @param p3 Vertex 3
+     * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
-    public static void drawTriangle(BlockLoger loger, ColorMap colorMap,
+    public static void drawTriangle(Vector origin, BlockLoger loger, ColorMap colorMap,
             ClippingRegion clipping,
             RawImage texture, Vertex p1, Vertex p2, Vertex p3)
             throws MaxChangedBlocksException {
@@ -133,7 +136,7 @@ public class Triangle {
         }
         drawLine(clipping, xf.round(), xt.round(), canvas);
 
-        canvas.render(loger, colorMap, texture, tMap);
+        canvas.render(origin, loger, colorMap, texture, tMap);
     }
 
     private static double getDiv(final Vertex dFar, final Vertex dUpper, final Vertex dLower) {

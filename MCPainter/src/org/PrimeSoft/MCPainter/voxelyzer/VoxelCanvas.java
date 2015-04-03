@@ -30,7 +30,6 @@ import java.awt.Color;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
-import org.PrimeSoft.MCPainter.Drawing.IDrawingBlock;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.bukkit.Material;
@@ -53,8 +52,8 @@ public class VoxelCanvas {
         final double[] min = new double[]{Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY};
         final double[] max = new double[]{Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY};
 
-        for (int i = 0; i < p.length; i++) {
-            final double[] value = p[i].getData();
+        for (Vertex p1 : p) {
+            final double[] value = p1.getData();
             for (int j = 0; j < 2; j++) {
                 if (min[j] > value[j]) {
                     min[j] = value[j];
@@ -156,7 +155,8 @@ public class VoxelCanvas {
         A[2] = B[2];
     }
 
-    public void render(BlockLoger loger, ColorMap colorMap, RawImage texture, double[][] map)
+    public void render(Vector origin, 
+            BlockLoger loger, ColorMap colorMap, RawImage texture, double[][] map)
             throws MaxChangedBlocksException {
         expand();
         for (int i = 0; i < m_resX; i++) {
@@ -195,7 +195,7 @@ public class VoxelCanvas {
 
                     Vertex v1 = new Vertex(vA);
                     Vertex v2 = new Vertex(vB);
-                    drawLine(loger, colorMap, texture, v1, v2);
+                    drawLine(origin, loger, colorMap, texture, v1, v2);
                 }
             }
         }
@@ -273,7 +273,8 @@ public class VoxelCanvas {
         return val >= 0 && val <= 255;
     }
 
-    private void drawLine(BlockLoger loger, ColorMap colorMap, RawImage texture, Vertex p1, Vertex p2)
+    private void drawLine(Vector origin, 
+            BlockLoger loger, ColorMap colorMap, RawImage texture, Vertex p1, Vertex p2)
             throws MaxChangedBlocksException {
         final Vertex len = Vertex.sub(p2, p1);
         final int cnt = (int) Math.round(Math.max(len.getX(), Math.max(len.getY(), len.getZ())));
@@ -309,10 +310,11 @@ public class VoxelCanvas {
             } else {
                 color = null;
             }
-            
+           
             Vector l = new Vector(data[0], data[1], data[2]);
             if (color != null) {                
-                colorMap.getBlockForColor(color, OperationType.Statue).place(l, loger);
+                colorMap.getBlockForColor(color, OperationType.Statue)
+                        .place(origin, l, loger);
             } else {
                 loger.logBlock(l, STONE);
             }

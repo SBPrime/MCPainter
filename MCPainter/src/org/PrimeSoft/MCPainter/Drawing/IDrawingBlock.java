@@ -38,6 +38,5 @@ public interface IDrawingBlock {
     
     public EnumSet<OperationType> getType();
     
-    public void place(Vector location, BlockLoger loger) throws MaxChangedBlocksException;
-    
+    public void place(Vector origin, Vector offset, BlockLoger loger) throws MaxChangedBlocksException;    
 }
