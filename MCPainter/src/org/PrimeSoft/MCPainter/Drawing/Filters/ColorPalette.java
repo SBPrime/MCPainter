@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 SBPrime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,40 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Filters;
 
+import java.awt.Color;
+
 /**
  *
  * @author SBPrime
  */
-public interface IPaletteParam  extends IFilterParams {
-    /**
-     * Set the palette
-     * @param pal the palette
-     */
-    void setPalette(IColorPalette pal);
+public class ColorPalette implements IColorPalette {
+
+    private final ColorEx[] m_palette;
+
+    public ColorPalette(Color[] pal) {
+        m_palette = new ColorEx[pal.length];
+        for (int i = 0; i < pal.length; i++) {
+            m_palette[i] = new ColorEx(pal[i]);
+        }
+    }
+
+    @Override
+    public ColorEx findClosestColor(ColorEx c) {
+        if (c.isTransparent()) {
+            return ColorEx.TRANSPARENT;
+        }
+
+        double delta = Double.POSITIVE_INFINITY;
+        int result = -1;
+        for (int i = 0; i < m_palette.length; i++) {
+            ColorEx palC = m_palette[i];
+            double d = ColorEx.dist(c, palC);
+            if (d < delta) {
+                result = i;
+                delta = d;
+            }
+        }
+
+        return result != -1 ? m_palette[result] : ColorEx.TRANSPARENT;
+    }
 }

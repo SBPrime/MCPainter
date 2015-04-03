@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 SBPrime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,6 @@ package org.PrimeSoft.MCPainter.Drawing.Filters;
  *
  * @author SBPrime
  */
-public interface IPaletteParam  extends IFilterParams {
-    /**
-     * Set the palette
-     * @param pal the palette
-     */
-    void setPalette(IColorPalette pal);
+public interface IColorPalette {
+    ColorEx findClosestColor(ColorEx c);
 }

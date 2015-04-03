@@ -23,8 +23,7 @@ public class BlockEntry {
     
     private final TextureDescription m_textureFile;
     private boolean m_isGrayscale;
-    private int[] m_grayscaleColor;
-    private Color m_color;
+    private int[] m_grayscaleColor;    
     private final BaseBlock m_block;
     private final EnumSet<OperationType> m_type;
 
@@ -34,14 +33,6 @@ public class BlockEntry {
 
     public int[] getGrayscaleColor() {
         return m_isGrayscale ? m_grayscaleColor : null;
-    }
-
-    public Color getColor() {
-        return m_color;
-    }
-
-    public void setColor(Color value) {
-        m_color = value;
     }
 
     public BaseBlock getBlock() {

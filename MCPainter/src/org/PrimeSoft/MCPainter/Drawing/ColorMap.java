@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
+import org.PrimeSoft.MCPainter.Drawing.Filters.ColorPalette;
+import org.PrimeSoft.MCPainter.Drawing.Filters.IColorPalette;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureDescription;
 import org.PrimeSoft.MCPainter.Texture.TextureEntry;
@@ -20,8 +22,8 @@ public class ColorMap {
      * Threshold gives the value when pixsl should by drawn as AIR/ignored
      */
     //public static final int ALPHA_THRESHOLD = 64;
-    private Boolean m_isInitialized = false;
-    private BlockEntry[] m_blocks = new BlockEntry[0];
+    private final Boolean m_isInitialized;
+    private final DrawingBlock[] m_blocks;
 
     public Boolean isInitialized() {
         return m_isInitialized;
@@ -29,16 +31,21 @@ public class ColorMap {
 
     public ColorMap(TextureManager textureManager, Palette palette) {
         if (textureManager == null) {
+            m_blocks = new DrawingBlock[0];
+            m_isInitialized = false;
             return;
         }
 
         BlockEntry[] blocks = palette != null ? palette.getBlocks() : null;
         if (blocks == null || blocks.length < 2) {
             MCPainterMain.log("Not enough blocks deffined in pallete.");
+
+            m_blocks = new DrawingBlock[0];
+            m_isInitialized = false;
             return;
         }
 
-
+        List<DrawingBlock> drawingBlocks = new ArrayList<DrawingBlock>();
         for (BlockEntry blockEntry : blocks) {
             try {
                 TextureDescription tex = blockEntry.getTextureFile();
@@ -48,7 +55,7 @@ public class ColorMap {
                 int sumG = 0;
                 int sumB = 0;
                 int sumA = 0;
-                int cnt = 0;                  
+                int cnt = 0;
                 TextureEntry img = textureManager.get(tex);
                 if (img == null) {
                     MCPainterMain.log("Error processing block node " + blockEntry.toString());
@@ -79,14 +86,22 @@ public class ColorMap {
                     }
                 }
 
-                blockEntry.setColor(new Color(sumR / cnt, sumG / cnt, sumB / cnt, sumA / cnt));
+                drawingBlocks.add(new DrawingBlock(blockEntry, new Color(sumR / cnt, sumG / cnt, sumB / cnt, sumA / cnt)));
             } catch (Exception ex) {
                 MCPainterMain.log("Error processing block node " + blockEntry.toString());
             }
         }
 
+        if (drawingBlocks.size() < 2) {
+            MCPainterMain.log("Not enough valid blocks deffined in pallete.");
+
+            m_blocks = new DrawingBlock[0];
+            m_isInitialized = false;
+            return;
+        }
+
+        m_blocks = drawingBlocks.toArray(new DrawingBlock[0]);
         m_isInitialized = true;
-        m_blocks = blocks;
     }
 
     /**
@@ -96,18 +111,18 @@ public class ColorMap {
      * @param type block operation type
      * @return block entry
      */
-    public BlockEntry getBlockForColor(Color c, OperationType type) {
+    public IDrawingBlock getBlockForColor(Color c, OperationType type) {
         /*if (c.getAlpha() < ALPHA_THRESHOLD) {
-            return BlockEntry.AIR;
-        }*/
+         return BlockEntry.AIR;
+         }*/
         if (!m_isInitialized) {
-            return BlockEntry.AIR;
+            return DrawingBlock.AIR;
         }
 
-        BlockEntry closest = BlockEntry.AIR;
+        DrawingBlock closest = DrawingBlock.AIR;
         double closestDistance = ImageHelper.colorDistance(c, BlockEntry.AIR_COLOR);
 
-        for (BlockEntry blockEntry : m_blocks) {
+        for (DrawingBlock blockEntry : m_blocks) {
             if (blockEntry.getType().contains(type)) {
                 double dist = ImageHelper.colorDistance(c, blockEntry.getColor());
 
@@ -127,9 +142,9 @@ public class ColorMap {
      * @param type operation type
      * @return Pallete
      */
-    public Color[] getPalette(OperationType type) {
+    public IColorPalette getPalette(OperationType type) {
         List<Color> result = new ArrayList<Color>();
-        for (BlockEntry blockEntry : m_blocks) {
+        for (DrawingBlock blockEntry : m_blocks) {
             if (blockEntry.getType().contains(type)) {
                 Color c = blockEntry.getColor();
                 if (c != null) {
@@ -138,6 +153,6 @@ public class ColorMap {
             }
         }
 
-        return result.toArray(new Color[0]);
+        return new ColorPalette(result.toArray(new Color[0]));
     }
 }

@@ -30,6 +30,7 @@ import java.awt.Color;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IDrawingBlock;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.bukkit.Material;
@@ -308,13 +309,13 @@ public class VoxelCanvas {
             } else {
                 color = null;
             }
-            if (color != null) {
-                block = colorMap.getBlockForColor(color, OperationType.Statue).getBlock();
+            
+            Vector l = new Vector(data[0], data[1], data[2]);
+            if (color != null) {                
+                colorMap.getBlockForColor(color, OperationType.Statue).place(l, loger);
             } else {
-                block = STONE;
+                loger.logBlock(l, STONE);
             }
-
-            loger.logBlock(new Vector(data[0], data[1], data[2]), block);
             pp = Vertex.add(pp, delta);
         }
     }

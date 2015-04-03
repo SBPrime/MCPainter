@@ -102,11 +102,10 @@ public class ImageHelper {
 
                 if (y >= 0 && y <= 255) {
                     Color c = new Color(img.getRGB(xx, hh - yy - 1), true);
-                    BlockEntry block = colorMap.getBlockForColor(c, OperationType.Image);
+                    IDrawingBlock block = colorMap.getBlockForColor(c, OperationType.Image);
 
                     Vector location = pos.add(x, y, z);
-                    BaseBlock newBlock = block.getBlock();
-                    loger.logBlock(location, newBlock);
+                    block.place(location, loger);
                 }
             }
         }
@@ -276,9 +275,9 @@ public class ImageHelper {
                             a += c.getAlpha();
                         }
 
-                        BlockEntry block = colorMap.getBlockForColor(new Color(r / colorCnt, g / colorCnt, b / colorCnt, a / colorCnt), type);
+                        IDrawingBlock block = colorMap.getBlockForColor(new Color(r / colorCnt, g / colorCnt, b / colorCnt, a / colorCnt), type);
 
-                        if (block != BlockEntry.AIR) {
+                        if (block!= null && !block.isAir()) {
                             int px = (int) (x * ddX[0] + y * ddX[1] + z * ddX[2]);
                             int py = (int) (x * ddY[0] + y * ddY[1] + z * ddY[2]);
                             int pz = (int) (x * ddZ[0] + y * ddZ[1] + z * ddZ[2]);
@@ -287,7 +286,7 @@ public class ImageHelper {
                             int dz = orientation.calcZ(px, py, pz);
                             Vector nPos = pos.add(dx, dy, dz);
                             if (nPos.getBlockY() >= 0 && nPos.getBlockY() <= 255) {
-                                loger.logBlock(nPos, block.getBlock());
+                                block.place(nPos, loger);
                             }
                         }
                     }
@@ -413,12 +412,12 @@ public class ImageHelper {
                             a += c.getAlpha();
                         }
 
-                        BlockEntry block = colorMap.getBlockForColor(new Color(r / colorCnt, g / colorCnt, b / colorCnt, a / colorCnt), type);
+                        IDrawingBlock block = colorMap.getBlockForColor(new Color(r / colorCnt, g / colorCnt, b / colorCnt, a / colorCnt), type);
 
-                        if (block != BlockEntry.AIR) {
+                        if (block!= null && !block.isAir()) {
                             Vector nPos = pos.add(dx, dy, dz);
                             if (nPos.getBlockY() >= 0 && nPos.getBlockY() <= 255 && block != null) {
-                                loger.logBlock(nPos, block.getBlock());
+                                block.place(nPos, loger);                                
                             }
                         }
                     }

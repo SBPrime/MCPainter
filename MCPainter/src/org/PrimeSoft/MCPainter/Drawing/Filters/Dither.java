@@ -40,14 +40,14 @@ public class Dither extends BaseRGBFilter {
         /**
          * The pallete
          */
-        private Color[] m_palette;
+        private IColorPalette m_palette;
 
         @Override
-        public void setPalette(Color[] pal) {
+        public void setPalette(IColorPalette pal) {
             m_palette = pal;
         }
 
-        public Color[] getPalette() {
+        public IColorPalette getPalette() {
             return m_palette;
         }
 
@@ -79,17 +79,14 @@ public class Dither extends BaseRGBFilter {
             }
         }
 
-        Color[] cPal = ((DitherParams) params).getPalette();
-        ColorEx[] palette = new ColorEx[cPal.length];
-        for (int i = 0; i < cPal.length; i++) {
-            palette[i] = new ColorEx(cPal[i]);
-        }
+        final IColorPalette palette = ((DitherParams) params).getPalette();
+        
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 ColorEx oldColor = pix[y][x];
                 
-                ColorEx newColor = findClosestColor(oldColor, palette);
+                ColorEx newColor = palette.findClosestColor(oldColor);
                 ColorEx err = ColorEx.sub(oldColor, newColor);
 
                 result[y][x] = newColor.toRGB();
@@ -125,27 +122,7 @@ public class Dither extends BaseRGBFilter {
         };
 
         return help;
-    }
-
-    private ColorEx findClosestColor(ColorEx c, ColorEx[] palette) {
-        if (c.isTransparent()) {
-            return ColorEx.TRANSPARENT;
-        }
-
-        double delta = Double.POSITIVE_INFINITY;
-        int result = -1;
-        for (int i =0;i<palette.length;i++)
-        {
-            ColorEx palC = palette[i];
-            double d = ColorEx.dist(c, palC);
-            if (d < delta) {
-                result = i;
-                delta = d;
-            }
-        }
-
-        return result != -1 ? palette[result] : ColorEx.TRANSPARENT;
-    }
+    }    
     
     
     @Override

@@ -42,8 +42,9 @@ import org.bukkit.map.MapPalette;
  */
 public class FilterManager {
 
-    private static List<IImageFilter> s_filters = new ArrayList();
-    private static HashMap<Player, FilterManager> s_playerFilters = new HashMap<Player, FilterManager>();
+    private final static List<IImageFilter> s_filters = new ArrayList();
+    private final static HashMap<Player, FilterManager> s_playerFilters = new HashMap<Player, FilterManager>();
+    private final static IColorPalette s_mapPalette = getMapPalette();
 
     /**
      * Initialize default filters
@@ -56,6 +57,31 @@ public class FilterManager {
         registerFilter(new Grayscale());
         registerFilter(new Dither());
     }
+    
+    
+    /**
+     * Initialize the map palette
+     *
+     * @return Map pallete
+     */
+    private static IColorPalette getMapPalette() {
+        List<Color> result = new ArrayList<Color>();
+        try {
+            for (int i = 0; i < 256; i++) {
+                Color c = MapPalette.getColor((byte)i);
+                if (c.getAlpha()<128)
+                {
+                    continue;
+                }
+                result.add(c);
+            }
+        } catch (Exception ex) {
+            //Ignore exception
+        }
+
+        return new ColorPalette(result.toArray(new Color[0]));
+    }
+
 
     public static IImageFilter getFilter(String name) {
         for (IImageFilter filter : s_filters) {
@@ -125,7 +151,7 @@ public class FilterManager {
     }
 
     public BufferedImage applyFilters(BufferedImage img, ColorMap cMap) {
-        Color palette[] = cMap != null ? cMap.getPalette(OperationType.Image) : getMapPalette();
+        IColorPalette palette = cMap != null ? cMap.getPalette(OperationType.Image) : s_mapPalette;
 
         synchronized (m_filters) {
             for (FilterEntry fe : m_filters) {
@@ -198,30 +224,6 @@ public class FilterManager {
             return m_filters.toArray(new FilterEntry[0]);
         }
     }
-
-    /**
-     * Get pallete for map
-     *
-     * @return Map pallete
-     */
-    private static final Color[] getMapPalette() {
-        List<Color> result = new ArrayList<Color>();
-        try {
-            for (int i = 0; i < 256; i++) {
-                Color c = MapPalette.getColor((byte)i);
-                if (c.getAlpha()<128)
-                {
-                    continue;
-                }
-                result.add(c);
-            }
-        } catch (Exception ex) {
-            //Ignore exception
-        }
-
-        return result.toArray(new Color[0]);
-    }
-
     
     /**
      * Get price for current command list

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2013 SBPrime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,16 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.Drawing.Filters;
+package org.PrimeSoft.MCPainter.Drawing;
+
+import com.sk89q.worldedit.MaxChangedBlocksException;
+import com.sk89q.worldedit.Vector;
+import java.util.EnumSet;
+import org.PrimeSoft.MCPainter.Configuration.OperationType;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 
 /**
  *
  * @author SBPrime
  */
-public interface IPaletteParam  extends IFilterParams {
-    /**
-     * Set the palette
-     * @param pal the palette
-     */
-    void setPalette(IColorPalette pal);
+public interface IDrawingBlock {
+    public boolean isAir();    
+    
+    public EnumSet<OperationType> getType();
+    
+    public void place(Vector location, BlockLoger loger) throws MaxChangedBlocksException;
+    
 }
