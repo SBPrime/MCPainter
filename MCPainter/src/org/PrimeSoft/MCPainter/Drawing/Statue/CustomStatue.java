@@ -24,7 +24,7 @@
 package org.PrimeSoft.MCPainter.Drawing.Statue;
 
 import com.sk89q.worldedit.Vector;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 
 /**
@@ -47,7 +47,7 @@ public class CustomStatue extends BaseStatue {
      * @param orientation
      * @param data 
      */
-    public CustomStatue(ColorMap colorMap, Vector position, double yaw, double pitch,
+    public CustomStatue(IColorMap colorMap, Vector position, double yaw, double pitch,
             Orientation orientation, 
             StatueDescription data) {        
         super(colorMap, position, yaw, pitch, orientation, data.getSize());

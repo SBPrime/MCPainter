@@ -139,6 +139,11 @@ public class HdImageCommand {
         }
 
         @Override
+        public boolean isDemanding() {
+            return true;
+        }
+        
+        @Override
         public void undo(BlockLoger loger, Extent extent) {
             Chunk chunk = m_location.getChunk();
             if (!chunk.isLoaded()) {

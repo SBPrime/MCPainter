@@ -26,7 +26,7 @@ package org.PrimeSoft.MCPainter.Commands;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.PermissionManager;
 import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.palettes.Palette;
+import org.PrimeSoft.MCPainter.palettes.IPalette;
 import org.PrimeSoft.MCPainter.palettes.PaletteManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -80,7 +80,7 @@ public class PaletteCommand {
                 return;
             }
 
-            Palette pal = pm.getPalette(palName);
+            IPalette pal = pm.getPalette(palName);
             if (pal == null) {
                 MCPainterMain.say(player, ChatColor.RED + "Palette " + ChatColor.WHITE
                         + palName + ChatColor.RED + " not found.");

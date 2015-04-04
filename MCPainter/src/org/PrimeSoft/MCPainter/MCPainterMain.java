@@ -39,8 +39,8 @@ import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.MultiBlockProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.VanillaBlockProvider;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Statue.PlayerStatueDescription;
 import org.PrimeSoft.MCPainter.Drawing.Statue.StatueDescription;
 import org.PrimeSoft.MCPainter.MCStats.MetricsLite;
@@ -49,7 +49,10 @@ import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
+import org.PrimeSoft.MCPainter.palettes.IPalette;
 import org.PrimeSoft.MCPainter.palettes.Palette;
+import org.PrimeSoft.MCPainter.palettes.PaletteRGB;
+import org.PrimeSoft.MCPainter.rgbblocks.RgbWrapper;
 import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -60,7 +63,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.primesoft.asyncworldedit.AsyncWorldEditMain;
 
 /**
  * @author SBPrime
@@ -72,7 +74,7 @@ public class MCPainterMain extends JavaPlugin {
     private static String s_prefix = null;
     private static final String s_logFormat = "%s %s";
     private Boolean m_isInitialized = false;
-    private ColorMap m_colorMap = null;
+    private IColorMap m_colorMap = null;
     private WorldEditPlugin m_worldEdit = null;
     private MetricsLite m_metrics;
     private TextureManager m_textureManager;
@@ -86,7 +88,8 @@ public class MCPainterMain extends JavaPlugin {
     private MultiBlockProvider m_blocksProvider;
     private ModStatueProvider m_statueProvider;
     private AWEWrapper m_awe;
-    private final HashMap<String, ColorMap> m_playerPaletes = new HashMap<String, ColorMap>();
+    private RgbWrapper m_rgbBlocks;
+    private final HashMap<String, IColorMap> m_playerPaletes = new HashMap<String, IColorMap>();
 
     public static String getPrefix() {
         return s_prefix;
@@ -98,6 +101,10 @@ public class MCPainterMain extends JavaPlugin {
 
     public AWEWrapper getAWE() {
         return m_awe;
+    }
+    
+    public RgbWrapper getRGBWrapper() {
+        return m_rgbBlocks;
     }
 
     public TextureManager getTextureProvider() {
@@ -190,6 +197,8 @@ public class MCPainterMain extends JavaPlugin {
             log("Please update your config file!");
         }
 
+        InitializeRGBBlocks();
+        
         String result = initializeConfig();
         if (result != null) {
             log(result);
@@ -200,7 +209,8 @@ public class MCPainterMain extends JavaPlugin {
         m_mapHelper.restoreMaps();
 
         FilterManager.initializeFilters();
-
+        
+        
         getServer().getPluginManager().registerEvents(m_listener, this);
 
         m_isInitialized = true;
@@ -210,9 +220,29 @@ public class MCPainterMain extends JavaPlugin {
         log("Enabled");
     }
 
+    /**
+     * Initialize the RGB blocks
+     */
+    private void InitializeRGBBlocks() {
+        log("Initializeing RGB blocks...");
+        m_rgbBlocks = RgbWrapper.create(this);
+        
+        if (m_rgbBlocks == null) {
+            log("Error initializeing RGB blocks.");
+            return;
+        }
+        
+        m_rgbBlocks.enable();
+        
+        log("RGB blocks initialized.");
+    }
+
     @Override
     public void onDisable() {
         m_textureManager.dispose();
+        if (m_rgbBlocks != null) {
+            m_rgbBlocks.disable();
+        }
         log("Disabled");
     }
 
@@ -284,7 +314,6 @@ public class MCPainterMain extends JavaPlugin {
             doRender(player, args);
             return true;
         }
-
         return Help.ShowHelp(player, null);
     }
 
@@ -349,14 +378,14 @@ public class MCPainterMain extends JavaPlugin {
         initializePlayerStatue(dataFiles);
         initializePalettes();
 
-        Palette pal = m_paletteManager.getPalette(ConfigProvider.getDefaultPalette());
+        IPalette pal = m_paletteManager.getPalette(ConfigProvider.getDefaultPalette());
         if (pal == null) {
             m_colorMap = null;
             m_isInitialized = false;
 
             return "Default palette " + ConfigProvider.getDefaultPalette() + " not found";
         } else {
-            m_colorMap = new ColorMap(m_textureManager, pal);
+            m_colorMap = pal.createColorMap(this);
         }
 
         m_isInitialized = m_worldEdit != null;
@@ -388,6 +417,10 @@ public class MCPainterMain extends JavaPlugin {
             }
         }
 
+        if (m_rgbBlocks != null) {
+            m_paletteManager.addPalette(new PaletteRGB());
+            MCPainterMain.log("* RGB palette..initialized");
+        }
         log("Loaded " + m_paletteManager.getCount() + " palettes.");
     }
 
@@ -536,14 +569,14 @@ public class MCPainterMain extends JavaPlugin {
      * @param player
      * @param pal
      */
-    public void setPalette(String player, Palette pal) {
+    public void setPalette(String player, IPalette pal) {
         synchronized (m_playerPaletes) {
             if (m_playerPaletes.containsKey(player)) {
                 m_playerPaletes.remove(player);
             }
 
             if (pal != null) {
-                m_playerPaletes.put(player, new ColorMap(m_textureManager, pal));
+                m_playerPaletes.put(player, pal.createColorMap(this));
             }
         }
     }
@@ -554,12 +587,12 @@ public class MCPainterMain extends JavaPlugin {
      * @param player
      * @return
      */
-    private ColorMap getColorMap(Player player) {
+    private IColorMap getColorMap(Player player) {
         if (player == null) {
             return m_colorMap;
         }
 
-        ColorMap result;
+        IColorMap result;
         synchronized (m_playerPaletes) {
             result = m_playerPaletes.get(player.getName().toLowerCase());
         }

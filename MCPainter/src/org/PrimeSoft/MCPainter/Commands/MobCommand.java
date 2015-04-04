@@ -31,7 +31,7 @@ import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.Drawing.Statue.BaseStatue;
 import org.PrimeSoft.MCPainter.Drawing.Statue.CustomStatue;
@@ -48,7 +48,7 @@ import org.bukkit.entity.Player;
 public class MobCommand extends DrawingTask {
 
     public static void Execte(MCPainterMain sender, final Player player,
-            final WorldEditPlugin worldEdit, final ColorMap colorMap, String[] args) {
+            final WorldEditPlugin worldEdit, final IColorMap colorMap, String[] args) {
         if (args.length > 3) {
             Help.ShowHelp(player, Commands.COMMAND_MOB);
             return;

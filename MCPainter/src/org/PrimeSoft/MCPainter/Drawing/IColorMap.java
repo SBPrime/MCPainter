@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 SBPrime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,19 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.PrimeSoft.MCPainter.Drawing;
 
-package org.PrimeSoft.MCPainter.blocksplacer;
-
-import com.sk89q.worldedit.extent.Extent;
-import org.bukkit.Location;
+import java.awt.Color;
+import org.PrimeSoft.MCPainter.Configuration.OperationType;
+import org.PrimeSoft.MCPainter.Drawing.Filters.IColorPalette;
 
 /**
- * Block logger commadn
+ *
  * @author SBPrime
  */
-public interface ILoggerCommand  {
-    void redo(BlockLoger loger, Extent extent);
-    void undo(BlockLoger loger, Extent extent);
-    boolean isDemanding();
-    Location getLocation();
+public interface IColorMap {
+
+    /**
+     * Get block for color
+     *
+     * @param c color
+     * @param type block operation type
+     * @return block entry
+     */
+    IDrawingBlock getBlockForColor(Color c, OperationType type);
+
+    /**
+     * Get color pallete for given operation
+     *
+     * @param type operation type
+     * @return Pallete
+     */
+    IColorPalette getPalette(OperationType type);
+
+    
+    /**
+     * Is the color map initialized
+     * @return 
+     */
+    Boolean isInitialized();
+    
 }

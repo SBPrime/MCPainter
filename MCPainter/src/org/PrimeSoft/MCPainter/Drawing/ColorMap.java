@@ -16,7 +16,7 @@ import org.PrimeSoft.MCPainter.palettes.Palette;
 /**
  * @author SBPrime
  */
-public class ColorMap {
+public class ColorMap implements IColorMap {
 
     /**
      * Threshold gives the value when pixsl should by drawn as AIR/ignored
@@ -25,6 +25,7 @@ public class ColorMap {
     private final Boolean m_isInitialized;
     private final DrawingBlock[] m_blocks;
 
+    @Override
     public Boolean isInitialized() {
         return m_isInitialized;
     }
@@ -111,6 +112,7 @@ public class ColorMap {
      * @param type block operation type
      * @return block entry
      */
+    @Override
     public IDrawingBlock getBlockForColor(Color c, OperationType type) {
         /*if (c.getAlpha() < ALPHA_THRESHOLD) {
          return BlockEntry.AIR;
@@ -142,6 +144,7 @@ public class ColorMap {
      * @param type operation type
      * @return Pallete
      */
+    @Override
     public IColorPalette getPalette(OperationType type) {
         List<Color> result = new ArrayList<Color>();
         for (DrawingBlock blockEntry : m_blocks) {

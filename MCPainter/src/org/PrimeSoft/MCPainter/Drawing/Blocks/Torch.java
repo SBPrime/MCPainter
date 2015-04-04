@@ -29,7 +29,7 @@ import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Face;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.utils.Orientation;
@@ -72,7 +72,7 @@ public class Torch extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap) 
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
             throws MaxChangedBlocksException {
         if (data == 0) {
             super.draw(data, loger, localPlayer, colorMap);

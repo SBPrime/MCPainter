@@ -26,13 +26,13 @@ package org.PrimeSoft.MCPainter.Drawing.Blocks;
 import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 
 /**
  * Basic drawable element
  * @author SBPrime
  */
 public interface IDrawableElement {
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap)
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap)
             throws MaxChangedBlocksException;
 }

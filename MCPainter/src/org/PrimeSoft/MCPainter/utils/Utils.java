@@ -25,13 +25,14 @@ package org.PrimeSoft.MCPainter.utils;
 
 import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.Vector;
-
+import org.apache.commons.lang.NullArgumentException;
 
 /**
  *
  * @author SBPrime
  */
 public class Utils {
+
     public static Vector getPlayerPos(LocalPlayer player) {
         Vector location = player.getPosition();
         double x = (int) location.getX();
@@ -50,5 +51,22 @@ public class Utils {
         }
 
         return new Vector(x, y, z);
+    }
+
+    public static boolean tryParse(String s, InOutParam<Integer> out) {
+        if (out == null) {
+            throw new NullArgumentException("out");
+        }
+
+        if (s == null || s.isEmpty()) {
+            return false;
+        }
+
+        try {
+            out.setValue(Integer.parseInt(s));
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
     }
 }

@@ -29,16 +29,9 @@ import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.blocks.BaseBlock;
-import com.sk89q.worldedit.extent.Extent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.primesoft.asyncworldedit.blockPlacer.BlockPlacer;
-import org.primesoft.asyncworldedit.playerManager.PlayerEntry;
-import org.primesoft.asyncworldedit.utils.ActionP1;
 import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
 
 /**
@@ -68,6 +61,10 @@ public class BlockLoger {
     public LocalSession getLocalSession() {
         return m_session;
     }
+    
+    public World getWorld() {
+        return m_world;
+    }
 
     public BlockLoger(Player player,
             LocalSession session, CancelabeEditSession eSession) {
@@ -79,7 +76,7 @@ public class BlockLoger {
 
     public void logCommand(ILoggerCommand command) {
         try {
-            m_editSession.doCustomAction(new ChangeCommand(command, this));
+            m_editSession.doCustomAction(new ChangeCommand(command, this), command.isDemanding());
         } catch (WorldEditException ex) {
             ExceptionHelper.printException(ex, "Unable to perform custom command");
         }
@@ -91,7 +88,7 @@ public class BlockLoger {
 
     public void logMessage(String msg) {
         try {
-            m_editSession.doCustomAction(new ChangeMessage(getPlayer(), msg));
+            m_editSession.doCustomAction(new ChangeMessage(getPlayer(), msg), false);
         } catch (WorldEditException ex) {
             ExceptionHelper.printException(ex, "Unable to perform logMessage for "
                     + getPlayer());

@@ -88,7 +88,7 @@ public class ImageHelper {
         }
     }
 
-    public static void drawImage(BlockLoger loger, ColorMap colorMap, BufferedImage img,
+    public static void drawImage(BlockLoger loger, IColorMap colorMap, BufferedImage img,
             Vector pos, Orientation orientation) throws MaxChangedBlocksException {
         int hh = img.getHeight();
         int ww = img.getWidth();
@@ -111,19 +111,19 @@ public class ImageHelper {
         }
     }
 
-    public static void drawCube(BlockLoger loger, ColorMap colorMap, Vector pos,
+    public static void drawCube(BlockLoger loger, IColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, boolean useAlpha,
             OperationType type) throws MaxChangedBlocksException {
         drawCube(loger, colorMap, pos, orientation, size, faces, null, useAlpha, type);
     }
 
-    public static void drawCube(BlockLoger loger, ColorMap colorMap, Vector pos,
+    public static void drawCube(BlockLoger loger, IColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, int[] grayColor,
             boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
         drawCube(loger, colorMap, pos, orientation, size, faces, null, grayColor, useAlpha, type);
     }
 
-    public static void drawCube(BlockLoger loger, ColorMap colorMap, Vector pos,
+    public static void drawCube(BlockLoger loger, IColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, double[] maping,
             int[] grayColor, boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
 
@@ -297,7 +297,7 @@ public class ImageHelper {
         }
     }
 
-    public static void drawDiagonal(BlockLoger loger, ColorMap colorMap,
+    public static void drawDiagonal(BlockLoger loger, IColorMap colorMap,
             Vector pos, Orientation orientation, Vector size,
             Face[] faces, int[] grayColor, boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
         int w = (int) (size.getX() - 1);

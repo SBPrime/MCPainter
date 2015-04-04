@@ -30,10 +30,10 @@ import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import java.awt.image.BufferedImage;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.*;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Statue.CustomStatue;
 import org.PrimeSoft.MCPainter.Drawing.Statue.PlayerStatueDescription;
 import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
@@ -48,7 +48,7 @@ import org.bukkit.entity.Player;
 public class StatueCommand extends DrawingTask {
 
     public static void Execte(MCPainterMain sender, final Player player,
-            final WorldEditPlugin worldEdit, final ColorMap colorMap, String[] args) {
+            final WorldEditPlugin worldEdit, final IColorMap colorMap, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_STATUE);
             return;
@@ -120,7 +120,7 @@ public class StatueCommand extends DrawingTask {
     private final double m_pitch;
     
     private StatueCommand(WorldEditPlugin worldEditPlugin, Player player, 
-            String url, String imgError, ColorMap colorMap, PlayerStatueDescription description)            
+            String url, String imgError, IColorMap colorMap, PlayerStatueDescription description)            
     {
         super(worldEditPlugin, player);
         

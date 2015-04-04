@@ -35,6 +35,7 @@ import org.PrimeSoft.MCPainter.Drawing.ColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.*;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -45,7 +46,7 @@ import org.bukkit.entity.Player;
 public class ImageCommand extends DrawingTask {
 
     public static void Execte(MCPainterMain sender, Player player, WorldEditPlugin worldEdit,
-            ColorMap colorMap, String[] args) {
+            IColorMap colorMap, String[] args) {
         if (args.length != 2) {
             Help.ShowHelp(player, Commands.COMMAND_IMAGE);
             return;
@@ -61,12 +62,12 @@ public class ImageCommand extends DrawingTask {
     private final double m_yaw;
     private final double m_pitch;
     private final Vector m_pPosition;
-    private final ColorMap m_colorMap;
+    private final IColorMap m_colorMap;
     private final MCPainterMain m_sender;
 
     private ImageCommand(WorldEditPlugin worldEditPlugin, Player player, 
             MCPainterMain sender, String[] args, 
-            ColorMap colorMap) {
+            IColorMap colorMap) {
         super(worldEditPlugin, player);
         
         m_args = args;

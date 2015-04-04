@@ -34,7 +34,7 @@ public class PaletteManager {
     /**
      * List of all known palettes
      */
-    private final HashMap<String, Palette> m_palettes = new HashMap<String, Palette>();
+    private final HashMap<String, IPalette> m_palettes = new HashMap<String, IPalette>();
 
     /**
      * Get the palette
@@ -42,7 +42,7 @@ public class PaletteManager {
      * @param paletteName
      * @return
      */
-    public Palette getPalette(String paletteName) {
+    public IPalette getPalette(String paletteName) {
         synchronized (m_palettes) {
             return m_palettes.get(paletteName);
         }
@@ -64,7 +64,7 @@ public class PaletteManager {
      * @param pal
      * @return
      */
-    public boolean addPalette(Palette pal) {
+    public boolean addPalette(IPalette pal) {
         if (pal == null) {
             return false;
         }

@@ -29,7 +29,7 @@ import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Face;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
@@ -75,7 +75,7 @@ public class PistonExtension extends BaseBlock {
     }
 
     private void drawPlate(int data, Orientation orientation, BlockLoger loger,
-            ColorMap colorMap, Vector position) throws MaxChangedBlocksException {
+            IColorMap colorMap, Vector position) throws MaxChangedBlocksException {
         Face[] faces = null;
 
         int topId = (data & 0x8) == 0x8 ? 1 : 0;
@@ -127,7 +127,7 @@ public class PistonExtension extends BaseBlock {
     }
 
     private void drawRot(int data, Orientation orientation, BlockLoger loger,
-            ColorMap colorMap, Vector position) throws MaxChangedBlocksException {
+            IColorMap colorMap, Vector position) throws MaxChangedBlocksException {
         Face[] faces = null;
 
         int topId = (data & 0x8) == 0x8 ? 1 : 0;
@@ -218,7 +218,7 @@ public class PistonExtension extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap)
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap)
             throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();

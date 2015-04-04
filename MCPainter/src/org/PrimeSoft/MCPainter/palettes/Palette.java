@@ -27,7 +27,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
+import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -35,7 +38,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
  *
  * @author SBPrime
  */
-public class Palette {
+public class Palette implements IPalette {
 
     /**
      * Palette blocks
@@ -61,6 +64,7 @@ public class Palette {
      *
      * @return
      */
+    @Override
     public String getName() {
         return m_name;
     }
@@ -73,6 +77,17 @@ public class Palette {
     private Palette(String name, BlockEntry[] blocks) {
         m_name = name;
         m_blocks = blocks;
+    }
+    
+    /**
+     * Create a new instance of color map for this palette
+     * @param main
+     * @return 
+     */
+    @Override
+    public IColorMap createColorMap(MCPainterMain main)
+    {
+        return new ColorMap(main.getTextureProvider(), this);
     }
 
     /**

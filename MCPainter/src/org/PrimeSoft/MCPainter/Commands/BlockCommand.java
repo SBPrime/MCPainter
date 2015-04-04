@@ -30,6 +30,7 @@ import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IDrawableElement;
 import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.FoundManager;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MCPainterMain;
@@ -55,7 +56,7 @@ public class BlockCommand {
     }
 
     public void Execte(MCPainterMain sender, final Player player, WorldEditPlugin worldEdit,
-            final ColorMap colorMap, String[] args) {
+            final IColorMap colorMap, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_BLOCK);
             return;
@@ -147,13 +148,13 @@ public class BlockCommand {
     private class CommandThread extends DrawingTask {
 
         private final MCPainterMain m_sender;
-        private final ColorMap m_colorMap;
+        private final IColorMap m_colorMap;
         private final IDrawableElement m_element;
         private final short m_blockData;
 
         private CommandThread(WorldEditPlugin worldEditPlugin, Player player, 
                 MCPainterMain sender, IDrawableElement element,
-                short blockData, ColorMap colorMap) {
+                short blockData, IColorMap colorMap) {
             super(worldEditPlugin, player);
 
             m_colorMap = colorMap;

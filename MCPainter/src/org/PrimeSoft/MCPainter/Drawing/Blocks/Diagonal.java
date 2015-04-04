@@ -29,7 +29,7 @@ import com.sk89q.worldedit.Vector;
 import java.util.List;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.CubeFace;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.utils.Orientation;
@@ -100,7 +100,7 @@ public class Diagonal extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap) 
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
             throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();

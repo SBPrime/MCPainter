@@ -27,7 +27,7 @@ import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Face;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
@@ -42,7 +42,7 @@ public abstract class BaseStatue {
     /**
      * Color to block mapper
      */
-    private final ColorMap m_colorMap;
+    private final IColorMap m_colorMap;
     /**
      * Statue start possition
      */
@@ -62,7 +62,7 @@ public abstract class BaseStatue {
      * @param size Statue size used to calculate the orientation (the actual
      * size CAN excede this number)
      */
-    public BaseStatue(ColorMap colorMap, Vector position, double yaw, double pitch,
+    public BaseStatue(IColorMap colorMap, Vector position, double yaw, double pitch,
             Orientation orientation, Vector size) {
         m_colorMap = colorMap;
         m_orientation = orientation;
@@ -110,6 +110,7 @@ public abstract class BaseStatue {
      * @param loger block placer logger
      * @param rawImg statue texture
      * @param useAlpha use the alpha channel
+     * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
     public void DrawStatue(BlockLoger loger, RawImage[] rawImg, boolean useAlpha) 
             throws MaxChangedBlocksException {

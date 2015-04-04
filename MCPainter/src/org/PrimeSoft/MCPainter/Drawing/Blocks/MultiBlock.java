@@ -27,7 +27,7 @@ import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import java.util.HashMap;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
@@ -121,7 +121,7 @@ public class MultiBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap) 
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
             throws MaxChangedBlocksException {
         if (m_useTopFlag) {
             double pitch = localPlayer.getPitch();

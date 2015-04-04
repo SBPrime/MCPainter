@@ -84,7 +84,12 @@ public class ColorEx {
         double weightR = 2 + rmean / 256.0;
         double weightG = 4.0;
         double weightB = 2 + (255 - rmean) / 256.0;
-        return weightR * r * r + weightG * g * g + weightB * b * b;
+        
+        double a1 = c1.m_a;
+        double a2 = c2.m_a;
+        double a = Math.abs(a2 - a1) * (a1 <= a2 ? 1 : 1000);
+        
+        return Math.sqrt(weightR * r * r + weightG * g * g + weightB * b * b) + a * 512;
     }
     
     public static ColorEx clamp(ColorEx c)

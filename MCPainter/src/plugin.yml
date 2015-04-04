@@ -6,12 +6,11 @@ dev-url: https://github.com/SBPrime/MCPainter/wiki
 description: Provides some basic features to draw using blocks.
 authors: [SBPrime]
 depend: [WorldEdit, AsyncWorldEdit]
-softdepend: [Vault, CustomHeadApi]
+softdepend: [Vault, CustomHeadApi, SimpleHTTPServer]
 commands:
   mcpainter:
-    description: 'Displays the help for MCPsinter.'
+    description: 'Displays the help for MCPainter.'
     usage: /<command>
-    aliases: MCPainter
   /block:
     description: 'Draw a block, alias for: /MCPainter block'
     usage: /<command>

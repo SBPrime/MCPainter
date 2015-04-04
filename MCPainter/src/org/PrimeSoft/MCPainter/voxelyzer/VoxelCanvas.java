@@ -29,7 +29,7 @@ import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.Color;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.bukkit.Material;
@@ -156,7 +156,7 @@ public class VoxelCanvas {
     }
 
     public void render(Vector origin, 
-            BlockLoger loger, ColorMap colorMap, RawImage texture, double[][] map)
+            BlockLoger loger, IColorMap colorMap, RawImage texture, double[][] map)
             throws MaxChangedBlocksException {
         expand();
         for (int i = 0; i < m_resX; i++) {
@@ -201,7 +201,7 @@ public class VoxelCanvas {
         }
     }
 
-//    public void render(BlockLoger loger, ColorMap colorMap, RawImage texture, double[][] map) {
+//    public void render(BlockLoger loger, IColorMap colorMap, RawImage texture, double[][] map) {
 //        for (int i = 0; i < m_resX; i++) {
 //            for (int j = 0; j < m_resY; j++) {
 //                double[] p = m_canvas[i][j];
@@ -274,7 +274,7 @@ public class VoxelCanvas {
     }
 
     private void drawLine(Vector origin, 
-            BlockLoger loger, ColorMap colorMap, RawImage texture, Vertex p1, Vertex p2)
+            BlockLoger loger, IColorMap colorMap, RawImage texture, Vertex p1, Vertex p2)
             throws MaxChangedBlocksException {
         final Vertex len = Vertex.sub(p2, p1);
         final int cnt = (int) Math.round(Math.max(len.getX(), Math.max(len.getY(), len.getZ())));

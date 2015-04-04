@@ -26,7 +26,7 @@ package org.PrimeSoft.MCPainter.voxelyzer;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -121,7 +121,7 @@ public class Model {
      * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
     public void render(Vector origin, Player player,
-            BlockLoger loger, ColorMap colorMap, ClippingRegion clipping, 
+            BlockLoger loger, IColorMap colorMap, ClippingRegion clipping, 
             Matrix matrix) 
             throws MaxChangedBlocksException {
         int cnt = m_faces.length;

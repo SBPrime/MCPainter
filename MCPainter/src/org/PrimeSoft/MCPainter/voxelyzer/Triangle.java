@@ -28,7 +28,7 @@ import com.sk89q.worldedit.Vector;
 import java.util.Arrays;
 import java.util.Comparator;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 
 /**
@@ -60,7 +60,7 @@ public class Triangle {
      * @param p3 Vertex 3
      * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
-    public static void drawTriangle(Vector origin, BlockLoger loger, ColorMap colorMap,
+    public static void drawTriangle(Vector origin, BlockLoger loger, IColorMap colorMap,
             ClippingRegion clipping,
             RawImage texture, Vertex p1, Vertex p2, Vertex p3)
             throws MaxChangedBlocksException {

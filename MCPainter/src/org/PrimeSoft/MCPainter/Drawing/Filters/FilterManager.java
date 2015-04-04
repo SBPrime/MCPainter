@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -150,7 +150,7 @@ public class FilterManager {
         m_filters = new ArrayList<FilterEntry>();
     }
 
-    public BufferedImage applyFilters(BufferedImage img, ColorMap cMap) {
+    public BufferedImage applyFilters(BufferedImage img, IColorMap cMap) {
         IColorPalette palette = cMap != null ? cMap.getPalette(OperationType.Image) : s_mapPalette;
 
         synchronized (m_filters) {

@@ -83,7 +83,7 @@ public class Door extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap) 
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
             throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();

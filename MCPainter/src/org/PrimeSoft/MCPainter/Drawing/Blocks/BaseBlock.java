@@ -30,7 +30,7 @@ import java.util.List;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Face;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
@@ -337,7 +337,7 @@ public class BaseBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, ColorMap colorMap)
+    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap)
             throws MaxChangedBlocksException {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();

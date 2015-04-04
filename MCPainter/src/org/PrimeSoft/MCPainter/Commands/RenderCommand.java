@@ -29,7 +29,7 @@ import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import java.io.File;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Help;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.PermissionManager;
@@ -55,7 +55,7 @@ public class RenderCommand extends DrawingTask {
     private final static int PITCH2 = 22;
 
     public static void Execute(MCPainterMain sender, Player player, WorldEditPlugin worldEdit,
-            ColorMap colorMap, String[] args) {
+            IColorMap colorMap, String[] args) {
         if (args.length < 3 || args.length > 5) {
             Help.ShowHelp(player, Commands.COMMAND_RENDER);
             return;
@@ -174,7 +174,7 @@ public class RenderCommand extends DrawingTask {
     private final double m_yaw;
     private final double m_pitch;
     private final Vector m_pPosition;
-    private final ColorMap m_colorMap;
+    private final IColorMap m_colorMap;
     private final String m_modeFile;
     private final Vector m_size;
     private final Vector m_clipMin;
@@ -182,7 +182,7 @@ public class RenderCommand extends DrawingTask {
     private final Vector m_offset;
 
     private RenderCommand(WorldEditPlugin worldEditPlugin, Player player,
-            ColorMap colorMap, String modeFile, Vector size, Vector clipMin,
+            IColorMap colorMap, String modeFile, Vector size, Vector clipMin,
             Vector clipMax, Vector offset) {
         super(worldEditPlugin, player);
         
