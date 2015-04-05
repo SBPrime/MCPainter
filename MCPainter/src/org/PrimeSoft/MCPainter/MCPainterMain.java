@@ -102,7 +102,7 @@ public class MCPainterMain extends JavaPlugin {
     public AWEWrapper getAWE() {
         return m_awe;
     }
-    
+
     public RgbWrapper getRGBWrapper() {
         return m_rgbBlocks;
     }
@@ -198,7 +198,7 @@ public class MCPainterMain extends JavaPlugin {
         }
 
         InitializeRGBBlocks();
-        
+
         String result = initializeConfig();
         if (result != null) {
             log(result);
@@ -209,8 +209,7 @@ public class MCPainterMain extends JavaPlugin {
         m_mapHelper.restoreMaps();
 
         FilterManager.initializeFilters();
-        
-        
+
         getServer().getPluginManager().registerEvents(m_listener, this);
 
         m_isInitialized = true;
@@ -226,14 +225,14 @@ public class MCPainterMain extends JavaPlugin {
     private void InitializeRGBBlocks() {
         log("Initializeing RGB blocks...");
         m_rgbBlocks = RgbWrapper.create(this);
-        
+
         if (m_rgbBlocks == null) {
             log("Error initializeing RGB blocks.");
             return;
         }
-        
+
         m_rgbBlocks.enable();
-        
+
         log("RGB blocks initialized.");
     }
 
@@ -412,7 +411,7 @@ public class MCPainterMain extends JavaPlugin {
                         MCPainterMain.log("* " + pal + "...duplicate, ingoring");
                     }
                 }
-            } catch (Exception ex) {                
+            } catch (Exception ex) {
                 MCPainterMain.log("* " + file.getName() + "...unknown error, " + ex.getMessage());
             }
         }
