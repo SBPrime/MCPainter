@@ -51,8 +51,6 @@ import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
 import org.PrimeSoft.MCPainter.palettes.IPalette;
 import org.PrimeSoft.MCPainter.palettes.Palette;
-import org.PrimeSoft.MCPainter.palettes.PaletteRGB;
-import org.PrimeSoft.MCPainter.rgbblocks.RgbWrapper;
 import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -88,7 +86,6 @@ public class MCPainterMain extends JavaPlugin {
     private MultiBlockProvider m_blocksProvider;
     private ModStatueProvider m_statueProvider;
     private AWEWrapper m_awe;
-    private RgbWrapper m_rgbBlocks;
     private final HashMap<String, IColorMap> m_playerPaletes = new HashMap<String, IColorMap>();
 
     public static String getPrefix() {
@@ -101,10 +98,6 @@ public class MCPainterMain extends JavaPlugin {
 
     public AWEWrapper getAWE() {
         return m_awe;
-    }
-
-    public RgbWrapper getRGBWrapper() {
-        return m_rgbBlocks;
     }
 
     public TextureManager getTextureProvider() {
@@ -197,8 +190,6 @@ public class MCPainterMain extends JavaPlugin {
             log("Please update your config file!");
         }
 
-        InitializeRGBBlocks();
-
         String result = initializeConfig();
         if (result != null) {
             log(result);
@@ -219,29 +210,9 @@ public class MCPainterMain extends JavaPlugin {
         log("Enabled");
     }
 
-    /**
-     * Initialize the RGB blocks
-     */
-    private void InitializeRGBBlocks() {
-        log("Initializeing RGB blocks...");
-        m_rgbBlocks = RgbWrapper.create(this);
-
-        if (m_rgbBlocks == null) {
-            log("Error initializeing RGB blocks.");
-            return;
-        }
-
-        m_rgbBlocks.enable();
-
-        log("RGB blocks initialized.");
-    }
-
     @Override
     public void onDisable() {
         m_textureManager.dispose();
-        if (m_rgbBlocks != null) {
-            m_rgbBlocks.disable();
-        }
         log("Disabled");
     }
 
@@ -416,10 +387,6 @@ public class MCPainterMain extends JavaPlugin {
             }
         }
 
-        if (m_rgbBlocks != null) {
-            m_paletteManager.addPalette(new PaletteRGB());
-            MCPainterMain.log("* RGB palette..initialized");
-        }
         log("Loaded " + m_paletteManager.getCount() + " palettes.");
     }
 
