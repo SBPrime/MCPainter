@@ -86,7 +86,8 @@ blocks:
   - SOUL_SAND-VANILLA:assets/minecraft/textures/blocks/soul_sand.png
   - GLOWSTONE-VANILLA:assets/minecraft/textures/blocks/glowstone.png
 
-  - PUMPKIN:4-VANILLA:assets/minecraft/textures/blocks/pumpkin_side.png
+#Pumpkins look bad in 1.8
+#  - PUMPKIN:4-VANILLA:assets/minecraft/textures/blocks/pumpkin_side.png
   - HUGE_MUSHROOM_2:14-VANILLA:assets/minecraft/textures/blocks/mushroom_block_skin_red.png
   - HUGE_MUSHROOM_1:14-VANILLA:assets/minecraft/textures/blocks/mushroom_block_skin_brown.png
 

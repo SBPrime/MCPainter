@@ -59,7 +59,7 @@ public class DataFile {
         return result.toArray(new DataFile[0]);
     }
     
-    private static final String FILD_SKIN_URL = "skinurl";
+    private static final String FILD_SKIN_URL = "playerstatue";
     private static final String FILD_MOD_ID = "modid";
     private static final String FILD_MOBS = "mobs";
     private static final String FILD_BLOCKS = "blocks";

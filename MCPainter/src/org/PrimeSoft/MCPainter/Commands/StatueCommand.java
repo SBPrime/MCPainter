@@ -61,6 +61,8 @@ public class StatueCommand extends DrawingTask {
             return;
         }
         final String url;
+        final String userName;
+
         final String imgError;
         if (args.length == 1) {
             if (!PermissionManager.isAllowed(player, PermissionManager.Perms.DrawStatue_Self)) {
@@ -68,18 +70,25 @@ public class StatueCommand extends DrawingTask {
                 return;
             }
 
-            url = description.getSkinFile(player.getName());
+            userName = player.getName();
+            url = null;
+
             imgError = ChatColor.RED + "Error downloading your skin. ";
         } else {
             String tUrl = args[1];
             boolean perms;
             if (tUrl.startsWith("u:")) {
                 String user = tUrl.substring(2);
-                url = description.getSkinFile(user);
+
+                userName = user;
+                url = null;
+
                 perms = PermissionManager.isAllowed(player, PermissionManager.Perms.DrawStatue_Other);
                 imgError = ChatColor.RED + "Error downloading skin for user " + ChatColor.WHITE + user;
             } else {
                 url = tUrl;
+                userName = null;
+
                 perms = PermissionManager.isAllowed(player, PermissionManager.Perms.DrawStatue_File);
                 imgError = ChatColor.RED + "Error downloading skin " + ChatColor.WHITE + url;
             }
@@ -91,8 +100,8 @@ public class StatueCommand extends DrawingTask {
         }
 
         DrawingTask task = new StatueCommand(worldEdit, player,
-                url, imgError, colorMap, description);
-        
+                url, userName, imgError, colorMap, description);
+
         sender.getAWE().runTask(player, "Statue", task);
     }
 
@@ -112,25 +121,30 @@ public class StatueCommand extends DrawingTask {
     }
 
     private final String m_url;
+    private final String m_userName;
     private final Orientation m_orientation;
     private final String m_imgError;
     private final CustomStatue m_playerStatue;
-    
+
     private final double m_yaw;
     private final double m_pitch;
-    
-    private StatueCommand(WorldEditPlugin worldEditPlugin, Player player, 
-            String url, String imgError, IColorMap colorMap, PlayerStatueDescription description)            
-    {
+    private final PlayerStatueDescription m_statueDescription;
+
+    private StatueCommand(WorldEditPlugin worldEditPlugin, Player player,
+            String url, String userName,
+            String imgError, IColorMap colorMap, PlayerStatueDescription description) {
         super(worldEditPlugin, player);
-        
+
         m_url = url;
+        m_userName = userName;
+
         m_imgError = imgError;
-        
+
         m_yaw = m_localPlayer.getYaw();
         m_pitch = m_localPlayer.getPitch();
-        m_orientation = new Orientation(m_yaw, m_pitch);
-        
+        m_orientation = new Orientation(m_yaw, m_pitch);        
+        m_statueDescription = description;
+
         m_playerStatue = new CustomStatue(colorMap, Utils.getPlayerPos(m_localPlayer),
                 m_yaw, m_pitch, m_orientation, description);
     }
@@ -144,17 +158,31 @@ public class StatueCommand extends DrawingTask {
                 return;
             }
 
+            String url = m_url;
+
+            if (url == null && m_userName == null) {
+                MCPainterMain.say(m_player, ChatColor.RED + m_imgError + " No username and no skin url provided.");
+                return;
+            } else if (url == null) {
+                url = m_statueDescription.getSkinFile(m_userName);
+            }
+            
+            if (url == null) {
+                MCPainterMain.say(m_player, ChatColor.RED + m_imgError + " Unable to resolve the skin url.");
+                return;
+            }
+
             MCPainterMain.say(m_player, "Loading image...");
-            BufferedImage img = ImageHelper.downloadImage(m_url);
+            BufferedImage img = ImageHelper.downloadImage(url);
             if (img == null) {
                 MCPainterMain.say(m_player, m_imgError);
                 return;
             }
 
             MCPainterMain.say(m_player, "Drawing statue...");
-            
+
             boolean[] useAlpha = new boolean[1];
-            RawImage rawImg = new RawImage(ImageHelper.convertToRGB(img, useAlpha), img.getWidth());       
+            RawImage rawImg = new RawImage(ImageHelper.convertToRGB(img, useAlpha), img.getWidth());
 
             try {
                 m_playerStatue.DrawStatue(loger, new RawImage[]{rawImg}, useAlpha[0]);
@@ -165,5 +193,5 @@ public class StatueCommand extends DrawingTask {
 
             FoundManager.subtractMoney(m_player, price);
         }
-    }    
+    }
 }

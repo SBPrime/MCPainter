@@ -23,10 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.utils;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -45,30 +41,6 @@ public class VersionChecker {
      */
     private final static String s_versionUrl = "https://api.github.com/repos/SBPrime/MCPainter/releases";
 
-    /**
-     * Download version page from the www
-     *
-     * @param url Version file http page
-     * @return Version page content
-     */
-    private static String downloadPage(String url) {
-        try {
-            InputStreamReader is = new InputStreamReader(new URL(url).openStream());
-            BufferedReader br = new BufferedReader(is);
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-
-            while ((line = br.readLine()) != null) {
-                sb.append(line);
-            }
-            br.close();
-
-            return sb.toString();
-        } catch (Exception e) {
-            MCPainterMain.log("Error downloading file: " + e.getMessage());
-            return null;
-        }
-    }
 
     /**
      * Check if the version is up to date
@@ -77,7 +49,7 @@ public class VersionChecker {
      * @return Version comperation answer
      */
     public static String CheckVersion(String version) {
-        String content = downloadPage(s_versionUrl);
+        String content = HttpUtils.downloadPage(s_versionUrl);
 
         if (content == null || content.isEmpty()) {
             return "Unable to check latest plugin version.";
