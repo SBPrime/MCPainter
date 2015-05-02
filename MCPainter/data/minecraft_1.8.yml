@@ -10,3 +10,4 @@ ModId: 1\.8\..+
 ModIdAlternative: VANILLA
 Version:
 TextureRes: 16
+Assets: /assets/minecraft/

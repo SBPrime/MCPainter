@@ -30,7 +30,7 @@ import org.bukkit.entity.Player;
 
 /**
  *
- * @author prime
+ * @author SBPrime
  */
 public class Grayscale extends BaseRGBFilter {
 

@@ -33,7 +33,7 @@ import org.PrimeSoft.MCPainter.Drawing.RawImage;
 
 /**
  *
- * @author Prime
+ * @author SBPrime
  */
 public class Triangle {
 

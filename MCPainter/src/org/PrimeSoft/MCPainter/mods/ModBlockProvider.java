@@ -43,7 +43,7 @@ public class ModBlockProvider implements IBlockProvider {
     private final HashMap<String, IDrawableElement> m_nameBlocks;
     private final int m_cnt;
 
-    public ModBlockProvider(TextureManager texture,
+    public ModBlockProvider(TextureManager texture, 
             ConfigurationSection blocksSection) {
         HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks = new HashMap<String, HashMap<Short, IDrawableElement>>();
         HashMap<Integer, HashMap<Short, IDrawableElement>> definedBlocksId = new HashMap<Integer, HashMap<Short, IDrawableElement>>();

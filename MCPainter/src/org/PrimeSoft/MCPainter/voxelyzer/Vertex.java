@@ -25,7 +25,7 @@ package org.PrimeSoft.MCPainter.voxelyzer;
 
 /**
  *
- * @author Prime
+ * @author SBPrime
  */
 public class Vertex {
 

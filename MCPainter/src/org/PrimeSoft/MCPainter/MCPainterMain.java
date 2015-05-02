@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipFile;
 import org.PrimeSoft.MCPainter.Commands.*;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
@@ -400,16 +401,32 @@ public class MCPainterMain extends JavaPlugin {
         m_blocksProvider.clear();
         for (ModConfig modConfig : mods) {
             ConfigurationSection blocks = modConfig.getBlocks();
-            if (blocks == null) {
-                continue;
+            String assets = modConfig.getAssets();
+
+            if (assets != null && !assets.isEmpty()) {
+                String name = modConfig.getName() + " assets";
+                try {
+                    IBlockProvider bProvider = new AssetsBlockProvider(m_textureManager, assets, new ZipFile(modConfig.getModFile()));
+
+                    boolean result = m_blocksProvider.register(bProvider);
+                    if (result) {
+                        log("* " + name + "...registered " + bProvider.getBlocksCount() + " blocks.");
+                    } else {
+                        log("* " + name + "...not registered");
+                    }
+                } catch (IOException ex) {
+                    log("* " + name + "...file access error " + ex.getMessage());
+                }
             }
 
-            IBlockProvider bProvider = new ModBlockProvider(m_textureManager, blocks);
-            boolean result = m_blocksProvider.register(bProvider);
-            if (result) {
-                log("* " + modConfig.getName() + "...registered " + bProvider.getBlocksCount() + " blocks.");
-            } else {
-                log("* " + modConfig.getName() + "...not registered");
+            if (blocks != null) {
+                IBlockProvider bProvider = new ModBlockProvider(m_textureManager, blocks);
+                boolean result = m_blocksProvider.register(bProvider);
+                if (result) {
+                    log("* " + modConfig.getName() + " blocks list...registered " + bProvider.getBlocksCount() + " blocks.");
+                } else {
+                    log("* " + modConfig.getName() + " blocks list...not registered");
+                }
             }
         }
 

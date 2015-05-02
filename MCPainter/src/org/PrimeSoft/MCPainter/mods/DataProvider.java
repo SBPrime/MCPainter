@@ -39,7 +39,7 @@ public class DataProvider {
      * Load all available mod configurations
      *
      * @param pluginMain
-     * @param dataDir
+     * @param dataFiles
      * @return
      */
     public static ModConfig[] loadMods(MCPainterMain pluginMain, DataFile[] dataFiles) {
@@ -77,20 +77,14 @@ public class DataProvider {
 
         boolean statues = result.getMobs() != null;
         boolean blocks = result.getBlocks() != null;
-        boolean valid = statues || blocks;
+        boolean assets = result.getAssets() != null;
+        boolean valid = statues || blocks || assets;
         if (!result.isValid() && !valid) {
             MCPainterMain.log("* " + file.getName() + "...bad file format.");
             return null;
         }
 
-        String text = "";
-        if (statues && blocks) {
-            text = "blocks and statues";
-        } else if (statues) {
-            text = "statues";
-        } else if (blocks) {
-            text = "blocks";
-        }
+        String text = buildAssetsText(statues, blocks, assets);
         if (result.isValid()) {
             Mod mod = modsProvider.get(result.getModIdRegex(), result.getVersionRegex());
             if (mod == null) {
@@ -111,5 +105,45 @@ public class DataProvider {
         }
 
         return result;
+    }
+
+    /**
+     * Build proper assets text message
+     *
+     * @param statues
+     * @param blocks
+     * @param assets
+     * @return
+     */
+    private static String buildAssetsText(boolean statues, boolean blocks, boolean assets) {
+        List<String> strings = new ArrayList<String>();
+        if (statues) {
+            strings.add("Statues");
+        }
+        if (blocks) {
+            strings.add("Blocks");
+        }
+        if (assets) {
+            strings.add("Vanilla blocks");
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int cnt = strings.size() - 1;
+        int i = 0;
+        for (String s : strings) {
+            if (i == 0) {
+                sb.append(s);
+            } else if (i < cnt) {
+                sb.append(", ");
+                sb.append(s);
+            } else {
+                sb.append(" and ");
+                sb.append(s);
+            }
+            i++;
+        }
+        
+        
+        return sb.toString();
     }
 }
