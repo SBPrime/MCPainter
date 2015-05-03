@@ -176,6 +176,44 @@ public class JSONExtensions {
     }
 
     /**
+     * Try to get a long value from JSON object
+     *
+     * @param o
+     * @param property
+     * @return
+     */
+    public static long[] tryGetLongArray(JSONObject o, String property) {
+        JSONArray array = tryGetArray(o, property);
+
+        if (array == null) {
+            return null;
+        }
+
+        long[] result = new long[array.size()];
+        for (int i = 0; i < result.length; i++) {
+            Object value = array.get(i);
+            long dValue;
+
+            if (value instanceof Integer) {
+                dValue = (Integer) value;
+            } else if (value instanceof Long) {
+                dValue = (Long) value;
+            } else if (value instanceof Short) {
+                dValue = (Short) value;
+            } else if (value instanceof Byte) {
+                dValue = (Byte) value;
+            } else {
+                return null;
+            }
+
+            result[i] = dValue;
+        }
+
+        return result;
+    }
+    
+    
+    /**
      * Try to get a int value from JSON object
      *
      * @param o
@@ -183,32 +221,30 @@ public class JSONExtensions {
      * @return
      */
     public static int[] tryGetIntArray(JSONObject o, String property) {
-        if (o == null || property == null) {
+        JSONArray array = tryGetArray(o, property);
+
+        if (array == null) {
             return null;
         }
 
-        if (!o.containsKey(property)) {
-            return null;
-        }
+        int[] result = new int[array.size()];
+        for (int i = 0; i < result.length; i++) {
+            Object value = array.get(i);
+            int dValue;
 
-        Object value = o.get(property);
-        if (value == null) {
-            return null;
-        }
+            if (value instanceof Long) {
+                dValue = ((Long) value).intValue();
+            } else if (value instanceof Integer) {
+                dValue = (Integer) value;
+            } else if (value instanceof Short) {
+                dValue = (Short) value;
+            } else if (value instanceof Byte) {
+                dValue = (Byte) value;
+            } else {
+                return null;
+            }
 
-        if (value instanceof int[]) {
-            return (int[]) value;
-        }
-
-        if (!(value instanceof Integer[])) {
-            return null;
-        }
-
-        Integer[] tmp = (Integer[]) value;
-        int[] result = new int[tmp.length];
-
-        for (int i = 0; i < tmp.length; i++) {
-            result[i] = (int) tmp[i];
+            result[i] = dValue;
         }
 
         return result;
@@ -222,60 +258,37 @@ public class JSONExtensions {
      * @return
      */
     public static double[] tryGetDoubleArray(JSONObject o, String property) {
-        if (o == null || property == null) {
+        JSONArray array = tryGetArray(o, property);
+
+        if (array == null) {
             return null;
         }
 
-        if (!o.containsKey(property)) {
-            return null;
-        }
+        double[] result = new double[array.size()];
+        for (int i = 0; i < result.length; i++) {
+            Object value = array.get(i);
+            double dValue;
 
-        Object value = o.get(property);
-        if (value == null) {
-            return null;
-        }
-
-        if (value instanceof double[]) {
-            return (double[]) value;
-        }
-
-        if ((value instanceof Double[])) {
-
-            Double[] tmp = (Double[]) value;
-            double[] result = new double[tmp.length];
-
-            for (int i = 0; i < tmp.length; i++) {
-                result[i] = (double) tmp[i];
+            if (value instanceof Double) {
+                dValue = (Double) value;
+            } else if (value instanceof Float) {
+                dValue = (Float) value;
+            } else if (value instanceof Long) {
+                dValue = (Long) value;
+            } else if (value instanceof Integer) {
+                dValue = (Integer) value;
+            } else if (value instanceof Short) {
+                dValue = (Short) value;
+            } else if (value instanceof Byte) {
+                dValue = (Byte) value;
+            } else {
+                return null;
             }
 
-            return result;
+            result[i] = dValue;
         }
 
-        if ((value instanceof float[])) {
-
-            float[] tmp = (float[]) value;
-            double[] result = new double[tmp.length];
-
-            for (int i = 0; i < tmp.length; i++) {
-                result[i] = (double) tmp[i];
-            }
-
-            return result;
-        }
-
-        if ((value instanceof Float[])) {
-
-            Float[] tmp = (Float[]) value;
-            double[] result = new double[tmp.length];
-
-            for (int i = 0; i < tmp.length; i++) {
-                result[i] = (double) tmp[i];
-            }
-
-            return result;
-        }
-
-        return null;
+        return result;
     }
 
     /**
@@ -286,11 +299,7 @@ public class JSONExtensions {
      * @param msg
      */
     public static void printUnused(JSONObject data, String[] usedProps, String msg) {
-        final String[] unused = new String[]{
-            "__comment", "cullface", "ambientocclusion", "shade", "tintindex"
-        };
         HashSet<String> props = new HashSet<String>();
-        props.addAll(Arrays.asList(unused));
         for (String s : usedProps) {
             if (!props.contains(s)) {
                 props.add(s);

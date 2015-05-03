@@ -30,7 +30,9 @@ import org.PrimeSoft.MCPainter.utils.VersionChecker;
 import org.PrimeSoft.MCPainter.palettes.PaletteManager;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,6 +52,7 @@ import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
+import org.PrimeSoft.MCPainter.mods.assets.AssetsLoader;
 import org.PrimeSoft.MCPainter.palettes.IPalette;
 import org.PrimeSoft.MCPainter.palettes.Palette;
 import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
@@ -399,41 +402,45 @@ public class MCPainterMain extends JavaPlugin {
     private void initializeBlocks(ModConfig[] mods) {
         log("Registering blocks providers...");
         m_blocksProvider.clear();
+
         for (ModConfig modConfig : mods) {
             ConfigurationSection blocks = modConfig.getBlocks();
             String assets = modConfig.getAssets();
 
+            log("* " + modConfig.getName() + "...");
+            
+            final List<IBlockProvider> bProviders = new ArrayList<IBlockProvider>();
             if (assets != null && !assets.isEmpty()) {
-                String name = modConfig.getName() + " assets";
-                try {
-                    IBlockProvider bProvider = new AssetsBlockProvider(m_textureManager, assets, new ZipFile(modConfig.getModFile()));
-
-                    boolean result = m_blocksProvider.register(bProvider);
-                    if (result) {
-                        log("* " + name + "...registered " + bProvider.getBlocksCount() + " blocks.");
-                    } else {
-                        log("* " + name + "...not registered");
-                    }
-                } catch (IOException ex) {
-                    log("* " + name + "...file access error " + ex.getMessage());
+                final IBlockProvider bProvider = AssetsLoader.load(m_textureManager, assets, modConfig.getModFile());
+                if (bProvider != null) {
+                    bProviders.add(bProvider);
                 }
             }
 
             if (blocks != null) {
-                IBlockProvider bProvider = new ModBlockProvider(m_textureManager, blocks);
-                boolean result = m_blocksProvider.register(bProvider);
-                if (result) {
-                    log("* " + modConfig.getName() + " blocks list...registered " + bProvider.getBlocksCount() + " blocks.");
-                } else {
-                    log("* " + modConfig.getName() + " blocks list...not registered");
+                final IBlockProvider bProvider = ModBlockProvider.load(m_textureManager, blocks);
+                
+                if (bProvider != null) {
+                    bProviders.add(bProvider);
                 }
             }
+            
+            int cnt = 0;
+            for (IBlockProvider bProvider : bProviders)
+            {
+                if (m_blocksProvider.register(bProvider)) {
+                    cnt += bProvider.getBlocksCount();
+                }
+            }
+            
+            log(" ...registered " + cnt + " blocks in " + bProviders.size() + " blocks providers.");
         }
 
         /**
          * Vanilla blocks provider as the last provider to allow block override
          */
-        m_blocksProvider.register(new VanillaBlockProvider(m_textureManager));
+        m_blocksProvider.register(
+                new VanillaBlockProvider(m_textureManager));
     }
 
     /**

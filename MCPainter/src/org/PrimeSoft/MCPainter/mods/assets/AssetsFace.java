@@ -36,14 +36,14 @@ public class AssetsFace {
     private final static String PROP_ROTATION = "rotation";   
        
     private final String m_texture;
-    private final int m_u1;
-    private final int m_u2;
-    private final int m_v1;
-    private final int m_v2;
+    private final double m_u1;
+    private final double m_u2;
+    private final double m_v1;
+    private final double m_v2;
     private final double m_rotation;
 
     public AssetsFace(JSONObject data) {                
-        int[] uv = JSONExtensions.tryGetIntArray(data, PROP_UV);
+        double[] uv = JSONExtensions.tryGetDoubleArray(data, PROP_UV);
         m_texture = JSONExtensions.tryGetString(data, PROP_TEXTURE, null);
         m_rotation = JSONExtensions.tryGetDouble(data, PROP_ROTATION, 0.0);
         
@@ -52,8 +52,8 @@ public class AssetsFace {
         m_u2 = uv != null && uv.length > 2 ? uv[2] : 0;
         m_v2 = uv != null && uv.length > 3 ? uv[3] : 0;
         
-        JSONExtensions.printUnused(data, 
-                new String[]{PROP_ROTATION, PROP_TEXTURE, PROP_UV}, 
-                "Unknown assets face property: ");
+//        JSONExtensions.printUnused(data, 
+//                new String[]{PROP_ROTATION, PROP_TEXTURE, PROP_UV}, 
+//                "Unknown assets face property: ");
     }
 }

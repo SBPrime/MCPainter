@@ -36,7 +36,6 @@ import org.json.simple.JSONObject;
  * @author SBPrime
  */
 public class AssetsModel {
-
     private final static String PROP_TEXTURES = "textures";
     private final static String PROP_ELEMENTS = "elements";
     private final static String PROP_PARENT = "parent";
@@ -68,6 +67,24 @@ public class AssetsModel {
      */
     public String getName() {
         return m_name;
+    }
+    
+    
+    /**
+     * The parrent asset
+     * @return 
+     */
+    public AssetsModel getParrent() {
+        return m_parrent;
+    }
+    
+    
+    /**
+     * Set the parrent
+     * @param parrent 
+     */
+    public void setParrent(AssetsModel parrent) {
+        m_parrent = parrent;
     }
 
     protected AssetsModel(String name) {
@@ -109,8 +126,8 @@ public class AssetsModel {
             }
         }
 
-        JSONExtensions.printUnused(data,
-                new String[]{PROP_ELEMENTS, PROP_PARENT, PROP_TEXTURES},
-                "Unknown assets model property: ");
+//        JSONExtensions.printUnused(data,
+//                new String[]{PROP_ELEMENTS, PROP_PARENT, PROP_TEXTURES},
+//                "Unknown assets model property: ");
     }
 }

@@ -90,8 +90,8 @@ public class AssetsCube {
             JSONObject fUp = JSONExtensions.tryGet(faces, PROP_F_UP);
             JSONObject fWest = JSONExtensions.tryGet(faces, PROP_F_WEST);
 
-            JSONExtensions.printUnused(faces, new String[]{PROP_F_DOWN, PROP_F_EAST,
-                PROP_F_NORTH, PROP_F_SOUTH, PROP_F_UP, PROP_F_WEST}, "Unknown assets cube faces: ");
+//            JSONExtensions.printUnused(faces, new String[]{PROP_F_DOWN, PROP_F_EAST,
+//                PROP_F_NORTH, PROP_F_SOUTH, PROP_F_UP, PROP_F_WEST}, "Unknown assets cube faces: ");
 
             m_faceDown = fDown != null ? new AssetsFace(fDown) : null;
             m_faceEast = fEast != null ? new AssetsFace(fEast) : null;
@@ -103,8 +103,8 @@ public class AssetsCube {
         
         m_rotation = rotation != null ? new AssetsRotation(rotation) : null;
 
-        JSONExtensions.printUnused(data, 
-                new String[]{PROP_FROM, PROP_TO, PROP_FACES, PROP_ROTATION}, 
-                "Unknown assets cube property: ");
+//        JSONExtensions.printUnused(data, 
+//                new String[]{PROP_FROM, PROP_TO, PROP_FACES, PROP_ROTATION}, 
+//                "Unknown assets cube property: ");
     }
 }

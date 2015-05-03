@@ -55,8 +55,8 @@ public class AssetsRotation {
             m_origin = null;
         }
 
-        JSONExtensions.printUnused(data, new String[]{
-            PROP_ANGLE, PROP_AXIS, PROP_ORIGIN, PROP_RESCALE
-        }, "Unknown assets rotation properties: ");
+//        JSONExtensions.printUnused(data, new String[]{
+//            PROP_ANGLE, PROP_AXIS, PROP_ORIGIN, PROP_RESCALE
+//        }, "Unknown assets rotation properties: ");
     }
 }

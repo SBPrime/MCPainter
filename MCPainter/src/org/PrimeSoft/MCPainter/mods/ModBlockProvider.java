@@ -29,6 +29,7 @@ import java.util.List;
 import java.util.Set;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.*;
 import org.PrimeSoft.MCPainter.MCPainterMain;
+import static org.PrimeSoft.MCPainter.MCPainterMain.log;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -43,7 +44,13 @@ public class ModBlockProvider implements IBlockProvider {
     private final HashMap<String, IDrawableElement> m_nameBlocks;
     private final int m_cnt;
 
-    public ModBlockProvider(TextureManager texture, 
+    public static ModBlockProvider load(TextureManager texture, 
+            ConfigurationSection blocksSection) {
+        log(" ...loading blocks definitions");
+        return new ModBlockProvider(texture, blocksSection);
+    }
+    
+    private ModBlockProvider(TextureManager texture, 
             ConfigurationSection blocksSection) {
         HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks = new HashMap<String, HashMap<Short, IDrawableElement>>();
         HashMap<Integer, HashMap<Short, IDrawableElement>> definedBlocksId = new HashMap<Integer, HashMap<Short, IDrawableElement>>();

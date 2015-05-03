@@ -27,8 +27,21 @@ package org.PrimeSoft.MCPainter.mods.assets;
  *
  * @author SBPrime
  */
-class LinkAssetModel extends AssetsModel {   
+class LinkAssetModel extends AssetsModel {
+    private final String m_type;
+    
+    public String getType() {
+        return m_type;
+    }
+    
     public LinkAssetModel(String name) {
-        super(name);
-    }    
+        this(name, name.split("/|\\\\")[0]);
+    }
+    
+    
+    private LinkAssetModel(String oryginalName, String type) {
+        super(oryginalName.substring(type.length() + 1));
+        
+        m_type = type;
+    }
 }
