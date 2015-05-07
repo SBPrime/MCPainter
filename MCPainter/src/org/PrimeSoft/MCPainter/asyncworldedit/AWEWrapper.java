@@ -27,6 +27,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.primesoft.asyncworldedit.AsyncWorldEditMain;
+import org.primesoft.asyncworldedit.api.IAsyncWorldEdit;
+import org.primesoft.asyncworldedit.api.blockPlacer.IBlockPlacer;
+import org.primesoft.asyncworldedit.api.playerManager.IPlayerManager;
 import org.primesoft.asyncworldedit.blockPlacer.BlockPlacer;
 import org.primesoft.asyncworldedit.playerManager.PlayerEntry;
 import org.primesoft.asyncworldedit.playerManager.PlayerManager;
@@ -70,15 +73,15 @@ public class AWEWrapper {
             return null;
         }
 
-        return new AWEWrapper(aweMain);
+        return new AWEWrapper(aweMain.getAPI());
     }
 
-    private final BlockPlacer m_blockPlacer;
-    private final PlayerManager m_playerManager;
+    private final IBlockPlacer m_blockPlacer;
+    private final IPlayerManager m_playerManager;
 
-    private AWEWrapper(AsyncWorldEditMain aweMain) {
-        m_blockPlacer = aweMain.getBlockPlacer();
-        m_playerManager = aweMain.getPlayerManager();
+    private AWEWrapper(IAsyncWorldEdit awe) {
+        m_blockPlacer = awe.getBlockPlacer();
+        m_playerManager = awe.getPlayerManager();
     }
 
     public void runTask(Player player, String jobName, DrawingTask task) {
