@@ -30,7 +30,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -87,12 +86,58 @@ public class AssetsLoader {
 
         HashMap<String, AssetsModel> knownModels = loadModels(zipFile, modelsBlocks);
         resolveParrents(knownModels);
-
         log(String.format(" ...Loaded %s models", knownModels.size()));
+        
+        HashMap<String, AssetVariant> knownVariants = loadVariants(zipFile, blockStats);
+        resolveModel(knownVariants, knownModels);
+        log(String.format(" ...Loaded %s model variants", knownVariants.size()));
 
+        for (AssetsModel model : knownModels.values().toArray(new AssetsModel[0])) {
+            if (model.getUsageCount() == 0) {
+                log(String.format("    Model %s not used, removing.", model.getName()));
+                knownModels.remove(model.getName());
+            }
+        }
+        
         return null;
     }
 
+    
+    /**
+     * Load the model variants
+     * 
+     * @param modFile
+     * @param blockStats
+     * @return 
+     */
+    private static HashMap<String, AssetVariant> loadVariants(ZipFile modFile, List<ZipEntry> blockStats) {
+        final HashMap<String, AssetVariant> result = new HashMap<String, AssetVariant>();
+        
+        for (ZipEntry modelEntry : blockStats) {
+            final String name = extractName(modelEntry);
+
+            //log(String.format(" ...loading %s model definition", name));
+            try {
+                InputStream is = modFile.getInputStream(modelEntry);
+                InputStreamReader reader = new InputStreamReader(is);
+                Object o = JSONValue.parseWithException(reader);
+
+                if (o instanceof JSONObject) {
+                    result.put(name, new AssetVariant(name, (JSONObject) o));
+                } else {
+                    log(String.format("    Model %s: expected JSONOBject found %s", name, o.getClass().getName()));
+                }
+            } catch (IOException ex) {
+                log(String.format("    Model %s: unable to read the file, %s", name, ex.getMessage()));
+            } catch (ParseException ex) {
+                log(String.format("    Model %s: invalid format, %s", name, ex.getMessage()));
+            }
+        }
+
+        return result;
+    }
+    
+    
     /**
      * Load the models
      *
@@ -205,6 +250,23 @@ public class AssetsLoader {
         }
     }
 
+    private static void resolveModel(HashMap<String, AssetVariant> variants, HashMap<String, AssetsModel> models) {
+        final List<String> toRemove = new ArrayList<String>();
+        
+        for (AssetVariant variant : variants.values())
+        {
+            variant.resolveModel(models);
+            if (variant.isEmpty()) {
+                log(String.format("     Model %s has no valid entries, removing.", variant.getName()));
+                toRemove.add(variant.getName());
+            }
+        }
+        
+        for (String key : toRemove) {
+            variants.remove(key);
+        }
+    }
+    
     private static void resolveParrents(HashMap<String, AssetsModel> models) {
         List<AssetsModel> toRemove = new ArrayList<AssetsModel>();
 
@@ -221,7 +283,10 @@ public class AssetsLoader {
                     log(String.format(" ...Unsupported parrent BUILTIN type %s for %s.", name, model.getName()));
                 } else if (type.equals(TYPE_BLOCK)) {
                     if (models.containsKey(name)) {
-                        model.setParrent(models.get(name));
+                        AssetsModel pModel = models.get(name);
+                        pModel.incUsageCount();
+                        
+                        model.setParrent(pModel);
                     } else {
                         toRemove.add(model);
                         log(String.format(" ...Undefined parent BLOCK type %s for %s.", name, model.getName()));
@@ -256,5 +321,5 @@ public class AssetsLoader {
             }
             iteration++;
         }
-    }
+    }   
 }

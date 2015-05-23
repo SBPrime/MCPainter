@@ -36,6 +36,7 @@ import org.json.simple.JSONObject;
  * @author SBPrime
  */
 public class AssetsModel {
+
     private final static String PROP_TEXTURES = "textures";
     private final static String PROP_ELEMENTS = "elements";
     private final static String PROP_PARENT = "parent";
@@ -54,7 +55,7 @@ public class AssetsModel {
      * List of elements
      */
     private final List<AssetsCube> m_elements;
-    
+
     /**
      * The model name
      */
@@ -62,29 +63,52 @@ public class AssetsModel {
     
     
     /**
+     * Model usage count
+     */
+    private int m_usageCount;
+
+    
+    /**
      * The model name
-     * @return 
+     *
+     * @return
      */
     public String getName() {
         return m_name;
     }
-    
-    
+
     /**
      * The parrent asset
-     * @return 
+     *
+     * @return
      */
     public AssetsModel getParrent() {
         return m_parrent;
     }
-    
-    
+
     /**
      * Set the parrent
-     * @param parrent 
+     *
+     * @param parrent
      */
     public void setParrent(AssetsModel parrent) {
         m_parrent = parrent;
+    }
+
+    /**
+     * Get model usage count
+     * @return 
+     */
+    public int getUsageCount() {
+        return m_usageCount;
+    }
+
+    
+    /**
+     * Increase model usage count
+     */
+    public void incUsageCount() {
+        m_usageCount++;
     }
 
     protected AssetsModel(String name) {
@@ -100,7 +124,7 @@ public class AssetsModel {
         JSONArray elements = JSONExtensions.tryGetArray(data, PROP_ELEMENTS);
 
         m_name = name;
-        
+
         if (parrent == null || parrent.isEmpty()) {
             m_parrent = null;
         } else {
