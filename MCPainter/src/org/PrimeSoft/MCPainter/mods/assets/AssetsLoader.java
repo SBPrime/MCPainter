@@ -88,15 +88,16 @@ public class AssetsLoader {
         resolveParrents(knownModels);
         log(String.format(" ...Loaded %s models", knownModels.size()));
         
-        HashMap<String, AssetVariant> knownVariants = loadVariants(zipFile, blockStats);
+        List<AssetVariant> knownVariants = loadVariants(zipFile, blockStats);
         resolveModel(knownVariants, knownModels);
         log(String.format(" ...Loaded %s model variants", knownVariants.size()));
 
-        for (AssetsModel model : knownModels.values().toArray(new AssetsModel[0])) {
-            if (model.getUsageCount() == 0) {
-                log(String.format("    Model %s not used, removing.", model.getName()));
-                knownModels.remove(model.getName());
-            }
+        //We no longer need the model catche
+        knownModels.clear();
+        
+        
+        for (AssetVariant variant : knownVariants) {            
+            variant.render(textureManager);
         }
         
         return null;
@@ -110,8 +111,8 @@ public class AssetsLoader {
      * @param blockStats
      * @return 
      */
-    private static HashMap<String, AssetVariant> loadVariants(ZipFile modFile, List<ZipEntry> blockStats) {
-        final HashMap<String, AssetVariant> result = new HashMap<String, AssetVariant>();
+    private static List<AssetVariant> loadVariants(ZipFile modFile, List<ZipEntry> blockStats) {
+        final List<AssetVariant> result = new ArrayList<AssetVariant>();
         
         for (ZipEntry modelEntry : blockStats) {
             final String name = extractName(modelEntry);
@@ -123,7 +124,7 @@ public class AssetsLoader {
                 Object o = JSONValue.parseWithException(reader);
 
                 if (o instanceof JSONObject) {
-                    result.put(name, new AssetVariant(name, (JSONObject) o));
+                    result.add(new AssetVariant(name, (JSONObject) o));
                 } else {
                     log(String.format("    Model %s: expected JSONOBject found %s", name, o.getClass().getName()));
                 }
@@ -250,26 +251,36 @@ public class AssetsLoader {
         }
     }
 
-    private static void resolveModel(HashMap<String, AssetVariant> variants, HashMap<String, AssetsModel> models) {
-        final List<String> toRemove = new ArrayList<String>();
+    /**
+     * Link models to variants and remove empty variants
+     * @param variants
+     * @param models 
+     */
+    private static void resolveModel(List<AssetVariant> variants, HashMap<String, AssetsModel> models) {
+        final List<AssetVariant> toRemove = new ArrayList<AssetVariant>();
         
-        for (AssetVariant variant : variants.values())
+        for (AssetVariant variant : variants)
         {
             variant.resolveModel(models);
             if (variant.isEmpty()) {
                 log(String.format("     Model %s has no valid entries, removing.", variant.getName()));
-                toRemove.add(variant.getName());
+                toRemove.add(variant);
             }
         }
         
-        for (String key : toRemove) {
-            variants.remove(key);
+        for (AssetVariant variant : toRemove) {
+            variants.remove(variant);
         }
     }
     
+    
+    /**
+     * Resolve the models parents
+     * @param models 
+     */
     private static void resolveParrents(HashMap<String, AssetsModel> models) {
         List<AssetsModel> toRemove = new ArrayList<AssetsModel>();
-
+        
         for (AssetsModel model : models.values()) {
             AssetsModel currentParrent = model.getParrent();
 
@@ -284,9 +295,16 @@ public class AssetsLoader {
                 } else if (type.equals(TYPE_BLOCK)) {
                     if (models.containsKey(name)) {
                         AssetsModel pModel = models.get(name);
-                        pModel.incUsageCount();
-                        
-                        model.setParrent(pModel);
+                        AssetsModel tmp = pModel;
+                        while (tmp != null && tmp != model) {
+                            tmp = tmp.getParrent();
+                        }
+                        if (tmp == model) {
+                            toRemove.add(model);
+                            log(String.format(" ...Detected parrent reference loop for BLOCK %s.", model.getName()));
+                        } else {                        
+                            model.setParrent(pModel);
+                        }
                     } else {
                         toRemove.add(model);
                         log(String.format(" ...Undefined parent BLOCK type %s for %s.", name, model.getName()));
@@ -299,8 +317,10 @@ public class AssetsLoader {
             }
         }
         
-        int iteration = 1;
+        int iteration = 1;        
         while (!toRemove.isEmpty())  {
+            log(String.format("     Iteration %d: %d models queued for removal.",
+                iteration, toRemove.size()));
             AssetsModel[] tmp = toRemove.toArray(new AssetsModel[0]);
             toRemove.clear();
             
@@ -315,8 +335,8 @@ public class AssetsLoader {
                         toRemove.add(model);
                     }
                 }
-                
-                log(String.format("     (%d) Remove model %s and queued %d for removal.",
+                                
+                log(String.format("      (%d) Removed model %s and queued %d for removal.",
                         iteration, modelRemoved.getName(), cnt));
             }
             iteration++;

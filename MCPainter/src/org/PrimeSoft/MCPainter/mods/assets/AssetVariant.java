@@ -27,7 +27,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import static org.PrimeSoft.MCPainter.MCPainterMain.log;
+import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.JSONExtensions;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -149,6 +151,22 @@ public class AssetVariant {
         
         for (VariantKey key : toRemove) {
             m_variants.remove(key);
+        }
+    }
+
+    
+    /**
+     * Render the variant
+     * @param textureManager 
+     */
+    public void render(TextureManager textureManager) {        
+        for (Map.Entry<VariantKey, List<VariantEntry>> entrySet : m_variants.entrySet()) {
+            VariantKey key = entrySet.getKey();
+            List<VariantEntry> values = entrySet.getValue();
+            
+            for (VariantEntry variant : values) {
+                variant.render(textureManager);
+            }
         }
     }
 }

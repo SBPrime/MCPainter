@@ -23,6 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.mods.assets;
 
+import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.JSONExtensions;
 import org.json.simple.JSONObject;
 
@@ -110,5 +111,14 @@ public class VariantEntry {
 //        JSONExtensions.printUnused(data,
 //                new String[]{PROP_MODEL, PROP_RX, PROP_RY, PROP_UVLOCK},
 //                "Unknown assets variant entry property: ");
+    }
+
+    
+    /**
+     * Render the variant
+     * @param textureManager 
+     */
+    public void render(TextureManager textureManager) {
+        m_model.render(m_rotX, m_rotY, m_uvLock, textureManager);
     }
 }
