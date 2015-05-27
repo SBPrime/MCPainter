@@ -40,7 +40,7 @@ class LinkAssetModel extends AssetsModel {
     
     
     private LinkAssetModel(String oryginalName, String type) {
-        super(oryginalName.substring(type.length() + 1));
+        super(oryginalName.substring(type.length() + 1), "");
         
         m_type = type;
     }

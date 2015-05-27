@@ -30,6 +30,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import static org.PrimeSoft.MCPainter.MCPainterMain.log;
+import org.PrimeSoft.MCPainter.Texture.TextureDescription;
+import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.JSONExtensions;
 import org.json.simple.JSONArray;
@@ -69,6 +71,11 @@ public class AssetsModel {
      * Model usage count
      */
     private int m_usageCount;
+
+    /**
+     * The mod ID
+     */
+    private final String m_mod;
 
     /**
      * The model name
@@ -113,19 +120,21 @@ public class AssetsModel {
         m_usageCount++;
     }
 
-    protected AssetsModel(String name) {
+    protected AssetsModel(String name, String mod) {
         m_elements = null;
         m_parrent = null;
         m_textures = null;
         m_name = name;
+        m_mod = mod;
     }
 
-    public AssetsModel(String name, JSONObject data) {
+    public AssetsModel(String name, String mod, JSONObject data) {
         String parrent = JSONExtensions.tryGetString(data, PROP_PARENT, null);
         JSONObject textures = JSONExtensions.tryGet(data, PROP_TEXTURES);
         JSONArray elements = JSONExtensions.tryGetArray(data, PROP_ELEMENTS);
 
         m_name = name;
+        m_mod = mod;
 
         if (parrent == null || parrent.isEmpty()) {
             m_parrent = null;
@@ -167,109 +176,13 @@ public class AssetsModel {
      * @param rotY
      * @param uvLock
      * @param textureManager
+     * @param assetsRoot
      */
     public void render(int rotX, int rotY, boolean uvLock,
-            TextureManager textureManager) {
+            TextureManager textureManager, String assetsRoot) {        
         HashMap<String, String> textures = getTextures();
-
-        validateTextureEntries(textures, m_name);
-        HashMap<String, String> resolved = resolveTextureLinks(textures);
-    }
-
-    /**
-     * Try to resolve the texture links
-     * @param textures
-     * @return 
-     */
-    private static HashMap<String, String> resolveTextureLinks(HashMap<String, String> textures) {
-        final HashMap<String, String> resolved = new HashMap<String, String>();
-        final HashMap<String, String> links = new HashMap<String, String>();
-
-        for (Map.Entry<String, String> entrySet : textures.entrySet()) {
-            String key = entrySet.getKey();
-            String value = entrySet.getValue();
-
-            if (value.startsWith("#")) {
-                links.put(key, value);
-            } else {
-                resolved.put(key, value);
-            }
-        }
-
-        while (!links.isEmpty()) {
-            HashSet<String> toRemove = new HashSet<String>();
-            for (Map.Entry<String, String> entrySet : links.entrySet()) {
-                String key = entrySet.getKey();
-                String value = entrySet.getValue().substring(1);
-                
-                if (resolved.containsKey(value)) { 
-                    resolved.put(key, resolved.get(value));
-                    toRemove.add(key);
-                }
-            }
-            
-            for (String s : toRemove) {
-                links.remove(s);
-            }
-        }
-        
-        return resolved;
-    }
-
-    /**
-     * Validate all texture entries
-     *
-     * @param textures
-     * @param name
-     */
-    private static void validateTextureEntries(HashMap<String, String> textures, String name) {
-        List<String> toRemove = new ArrayList<String>();
-
-        for (Map.Entry<String, String> entrySet : textures.entrySet()) {
-            String key = entrySet.getKey();
-            String value = entrySet.getValue();
-            HashSet<String> scanned = new HashSet<String>();
-
-            while (value.startsWith("#")) {
-                if (scanned.contains(key)) {
-                    if (!toRemove.contains(key)) {
-                        log(String.format("    %s: Found cyclic texture link %s = %s.", name, key, value));
-                        toRemove.add(key);
-                    }
-                    break;
-                } else {
-                    scanned.add(key);
-                }
-                if (textures.containsKey(value.substring(1))) {
-                    key = value.substring(1);
-                    value = textures.get(key);
-                } else {
-                    key = "";
-                    value = "";
-                }
-            }
-        }
-
-        for (String entry : toRemove) {
-            textures.remove(entry);
-        }
-
-        do {
-            toRemove.clear();
-            for (Map.Entry<String, String> entrySet : textures.entrySet()) {
-                String key = entrySet.getKey();
-                String value = entrySet.getValue();
-
-                if (value.startsWith("#") && !textures.containsKey(value.substring(1))) {
-                    log(String.format("    %s: Unresolved texture link %s = %s.", name, key, value));
-                    toRemove.add(key);
-                }
-            }
-
-            for (String entry : toRemove) {
-                textures.remove(entry);
-            }
-        } while (!toRemove.isEmpty());
+        HashMap<String, TextureEntry> texturesImages = TextureResolver.resolveTextures(m_name, m_mod, 
+                assetsRoot, textureManager, textures);
     }
 
     /**

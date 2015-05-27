@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 prime.
+ * Copyright 2015 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -102,6 +102,7 @@ public class VariantEntry {
 
     public VariantEntry(JSONObject data) {
         String model = JSONExtensions.tryGetString(data, PROP_MODEL, null);
+        
         m_rotX = JSONExtensions.tryGetInt(data, PROP_RX, 0);
         m_rotY = JSONExtensions.tryGetInt(data, PROP_RY, 0);
         m_uvLock = JSONExtensions.tryGetBool(data, PROP_UVLOCK, false);
@@ -118,7 +119,7 @@ public class VariantEntry {
      * Render the variant
      * @param textureManager 
      */
-    public void render(TextureManager textureManager) {
-        m_model.render(m_rotX, m_rotY, m_uvLock, textureManager);
+    public void render(TextureManager textureManager, String assetsRoot) {
+        m_model.render(m_rotX, m_rotY, m_uvLock, textureManager, assetsRoot);
     }
 }

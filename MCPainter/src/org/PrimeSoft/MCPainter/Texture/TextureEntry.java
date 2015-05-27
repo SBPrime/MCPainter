@@ -31,8 +31,8 @@ import org.PrimeSoft.MCPainter.Drawing.RawImage;
  */
 public class TextureEntry {
 
-    private String m_name;
-    private RawImage[] m_images;
+    private final String m_name;
+    private final RawImage[] m_images;
 
     public TextureEntry(RawImage[] images, String name) {
         m_images = images;

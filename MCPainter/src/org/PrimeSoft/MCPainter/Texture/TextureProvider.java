@@ -25,7 +25,6 @@ package org.PrimeSoft.MCPainter.Texture;
 
 import java.io.File;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
-import org.PrimeSoft.MCPainter.MCPainterMain;
 
 /**
  *
@@ -34,14 +33,15 @@ import org.PrimeSoft.MCPainter.MCPainterMain;
 public class TextureProvider {
 
     private TexturePack m_specified;
-    private String m_name;
-    private String m_nameAlternative;
+    private final String m_name;
+    private final String m_nameAlternative;
     private TextureManager m_textureManager;
 
     /**
      * Constructor for sub classes
      *
      * @param name Texture pack name
+     * @param alternativeName
      */
     public TextureProvider(String name, String alternativeName) {
         m_name = name;
@@ -51,6 +51,8 @@ public class TextureProvider {
     /**
      * Initialize texture provider
      *
+     * @param textureFile
+     * @param textureRes
      * @return true if all ok
      */
     public boolean initialize(String textureFile, int textureRes) {
@@ -71,6 +73,8 @@ public class TextureProvider {
     /**
      * Initialize texture provider
      *
+     * @param f
+     * @param textureRes
      * @return true if all ok
      */
     public boolean initialize(File f, int textureRes) {
@@ -91,6 +95,9 @@ public class TextureProvider {
      * Get textures from texture pack. First try specific then default
      *
      * @param files Texture files to load
+     * @param name The name of the texture entry
+     * @param columns
+     * @param rows 
      * @return Array of textures
      */
     protected TextureEntry getTexture(String[] files, String name, int[] columns, int[] rows) {

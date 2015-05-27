@@ -36,6 +36,7 @@ import java.util.zip.ZipFile;
 import static org.PrimeSoft.MCPainter.MCPainterMain.log;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.mods.AssetsBlockProvider;
+import org.PrimeSoft.MCPainter.mods.ModConfig;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;
@@ -49,16 +50,22 @@ public class AssetsLoader {
     private final static String TYPE_BLOCK = "block";
     private final static String TYPE_BUILTIN = "builtin";
 
-    public static AssetsBlockProvider load(TextureManager textureManager, String assets, File modFile) {
+    public static AssetsBlockProvider load(TextureManager textureManager, 
+            ModConfig modConfig) {
         log(" ...loading vanilla assets");
 
+        
+        String assets = modConfig.getAssets();
+        String modId = modConfig.getModId();
+        File modFile = modConfig.getModFile();
+        
         AssetsBlockProvider result = null;
         ZipFile zipFile = null;
 
         try {
             zipFile = new ZipFile(modFile);
 
-            return safeLoad(textureManager, assets, zipFile);
+            return safeLoad(textureManager, assets, modId, zipFile);
         } catch (IOException ex) {
             log("    Error: " + ex.getMessage());
         } finally {
@@ -73,7 +80,8 @@ public class AssetsLoader {
         return result;
     }
 
-    private static AssetsBlockProvider safeLoad(TextureManager textureManager, String assets, ZipFile zipFile) {
+    private static AssetsBlockProvider safeLoad(TextureManager textureManager, String assets, String mod,
+            ZipFile zipFile) {
         assets = correct(assets);
 
         List<ZipEntry> blockStats = new ArrayList<ZipEntry>();
@@ -84,7 +92,7 @@ public class AssetsLoader {
         log(String.format(" ...Found %d block states, %d block models, %d items models.",
                 blockStats.size(), modelsBlocks.size(), modelsItems.size()));
 
-        HashMap<String, AssetsModel> knownModels = loadModels(zipFile, modelsBlocks);
+        HashMap<String, AssetsModel> knownModels = loadModels(zipFile, modelsBlocks, mod);
         resolveParrents(knownModels);
         log(String.format(" ...Loaded %s models", knownModels.size()));
         
@@ -97,7 +105,7 @@ public class AssetsLoader {
         
         
         for (AssetVariant variant : knownVariants) {            
-            variant.render(textureManager);
+            variant.render(textureManager, assets);
         }
         
         return null;
@@ -145,7 +153,7 @@ public class AssetsLoader {
      * @param modelsBlocks
      * @return
      */
-    private static HashMap<String, AssetsModel> loadModels(ZipFile modFile, List<ZipEntry> models) {
+    private static HashMap<String, AssetsModel> loadModels(ZipFile modFile, List<ZipEntry> models, String mod) {
         final HashMap<String, AssetsModel> result = new HashMap<String, AssetsModel>();
 
         for (ZipEntry modelEntry : models) {
@@ -158,7 +166,7 @@ public class AssetsLoader {
                 Object o = JSONValue.parseWithException(reader);
 
                 if (o instanceof JSONObject) {
-                    result.put(name, new AssetsModel(name, (JSONObject) o));
+                    result.put(name, new AssetsModel(name, mod, (JSONObject) o));
                 } else {
                     log(String.format("    Model %s: expected JSONOBject found %s", name, o.getClass().getName()));
                 }

@@ -411,7 +411,7 @@ public class MCPainterMain extends JavaPlugin {
             
             final List<IBlockProvider> bProviders = new ArrayList<IBlockProvider>();
             if (assets != null && !assets.isEmpty()) {
-                final IBlockProvider bProvider = AssetsLoader.load(m_textureManager, assets, modConfig.getModFile());
+                final IBlockProvider bProvider = AssetsLoader.load(m_textureManager, modConfig);
                 if (bProvider != null) {
                     bProviders.add(bProvider);
                 }
