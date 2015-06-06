@@ -25,12 +25,9 @@ package org.PrimeSoft.MCPainter.mods.assets;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import static org.PrimeSoft.MCPainter.MCPainterMain.log;
-import org.PrimeSoft.MCPainter.Texture.TextureDescription;
 import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.JSONExtensions;
@@ -76,6 +73,21 @@ public class AssetsModel {
      * The mod ID
      */
     private final String m_mod;
+
+    /**
+     * Resolved texture catche (resolve it only once)
+     */
+    private HashMap<String, TextureEntry> m_resolvedTextures;
+
+    /**
+     * The MTA access mutex
+     */
+    private final Object m_mutex = new Object();
+
+    /**
+     * The compiled model
+     */
+    private CompiledModel m_compiledModel;
 
     /**
      * The model name
@@ -172,17 +184,70 @@ public class AssetsModel {
     /**
      * Render the model
      *
-     * @param rotX
-     * @param rotY
-     * @param uvLock
      * @param textureManager
      * @param assetsRoot
+     * @return
      */
-    public void render(int rotX, int rotY, boolean uvLock,
-            TextureManager textureManager, String assetsRoot) {        
-        HashMap<String, String> textures = getTextures();
-        HashMap<String, TextureEntry> texturesImages = TextureResolver.resolveTextures(m_name, m_mod, 
-                assetsRoot, textureManager, textures);
+    public CompiledModel compile(TextureManager textureManager, String assetsRoot) {
+        HashMap<String, TextureEntry> texturesImages = m_resolvedTextures;
+
+        if (texturesImages == null) {
+            HashMap<String, String> textures = getTextures();
+
+            texturesImages = TextureResolver.resolveTextures(m_name, m_mod,
+                    assetsRoot, textureManager, textures);
+
+            synchronized (m_mutex) {
+                m_resolvedTextures = texturesImages;
+            }
+        }
+
+        CompiledModel result = m_compiledModel;
+
+        if (result == null) {
+            final List<AssetsCube> elements = getElements();
+            final List<CompiledCube> cubes = new ArrayList<CompiledCube>();
+
+            for (AssetsCube aCube : elements) {
+                CompiledCube cCube = aCube.compile(texturesImages);
+                if (cCube != null) {
+                    cubes.add(cCube);
+                }
+            }
+
+            if (!cubes.isEmpty()) {
+                result = new CompiledModel(cubes.toArray(new CompiledCube[0]));
+
+                synchronized (m_mutex) {
+                    m_compiledModel = result;
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * Get all textures from this model and from all parrents
+     *
+     * @return
+     */
+    protected List<AssetsCube> getElements() {
+        List<AssetsCube> result;
+
+        if (m_parrent == null) {
+            result = new ArrayList<AssetsCube>();
+        } else {
+            result = m_parrent.getElements();
+        }
+
+        if (m_elements != null) {
+            for (AssetsCube value : m_elements) {
+                result.add(value);
+            }
+        }
+
+        return result;
     }
 
     /**

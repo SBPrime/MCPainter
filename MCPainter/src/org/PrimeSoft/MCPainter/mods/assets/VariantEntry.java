@@ -118,8 +118,16 @@ public class VariantEntry {
     /**
      * Render the variant
      * @param textureManager 
+     * @param assetsRoot 
+     * @return  
      */
-    public void render(TextureManager textureManager, String assetsRoot) {
-        m_model.render(m_rotX, m_rotY, m_uvLock, textureManager, assetsRoot);
+    public VariantBlock compile(TextureManager textureManager, String assetsRoot) {
+        final CompiledModel model = m_model.compile(textureManager, assetsRoot);
+        
+        if (model == null) {
+            return null;
+        }
+        
+        return new VariantBlock(model, m_uvLock, m_rotX, m_rotY);
     }
 }

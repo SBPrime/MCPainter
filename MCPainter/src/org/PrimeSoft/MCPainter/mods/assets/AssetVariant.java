@@ -28,9 +28,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import org.PrimeSoft.MCPainter.Drawing.Blocks.AssetBlock;
 import static org.PrimeSoft.MCPainter.MCPainterMain.log;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.JSONExtensions;
+import org.bukkit.block.BlockFace;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -148,25 +150,84 @@ public class AssetVariant {
 
             id++;
         }
-        
+
         for (VariantKey key : toRemove) {
             m_variants.remove(key);
         }
     }
 
-    
     /**
-     * Render the variant
-     * @param textureManager 
+     * Compile the variant
+     *
+     * @param textureManager
+     * @param assetsRoot
+     * @return 
      */
-    public void render(TextureManager textureManager, String assetsRoot) {
-        for (Map.Entry<VariantKey, List<VariantEntry>> entrySet : m_variants.entrySet()) {
+    public AssetBlock compile(TextureManager textureManager, String assetsRoot) {
+        final HashMap<VariantKey, HashMap<BlockFace, List<VariantBlock>>> variants = compileAndAggregate(m_variants, textureManager, assetsRoot);
+        final HashMap<VariantKey, FacingBlock> facingBlocks = new HashMap<VariantKey, FacingBlock>();
+
+        for (Map.Entry<VariantKey, HashMap<BlockFace, List<VariantBlock>>> entrySet : variants.entrySet()) {
             VariantKey key = entrySet.getKey();
-            List<VariantEntry> values = entrySet.getValue();
-            
-            for (VariantEntry variant : values) {
-                variant.render(textureManager, assetsRoot);
+            HashMap<BlockFace, List<VariantBlock>> value = entrySet.getValue();
+            if (!value.isEmpty()) {
+                facingBlocks.put(key, new FacingBlock(value));
             }
         }
+
+        if (facingBlocks.isEmpty()) {
+            return null;
+        }
+        
+        return new AssetBlock(facingBlocks);
+    }
+
+    /**
+     * Compile and aggregate assets
+     *
+     * @param variants
+     * @param textureManager
+     * @param assetsRoot
+     * @return
+     */
+    private static HashMap<VariantKey, HashMap<BlockFace, List<VariantBlock>>> compileAndAggregate(
+            HashMap<VariantKey, List<VariantEntry>> variants, TextureManager textureManager, String assetsRoot) {
+        final HashMap<VariantKey, HashMap<BlockFace, List<VariantBlock>>> result = new HashMap<VariantKey, HashMap<BlockFace, List<VariantBlock>>>();
+
+        for (Map.Entry<VariantKey, List<VariantEntry>> entrySet : variants.entrySet()) {
+            final VariantKey key = entrySet.getKey();
+            final VariantKey nonFacingKey = key.toNonFacing();
+            final BlockFace facing = key.getFacing();
+
+            final List<VariantEntry> values = entrySet.getValue();
+            final List<VariantBlock> compiled = new ArrayList<VariantBlock>();
+
+            for (VariantEntry variant : values) {
+                VariantBlock vBlock = variant.compile(textureManager, assetsRoot);
+                if (vBlock != null) {
+                    compiled.add(vBlock);
+                }
+            }
+
+            if (compiled.isEmpty()) {
+                continue;
+            }
+
+            final HashMap<BlockFace, List<VariantBlock>> facingHash;
+            if (!variants.containsKey(nonFacingKey)) {
+                facingHash = new HashMap<BlockFace, List<VariantBlock>>();
+                result.put(nonFacingKey, facingHash);
+            } else {
+                facingHash = result.get(nonFacingKey);
+            }
+
+            if (!facingHash.containsKey(facing)) {
+                facingHash.put(facing, compiled);
+            } else {
+                facingHash.get(facing).addAll(compiled);
+            }
+        }
+
+        return result;
     }
 }

@@ -33,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+import org.PrimeSoft.MCPainter.Drawing.Blocks.AssetBlock;
 import static org.PrimeSoft.MCPainter.MCPainterMain.log;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.mods.AssetsBlockProvider;
@@ -104,11 +105,16 @@ public class AssetsLoader {
         knownModels.clear();
         
         
-        for (AssetVariant variant : knownVariants) {            
-            variant.render(textureManager, assets);
+        final HashMap<String, AssetBlock> blocks = new HashMap<String, AssetBlock>();
+        for (AssetVariant variant : knownVariants) {
+            log(String.format("    Compilint model \"%s\"", variant.getName()));
+            AssetBlock aBlock = variant.compile(textureManager, assets);
+            if (aBlock != null) {
+                blocks.put(variant.getName(), aBlock);
+            }
         }
         
-        return null;
+        return new AssetsBlockProvider(blocks);
     }
 
     

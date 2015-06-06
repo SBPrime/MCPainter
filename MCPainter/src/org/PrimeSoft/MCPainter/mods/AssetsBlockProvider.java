@@ -24,6 +24,8 @@
 package org.PrimeSoft.MCPainter.mods;
 
 import java.util.HashMap;
+import java.util.Map;
+import org.PrimeSoft.MCPainter.Drawing.Blocks.AssetBlock;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IDrawableElement;
 
@@ -35,9 +37,15 @@ public class AssetsBlockProvider implements IBlockProvider {
     private final HashMap<String, IDrawableElement> m_nameBlocks;
     private final int m_cnt;
 
-    private AssetsBlockProvider() {
-        m_cnt = 0;
+    public AssetsBlockProvider(HashMap<String, AssetBlock> blocks) {
+        int cnt = 0;
         m_nameBlocks = new HashMap<String, IDrawableElement>();
+        for (Map.Entry<String, AssetBlock> entrySet : blocks.entrySet()) {
+            m_nameBlocks.put(entrySet.getKey().toUpperCase(), entrySet.getValue());            
+            cnt++;
+        }
+        
+        m_cnt = cnt;
     }
 
     @Override

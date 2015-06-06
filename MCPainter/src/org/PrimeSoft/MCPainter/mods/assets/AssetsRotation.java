@@ -25,6 +25,7 @@ package org.PrimeSoft.MCPainter.mods.assets;
 
 import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.utils.JSONExtensions;
+import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
 import org.json.simple.JSONObject;
 
 /**
@@ -43,20 +44,46 @@ public class AssetsRotation {
     private final double m_angle;
     private final boolean m_rescale;
 
+    public final boolean isRescaling() {
+        return m_rescale;
+    }
+
     public AssetsRotation(JSONObject data) {
         double[] origin = JSONExtensions.tryGetDoubleArray(data, PROP_ORIGIN);
         m_axis = JSONExtensions.tryGetString(data, PROP_AXIS, null);
-        m_angle = JSONExtensions.tryGetDouble(data, PROP_ANGLE, 0);
+        m_angle = JSONExtensions.tryGetDouble(data, PROP_ANGLE, 0) * Math.PI / 180.0;
         m_rescale = JSONExtensions.tryGetBool(data, PROP_RESCALE, false);
 
         if (origin != null && origin.length == 3) {
             m_origin = new Vector(origin[0], origin[1], origin[2]);
         } else {
-            m_origin = null;
+            m_origin = new Vector(8, 8, 8);
         }
 
 //        JSONExtensions.printUnused(data, new String[]{
 //            PROP_ANGLE, PROP_AXIS, PROP_ORIGIN, PROP_RESCALE
 //        }, "Unknown assets rotation properties: ");
+    }
+
+    public Matrix getMatrix() {
+        if (m_axis == null)
+        {
+            return Matrix.getIdentity();
+        }
+        
+        Matrix result;
+        if (m_axis.equalsIgnoreCase("x")) {
+            result = Matrix.getRotationX(m_angle);
+        } else if (m_axis.equalsIgnoreCase("y")) {
+            result = Matrix.getRotationY(m_angle);
+        } else if (m_axis.equalsIgnoreCase("z")) {
+            result = Matrix.getRotationZ(m_angle);
+        } else {
+            return Matrix.getIdentity();
+        }
+        
+        result.translate(m_origin.getX(), m_origin.getY(), m_origin.getZ());        
+        
+        return result;
     }
 }
