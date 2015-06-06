@@ -165,7 +165,7 @@ public class Orientation {
         }
 
         if (pitch > 45) {
-            m_facing = BlockFace.DOWN;
+            m_facing = BlockFace.UP;
             switch (heding) {
                 default:
                 case 0:
@@ -183,7 +183,7 @@ public class Orientation {
 
             }
         } else if (pitch < -45) {
-            m_facing = BlockFace.UP;
+            m_facing = BlockFace.DOWN;
             switch (heding) {
                 default:
                 case 0:
@@ -204,19 +204,19 @@ public class Orientation {
                 default:
                 case 0:
                     m_vectors = new int[][]{{-1, 0, 0}, {0, 1, 0}, {0, 0, -1}}; //FRONT
-                    m_facing = BlockFace.NORTH;
+                    m_facing = BlockFace.SOUTH;
                     break;
                 case 1:
                     m_vectors = new int[][]{{0, 0, 1}, {0, 1, 0}, {-1, 0, 0}}; //RIGHT
-                    m_facing = BlockFace.EAST;
+                    m_facing = BlockFace.WEST;
                     break;
                 case 2:
                     m_vectors = new int[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}; //BACK
-                    m_facing = BlockFace.SOUTH;
+                    m_facing = BlockFace.NORTH;
                     break;
                 case 3:
                     m_vectors = new int[][]{{0, 0, -1}, {0, 1, 0}, {1, 0, 0}}; //LEFT
-                    m_facing = BlockFace.WEST;
+                    m_facing = BlockFace.EAST;
                     break;
             }
         }

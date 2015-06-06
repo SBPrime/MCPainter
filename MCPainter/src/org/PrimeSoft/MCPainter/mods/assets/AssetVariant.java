@@ -214,7 +214,7 @@ public class AssetVariant {
             }
 
             final HashMap<BlockFace, List<VariantBlock>> facingHash;
-            if (!variants.containsKey(nonFacingKey)) {
+            if (!result.containsKey(nonFacingKey)) {
                 facingHash = new HashMap<BlockFace, List<VariantBlock>>();
                 result.put(nonFacingKey, facingHash);
             } else {

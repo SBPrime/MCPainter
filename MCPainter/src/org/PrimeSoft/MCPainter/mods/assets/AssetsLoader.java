@@ -107,7 +107,7 @@ public class AssetsLoader {
         
         final HashMap<String, AssetBlock> blocks = new HashMap<String, AssetBlock>();
         for (AssetVariant variant : knownVariants) {
-            log(String.format("    Compilint model \"%s\"", variant.getName()));
+            log(String.format("    Compiling model \"%s\"", variant.getName()));
             AssetBlock aBlock = variant.compile(textureManager, assets);
             if (aBlock != null) {
                 blocks.put(variant.getName(), aBlock);

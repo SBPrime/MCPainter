@@ -41,12 +41,12 @@ public class VariantEntry {
     /**
      * X axis rotation
      */
-    private final int m_rotX;
+    private final double m_rotX;
 
     /**
      * Y axis rotation
      */
-    private final int m_rotY;
+    private final double m_rotY;
 
     /**
      * Do not rotate the texture
@@ -80,7 +80,7 @@ public class VariantEntry {
      * Get the X axis rotation
      * @return 
      */
-    public int getRotateX() {
+    public double getRotateX() {
         return m_rotX;
     }
     
@@ -88,7 +88,7 @@ public class VariantEntry {
      * Get the Y axis rotation
      * @return 
      */
-    public int getRotateY() {
+    public double getRotateY() {
         return m_rotY;
     }
     
@@ -103,8 +103,8 @@ public class VariantEntry {
     public VariantEntry(JSONObject data) {
         String model = JSONExtensions.tryGetString(data, PROP_MODEL, null);
         
-        m_rotX = JSONExtensions.tryGetInt(data, PROP_RX, 0);
-        m_rotY = JSONExtensions.tryGetInt(data, PROP_RY, 0);
+        m_rotX = JSONExtensions.tryGetDouble(data, PROP_RX, 0);
+        m_rotY = JSONExtensions.tryGetDouble(data, PROP_RY, 0);
         m_uvLock = JSONExtensions.tryGetBool(data, PROP_UVLOCK, false);
         
         m_model = new LinkAssetModel("fake/" + model);

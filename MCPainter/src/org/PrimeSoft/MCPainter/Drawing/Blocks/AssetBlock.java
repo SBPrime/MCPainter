@@ -34,9 +34,6 @@ import org.PrimeSoft.MCPainter.mods.assets.FacingBlock;
 import org.PrimeSoft.MCPainter.mods.assets.VariantKey;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
-import org.PrimeSoft.MCPainter.voxelyzer.ClippingRegion;
-import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
-import org.bukkit.block.BlockFace;
 
 /**
  *
@@ -63,18 +60,11 @@ public class AssetBlock implements IDrawableElement {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(yaw, pitch);
-
-        Vector position = orientation.moveStart(Utils.getPlayerPos(localPlayer), yaw, pitch);
         
+        Vector oPosition = Utils.getPlayerPos(localPlayer);
+        Vector position = orientation.moveStart(oPosition, yaw, pitch);
         
-        FacingBlock fb = m_variants.values().iterator().next();        
-        
-        final Matrix matrix = Matrix.getIdentity();
-
-        matrix.translate(position.getBlockX(), position.getBlockY(), position.getBlockZ());
-        matrix.rotateY(yaw * Math.PI / 180);
-        matrix.rotateX(pitch * Math.PI / 180);
-              
-        fb.render(BlockFace.NORTH, 0, position, bPlayer.getPlayer(), loger, colorMap, null, matrix);
+        FacingBlock fb = m_variants.values().iterator().next();
+        fb.render(orientation.getFacing(), 0, position, bPlayer.getPlayer(), loger, colorMap, null);
     }
 }

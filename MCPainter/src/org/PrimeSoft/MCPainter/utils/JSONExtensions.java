@@ -160,6 +160,10 @@ public class JSONExtensions {
             return defaultValue;
         }
 
+        if (value instanceof Long) {
+            return (double) ((Long) value);
+        }
+        
         if (value instanceof Integer) {
             return (double) ((Integer) value);
         }

@@ -31,34 +31,34 @@ import org.json.simple.JSONObject;
  * @author SBPrime
  */
 public class AssetsFace {
+
     private final static String PROP_UV = "uv";
     private final static String PROP_TEXTURE = "texture";
-    private final static String PROP_ROTATION = "rotation";   
-       
+    private final static String PROP_ROTATION = "rotation";
+
     private final String m_texture;
     private final double m_u1;
     private final double m_u2;
     private final double m_v1;
     private final double m_v2;
     private final double m_rotation;
-    
+
     public String getTexture() {
         return m_texture;
     }
-    
-    
+
     /**
      * Get the rotatet texture UV map
-     * @return 
+     *
+     * @return
      */
     public double[] getUV() {
         double[] uvMap = new double[]{
-            m_u1, m_v1,   m_u2, m_v1,   
-            m_u2, m_v2,   m_u1, m_v2
+            m_u1, m_v1, m_u2, m_v1,
+            m_u2, m_v2, m_u1, m_v2
         };
         
-        int offset = 2 * ((int)m_rotation / 90) % 4;
-        
+        int offset = 2 * ((int) m_rotation / 90) % 4;
         return new double[]{
             uvMap[(0 + offset) % uvMap.length], uvMap[(1 + offset) % uvMap.length],
             uvMap[(2 + offset) % uvMap.length], uvMap[(3 + offset) % uvMap.length],
@@ -66,24 +66,24 @@ public class AssetsFace {
             uvMap[(4 + offset) % uvMap.length], uvMap[(5 + offset) % uvMap.length]
         };
     }
-    
-    public AssetsFace(JSONObject data) {
+
+    public AssetsFace(JSONObject data, double sx, double sy) {
         double[] uv = JSONExtensions.tryGetDoubleArray(data, PROP_UV);
         String texture = JSONExtensions.tryGetString(data, PROP_TEXTURE, null);
-        
+
         if (texture != null && texture.startsWith("#")) {
             m_texture = texture.substring(1);
         } else {
             m_texture = texture;
         }
-        
+
         m_rotation = JSONExtensions.tryGetDouble(data, PROP_ROTATION, 0.0);
-        
+
         m_u1 = uv != null && uv.length > 0 ? uv[0] : 0;
         m_v1 = uv != null && uv.length > 1 ? uv[1] : 0;
-        m_u2 = uv != null && uv.length > 2 ? uv[2] : 0;
-        m_v2 = uv != null && uv.length > 3 ? uv[3] : 0;
-        
+        m_u2 = uv != null && uv.length > 2 ? uv[2] : sx;
+        m_v2 = uv != null && uv.length > 3 ? uv[3] : sy;
+
 //        JSONExtensions.printUnused(data, 
 //                new String[]{PROP_ROTATION, PROP_TEXTURE, PROP_UV}, 
 //                "Unknown assets face property: ");

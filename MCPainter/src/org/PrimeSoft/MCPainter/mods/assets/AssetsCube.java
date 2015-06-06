@@ -100,14 +100,19 @@ public class AssetsCube {
             JSONObject fUp = JSONExtensions.tryGet(faces, PROP_F_UP);
             JSONObject fWest = JSONExtensions.tryGet(faces, PROP_F_WEST);
 
+            final double[] size = new double[3];
+            for (int i = 0; i < 3; i++) {
+                size[i] = (to != null && to.length > i ? to[i] : 0) - (from != null && from.length > i ? from[i] : 0);
+            }
+
 //            JSONExtensions.printUnused(faces, new String[]{PROP_F_DOWN, PROP_F_EAST,
 //                PROP_F_NORTH, PROP_F_SOUTH, PROP_F_UP, PROP_F_WEST}, "Unknown assets cube faces: ");
-            m_faceDown = fDown != null ? new AssetsFace(fDown) : null;
-            m_faceEast = fEast != null ? new AssetsFace(fEast) : null;
-            m_faceNorth = fNorth != null ? new AssetsFace(fNorth) : null;
-            m_faceSouth = fSouth != null ? new AssetsFace(fSouth) : null;
-            m_faceUp = fUp != null ? new AssetsFace(fUp) : null;
-            m_faceWeast = fWest != null ? new AssetsFace(fWest) : null;
+            m_faceDown = fDown != null ? new AssetsFace(fDown, size[0], size[2]) : null;
+            m_faceEast = fEast != null ? new AssetsFace(fEast, size[2], size[1]) : null;
+            m_faceNorth = fNorth != null ? new AssetsFace(fNorth, size[0], size[1]) : null;
+            m_faceSouth = fSouth != null ? new AssetsFace(fSouth, size[0], size[1]) : null;
+            m_faceUp = fUp != null ? new AssetsFace(fUp, size[0], size[2]) : null;
+            m_faceWeast = fWest != null ? new AssetsFace(fWest, size[2], size[1]) : null;
         }
 
         m_rotation = rotation != null ? new AssetsRotation(rotation) : null;
@@ -134,15 +139,15 @@ public class AssetsCube {
                 m_faceWeast, m_faceEast, size, textures);
 
         final Vertex[] modelVertex = createVertices(from, size,
-                m_rotation != null ? m_rotation.getMatrix() : Matrix.getIdentity(), 
+                m_rotation != null ? m_rotation.getMatrix() : Matrix.getIdentity(),
                 m_rotation != null && m_rotation.isRescaling());
 
         final Face[] modelFace = createFaces(faces, modelVertex, textures);
-        
+
         if (modelFace == null || modelFace.length == 0) {
             return null;
         }
-        
+
         return new CompiledCube(modelVertex, modelFace);
     }
 
@@ -253,9 +258,19 @@ public class AssetsCube {
         double x = from.getX();
         double y = from.getY();
         double z = from.getZ();
-        double sx = size.getX();
-        double sy = size.getY();
-        double sz = size.getZ();
+        double sx = size.getX() - 1;
+        double sy = size.getY() - 1;
+        double sz = size.getZ() - 1;
+
+        if (sx < 0) {
+            sx = 0;
+        }
+        if (sy < 0) {
+            sy = 0;
+        }
+        if (sz < 0) {
+            sz = 0;
+        }
 
         Vertex[] result = new Vertex[]{
             new Vertex(x, y, z), new Vertex(x + sx, y, z),
@@ -302,11 +317,14 @@ public class AssetsCube {
             }
         }
 
-        sx = Math.max(1, maxx - minx);
-        sy = Math.max(1, maxy - miny);
-        sz = Math.max(1, maxz - minz);
+        sx = Math.max(0, maxx - minx) + 1;
+        sy = Math.max(0, maxy - miny) + 1;
+        sz = Math.max(0, maxz - minz) + 1;
 
-        if (sx < ConfigProvider.BLOCK_SIZE || sy < ConfigProvider.BLOCK_SIZE || sz < ConfigProvider.BLOCK_SIZE) {
+        
+        //TODO: Resize is broken
+        if (resize
+                && (sx < ConfigProvider.BLOCK_SIZE || sy < ConfigProvider.BLOCK_SIZE || sz < ConfigProvider.BLOCK_SIZE)) {
             matrix = Matrix.getScaling(ConfigProvider.BLOCK_SIZE / sx, ConfigProvider.BLOCK_SIZE / sy, ConfigProvider.BLOCK_SIZE / sz);
 
             for (int i = 0; i < result.length; i++) {
@@ -335,11 +353,6 @@ public class AssetsCube {
             new int[]{3, 7, 1, 5} //EAST
         };
 
-        final int[][] fIdx = new int[][]{
-            new int[]{0, 1, 2},
-            new int[]{1, 3, 2}
-        };
-
         final List<Face> result = new ArrayList<Face>();
 
         for (int i = 0; i < 6; i++) {
@@ -354,25 +367,25 @@ public class AssetsCube {
             final double[] uv = aFace.getUV();
 
             Face f1 = new Face(new int[]{vIdx[0], vIdx[1], vIdx[2]},
-                    img, 
+                    img,
                     new double[][]{
-                        new double[]{ uv[0], uv[1]},
-                        new double[]{ uv[2], uv[3]},
-                        new double[]{ uv[4], uv[5]}
+                        new double[]{uv[0], uv[1]},
+                        new double[]{uv[2], uv[3]},
+                        new double[]{uv[4], uv[5]}
                     });
-            
+
             Face f2 = new Face(new int[]{vIdx[3], vIdx[1], vIdx[2]},
-                    img, 
+                    img,
                     new double[][]{
-                        new double[]{ uv[6], uv[7]},
-                        new double[]{ uv[2], uv[3]},
-                        new double[]{ uv[4], uv[5]}
+                        new double[]{uv[6], uv[7]},
+                        new double[]{uv[2], uv[3]},
+                        new double[]{uv[4], uv[5]}
                     });
-            
+
             result.add(f1);
             result.add(f2);
         }
-        
+
         return result.toArray(new Face[0]);
     }
 }

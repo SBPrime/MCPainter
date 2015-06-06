@@ -41,24 +41,22 @@ public class VariantBlock {
     private final boolean m_uvLock;
     private final Matrix m_rotMatrix;
 
-    public VariantBlock(CompiledModel model, boolean uvLock, int rotX, int rotY) {
+    public VariantBlock(CompiledModel model, boolean uvLock, double rotX, double rotY) {
         Matrix matrix = Matrix.getIdentity();
         matrix.rotateX(Math.PI / 180 * rotX);
         matrix.rotateY(Math.PI / 180 * rotY);
 
         m_rotMatrix = matrix;
         m_model = model;
-        m_uvLock = uvLock;
+        m_uvLock = uvLock;    
     }
 
     public void render(Vector origin, Player player,
-            BlockLoger loger, IColorMap colorMap, ClippingRegion clipping,
-            Matrix matrix)
+            BlockLoger loger, IColorMap colorMap, ClippingRegion clipping)
             throws MaxChangedBlocksException {
 
-        //TODO: Test matrix multiplication
         //TODO: Implement uvLock
-        m_model.render(origin, player, loger, colorMap, clipping, Matrix.multiply(matrix, m_rotMatrix));
+        m_model.render(origin, player, loger, colorMap, clipping, m_rotMatrix);
     }
 
 }

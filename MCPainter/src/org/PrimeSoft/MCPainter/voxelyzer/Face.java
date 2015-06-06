@@ -31,17 +31,19 @@ import org.PrimeSoft.MCPainter.Drawing.RawImage;
 
 /**
  * 3D face
+ *
  * @author SBPrime
  */
 public class Face {
-    
+
     private final int[] m_vIdx;
     private final int[] m_color;
     private final RawImage m_texture;
     private final double[][] m_textureMapping;
-    
+
     /**
      * New instance of the face
+     *
      * @param v Vertices index
      */
     public Face(int[] v) {
@@ -51,9 +53,9 @@ public class Face {
         m_textureMapping = null;
     }
 
-    
     /**
      * New instance of the face
+     *
      * @param v vertices index
      * @param color vertices colors
      */
@@ -64,9 +66,9 @@ public class Face {
         m_textureMapping = null;
     }
 
-    
     /**
      * New instance of the face
+     *
      * @param v Vertices index
      * @param texture Face texture
      * @param mapping Texture UV mapping
@@ -78,9 +80,9 @@ public class Face {
         m_color = null;
     }
 
-    
     /**
      * Render the face
+     *
      * @param origin
      * @param loger Bock logger
      * @param colorMap clolor mapper
@@ -90,7 +92,7 @@ public class Face {
      * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
     public void render(Vector origin, BlockLoger loger, IColorMap colorMap, Matrix matrix,
-            ClippingRegion clipping, Vertex[] v) 
+            ClippingRegion clipping, Vertex[] v)
             throws MaxChangedBlocksException {
         final Vertex[] vOut = new Vertex[3];
         if (v == null) {
@@ -104,9 +106,9 @@ public class Face {
             if (v[i] == null) {
                 return;
             }
-            vOut[i] = matrix.applyMatrix(v[idx]);            
+            vOut[i] = matrix.applyMatrix(v[idx]);
         }
-        if (m_textureMapping != null) {
+        if (m_textureMapping != null) {            
             for (int i = 0; i < 3; i++) {
                 vOut[i].setMapping(m_textureMapping[i]);
             }
@@ -115,7 +117,12 @@ public class Face {
                 vOut[i].setColor(m_color);
             }
         }
-        Triangle.drawTriangle(origin, loger, colorMap, clipping, m_texture, 
+        Triangle.drawTriangle(origin, loger, colorMap, clipping, m_texture,
                 vOut[0], vOut[1], vOut[2]);
+    }
+
+    @Override
+    public String toString() {
+        return m_vIdx[0] + "\t" + m_vIdx[1] + "\t" + m_vIdx[2];
     }
 }

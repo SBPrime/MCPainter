@@ -31,7 +31,6 @@ import java.util.Map;
 import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.voxelyzer.ClippingRegion;
-import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 
@@ -54,8 +53,7 @@ public class FacingBlock {
     
     public void render(BlockFace facing, int number,
             Vector origin, Player player,
-            BlockLoger loger, IColorMap colorMap, ClippingRegion clipping,
-            Matrix matrix)
+            BlockLoger loger, IColorMap colorMap, ClippingRegion clipping)
             throws MaxChangedBlocksException {
         if (!m_blocks.containsKey(facing)) {
             facing = BlockFace.SELF;
@@ -70,6 +68,6 @@ public class FacingBlock {
             return;
         }
         
-        entry[number % entry.length].render(origin, player, loger, colorMap, clipping, matrix);
+        entry[number % entry.length].render(origin, player, loger, colorMap, clipping);
     }
 }
