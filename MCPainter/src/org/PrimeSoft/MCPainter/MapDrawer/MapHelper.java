@@ -87,7 +87,7 @@ public class MapHelper {
         }
 
         synchronized (m_mapList) {
-            Integer key = new Integer(mapId);
+            Integer key = (int) mapId;
             if (!m_mapList.containsKey(key)) {
                 m_mapList.put(key, renderers);
             }

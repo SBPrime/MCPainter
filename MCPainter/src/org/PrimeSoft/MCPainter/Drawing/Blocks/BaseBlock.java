@@ -23,15 +23,12 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
 import java.util.List;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Face;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.utils.Orientation;
@@ -39,6 +36,8 @@ import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.Pair;
 import org.PrimeSoft.MCPainter.utils.Utils;
+import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -130,14 +129,14 @@ public class BaseBlock implements IDrawableElement {
                 }
             }
         }
-
+        
         if (cropH.length > 0 || cropV.length > 0) {
             for (int i = 0; i < m_faces.length; i++) {
                 int cH1 = (i * 2 + 0) < cropH.length ? cropH[i * 2 + 0] : 0;
                 int cH2 = (i * 2 + 1) < cropH.length ? cropH[i * 2 + 1] : 0;
                 int cV1 = (i * 2 + 0) < cropV.length ? cropV[i * 2 + 0] : 0;
                 int cV2 = (i * 2 + 1) < cropV.length ? cropV[i * 2 + 1] : 0;
-
+                
                 if (m_faces[i] != null) {
                     m_faces[i].setCropH(new Pair<Integer, Integer>(cH1, cH2));
                     m_faces[i].setCropV(new Pair<Integer, Integer>(cV1, cV2));
@@ -337,8 +336,7 @@ public class BaseBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap)
-            throws MaxChangedBlocksException {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, IColorMap colorMap) {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(m_useYaw ? yaw : 0, m_usePitch ? pitch : 0);

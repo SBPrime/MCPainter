@@ -23,14 +23,9 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
-import com.sk89q.worldedit.bukkit.selections.Selection;
-import com.sk89q.worldedit.extent.Extent;
 import java.awt.image.BufferedImage;
-import net.minecraft.server.v1_8_R2.Items;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Filters.CropFilter;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
@@ -41,7 +36,11 @@ import org.PrimeSoft.MCPainter.blocksplacer.ILoggerCommand;
 import org.PrimeSoft.MCPainter.MapDrawer.MapHelper;
 import org.PrimeSoft.MCPainter.PermissionManager;
 import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
+import org.PrimeSoft.MCPainter.worldEdit.ICuboidSelection;
+import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
+import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Chunk;
@@ -67,24 +66,21 @@ public class HdImageCommand {
         m_mapHelper = mapHelper;
     }
 
-    public void Execute(MCPainterMain sender, Player player, WorldEditPlugin worldEdit, String[] args) {
+    public void Execute(MCPainterMain sender, Player player, IWorldEdit worldEdit, String[] args) {
         if (args.length != 2) {
             Help.ShowHelp(player, Commands.COMMAND_IMAGEHD);
             return;
         }
 
         String url = args[1];
-        Selection tSelection = worldEdit.getSelection(player);
-        if (!(tSelection instanceof CuboidSelection)) {
+        final ICuboidSelection selection = worldEdit.getSelection(player);
+        if (selection == null) {
             MCPainterMain.say(player, ChatColor.RED + "No selection.");
             return;
         }
 
-        final CuboidSelection selection = (CuboidSelection) tSelection;
-        DrawingTask task = new CommandThread(worldEdit, player,
-                this, sender, url, selection);
-
-        sender.getAWE().runTask(player, "HDImage", task);
+        sender.getServer().getScheduler().runTaskAsynchronously(sender,
+                new CommandThread(this, sender, player, url, worldEdit, selection));
     }
 
     private static boolean isSolid(Material m) {
@@ -137,41 +133,9 @@ public class HdImageCommand {
             m_mapHelper = mapHelper;
             m_rotation = face;
         }
-
-        @Override
-        public boolean isDemanding() {
-            return true;
-        }
         
         @Override
-        public void undo(BlockLoger loger, Extent extent) {
-            Chunk chunk = m_location.getChunk();
-            if (!chunk.isLoaded()) {
-                if (!chunk.load()) {
-                    return;
-                }
-            }
-        
-            World w = m_location.getWorld();
-            if (m_mapView != null)
-            {
-                m_mapHelper.deleteMap(m_mapView);
-            }
-            
-            if (m_frame != null)
-            {
-                m_frame.setItem(null);
-                m_frame.remove();
-            }
-            
-            if (m_oldMaterial != null) 
-            {                
-                w.getBlockAt(m_location).setType(m_oldMaterial);
-            }
-        }
-        
-        @Override
-        public void redo(BlockLoger loger, Extent extent) {
+        public void execute(BlockPlacer blockPlacer, BlockLoger loger) {
             Chunk chunk = m_location.getChunk();
             if (!chunk.isLoaded()) {
                 if (!chunk.load()) {
@@ -205,29 +169,32 @@ public class HdImageCommand {
         }
     }
 
-    private class CommandThread extends DrawingTask {
+    private class CommandThread implements Runnable {
 
-        private final CuboidSelection m_selection;
+        private final ICuboidSelection m_selection;
         private final String m_url;
+        private final Player m_player;
         private final MCPainterMain m_sender;
         private final HdImageCommand m_this;
+        private final IEditSession m_session;
+        private final ILocalSession m_lSession;
         private final BlockFace m_rotation;
 
-        private CommandThread(WorldEditPlugin worldEditPlugin, Player player,
-                HdImageCommand command, MCPainterMain sender,
-                String url, CuboidSelection selection) {
-
-            super(worldEditPlugin, player);
-
+        private CommandThread(HdImageCommand command, MCPainterMain sender, Player player,
+                String url, IWorldEdit worldEdit, ICuboidSelection selection) {
             m_this = command;
             m_sender = sender;
+            m_player = player;
             m_url = url;
             m_selection = selection;
-            m_rotation = calcHeading(m_localPlayer.getYaw());
+            ILocalPlayer localPlayer = worldEdit.wrapPlayer(player);
+            m_rotation = calcHeading(localPlayer.getYaw());
+            m_lSession = worldEdit.getSession(player);
+            m_session = m_lSession.createEditSession(localPlayer);
         }
 
         @Override
-        public void draw(BlockLoger loger) throws MaxChangedBlocksException {
+        public void run() {
             FilterManager fm = FilterManager.getFilterManager(m_player);
             double price = ConfigProvider.getCommandPrice("imagehd") + fm.getPrice();
             synchronized (FoundManager.getMutex()) {
@@ -285,6 +252,7 @@ public class HdImageCommand {
                     kz *= -1;
                 }
                 MCPainterMain.say(m_player, "Drawing image...");
+                BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
 
                 for (int py = 0; py < bHeight; py++) {
                     Location tmp = pos.clone();
@@ -297,6 +265,8 @@ public class HdImageCommand {
                 }
 
                 loger.logMessage("Drawing image done.");
+                loger.logEndSession();
+                loger.flush();
 
                 FoundManager.subtractMoney(m_player, price);
             }

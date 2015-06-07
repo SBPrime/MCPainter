@@ -37,7 +37,7 @@ import org.bukkit.configuration.ConfigurationSection;
  * @author SBPrime
  */
 public class ConfigProvider {
-    private static final int CONFIG_VERSION = 5;
+    private static final int CONFIG_VERSION = 4;
 
     public static final int BLOCK_SIZE = 16;
 
@@ -53,6 +53,10 @@ public class ConfigProvider {
 
     private static boolean m_isConfigUpdate = false;
 
+    private static int m_queueHardLimit;
+
+    private static int m_queueSoftLimit;
+
     private static File m_pluginFolder;
 
     private static File m_imgFolder;
@@ -64,6 +68,10 @@ public class ConfigProvider {
     private static File m_modFolder;
 
     private static File m_dataFolder;
+
+    private static long m_interval;
+
+    private static int m_blocksCnt;
 
     private static String m_configVersion;
     
@@ -84,6 +92,24 @@ public class ConfigProvider {
      */
     public static File getPluginFolder() {
         return m_pluginFolder;
+    }
+
+    /**
+     * Queue hard limit
+     *
+     * @return
+     */
+    public static int getQueueHardLimit() {
+        return m_queueHardLimit;
+    }
+
+    /**
+     * Queue soft limit
+     *
+     * @return
+     */
+    public static int getQueueSoftLimit() {
+        return m_queueSoftLimit;
     }
 
     /**
@@ -148,6 +174,15 @@ public class ConfigProvider {
     }
 
     /**
+     * Block drawing interval
+     *
+     * @return the interval
+     */
+    public static long getInterval() {
+        return m_interval;
+    }
+
+    /**
      * Is block login enabled
      *
      * @return
@@ -163,6 +198,15 @@ public class ConfigProvider {
      */
     public static boolean getCheckAccess() {
         return m_checkAccess;
+    }
+
+    /**
+     * Get the number of blocks placed
+     *
+     * @return number of blocks
+     */
+    public static int getBlockCount() {
+        return m_blocksCnt;
     }
 
     /**
@@ -236,6 +280,7 @@ public class ConfigProvider {
             return false;
         }
         m_configVersion = mainSection.getString("version", "?");
+        parseRenderSection(mainSection);
         parsePriceSection(mainSection);
 
         m_checkUpdate = mainSection.getBoolean("checkVersion", true);
@@ -290,6 +335,26 @@ public class ConfigProvider {
             }
         }
         return sizeEntries.toArray(new SizeNode[0]);
+    }
+
+    /**
+     * Parse render section
+     *
+     * @param mainSection
+     */
+    private static void parseRenderSection(ConfigurationSection mainSection) {
+        ConfigurationSection renderSection = mainSection.getConfigurationSection("rendering");
+        if (renderSection == null) {
+            m_blocksCnt = 1000;
+            m_interval = 15;
+            m_queueSoftLimit = 100000;
+            m_queueHardLimit = 100000;
+        } else {
+            m_blocksCnt = renderSection.getInt("blocks", 1000);
+            m_interval = renderSection.getInt("interval", 15);
+            m_queueSoftLimit = renderSection.getInt("queue-limit-soft", 100000);
+            m_queueHardLimit = renderSection.getInt("queue-limit-hard", 200000);
+        }
     }
 
     /**

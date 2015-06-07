@@ -23,9 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
@@ -37,7 +34,9 @@ import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.Texture.TextureEntry;
 import org.PrimeSoft.MCPainter.Texture.VanillaTextureProvider;
 import org.PrimeSoft.MCPainter.utils.Utils;
+import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 
 /**
  *
@@ -130,8 +129,7 @@ public class Piston extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
-            throws MaxChangedBlocksException {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, IColorMap colorMap) {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(0, 0);

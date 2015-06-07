@@ -23,18 +23,17 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
 import java.util.List;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.CubeFace;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.utils.Utils;
+import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -100,8 +99,7 @@ public class Diagonal extends BaseBlock {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
-            throws MaxChangedBlocksException {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, IColorMap colorMap) {
         double yaw = localPlayer.getYaw();
         double pitch = localPlayer.getPitch();
         Orientation orientation = new Orientation(m_useYaw ? yaw : 0, m_usePitch ? pitch : 0);

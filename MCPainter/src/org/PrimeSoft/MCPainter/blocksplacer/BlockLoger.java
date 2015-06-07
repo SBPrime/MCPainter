@@ -23,75 +23,119 @@
  */
 package org.PrimeSoft.MCPainter.blocksplacer;
 
-import com.sk89q.worldedit.EditSession;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.WorldEditException;
-import com.sk89q.worldedit.blocks.BaseBlock;
-import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
+import java.util.ArrayList;
+import java.util.List;
+import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
+import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.BaseBlock;
+import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.primesoft.asyncworldedit.worldedit.CancelabeEditSession;
 
 /**
  *
  * @author SBPrime
  */
 public class BlockLoger {
-
     /**
      * The MTA mutex
      */
     private final Object m_mutex = new Object();
-
+    
     private final Player m_player;
-    private final LocalSession m_session;
-    private final CancelabeEditSession m_editSession;
+    private final List<BlockLogerEntry> m_blocks;
+    private final ILocalSession m_session;
+    private final IEditSession m_editSession;
     private final World m_world;
+    private final MCPainterMain m_mainPlugin;
+    private final BlockPlacer m_blocksPlacer;
+
+    public World getWorld() {
+        return m_world;
+    }
 
     public Player getPlayer() {
         return m_player;
     }
 
-    public EditSession getEditSession() {
+    public BlockLogerEntry[] getEntries() {
+        synchronized (m_mutex) {
+            return m_blocks.toArray(new BlockLogerEntry[0]);
+        }
+    }
+
+    public IEditSession getEditSession() {
         return m_editSession;
     }
 
-    public LocalSession getLocalSession() {
+    public ILocalSession getLocalSession() {
         return m_session;
     }
-    
-    public World getWorld() {
-        return m_world;
-    }
 
-    public BlockLoger(Player player,
-            LocalSession session, CancelabeEditSession eSession) {
+    public BlockLoger(Player player, ILocalSession session, IEditSession eSession,
+            MCPainterMain main) {
+        m_blocks = new ArrayList<BlockLogerEntry>();
         m_player = player;
         m_session = session;
         m_editSession = eSession;
         m_world = m_player.getWorld();
+        m_mainPlugin = main;
+        m_blocksPlacer = main.getBlockPlacer();
     }
 
     public void logCommand(ILoggerCommand command) {
-        try {
-            m_editSession.doCustomAction(new ChangeCommand(command, this), command.isDemanding());
-        } catch (WorldEditException ex) {
-            ExceptionHelper.printException(ex, "Unable to perform custom command");
+        Location location = command.getLocation();
+        if (m_mainPlugin.getBlocksHub().canPlace(m_player.getName(), m_world, location)) {
+            synchronized (m_mutex) {
+                m_blocks.add(new CommandEntry(this, command));
+            }
+            checkFlush();
+        }
+    }
+    
+    public void logBlock(Vector location, BaseBlock block) {
+        if (m_mainPlugin.getBlocksHub().canPlace(m_player.getName(), m_world, location)) {
+            synchronized (m_mutex) {
+                m_blocks.add(new BlockEntry(this, location, block));                
+            }
+            checkFlush();
         }
     }
 
-    public void logBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {
-        m_editSession.setBlock(location, block);
+    public void logEndSession() {
+        synchronized (m_mutex) {
+            m_blocks.add(new FlushEntry(this));
+        }
+        checkFlush();
     }
 
     public void logMessage(String msg) {
-        try {
-            m_editSession.doCustomAction(new ChangeMessage(getPlayer(), msg), false);
-        } catch (WorldEditException ex) {
-            ExceptionHelper.printException(ex, "Unable to perform logMessage for "
-                    + getPlayer());
+        synchronized (m_mutex) {
+            m_blocks.add(new MessageEntry(this, msg));
+        }
+        checkFlush();
+    }
+
+    private void checkFlush() {
+        boolean shuldFlush;
+        synchronized (m_mutex) {
+            shuldFlush = m_blocks.size() > ConfigProvider.getQueueHardLimit();
+        }
+        
+        if (shuldFlush) {
+            flush();
         }
     }
+
+    public void flush() {
+        BlockLogerEntry[] events;
+        synchronized (m_mutex) {
+            events = m_blocks.toArray(new BlockLogerEntry[0]);
+            m_blocks.clear();
+        }
+        m_blocksPlacer.addTasks(events, getPlayer());
+    }   
 }

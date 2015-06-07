@@ -23,8 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.utils;
 
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.apache.commons.lang.NullArgumentException;
 
 /**
@@ -32,8 +31,7 @@ import org.apache.commons.lang.NullArgumentException;
  * @author SBPrime
  */
 public class Utils {
-
-    public static Vector getPlayerPos(LocalPlayer player) {
+    public static Vector getPlayerPos(ILocalPlayer player) {
         Vector location = player.getPosition();
         double x = (int) location.getX();
         double y = (int) location.getY();

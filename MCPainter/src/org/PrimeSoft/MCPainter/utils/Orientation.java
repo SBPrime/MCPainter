@@ -23,9 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.utils;
 
-import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.bukkit.block.BlockFace;
 
 /**
  *
@@ -33,12 +31,7 @@ import org.bukkit.block.BlockFace;
  */
 public class Orientation {
 
-    final private int[][] m_vectors;    
-    final private BlockFace m_facing;
-    
-    public BlockFace getFacing() {
-        return m_facing;
-    }
+    private int[][] m_vectors;
 
     public int calcX(int x, int y, int z) {
         return m_vectors[0][0] * x
@@ -165,9 +158,7 @@ public class Orientation {
         }
 
         if (pitch > 45) {
-            m_facing = BlockFace.UP;
             switch (heding) {
-                default:
                 case 0:
                     m_vectors = new int[][]{{-1, 0, 0}, {0, 0, 1}, {0, 1, 0}}; //BOTTOM FRONT
                     break;
@@ -183,9 +174,7 @@ public class Orientation {
 
             }
         } else if (pitch < -45) {
-            m_facing = BlockFace.DOWN;
             switch (heding) {
-                default:
                 case 0:
                     m_vectors = new int[][]{{-1, 0, 0}, {0, 0, -1}, {0, -1, 0}}; //TOP FRONT
                     break;
@@ -201,22 +190,17 @@ public class Orientation {
             }
         } else {
             switch (heding) {
-                default:
                 case 0:
                     m_vectors = new int[][]{{-1, 0, 0}, {0, 1, 0}, {0, 0, -1}}; //FRONT
-                    m_facing = BlockFace.SOUTH;
                     break;
                 case 1:
                     m_vectors = new int[][]{{0, 0, 1}, {0, 1, 0}, {-1, 0, 0}}; //RIGHT
-                    m_facing = BlockFace.WEST;
                     break;
                 case 2:
                     m_vectors = new int[][]{{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}; //BACK
-                    m_facing = BlockFace.NORTH;
                     break;
                 case 3:
                     m_vectors = new int[][]{{0, 0, -1}, {0, 1, 0}, {1, 0, 0}}; //LEFT
-                    m_facing = BlockFace.EAST;
                     break;
             }
         }

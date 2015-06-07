@@ -23,14 +23,13 @@
  */
 package org.PrimeSoft.MCPainter.Drawing;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.Color;
 import java.util.EnumSet;
 import org.PrimeSoft.MCPainter.Configuration.BlockEntry;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
+import org.PrimeSoft.MCPainter.utils.BaseBlock;
+import org.PrimeSoft.MCPainter.utils.Vector;
 
 /**
  *
@@ -71,7 +70,7 @@ public class DrawingBlock implements IDrawingBlock {
     }
 
     @Override
-    public void place(Vector origin, Vector offset, BlockLoger loger) throws MaxChangedBlocksException {
+    public void place(Vector origin, Vector offset, BlockLoger loger) {
         loger.logBlock(origin.add(offset), m_block);
     }
     

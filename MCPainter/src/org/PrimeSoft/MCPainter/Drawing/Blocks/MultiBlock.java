@@ -23,14 +23,13 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Blocks;
 
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.MaxChangedBlocksException;
 import java.util.HashMap;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.Texture.TextureManager;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -121,8 +120,7 @@ public class MultiBlock implements IDrawableElement {
     }
 
     @Override
-    public void draw(short data, BlockLoger loger, LocalPlayer localPlayer, IColorMap colorMap) 
-            throws MaxChangedBlocksException {
+    public void draw(short data, BlockLoger loger, ILocalPlayer localPlayer, IColorMap colorMap) {
         if (m_useTopFlag) {
             double pitch = localPlayer.getPitch();
             if (pitch < -45) {

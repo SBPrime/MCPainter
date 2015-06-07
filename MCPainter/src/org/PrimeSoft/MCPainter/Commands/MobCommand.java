@@ -23,10 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import com.sk89q.worldedit.LocalPlayer;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
@@ -37,18 +33,22 @@ import org.PrimeSoft.MCPainter.Drawing.Statue.BaseStatue;
 import org.PrimeSoft.MCPainter.Drawing.Statue.CustomStatue;
 import org.PrimeSoft.MCPainter.Drawing.Statue.StatueDescription;
 import org.PrimeSoft.MCPainter.*;
-import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
 import org.PrimeSoft.MCPainter.mods.ModStatueProvider;
+import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
+import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
  * @author SBPrime
  */
-public class MobCommand extends DrawingTask {
+public class MobCommand implements Runnable {
 
     public static void Execte(MCPainterMain sender, final Player player,
-            final WorldEditPlugin worldEdit, final IColorMap colorMap, String[] args) {
+            final IWorldEdit worldEdit, final IColorMap colorMap, String[] args) {
         if (args.length > 3) {
             Help.ShowHelp(player, Commands.COMMAND_MOB);
             return;
@@ -71,7 +71,7 @@ public class MobCommand extends DrawingTask {
 
         BaseStatue mob;
 
-        LocalPlayer localPlayer = worldEdit.wrapPlayer(player);
+        ILocalPlayer localPlayer = worldEdit.wrapPlayer(player);
         double m_yaw = localPlayer.getYaw();
         double m_pitch = localPlayer.getPitch();
         Orientation m_orientation = new Orientation(m_yaw, m_pitch);
@@ -103,10 +103,9 @@ public class MobCommand extends DrawingTask {
             MCPainterMain.log("Error loading " + mobName + " texture file");
             return;
         }
-        
-        DrawingTask task = new MobCommand(worldEdit, player,
-                sender, mob, image);
-        sender.getAWE().runTask(player, "Mob", task);
+        sender.getServer().getScheduler().runTaskAsynchronously(sender,
+                new MobCommand(sender, player, localPlayer, mob,
+                image, worldEdit));
     }
 
     /**
@@ -125,25 +124,31 @@ public class MobCommand extends DrawingTask {
             }
             sb.append(names[i]);
         }
-
+        
         MCPainterMain.say(player, sb.toString());
     }
+    private final Player m_player;
+    private final ILocalSession m_lSession;
+    private final IEditSession m_session;
     private final MCPainterMain m_sender;
     private final BaseStatue m_statue;
     private final RawImage[] m_textures;
 
-    private MobCommand(WorldEditPlugin worldEditPlugin, Player player, 
-            MCPainterMain sender,
-            BaseStatue statue, RawImage[] textures) {
-        super(worldEditPlugin, player);
-        
+    private MobCommand(MCPainterMain sender, Player player, ILocalPlayer localPlayer,
+            BaseStatue statue, RawImage[] textures,
+            IWorldEdit worldEdit) {
+        m_player = player;
+
+        m_lSession = worldEdit.getSession(player);
+
+        m_session = m_lSession.createEditSession(localPlayer);
         m_textures = textures;
         m_statue = statue;
         m_sender = sender;
     }
 
     @Override
-    public void draw(BlockLoger loger) throws MaxChangedBlocksException {
+    public void run() {
         double price = ConfigProvider.getCommandPrice("statue");
         synchronized (FoundManager.getMutex()) {
             if (price > 0 && FoundManager.getMoney(m_player) < price) {
@@ -152,13 +157,14 @@ public class MobCommand extends DrawingTask {
             }
 
             MCPainterMain.say(m_player, "Drawing statue...");
-            try {
-                m_statue.DrawStatue(loger, m_textures, true);
-            } catch (MaxChangedBlocksException ex) {
-                loger.logMessage("Maximum number of blocks changed, operation canceled.");
-            }
+            BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
+
+            m_statue.DrawStatue(loger, m_textures, true);
             loger.logMessage("Done.");
+            loger.logEndSession();
+
             //m_sender.getBlockPlacer().AddTasks(loger);
+            loger.flush();
             FoundManager.subtractMoney(m_player, price);
         }
     }

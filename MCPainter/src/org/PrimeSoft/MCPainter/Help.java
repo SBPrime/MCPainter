@@ -113,6 +113,16 @@ public final class Help {
         ChatColor.BLUE + " Statue" + ChatColor.WHITE + " - draw yours statue",
         ChatColor.BLUE + " Statue <u:playerName>" + ChatColor.WHITE + " - draw statue of other player",
         ChatColor.BLUE + " Statue <skinFile>" + ChatColor.WHITE + " - draw statue using skin file",};
+    private final static String[] HelpPurge = new String[]{
+        ChatColor.YELLOW + "Purge " + ChatColor.WHITE + " - remove all queued block operations",
+        ChatColor.BLUE + " Purge" + ChatColor.WHITE + " - purges your operations",
+        ChatColor.BLUE + " Purge <u:playerName>" + ChatColor.WHITE + " - purges other player operations",
+        ChatColor.BLUE + " Purge all" + ChatColor.WHITE + " - purges all operations",};
+    private final static String[] HelpJobs = new String[]{
+        ChatColor.YELLOW + "Jobs " + ChatColor.WHITE + " - display queued block operations",
+        ChatColor.BLUE + " Jobs" + ChatColor.WHITE + " - displays your operations",
+        ChatColor.BLUE + " Jobs <u:playerName>" + ChatColor.WHITE + " - displays other player operations",
+        ChatColor.BLUE + " Jobs all" + ChatColor.WHITE + " - displays all queued operations",};
     private final static String[] HelpFilter = new String[]{
         ChatColor.YELLOW + "Filter " + ChatColor.WHITE + " - manage image filters",
         ChatColor.BLUE + " Filter" + ChatColor.WHITE + " - display current filter list",
@@ -143,6 +153,10 @@ public final class Help {
                 help = HelpStatue;
             } else if (command.equalsIgnoreCase(Commands.COMMAND_MOB)) {
                 help = HelpMob;
+            } else if (command.equalsIgnoreCase(Commands.COMMAND_PURGE)) {
+                help = HelpPurge;
+            } else if (command.equalsIgnoreCase(Commands.COMMAND_JOBS)) {
+                help = HelpJobs;
             } else if (command.equalsIgnoreCase(Commands.COMMAND_FILTER)) {
                 help = HelpFilter;
             } else if (command.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {

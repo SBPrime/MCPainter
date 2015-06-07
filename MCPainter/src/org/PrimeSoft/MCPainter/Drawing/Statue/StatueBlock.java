@@ -23,8 +23,7 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Statue;
 
-import com.sk89q.worldedit.Vector;
-
+import org.PrimeSoft.MCPainter.utils.Vector;
 
 /**
  *

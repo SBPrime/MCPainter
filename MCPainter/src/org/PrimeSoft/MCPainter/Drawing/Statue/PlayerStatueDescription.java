@@ -23,16 +23,14 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Statue;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.PrimeSoft.MCPainter.MCPainterMain;
-import org.PrimeSoft.MCPainter.utils.HttpUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.bukkit.configuration.ConfigurationSection;
+import org.json.simple.parser.ParseException;
+import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.PrimeSoft.MCPainter.utils.HttpUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import org.json.simple.parser.ParseException;
 
 /**
  *

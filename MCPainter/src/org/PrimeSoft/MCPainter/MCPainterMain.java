@@ -23,8 +23,7 @@
  */
 package org.PrimeSoft.MCPainter;
 
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import org.PrimeSoft.MCPainter.asyncworldedit.AWEWrapper;
+import org.PrimeSoft.MCPainter.blocksplacer.BlockPlacer;
 import org.PrimeSoft.MCPainter.utils.ExtFileFilter;
 import org.PrimeSoft.MCPainter.utils.VersionChecker;
 import org.PrimeSoft.MCPainter.palettes.PaletteManager;
@@ -36,7 +35,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.zip.ZipFile;
 import org.PrimeSoft.MCPainter.Commands.*;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
@@ -52,17 +50,17 @@ import org.PrimeSoft.MCPainter.Texture.TextureManager;
 import org.PrimeSoft.MCPainter.Texture.TexturePack;
 import org.PrimeSoft.MCPainter.Texture.TextureProvider;
 import org.PrimeSoft.MCPainter.mods.*;
-import org.PrimeSoft.MCPainter.mods.assets.AssetsLoader;
 import org.PrimeSoft.MCPainter.palettes.IPalette;
 import org.PrimeSoft.MCPainter.palettes.Palette;
 import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
+import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
+import org.PrimeSoft.MCPainter.worldEdit.WorldEditFactory;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -77,19 +75,20 @@ public class MCPainterMain extends JavaPlugin {
     private static final String s_logFormat = "%s %s";
     private Boolean m_isInitialized = false;
     private IColorMap m_colorMap = null;
-    private WorldEditPlugin m_worldEdit = null;
+    private IWorldEdit m_worldEdit = null;
     private MetricsLite m_metrics;
+    private BlockPlacer m_blockPlacer;
     private TextureManager m_textureManager;
     private PaletteManager m_paletteManager;
     private final EventListener m_listener = new EventListener(this);
     private MapHelper m_mapHelper;
+    private BlocksHubIntegration m_blocksHub;
     private BlockCommand m_blockCommand;
     private MapCommand m_mapCommand;
     private HdImageCommand m_hdImageCommand;
     private ModsProvider m_modProvider;
     private MultiBlockProvider m_blocksProvider;
     private ModStatueProvider m_statueProvider;
-    private AWEWrapper m_awe;
     private final HashMap<String, IColorMap> m_playerPaletes = new HashMap<String, IColorMap>();
 
     public static String getPrefix() {
@@ -100,12 +99,16 @@ public class MCPainterMain extends JavaPlugin {
         return m_paletteManager;
     }
 
-    public AWEWrapper getAWE() {
-        return m_awe;
-    }
-
     public TextureManager getTextureProvider() {
         return m_textureManager;
+    }
+
+    public BlocksHubIntegration getBlocksHub() {
+        return m_blocksHub;
+    }
+
+    public BlockPlacer getBlockPlacer() {
+        return m_blockPlacer;
     }
 
     public ModsProvider getModsProvider() {
@@ -168,15 +171,9 @@ public class MCPainterMain extends JavaPlugin {
 
         m_blocksProvider = new MultiBlockProvider();
         m_statueProvider = new ModStatueProvider();
-        m_worldEdit = getWorldEdit();
+        m_worldEdit = WorldEditFactory.getWorldEditWrapper(this);
         if (m_worldEdit == null) {
             log("World edit not found.");
-        }
-
-        m_awe = AWEWrapper.getWrapper(this);
-        if (m_awe == null) {
-            log("AsyncWorldEdit not found.");
-            return;
         }
 
         m_textureManager = new TextureManager();
@@ -217,6 +214,7 @@ public class MCPainterMain extends JavaPlugin {
     @Override
     public void onDisable() {
         m_textureManager.dispose();
+        m_blockPlacer.stop();
         log("Disabled");
     }
 
@@ -278,6 +276,12 @@ public class MCPainterMain extends JavaPlugin {
         } else if (name.equalsIgnoreCase(Commands.COMMAND_IMAGEHD)) {
             doHdImage(player, args);
             return true;
+        } else if (name.equalsIgnoreCase(Commands.COMMAND_PURGE)) {
+            doPurge(player, args);
+            return true;
+        } else if (name.equalsIgnoreCase(Commands.COMMAND_JOBS)) {
+            doJobs(player, args);
+            return true;
         } else if (name.equalsIgnoreCase(Commands.COMMAND_FILTER)) {
             doFilter(player, args);
             return true;
@@ -288,6 +292,7 @@ public class MCPainterMain extends JavaPlugin {
             doRender(player, args);
             return true;
         }
+
         return Help.ShowHelp(player, null);
     }
 
@@ -340,7 +345,12 @@ public class MCPainterMain extends JavaPlugin {
     private String initializeConfig() {
         m_textureManager.dispose();
         m_paletteManager.clear();
+        m_blocksHub = new BlocksHubIntegration(this);
 
+        if (m_blockPlacer != null) {
+            m_blockPlacer.queueStop();
+        }
+        m_blockPlacer = new BlockPlacer(this, m_blocksHub);
         m_modProvider = new ModsProvider(ConfigProvider.getModFolder());
 
         DataFile[] dataFiles = DataFile.processFiles(ConfigProvider.getDataFolder());
@@ -402,20 +412,12 @@ public class MCPainterMain extends JavaPlugin {
     private void initializeBlocks(ModConfig[] mods) {
         log("Registering blocks providers...");
         m_blocksProvider.clear();
-
         for (ModConfig modConfig : mods) {
             ConfigurationSection blocks = modConfig.getBlocks();
-            String assets = modConfig.getAssets();
 
             log("* " + modConfig.getName() + "...");
             
             final List<IBlockProvider> bProviders = new ArrayList<IBlockProvider>();
-            if (assets != null && !assets.isEmpty()) {
-                final IBlockProvider bProvider = AssetsLoader.load(m_textureManager, modConfig);
-                if (bProvider != null) {
-                    bProviders.add(bProvider);
-                }
-            }
 
             if (blocks != null) {
                 final IBlockProvider bProvider = ModBlockProvider.load(m_textureManager, blocks);
@@ -717,6 +719,36 @@ public class MCPainterMain extends JavaPlugin {
     }
 
     /**
+     * Do queue purge command
+     *
+     * @param player
+     * @param args
+     */
+    private void doPurge(Player player, String[] args) {
+        if (!m_isInitialized) {
+            say(player, ChatColor.RED + "Module not initialized, contact administrator.");
+            return;
+        }
+
+        PurgeCommand.Execte(this, player, args);
+    }
+
+    /**
+     * Do jobs command
+     *
+     * @param player
+     * @param args
+     */
+    private void doJobs(Player player, String[] args) {
+        if (!m_isInitialized) {
+            say(player, ChatColor.RED + "Module not initialized, contact administrator.");
+            return;
+        }
+
+        JobsCommand.Execte(this, player, args);
+    }
+
+    /**
      * Do image filter command
      *
      * @param player
@@ -740,22 +772,4 @@ public class MCPainterMain extends JavaPlugin {
         RenderCommand.Execute(this, player, m_worldEdit, getColorMap(player), args);
     }
 
-    /**
-     * Get instance of WorldEdit plugin
-     *
-     * @return
-     */
-    private WorldEditPlugin getWorldEdit() {
-        try {
-            Plugin wPlugin = getServer().getPluginManager().getPlugin("WorldEdit");
-
-            if ((wPlugin == null) || (!(wPlugin instanceof WorldEditPlugin))) {
-                return null;
-            }
-
-            return (WorldEditPlugin) wPlugin;
-        } catch (NoClassDefFoundError ex) {
-            return null;
-        }
-    }
 }

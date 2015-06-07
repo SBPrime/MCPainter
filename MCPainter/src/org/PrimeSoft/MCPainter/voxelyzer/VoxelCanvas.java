@@ -23,15 +23,14 @@
  */
 package org.PrimeSoft.MCPainter.voxelyzer;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.Color;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
 import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
+import org.PrimeSoft.MCPainter.utils.BaseBlock;
+import org.PrimeSoft.MCPainter.utils.Vector;
 import org.bukkit.Material;
 
 /**
@@ -40,7 +39,7 @@ import org.bukkit.Material;
  */
 public class VoxelCanvas {
 
-    private final static BaseBlock STONE = new BaseBlock(Material.STONE.getId());
+    private final static BaseBlock STONE = new BaseBlock(Material.STONE);
     private final int m_minX;
     private final int m_minY;
     private final int m_resX;
@@ -156,8 +155,7 @@ public class VoxelCanvas {
     }
 
     public void render(Vector origin, 
-            BlockLoger loger, IColorMap colorMap, RawImage texture, double[][] map)
-            throws MaxChangedBlocksException {
+            BlockLoger loger, IColorMap colorMap, RawImage texture, double[][] map) {
         expand();
         for (int i = 0; i < m_resX; i++) {
             for (int j = 0; j < m_resY; j++) {
@@ -274,8 +272,7 @@ public class VoxelCanvas {
     }
 
     private void drawLine(Vector origin, 
-            BlockLoger loger, IColorMap colorMap, RawImage texture, Vertex p1, Vertex p2)
-            throws MaxChangedBlocksException {
+            BlockLoger loger, IColorMap colorMap, RawImage texture, Vertex p1, Vertex p2) {
         final Vertex len = Vertex.sub(p2, p1);
         final int cnt = (int) Math.round(Math.max(len.getX(), Math.max(len.getY(), len.getZ())));
         final Vertex delta = Vertex.div(len, cnt);

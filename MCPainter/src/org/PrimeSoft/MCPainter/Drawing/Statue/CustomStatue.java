@@ -23,9 +23,9 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Statue;
 
-import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.utils.Orientation;
+import org.PrimeSoft.MCPainter.utils.Vector;
 
 /**
  *

@@ -23,15 +23,14 @@
  */
 package org.PrimeSoft.MCPainter.Drawing.Statue;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Face;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.utils.Orientation;
+import org.PrimeSoft.MCPainter.utils.Vector;
 
 /**
  *
@@ -110,10 +109,8 @@ public abstract class BaseStatue {
      * @param loger block placer logger
      * @param rawImg statue texture
      * @param useAlpha use the alpha channel
-     * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
-    public void DrawStatue(BlockLoger loger, RawImage[] rawImg, boolean useAlpha) 
-            throws MaxChangedBlocksException {
+    public void DrawStatue(BlockLoger loger, RawImage[] rawImg, boolean useAlpha) {
         if (rawImg == null) {
             return;
         }

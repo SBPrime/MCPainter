@@ -83,13 +83,6 @@ public class ModConfig {
      * Mod config display name
      */
     private String m_name;
-    
-    
-    /**
-     * Assets directory
-     */
-    private String m_assets;
-    
 
     /**
      * Is the mod valid
@@ -181,14 +174,6 @@ public class ModConfig {
     public ConfigurationSection getBlocks() {
         return m_blocks;
     }
-    
-    /**
-     * Get the assets path
-     * @return 
-     */
-    public String getAssets() {
-        return m_assets;
-    }
 
     /**
      * Get mobs section
@@ -226,7 +211,6 @@ public class ModConfig {
 
         m_name = config.getString("DisplayName", null);
         m_blocks = config.getConfigurationSection("Blocks");
-        m_assets = config.getString("Assets", null);
         m_mobs = config.getConfigurationSection("Mobs");
         m_modIdRegex = config.getString("ModId", null);
         m_alternativeId = config.getString("ModIdAlternative", null);

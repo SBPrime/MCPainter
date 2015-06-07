@@ -63,7 +63,6 @@ public class DataFile {
     private static final String FILD_MOD_ID = "modid";
     private static final String FILD_MOBS = "mobs";
     private static final String FILD_BLOCKS = "blocks";
-    private static final String FILD_ASSETS = "assets";
     
     private final DataFileType m_type;
     private final String m_name;
@@ -100,8 +99,7 @@ public class DataFile {
             type = "player statue";
         } else if (keys.contains(FILD_MOD_ID) ||
                 keys.contains(FILD_MOBS) ||
-                keys.contains(FILD_BLOCKS) ||
-                keys.contains(FILD_ASSETS)) {
+                keys.contains(FILD_BLOCKS)) {
             m_type = DataFileType.ModDefinition;
             type = "mod file";
         } else {

@@ -23,11 +23,10 @@
  */
 package org.PrimeSoft.MCPainter.voxelyzer;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
+import org.PrimeSoft.MCPainter.utils.Vector;
 
 /**
  * 3D face
@@ -89,11 +88,9 @@ public class Face {
      * @param matrix transformation matrix
      * @param clipping
      * @param v vertices
-     * @throws com.sk89q.worldedit.MaxChangedBlocksException
      */
     public void render(Vector origin, BlockLoger loger, IColorMap colorMap, Matrix matrix,
-            ClippingRegion clipping, Vertex[] v)
-            throws MaxChangedBlocksException {
+            ClippingRegion clipping, Vertex[] v) {
         final Vertex[] vOut = new Vertex[3];
         if (v == null) {
             return;

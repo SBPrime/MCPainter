@@ -23,32 +23,33 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import java.awt.image.BufferedImage;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.Drawing.RawImage;
 import org.PrimeSoft.MCPainter.*;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Statue.CustomStatue;
 import org.PrimeSoft.MCPainter.Drawing.Statue.PlayerStatueDescription;
-import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
 import org.PrimeSoft.MCPainter.mods.ModStatueProvider;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
+import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
+import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
  * @author SBPrime
  */
-public class StatueCommand extends DrawingTask {
+public class StatueCommand implements Runnable {
 
     public static void Execte(MCPainterMain sender, final Player player,
-            final WorldEditPlugin worldEdit, final IColorMap colorMap, String[] args) {
+            final IWorldEdit worldEdit, final IColorMap colorMap, String[] args) {
         if (args.length < 1 || args.length > 2) {
             Help.ShowHelp(player, Commands.COMMAND_STATUE);
             return;
@@ -56,7 +57,7 @@ public class StatueCommand extends DrawingTask {
 
         ModStatueProvider statueProvider = sender.getStatueProvider();
         PlayerStatueDescription description = statueProvider.getPlayer();
-        if (description == null) {
+        if (description == null){
             MCPainterMain.say(player, ChatColor.RED + "No player statue defined in the config files.");
             return;
         }
@@ -99,10 +100,9 @@ public class StatueCommand extends DrawingTask {
             }
         }
 
-        DrawingTask task = new StatueCommand(worldEdit, player,
-                url, userName, imgError, colorMap, description);
-
-        sender.getAWE().runTask(player, "Statue", task);
+        sender.getServer().getScheduler().runTaskAsynchronously(sender,
+                new StatueCommand(sender, player, url, userName, imgError, 
+                    worldEdit, colorMap, description));       
     }
 
     private static Vector2D parse2DVector(String string) {
@@ -120,37 +120,44 @@ public class StatueCommand extends DrawingTask {
         }
     }
 
+    private final Player m_player;
     private final String m_url;
     private final String m_userName;
+    private final ILocalSession m_lSession;
+    private final IEditSession m_session;
+    private final MCPainterMain m_sender;
+    private final double m_yaw;
+    private final double m_pitch;
     private final Orientation m_orientation;
     private final String m_imgError;
     private final CustomStatue m_playerStatue;
 
-    private final double m_yaw;
-    private final double m_pitch;
     private final PlayerStatueDescription m_statueDescription;
 
-    private StatueCommand(WorldEditPlugin worldEditPlugin, Player player,
-            String url, String userName,
-            String imgError, IColorMap colorMap, PlayerStatueDescription description) {
-        super(worldEditPlugin, player);
+    private StatueCommand(MCPainterMain sender, Player player, String url, String userName, String imgError,
+            IWorldEdit worldEdit, IColorMap colorMap, PlayerStatueDescription description) {
+        m_player = player;
 
+        m_lSession = worldEdit.getSession(player);
+        ILocalPlayer localPlayer = worldEdit.wrapPlayer(player);
+        m_session = m_lSession.createEditSession(localPlayer);
         m_url = url;
+
         m_userName = userName;
-
-        m_imgError = imgError;
-
-        m_yaw = m_localPlayer.getYaw();
-        m_pitch = m_localPlayer.getPitch();
-        m_orientation = new Orientation(m_yaw, m_pitch);        
+        m_yaw = localPlayer.getYaw();
+        m_pitch = localPlayer.getPitch();
+        m_orientation = new Orientation(m_yaw, m_pitch);
         m_statueDescription = description;
-
-        m_playerStatue = new CustomStatue(colorMap, Utils.getPlayerPos(m_localPlayer),
+        
+        m_playerStatue = new CustomStatue(colorMap, Utils.getPlayerPos(localPlayer), 
                 m_yaw, m_pitch, m_orientation, description);
+
+        m_sender = sender;
+        m_imgError = imgError;
     }
 
     @Override
-    public void draw(BlockLoger loger) throws MaxChangedBlocksException {
+    public void run() {
         double price = ConfigProvider.getCommandPrice("statue");
         synchronized (FoundManager.getMutex()) {
             if (price > 0 && FoundManager.getMoney(m_player) < price) {
@@ -180,17 +187,16 @@ public class StatueCommand extends DrawingTask {
             }
 
             MCPainterMain.say(m_player, "Drawing statue...");
+            BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
 
             boolean[] useAlpha = new boolean[1];
             RawImage rawImg = new RawImage(ImageHelper.convertToRGB(img, useAlpha), img.getWidth());
-
-            try {
-                m_playerStatue.DrawStatue(loger, new RawImage[]{rawImg}, useAlpha[0]);
-            } catch (MaxChangedBlocksException ex) {
-                loger.logMessage("Maximum number of blocks changed, operation canceled.");
-            }
+            m_playerStatue.DrawStatue(loger, new RawImage[]{rawImg}, useAlpha[0]);
             loger.logMessage("Done.");
+            loger.logEndSession();
 
+            //m_sender.getBlockPlacer().AddTasks(loger);
+            loger.flush();
             FoundManager.subtractMoney(m_player, price);
         }
     }

@@ -23,64 +23,67 @@
  */
 package org.PrimeSoft.MCPainter.Commands;
 
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
 import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.utils.Utils;
 import java.awt.image.BufferedImage;
 import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
+import org.PrimeSoft.MCPainter.Drawing.IColorMap;
 import org.PrimeSoft.MCPainter.Drawing.Filters.FilterManager;
 import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
 import org.PrimeSoft.MCPainter.*;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
-import org.PrimeSoft.MCPainter.asyncworldedit.DrawingTask;
+import org.PrimeSoft.MCPainter.utils.Vector;
+import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalPlayer;
+import org.PrimeSoft.MCPainter.worldEdit.ILocalSession;
+import org.PrimeSoft.MCPainter.worldEdit.IWorldEdit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 /**
  * @author SBPrime
  */
-public class ImageCommand extends DrawingTask {
+public class ImageCommand implements Runnable {
 
-    public static void Execte(MCPainterMain sender, Player player, WorldEditPlugin worldEdit,
+    public static void Execte(MCPainterMain sender, Player player, IWorldEdit worldEdit,
             IColorMap colorMap, String[] args) {
         if (args.length != 2) {
             Help.ShowHelp(player, Commands.COMMAND_IMAGE);
             return;
         }
 
-        DrawingTask task = new ImageCommand(worldEdit, player,
-                sender, args, colorMap);
-        
-        sender.getAWE().runTask(player, "Image", task);
+        sender.getServer().getScheduler().runTaskAsynchronously(sender,
+                new ImageCommand(sender, player, args, worldEdit, colorMap));
     }
     private final String[] m_args;
+    private final Player m_player;
     private final Orientation m_orientation;
     private final double m_yaw;
     private final double m_pitch;
     private final Vector m_pPosition;
+    private final IEditSession m_session;
+    private final ILocalSession m_lSession;
     private final IColorMap m_colorMap;
     private final MCPainterMain m_sender;
 
-    private ImageCommand(WorldEditPlugin worldEditPlugin, Player player, 
-            MCPainterMain sender, String[] args, 
+    private ImageCommand(MCPainterMain sender, Player player, String[] args, IWorldEdit worldEdit,
             IColorMap colorMap) {
-        super(worldEditPlugin, player);
-        
         m_args = args;
+        m_player = player;
 
-        m_yaw = m_localPlayer.getYaw();
-        m_pitch = m_localPlayer.getPitch();
+        m_lSession = worldEdit.getSession(player);
+        ILocalPlayer localPlayer = worldEdit.wrapPlayer(player);
+        m_session = m_lSession.createEditSession(localPlayer);
+
+        m_yaw = localPlayer.getYaw();
+        m_pitch = localPlayer.getPitch();
         m_orientation = new Orientation(m_yaw, m_pitch);
-        m_pPosition = Utils.getPlayerPos(m_localPlayer);
+        m_pPosition = Utils.getPlayerPos(localPlayer);
         m_colorMap = colorMap;
         m_sender = sender;
     }
 
-    public void draw(BlockLoger loger) throws MaxChangedBlocksException {
+    public void run() {
         final String url = m_args[1];
         FilterManager fm = FilterManager.getFilterManager(m_player);
         double price = ConfigProvider.getCommandPrice("image") + fm.getPrice();
@@ -108,13 +111,14 @@ public class ImageCommand extends DrawingTask {
             }
 
             MCPainterMain.say(m_player, "Drawing image...");
-            try {
-                ImageHelper.drawImage(loger, m_colorMap, img, position, m_orientation);
-            } catch (MaxChangedBlocksException ex) {
-                loger.logMessage("Maximum number of blocks changed, operation canceled.");
-            }
+            BlockLoger loger = new BlockLoger(m_player, m_lSession, m_session, m_sender);
+            ImageHelper.drawImage(loger, m_colorMap, img, position, m_orientation);
 
             loger.logMessage("Drawing image done.");
+            loger.logEndSession();
+
+            //m_sender.getBlockPlacer().AddTasks(loger);
+            loger.flush();
             
             FoundManager.subtractMoney(m_player, price);
         }

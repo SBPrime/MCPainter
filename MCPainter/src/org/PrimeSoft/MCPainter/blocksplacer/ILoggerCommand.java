@@ -24,16 +24,13 @@
 
 package org.PrimeSoft.MCPainter.blocksplacer;
 
-import com.sk89q.worldedit.extent.Extent;
 import org.bukkit.Location;
 
 /**
  * Block logger commadn
  * @author SBPrime
  */
-public interface ILoggerCommand  {
-    void redo(BlockLoger loger, Extent extent);
-    void undo(BlockLoger loger, Extent extent);
-    boolean isDemanding();
+public interface ILoggerCommand {
+    void execute(BlockPlacer blockPlacer, BlockLoger loger);
     Location getLocation();
 }

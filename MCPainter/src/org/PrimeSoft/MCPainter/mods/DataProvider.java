@@ -77,14 +77,13 @@ public class DataProvider {
 
         boolean statues = result.getMobs() != null;
         boolean blocks = result.getBlocks() != null;
-        boolean assets = result.getAssets() != null;
-        boolean valid = statues || blocks || assets;
+        boolean valid = statues || blocks;
         if (!result.isValid() && !valid) {
             MCPainterMain.log("* " + file.getName() + "...bad file format.");
             return null;
         }
 
-        String text = buildAssetsText(statues, blocks, assets);
+        String text = buildAssetsText(statues, blocks);
         if (result.isValid()) {
             Mod mod = modsProvider.get(result.getModIdRegex(), result.getVersionRegex());
             if (mod == null) {
@@ -112,19 +111,15 @@ public class DataProvider {
      *
      * @param statues
      * @param blocks
-     * @param assets
      * @return
      */
-    private static String buildAssetsText(boolean statues, boolean blocks, boolean assets) {
+    private static String buildAssetsText(boolean statues, boolean blocks) {
         List<String> strings = new ArrayList<String>();
         if (statues) {
             strings.add("Statues");
         }
         if (blocks) {
             strings.add("Blocks");
-        }
-        if (assets) {
-            strings.add("Vanilla blocks");
         }
 
         StringBuilder sb = new StringBuilder();

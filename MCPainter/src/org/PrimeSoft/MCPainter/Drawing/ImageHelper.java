@@ -23,9 +23,6 @@
  */
 package org.PrimeSoft.MCPainter.Drawing;
 
-import com.sk89q.worldedit.BlockVector;
-import com.sk89q.worldedit.MaxChangedBlocksException;
-import com.sk89q.worldedit.Vector;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -43,6 +40,7 @@ import org.PrimeSoft.MCPainter.utils.Orientation;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.ExceptionHelper;
 import org.PrimeSoft.MCPainter.utils.Pair;
+import org.PrimeSoft.MCPainter.utils.Vector;
 import org.PrimeSoft.MCPainter.utils.Vector2D;
 
 /**
@@ -89,7 +87,7 @@ public class ImageHelper {
     }
 
     public static void drawImage(BlockLoger loger, IColorMap colorMap, BufferedImage img,
-            Vector pos, Orientation orientation) throws MaxChangedBlocksException {
+            Vector pos, Orientation orientation) {
         int hh = img.getHeight();
         int ww = img.getWidth();
 
@@ -105,7 +103,7 @@ public class ImageHelper {
                     Color c = new Color(img.getRGB(xx, hh - yy - 1), true);
                     IDrawingBlock block = colorMap.getBlockForColor(c, OperationType.Image);
                     
-                    block.place(pos, new BlockVector(x, y, z), loger);
+                    block.place(pos, new Vector(x, y, z), loger);
                 }
             }
         }
@@ -113,19 +111,19 @@ public class ImageHelper {
 
     public static void drawCube(BlockLoger loger, IColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, boolean useAlpha,
-            OperationType type) throws MaxChangedBlocksException {
+            OperationType type) {
         drawCube(loger, colorMap, pos, orientation, size, faces, null, useAlpha, type);
     }
 
     public static void drawCube(BlockLoger loger, IColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, int[] grayColor,
-            boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
+            boolean useAlpha, OperationType type) {
         drawCube(loger, colorMap, pos, orientation, size, faces, null, grayColor, useAlpha, type);
     }
 
     public static void drawCube(BlockLoger loger, IColorMap colorMap, Vector pos,
             Orientation orientation, Vector size, Face[] faces, double[] maping,
-            int[] grayColor, boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
+            int[] grayColor, boolean useAlpha, OperationType type) {
 
         double[] ddX, ddY, ddZ;
         if (maping == null || maping.length != 9) {
@@ -153,7 +151,7 @@ public class ImageHelper {
         int[] depth = new int[6];
         int[] h1 = new int[6];
         int[] h2 = new int[6];
-        int[] v1 = new int[6];        
+        int[] v1 = new int[6];
         int[] v2 = new int[6];
         
         int pY = pos.getBlockY();
@@ -288,7 +286,7 @@ public class ImageHelper {
                             int dz = orientation.calcZ(px, py, pz);
                             
                             if (dy + pY >= 0 && dy + pY <= 255) {
-                                block.place(pos, new BlockVector(dx, dy, dz), loger);
+                                block.place(pos, new Vector(dx, dy, dz), loger);
                             }
                         }
                     }
@@ -299,7 +297,7 @@ public class ImageHelper {
 
     public static void drawDiagonal(BlockLoger loger, IColorMap colorMap,
             Vector pos, Orientation orientation, Vector size,
-            Face[] faces, int[] grayColor, boolean useAlpha, OperationType type) throws MaxChangedBlocksException {
+            Face[] faces, int[] grayColor, boolean useAlpha, OperationType type) {
         int w = (int) (size.getX() - 1);
         int h = (int) (size.getY() - 1);
         int d = (int) (size.getZ() - 1);
@@ -420,7 +418,7 @@ public class ImageHelper {
 
                         if (block!= null && !block.isAir()) {
                             if (pY + dy >= 0 && pY + dy <= 255 && block != null) {
-                                block.place(pos, new BlockVector(dx, dy, dz), loger);
+                                block.place(pos, new Vector(dx, dy, dz), loger);
                             }
                         }
                     }
