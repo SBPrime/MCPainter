@@ -53,7 +53,7 @@ public class BlockEntry extends BlockLogerEntry {
         try {
             BaseBlock oldBlock = eSession.getBlock(m_location);
             eSession.setBlock(m_location, m_newBlock);
-            blockPlacer.logBlock(m_location, oldBlock, m_newBlock, p.getName(), m_loger.getWorld());
+            blockPlacer.logBlock(m_location, oldBlock, m_newBlock, p, m_loger.getWorld());
         } catch (MaxChangedBlocksException ex) {
             MCPainterMain.say(p, "Max block change reached");
             MCPainterMain.log(ex.getMessage());

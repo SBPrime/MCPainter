@@ -33,8 +33,6 @@ import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
 import org.PrimeSoft.MCPainter.MCPainterMain;
 import org.PrimeSoft.MCPainter.utils.BaseBlock;
 import org.PrimeSoft.MCPainter.utils.Vector;
-import org.PrimeSoft.MCPainter.worldEdit.IEditSession;
-import org.PrimeSoft.MCPainter.worldEdit.MaxChangedBlocksException;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -262,11 +260,11 @@ public class BlockPlacer implements Runnable {
      * @param v block possition
      * @param oldBlock old block
      * @param newBlock new block
-     * @param name player name
+     * @param p player
      * @param world world
      */
     public void logBlock(Vector v, BaseBlock oldBlock, BaseBlock newBlock,
-            String name, World world) {
-        m_blocksHub.logBlock(name, world, v, oldBlock, newBlock);
+            Player p, World world) {
+        m_blocksHub.logBlock(p, world, v, oldBlock, newBlock);
     }
 }

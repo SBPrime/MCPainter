@@ -88,7 +88,7 @@ public class BlockLoger {
 
     public void logCommand(ILoggerCommand command) {
         Location location = command.getLocation();
-        if (m_mainPlugin.getBlocksHub().canPlace(m_player.getName(), m_world, location)) {
+        if (m_mainPlugin.getBlocksHub().canPlace(m_player, m_world, location)) {
             synchronized (m_mutex) {
                 m_blocks.add(new CommandEntry(this, command));
             }
@@ -97,7 +97,7 @@ public class BlockLoger {
     }
     
     public void logBlock(Vector location, BaseBlock block) {
-        if (m_mainPlugin.getBlocksHub().canPlace(m_player.getName(), m_world, location)) {
+        if (m_mainPlugin.getBlocksHub().canPlace(m_player, m_world, location)) {
             synchronized (m_mutex) {
                 m_blocks.add(new BlockEntry(this, location, block));                
             }
