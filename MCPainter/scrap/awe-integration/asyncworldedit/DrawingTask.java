@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.asyncworldedit;
+package org.primesoft.mcpainter.asyncworldedit;
 
 import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.WorldEdit;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
+import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.bukkit.entity.Player;
 import org.primesoft.asyncworldedit.utils.FuncParamEx;
 import org.primesoft.asyncworldedit.worldedit.AsyncEditSessionFactory;

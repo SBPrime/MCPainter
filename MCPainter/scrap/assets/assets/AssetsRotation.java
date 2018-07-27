@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods.assets;
+package org.primesoft.mcpainter.mods.assets;
 
 import com.sk89q.worldedit.Vector;
-import org.PrimeSoft.MCPainter.utils.JSONExtensions;
-import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
+import org.primesoft.mcpainter.utils.JSONExtensions;
+import org.primesoft.mcpainter.voxelyzer.Matrix;
 import org.json.simple.JSONObject;
 
 /**

@@ -21,16 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods.assets;
+package org.primesoft.mcpainter.mods.assets;
 
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
-import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.voxelyzer.ClippingRegion;
-import org.PrimeSoft.MCPainter.voxelyzer.Face;
-import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
-import org.PrimeSoft.MCPainter.voxelyzer.Vertex;
+import org.primesoft.mcpainter.drawing.IColorMap;
+import org.primesoft.mcpainter.blocksplacer.BlockLoger;
+import org.primesoft.mcpainter.voxelyzer.ClippingRegion;
+import org.primesoft.mcpainter.voxelyzer.Face;
+import org.primesoft.mcpainter.voxelyzer.Matrix;
+import org.primesoft.mcpainter.voxelyzer.Vertex;
 import org.bukkit.entity.Player;
 
 /**

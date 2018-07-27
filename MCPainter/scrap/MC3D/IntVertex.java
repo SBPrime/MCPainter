@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.MC3D;
+package org.primesoft.mcpainter.MC3D;
 
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.Vector;

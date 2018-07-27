@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.MC3D;
+package org.primesoft.mcpainter.MC3D;
 
 import com.sk89q.worldedit.LocalPlayer;
 import java.awt.image.BufferedImage;
-import org.PrimeSoft.MCPainter.BlockLoger;
-import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.ColorMap;
-import org.PrimeSoft.MCPainter.Drawing.ImageHelper;
+import org.primesoft.mcpainter.BlockLoger;
+import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.drawing.ColorMap;
+import org.primesoft.mcpainter.drawing.ImageHelper;
 
 /**
  * Vertice buffer

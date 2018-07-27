@@ -21,16 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods.assets;
+package org.primesoft.mcpainter.mods.assets;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.PrimeSoft.MCPainter.Texture.TextureEntry;
-import org.PrimeSoft.MCPainter.Texture.TextureManager;
-import org.PrimeSoft.MCPainter.utils.JSONExtensions;
+import org.primesoft.mcpainter.texture.TextureEntry;
+import org.primesoft.mcpainter.texture.TextureManager;
+import org.primesoft.mcpainter.utils.JSONExtensions;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

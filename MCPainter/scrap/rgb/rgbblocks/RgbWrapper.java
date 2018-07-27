@@ -21,12 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.rgbblocks;
+package org.primesoft.mcpainter.rgbblocks;
 
 import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.primesoft.mcpainter.MCPainterMain;
 import org.bukkit.Server;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;

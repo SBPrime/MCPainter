@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.Drawing;
+package org.primesoft.mcpainter.drawing;
 
 import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.Drawing.Filters.ColorPaletteRgb;
-import org.PrimeSoft.MCPainter.Drawing.Filters.IColorPalette;
-import org.PrimeSoft.MCPainter.rgbblocks.RgbWrapper;
+import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.drawing.dilters.ColorPaletteRgb;
+import org.primesoft.mcpainter.drawing.dilters.IColorPalette;
+import org.primesoft.mcpainter.rgbblocks.RgbWrapper;
 
 /**
  *

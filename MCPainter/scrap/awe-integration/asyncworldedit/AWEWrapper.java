@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.asyncworldedit;
+package org.primesoft.mcpainter.asyncworldedit;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;

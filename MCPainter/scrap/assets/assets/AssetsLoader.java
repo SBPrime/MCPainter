@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods.assets;
+package org.primesoft.mcpainter.mods.assets;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,11 +33,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-import org.PrimeSoft.MCPainter.Drawing.Blocks.AssetBlock;
-import static org.PrimeSoft.MCPainter.MCPainterMain.log;
-import org.PrimeSoft.MCPainter.Texture.TextureManager;
-import org.PrimeSoft.MCPainter.mods.AssetsBlockProvider;
-import org.PrimeSoft.MCPainter.mods.ModConfig;
+import org.primesoft.mcpainter.drawing.blocks.AssetBlock;
+import static org.primesoft.mcpainter.MCPainterMain.log;
+import org.primesoft.mcpainter.texture.TextureManager;
+import org.primesoft.mcpainter.mods.AssetsBlockProvider;
+import org.primesoft.mcpainter.mods.ModConfig;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.ParseException;

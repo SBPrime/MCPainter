@@ -21,19 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.Drawing.Blocks;
+package org.primesoft.mcpainter.drawing.blocks;
 
 import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.bukkit.BukkitPlayer;
 import java.util.HashMap;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
-import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
-import org.PrimeSoft.MCPainter.mods.assets.FacingBlock;
-import org.PrimeSoft.MCPainter.mods.assets.VariantKey;
-import org.PrimeSoft.MCPainter.utils.Orientation;
-import org.PrimeSoft.MCPainter.utils.Utils;
+import org.primesoft.mcpainter.drawing.IColorMap;
+import org.primesoft.mcpainter.blocksplacer.BlockLoger;
+import org.primesoft.mcpainter.mods.assets.FacingBlock;
+import org.primesoft.mcpainter.mods.assets.VariantKey;
+import org.primesoft.mcpainter.utils.Orientation;
+import org.primesoft.mcpainter.utils.Utils;
 
 /**
  *

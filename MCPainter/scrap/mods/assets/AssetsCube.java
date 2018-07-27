@@ -21,20 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods.assets;
+package org.primesoft.mcpainter.mods.assets;
 
 import com.sk89q.worldedit.Vector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.PrimeSoft.MCPainter.Configuration.ConfigProvider;
-import org.PrimeSoft.MCPainter.Drawing.RawImage;
-import org.PrimeSoft.MCPainter.Texture.TextureEntry;
-import org.PrimeSoft.MCPainter.utils.InOutParam;
-import org.PrimeSoft.MCPainter.utils.JSONExtensions;
-import org.PrimeSoft.MCPainter.voxelyzer.Face;
-import org.PrimeSoft.MCPainter.voxelyzer.Matrix;
-import org.PrimeSoft.MCPainter.voxelyzer.Vertex;
+import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.drawing.RawImage;
+import org.primesoft.mcpainter.texture.TextureEntry;
+import org.primesoft.mcpainter.utils.InOutParam;
+import org.primesoft.mcpainter.utils.JSONExtensions;
+import org.primesoft.mcpainter.voxelyzer.Face;
+import org.primesoft.mcpainter.voxelyzer.Matrix;
+import org.primesoft.mcpainter.voxelyzer.Vertex;
 import org.json.simple.JSONObject;
 
 /**

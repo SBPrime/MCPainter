@@ -4,5 +4,7 @@
 *lib/
 *test/
 *dist/
-/MCPainter/nbproject/private/
+/MCPainter/nbproject/*
 *genfiles.properties
+/MCPainter/target/
+/MCPainter/test-server/*

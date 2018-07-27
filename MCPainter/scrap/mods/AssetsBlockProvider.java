@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods;
+package org.primesoft.mcpainter.mods;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.PrimeSoft.MCPainter.Drawing.Blocks.AssetBlock;
-import org.PrimeSoft.MCPainter.Drawing.Blocks.IBlockProvider;
-import org.PrimeSoft.MCPainter.Drawing.Blocks.IDrawableElement;
+import org.primesoft.mcpainter.drawing.blocks.AssetBlock;
+import org.primesoft.mcpainter.drawing.blocks.IBlockProvider;
+import org.primesoft.mcpainter.drawing.blocks.IDrawableElement;
 
 /**
  *

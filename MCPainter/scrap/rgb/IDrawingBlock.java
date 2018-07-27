@@ -21,13 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.Drawing;
+package org.primesoft.mcpainter.drawing;
 
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import java.util.EnumSet;
-import org.PrimeSoft.MCPainter.Configuration.OperationType;
-import org.PrimeSoft.MCPainter.blocksplacer.BlockLoger;
+import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 
 /**
  *

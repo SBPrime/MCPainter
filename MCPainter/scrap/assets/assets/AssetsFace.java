@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.mods.assets;
+package org.primesoft.mcpainter.mods.assets;
 
-import org.PrimeSoft.MCPainter.utils.JSONExtensions;
+import org.primesoft.mcpainter.utils.JSONExtensions;
 import org.json.simple.JSONObject;
 
 /**

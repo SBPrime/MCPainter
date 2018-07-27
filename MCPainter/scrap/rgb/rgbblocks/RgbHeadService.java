@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.rgbblocks;
+package org.primesoft.mcpainter.rgbblocks;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -33,8 +33,8 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
-import org.PrimeSoft.MCPainter.utils.InOutParam;
-import org.PrimeSoft.MCPainter.utils.Utils;
+import org.primesoft.mcpainter.utils.InOutParam;
+import org.primesoft.mcpainter.utils.Utils;
 import org.primesoft.simplehttpserver.api.HttpStatusCodes;
 import org.primesoft.simplehttpserver.api.IHeaders;
 import org.primesoft.simplehttpserver.api.IHttpRequest;

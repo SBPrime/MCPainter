@@ -21,11 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.PrimeSoft.MCPainter.palettes;
+package org.primesoft.mcpainter.palettes;
 
-import org.PrimeSoft.MCPainter.Drawing.ColorMapRGB;
-import org.PrimeSoft.MCPainter.Drawing.IColorMap;
-import org.PrimeSoft.MCPainter.MCPainterMain;
+import org.primesoft.mcpainter.drawing.ColorMapRGB;
+import org.primesoft.mcpainter.drawing.IColorMap;
+import org.primesoft.mcpainter.MCPainterMain;
 
 /**
  *
