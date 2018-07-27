@@ -1,11 +1,11 @@
 ################################################################################
 # MCPainter mod definition file
-# Mod name: Minecraft 1.8.x
+# Mod name: Minecraft 1.10.x
 # Author:   SBPrime
 # Description:
 #   Vanilla minecraft statue definition file
 ################################################################################
-DisplayName: Minecraft 1.8.x - mobs
+DisplayName: Minecraft 1.10.x - mobs
 Mobs:
   Ghast:
     Variants: 2
