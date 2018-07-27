@@ -24,7 +24,7 @@
 package org.primesoft.mcpainter;
 
 import org.primesoft.mcpainter.utils.VersionChecker;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

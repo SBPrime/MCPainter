@@ -1,4 +1,4 @@
-package org.primesoft.mcpainter.Configuration;
+package org.primesoft.mcpainter.configuration;
 
 import java.awt.Color;
 import java.util.ArrayList;

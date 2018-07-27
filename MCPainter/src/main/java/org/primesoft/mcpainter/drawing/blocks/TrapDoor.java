@@ -23,7 +23,7 @@
  */
 package org.primesoft.mcpainter.drawing.blocks;
 
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.CubeFace;
 import org.primesoft.mcpainter.drawing.Face;
 import org.primesoft.mcpainter.drawing.RawImage;

@@ -26,7 +26,7 @@ package org.primesoft.mcpainter.palettes;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import org.primesoft.mcpainter.Configuration.BlockEntry;
+import org.primesoft.mcpainter.configuration.BlockEntry;
 import org.primesoft.mcpainter.drawing.ColorMap;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.MCPainterMain;

@@ -23,8 +23,8 @@
  */
 package org.primesoft.mcpainter;
 
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
-import org.primesoft.mcpainter.Configuration.SizeNode;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.SizeNode;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 

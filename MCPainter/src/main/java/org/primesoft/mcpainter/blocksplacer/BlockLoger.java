@@ -25,7 +25,7 @@ package org.primesoft.mcpainter.blocksplacer;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.MCPainterMain;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
@@ -77,7 +77,7 @@ public class BlockLoger {
 
     public BlockLoger(Player player, ILocalSession session, IEditSession eSession,
             MCPainterMain main) {
-        m_blocks = new ArrayList<BlockLogerEntry>();
+        m_blocks = new ArrayList<>();
         m_player = player;
         m_session = session;
         m_editSession = eSession;

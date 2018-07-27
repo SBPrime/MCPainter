@@ -25,7 +25,7 @@ package org.primesoft.mcpainter.commands;
 
 import java.io.File;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.Help;
 import org.primesoft.mcpainter.MCPainterMain;

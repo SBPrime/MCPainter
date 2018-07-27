@@ -26,7 +26,7 @@ package org.primesoft.mcpainter.commands;
 import java.awt.image.BufferedImage;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.primesoft.mcpainter.blocksplacer.BlockPlacer;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.dilters.CropFilter;
 import org.primesoft.mcpainter.drawing.dilters.FilterManager;
 import org.primesoft.mcpainter.drawing.ImageHelper;

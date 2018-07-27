@@ -26,7 +26,7 @@ package org.primesoft.mcpainter.drawing;
 import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.drawing.dilters.ColorPaletteRgb;
 import org.primesoft.mcpainter.drawing.dilters.IColorPalette;
 import org.primesoft.mcpainter.rgbblocks.RgbWrapper;

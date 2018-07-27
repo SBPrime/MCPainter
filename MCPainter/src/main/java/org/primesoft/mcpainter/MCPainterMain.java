@@ -36,7 +36,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.primesoft.mcpainter.commands.*;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.blocks.IBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.MultiBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.VanillaBlockProvider;

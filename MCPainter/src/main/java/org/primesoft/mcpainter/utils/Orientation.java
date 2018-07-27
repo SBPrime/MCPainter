@@ -23,7 +23,7 @@
  */
 package org.primesoft.mcpainter.utils;
 
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 
 /**
  *

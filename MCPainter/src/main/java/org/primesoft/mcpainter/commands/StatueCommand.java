@@ -27,7 +27,7 @@ import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.primesoft.mcpainter.utils.Orientation;
 import org.primesoft.mcpainter.utils.Utils;
 import java.awt.image.BufferedImage;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 import org.primesoft.mcpainter.drawing.RawImage;

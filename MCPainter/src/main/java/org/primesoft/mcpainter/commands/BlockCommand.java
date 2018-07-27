@@ -24,7 +24,7 @@
 package org.primesoft.mcpainter.commands;
 
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.blocks.IBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.IDrawableElement;
 import org.primesoft.mcpainter.drawing.IColorMap;

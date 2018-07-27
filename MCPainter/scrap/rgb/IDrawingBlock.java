@@ -26,7 +26,7 @@ package org.primesoft.mcpainter.drawing;
 import com.sk89q.worldedit.MaxChangedBlocksException;
 import com.sk89q.worldedit.Vector;
 import java.util.EnumSet;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 
 /**

@@ -28,7 +28,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.RawImage;
 import org.primesoft.mcpainter.drawing.statue.StatueBlock;
 import org.primesoft.mcpainter.drawing.statue.StatueFace;

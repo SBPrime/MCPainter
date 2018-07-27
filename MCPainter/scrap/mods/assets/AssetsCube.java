@@ -27,7 +27,7 @@ import com.sk89q.worldedit.Vector;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.RawImage;
 import org.primesoft.mcpainter.texture.TextureEntry;
 import org.primesoft.mcpainter.utils.InOutParam;

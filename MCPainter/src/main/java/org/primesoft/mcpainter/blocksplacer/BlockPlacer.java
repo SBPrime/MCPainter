@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
 import org.primesoft.mcpainter.BlocksHubIntegration;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.MCPainterMain;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;

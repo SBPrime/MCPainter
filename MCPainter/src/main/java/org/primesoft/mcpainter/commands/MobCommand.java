@@ -26,7 +26,7 @@ package org.primesoft.mcpainter.commands;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.primesoft.mcpainter.utils.Orientation;
 import org.primesoft.mcpainter.utils.Utils;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.drawing.RawImage;
 import org.primesoft.mcpainter.drawing.statue.BaseStatue;
