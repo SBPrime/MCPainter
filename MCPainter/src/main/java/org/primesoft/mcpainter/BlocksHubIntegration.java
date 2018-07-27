@@ -100,10 +100,11 @@ public class BlocksHubIntegration {
             newBlock = new BaseBlock(Material.AIR);
         }
 
-        m_blocksApi.logBlock(                
+        throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");  //TODO: 1.13
+        /*m_blocksApi.logBlock(                
                 player.getUniqueId(), world.getUID(),
                 location.getX(), location.getY(), location.getZ(),
                 new BukkitBlockData(null),  //TODO: Implement proper block data
-                new BukkitBlockData(null));
+                new BukkitBlockData(null));*/
     }
 }

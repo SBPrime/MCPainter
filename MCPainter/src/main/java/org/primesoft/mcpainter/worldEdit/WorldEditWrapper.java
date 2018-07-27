@@ -88,6 +88,7 @@ public class WorldEditWrapper implements IWorldEdit {
     }
         
     public static BaseBlock convert(com.sk89q.worldedit.blocks.BaseBlock v) {
-        return null;//TODO: Implement me! new BaseBlock(Material.getMaterial(v.getType()), v.getData());
+        throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");     //TODO: 1.13
+        //return null;//TODO: Implement me! new BaseBlock(Material.getMaterial(v.getType()), v.getData());
     }
 }
