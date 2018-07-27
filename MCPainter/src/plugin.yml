@@ -1,5 +1,5 @@
 name: MCPainter
-main: org.PrimeSoft.MCPainter.MCPainterMain
+main: org.primesoft.mcpainter.MCPainterMain
 version: 1.0.1
 website: https://github.com/SBPrime/MCPainter/wiki
 dev-url: https://github.com/SBPrime/MCPainter/wiki
