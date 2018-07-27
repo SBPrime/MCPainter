@@ -14,16 +14,22 @@ import org.bukkit.Material;
  */
 public class BlockEntry {
 
+    private static final Pattern PATTERN_ENTRY = Pattern.compile("^(<?material>[^:-]+)"+
+            "(\\:(<?data>[^-]+))?-"+
+            "(<?texture>[^-]+)"+
+            "(-(<?colorH>[0-9]+),(<?colorS>[0-9]+))?"+
+            "(-(<?bsiBSI>[bsiBSI]+))?$");
+
     /**
      * Block of air
      */
     public final static BlockEntry AIR = new BlockEntry(Material.AIR, 0, null,
             EnumSet.of(OperationType.Block, OperationType.Image, OperationType.Statue));
     public final static Color AIR_COLOR = new Color(0, 0, 0, 0);
-    
+
     private final TextureDescription m_textureFile;
     private boolean m_isGrayscale;
-    private int[] m_grayscaleColor;    
+    private int[] m_grayscaleColor;
     private final BaseBlock m_block;
     private final EnumSet<OperationType> m_type;
 
@@ -43,12 +49,12 @@ public class BlockEntry {
         return m_type;
     }
 
-    private BlockEntry(Material m, int data, TextureDescription textureFile, 
+    private BlockEntry(Material m, int data, TextureDescription textureFile,
             EnumSet<OperationType> type) {
-        this(m, data, textureFile, type, null);        
+        this(m, data, textureFile, type, null);
     }
 
-    private BlockEntry(Material m, int data, TextureDescription textureFile, 
+    private BlockEntry(Material m, int data, TextureDescription textureFile,
             EnumSet<OperationType> type, int[] color) {
         m_isGrayscale = true;
         m_grayscaleColor = color;
@@ -68,30 +74,21 @@ public class BlockEntry {
 
         return sb.toString();
     }
-    
-        /**
+
+    /**
      * Parse string to material
      *
-     * @param s strng
+     * @param name the material name
      * @return Material value
      */
-    private static Material getMaterial(String s) {
-        Material material;
-        int matId;
-        try {
-            matId = Integer.parseInt(s);
+    private static Material getMaterial(String name) {
+        if (name == null || name.isEmpty()) {
+            return null;
         }
-        catch (NumberFormatException e) {
-            matId = -1;
-        }
-        if (matId == -1) {
-            material = Material.getMaterial(s);
-        } else {
-            material = Material.getMaterial(matId);
-        }
-        return material;
-    }    
-    
+        
+        return Material.getMaterial(name.toUpperCase());
+    }
+
     /**
      * Parse string to int data
      *
@@ -102,15 +99,14 @@ public class BlockEntry {
         if (s != null) {
             try {
                 return Integer.parseInt(s);
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 return 0;
             }
         } else {
             return 0;
         }
     }
-    
+
     /**
      * Parse block description
      *
@@ -118,20 +114,17 @@ public class BlockEntry {
      * @return Block entry
      */
     public static BlockEntry parse(String s) {
-        final Pattern pattern = Pattern.compile("^([^:-]+)(\\:([^-]+))?-"
-                + "([^-]+)(-([0-9]+),([0-9]+))?(-([bsiBSI]+))?$");
-
-        Matcher m = pattern.matcher(s);
+        Matcher m = PATTERN_ENTRY.matcher(s);
         if (!m.matches()) {
             throw new NullPointerException("Invalid material entry " + s);
         }
 
-        String sMaterial = m.group(1);
-        String sData = m.group(3);
-        String sTexture = m.group(4);
-        String sH = m.group(6);
-        String sS = m.group(7);
-        String sBlocks = m.group(9);
+        String sMaterial = m.group("material");
+        String sData = m.group("data");
+        String sTexture = m.group("texture");
+        String sH = m.group("colorH");
+        String sS = m.group("colorS");
+        String sBlocks = m.group("bsiBSI");
         TextureDescription tex = TextureDescription.parse(sTexture);
 
         if (sMaterial == null || tex == null) {
@@ -155,8 +148,7 @@ public class BlockEntry {
                     Integer.parseInt(sH),
                     Integer.parseInt(sS)
                 };
-            }
-            catch (NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 gray = null;
             }
         }

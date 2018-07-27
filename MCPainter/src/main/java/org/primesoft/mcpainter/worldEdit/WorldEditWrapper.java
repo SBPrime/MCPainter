@@ -88,6 +88,6 @@ public class WorldEditWrapper implements IWorldEdit {
     }
         
     public static BaseBlock convert(com.sk89q.worldedit.blocks.BaseBlock v) {
-        return new BaseBlock(Material.getMaterial(v.getType()), v.getData());
+        return null;//TODO: Implement me! new BaseBlock(Material.getMaterial(v.getType()), v.getData());
     }
 }

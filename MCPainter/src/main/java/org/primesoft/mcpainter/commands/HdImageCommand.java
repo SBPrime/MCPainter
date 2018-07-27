@@ -90,19 +90,13 @@ public class HdImageCommand {
         if (m == Material.LAVA) {
             return false;
         }
-        if (m == Material.STATIONARY_LAVA) {
-            return false;
-        }
         if (m == Material.WATER) {
             return false;
         }
-        if (m == Material.STATIONARY_WATER) {
+        if (m == Material.END_PORTAL) {
             return false;
         }
-        if (m == Material.ENDER_PORTAL) {
-            return false;
-        }
-        if (m == Material.PORTAL) {
+        if (m == Material.NETHER_PORTAL) {
             return false;
         }
 

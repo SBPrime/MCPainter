@@ -63,7 +63,7 @@ class StubEditEditSession implements IEditSession {
         }
         Block b = l.getBlock();
         b.setType(block.getMaterial());
-        b.setData((byte)block.getData());
+        //TODO: Implement me! b.setData((byte)block.getData());
     }
 
 }

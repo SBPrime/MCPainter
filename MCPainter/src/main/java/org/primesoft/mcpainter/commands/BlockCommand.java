@@ -63,7 +63,6 @@ public class BlockCommand {
 
         Material blockMaterial = null;
         short blockData;
-        int matId = -1;
         String blockName = null;
 
         if (args.length == 1) {
@@ -94,17 +93,7 @@ public class BlockCommand {
                     blockData = tmp.getData();
                 }
             } else {
-                try {
-                    matId = Integer.parseInt(materialParts[0]);
-                } catch (NumberFormatException e) {
-                    matId = -1;
-                }
-
-                if (matId == -1) {
-                    blockName = materialParts[0].toUpperCase();
-                } else {
-                    blockMaterial = Material.getMaterial(matId);
-                }
+                blockName = materialParts[0].toUpperCase();                
 
                 if (materialParts.length > 1) {
                     int value = 0;
@@ -119,7 +108,7 @@ public class BlockCommand {
                 }
             }
 
-            if (blockMaterial == null && matId == -1 && blockName == null) {
+            if (blockMaterial == null && blockName == null) {
                 MCPainterMain.say(player, ChatColor.RED + "Unknown material");
                 return;
             }
@@ -128,10 +117,10 @@ public class BlockCommand {
         if (blockMaterial != null) {
             blockName = blockMaterial.toString();
         }
-        String name = (blockName != null ? blockName : matId).toString();
+        String name = blockName;
         MCPainterMain.say(player, "Drawing block " + name + "...");
 
-        final IDrawableElement element = (blockName != null) ? m_blockProvider.getBlock(blockName) : m_blockProvider.getBlock(matId);
+        final IDrawableElement element = m_blockProvider.getBlock(blockName);
 
         if (element == null) {
             MCPainterMain.say(player, ChatColor.RED + "Block " + name + " not supported");
