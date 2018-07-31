@@ -27,7 +27,6 @@ import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -92,19 +91,15 @@ public class BlocksHubIntegration {
         if (location == null || !ConfigProvider.getLogBlocks()) {
             return;
         }
-
-        if (oldBlock == null) {
-            oldBlock = new BaseBlock(Material.AIR);
-        }
-        if (newBlock == null) {
-            newBlock = new BaseBlock(Material.AIR);
-        }
-
-        throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");  //TODO: 1.13
-        /*m_blocksApi.logBlock(                
+       
+        final BukkitBlockData oldBlockData = oldBlock != null && oldBlock.Data != null ? new BukkitBlockData(oldBlock.Data) : null;
+        final BukkitBlockData newBlockData = newBlock != null && newBlock.Data != null ? new BukkitBlockData(newBlock.Data) : null;
+        
+        m_blocksApi.logBlock(                
                 player.getUniqueId(), world.getUID(),
                 location.getX(), location.getY(), location.getZ(),
-                new BukkitBlockData(null),  //TODO: Implement proper block data
-                new BukkitBlockData(null));*/
+                oldBlockData,
+                newBlockData
+        );
     }
 }

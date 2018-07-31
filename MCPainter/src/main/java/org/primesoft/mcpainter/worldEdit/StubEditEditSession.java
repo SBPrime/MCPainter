@@ -29,6 +29,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 
 /**
  *
@@ -36,7 +37,7 @@ import org.bukkit.block.Block;
  */
 class StubEditEditSession implements IEditSession {
 
-    private World m_world;
+    private final World m_world;
 
     public StubEditEditSession(StubLocalPlayer stubLocalPlayer) {
         m_world = stubLocalPlayer.getWorld();
@@ -51,7 +52,7 @@ class StubEditEditSession implements IEditSession {
         }
         Block b = l.getBlock();
         
-        return new BaseBlock(b.getType(), b.getData());
+        return new BaseBlock(b.getBlockData().clone());
     }
 
     @Override
@@ -62,9 +63,7 @@ class StubEditEditSession implements IEditSession {
             chunk.load();
         }
         Block b = l.getBlock();
-        b.setType(block.getMaterial());
-        //TODO: 1.13
-        //TODO: Implement me! b.setData((byte)block.getData());
+        b.setBlockData(block.Data);
     }
 
 }

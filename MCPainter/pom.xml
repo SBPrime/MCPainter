@@ -26,7 +26,10 @@
             <url>http://maven.sk89q.com/artifactory/repo</url>
         </repository>
         
-        
+        <repository>
+            <id>herocraft</id>
+            <url>http://nexus.hc.to/content/repositories/pub_releases/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -50,12 +53,6 @@
             <type>jar</type>
         </dependency>
         <dependency>
-            <groupId>net.milkbowl.vault</groupId>
-            <artifactId>Vault</artifactId>
-            <version>1.2.27</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
             <version>6.1.5</version>
@@ -66,6 +63,12 @@
             <artifactId>commons-codec</artifactId>
             <version>1.9</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.6</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

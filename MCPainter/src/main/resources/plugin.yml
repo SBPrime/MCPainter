@@ -1,6 +1,7 @@
 name: MCPainter
 main: org.primesoft.mcpainter.MCPainterMain
 version: 1.0.1
+api-version: 1.13
 website: https://github.com/SBPrime/MCPainter/wiki
 dev-url: https://github.com/SBPrime/MCPainter/wiki
 description: Provides some basic features to draw using blocks.
