@@ -4,7 +4,7 @@
 # Description:
 #   Palette consisting only of terracotta blocks
 ################################################################################
-name: All
+name: Terracota
 blocks:
 # Glazed terracotta
   - minecraft:black_glazed_terracotta;VANILLA:assets/minecraft/textures/block/black_glazed_terracotta.png

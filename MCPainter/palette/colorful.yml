@@ -4,7 +4,7 @@
 # Description:
 #   Palette consisting out of "colorful" blocks
 ################################################################################
-name: Colorflul
+name: Colorful
 blocks:
 # Wools
   - minecraft:black_wool;VANILLA:assets/minecraft/textures/block/black_wool.png
@@ -43,22 +43,22 @@ blocks:
   - minecraft:yellow_concrete;VANILLA:assets/minecraft/textures/block/yellow_concrete.png
 
 # Concrete powder
-  - minecraft:black_concrete_powder;VANILLA:assets/minecraft/textures/block/black_concrete_powder.png
-  - minecraft:blue_concrete_powder;VANILLA:assets/minecraft/textures/block/blue_concrete_powder.png
-  - minecraft:brown_concrete_powder;VANILLA:assets/minecraft/textures/block/brown_concrete_powder.png
-  - minecraft:cyan_concrete_powder;VANILLA:assets/minecraft/textures/block/cyan_concrete_powder.png
-  - minecraft:gray_concrete_powder;VANILLA:assets/minecraft/textures/block/gray_concrete_powder.png
-  - minecraft:green_concrete_powder;VANILLA:assets/minecraft/textures/block/green_concrete_powder.png
-  - minecraft:light_blue_concrete_powder;VANILLA:assets/minecraft/textures/block/light_blue_concrete_powder.png
-  - minecraft:light_gray_concrete_powder;VANILLA:assets/minecraft/textures/block/light_gray_concrete_powder.png
-  - minecraft:lime_concrete_powder;VANILLA:assets/minecraft/textures/block/lime_concrete_powder.png
-  - minecraft:magenta_concrete_powder;VANILLA:assets/minecraft/textures/block/magenta_concrete_powder.png
-  - minecraft:orange_concrete_powder;VANILLA:assets/minecraft/textures/block/orange_concrete_powder.png
-  - minecraft:pink_concrete_powder;VANILLA:assets/minecraft/textures/block/pink_concrete_powder.png
-  - minecraft:purple_concrete_powder;VANILLA:assets/minecraft/textures/block/purple_concrete_powder.png
-  - minecraft:red_concrete_powder;VANILLA:assets/minecraft/textures/block/red_concrete_powder.png
-  - minecraft:white_concrete_powder;VANILLA:assets/minecraft/textures/block/white_concrete_powder.png
-  - minecraft:yellow_concrete_powder;VANILLA:assets/minecraft/textures/block/yellow_concrete_powder.png
+#  - minecraft:black_concrete_powder;VANILLA:assets/minecraft/textures/block/black_concrete_powder.png
+#  - minecraft:blue_concrete_powder;VANILLA:assets/minecraft/textures/block/blue_concrete_powder.png
+#  - minecraft:brown_concrete_powder;VANILLA:assets/minecraft/textures/block/brown_concrete_powder.png
+#  - minecraft:cyan_concrete_powder;VANILLA:assets/minecraft/textures/block/cyan_concrete_powder.png
+#  - minecraft:gray_concrete_powder;VANILLA:assets/minecraft/textures/block/gray_concrete_powder.png
+#  - minecraft:green_concrete_powder;VANILLA:assets/minecraft/textures/block/green_concrete_powder.png
+#  - minecraft:light_blue_concrete_powder;VANILLA:assets/minecraft/textures/block/light_blue_concrete_powder.png
+#  - minecraft:light_gray_concrete_powder;VANILLA:assets/minecraft/textures/block/light_gray_concrete_powder.png
+#  - minecraft:lime_concrete_powder;VANILLA:assets/minecraft/textures/block/lime_concrete_powder.png
+#  - minecraft:magenta_concrete_powder;VANILLA:assets/minecraft/textures/block/magenta_concrete_powder.png
+#  - minecraft:orange_concrete_powder;VANILLA:assets/minecraft/textures/block/orange_concrete_powder.png
+#  - minecraft:pink_concrete_powder;VANILLA:assets/minecraft/textures/block/pink_concrete_powder.png
+#  - minecraft:purple_concrete_powder;VANILLA:assets/minecraft/textures/block/purple_concrete_powder.png
+#  - minecraft:red_concrete_powder;VANILLA:assets/minecraft/textures/block/red_concrete_powder.png
+#  - minecraft:white_concrete_powder;VANILLA:assets/minecraft/textures/block/white_concrete_powder.png
+#  - minecraft:yellow_concrete_powder;VANILLA:assets/minecraft/textures/block/yellow_concrete_powder.png
 
 # Glazed terracotta
   - minecraft:black_glazed_terracotta;VANILLA:assets/minecraft/textures/block/black_glazed_terracotta.png
