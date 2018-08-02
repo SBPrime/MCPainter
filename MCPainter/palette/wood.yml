@@ -5,18 +5,25 @@
 #   Palette consisting only of wood
 ################################################################################
 name: Wood
-blocks: 
-  - LOG:12-VANILLA:assets/minecraft/textures/blocks/log_oak.png
-  - LOG:13-VANILLA:assets/minecraft/textures/blocks/log_spruce.png
-  - LOG:14-VANILLA:assets/minecraft/textures/blocks/log_birch.png
-  - LOG:15-VANILLA:assets/minecraft/textures/blocks/log_jungle.png
-   
-  - LOG_2:12-VANILLA:assets/minecraft/textures/blocks/log_acacia.png
-  - LOG_2:13-VANILLA:assets/minecraft/textures/blocks/log_big_oak.png
-  
-  - WOOD:0-VANILLA:assets/minecraft/textures/blocks/planks_oak.png  
-  - WOOD:1-VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
-  - WOOD:2-VANILLA:assets/minecraft/textures/blocks/planks_birch.png
-  - WOOD:3-VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
-  - WOOD:4-VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
-  - WOOD:5-VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png
+blocks:
+# Wood
+  - minecraft:acacia_wood;VANILLA:assets/minecraft/textures/block/acacia_log.png
+  - minecraft:birch_wood;VANILLA:assets/minecraft/textures/block/birch_log.png
+  - minecraft:dark_oak_wood;VANILLA:assets/minecraft/textures/block/dark_oak_log.png
+  - minecraft:jungle_wood;VANILLA:assets/minecraft/textures/block/jungle_log.png
+  - minecraft:oak_wood;VANILLA:assets/minecraft/textures/block/oak_log.png
+  - minecraft:spruce_wood;VANILLA:assets/minecraft/textures/block/spruce_log.png
+  - minecraft:stripped_oak_wood;VANILLA:assets/minecraft/textures/block/stripped_oak_log.png
+  - minecraft:stripped_spruce_wood;VANILLA:assets/minecraft/textures/block/stripped_spruce_log.png
+  - minecraft:stripped_birch_wood;VANILLA:assets/minecraft/textures/block/stripped_birch_log.png
+  - minecraft:stripped_jungle_wood;VANILLA:assets/minecraft/textures/block/stripped_jungle_log.png
+  - minecraft:stripped_acacia_wood;VANILLA:assets/minecraft/textures/block/stripped_acacia_log.png
+  - minecraft:stripped_dark_oak_wood;VANILLA:assets/minecraft/textures/block/stripped_dark_oak_log.png
+
+# Planks
+  - minecraft:acacia_planks;VANILLA:assets/minecraft/textures/block/acacia_planks.png
+  - minecraft:birch_planks;VANILLA:assets/minecraft/textures/block/birch_planks.png
+  - minecraft:dark_oak_planks;VANILLA:assets/minecraft/textures/block/dark_oak_planks.png
+  - minecraft:jungle_planks;VANILLA:assets/minecraft/textures/block/jungle_planks.png
+  - minecraft:oak_planks;VANILLA:assets/minecraft/textures/block/oak_planks.png
+  - minecraft:spruce_planks;VANILLA:assets/minecraft/textures/block/spruce_planks.png
