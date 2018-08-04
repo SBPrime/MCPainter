@@ -23,8 +23,6 @@
  */
 package org.primesoft.mcpainter.blocksplacer;
 
-import org.primesoft.mcpainter.worldEdit.IEditSession;
-
 /**
  *
  * @author SBPrime
@@ -38,8 +36,6 @@ public class FlushEntry extends BlockLogerEntry {
     public boolean canRemove() {
         return false;
     }
-    
-    
     
     @Override
     public void execute() {

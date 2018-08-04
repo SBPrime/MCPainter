@@ -34,13 +34,18 @@ import org.primesoft.mcpainter.BlocksHubIntegration;
 class StubLocalSession implements ILocalSession {
 
     private final BlocksHubIntegration m_bh;
+    private final StubWrapper m_wrapper;
+    private final Player m_player;
     
-    public StubLocalSession(BlocksHubIntegration bh) {
+    public StubLocalSession(Player player, BlocksHubIntegration bh, StubWrapper wrapper) {
         m_bh = bh;
+        m_wrapper = wrapper;
+        m_player = player;
     }
 
     @Override
-    public void remember(IEditSession eSession) {        
+    public void remember(IEditSession eSession) {
+        m_wrapper.setChangeset(m_player, eSession.getChangeSet());
     }
 
     @Override

@@ -28,6 +28,7 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.history.UndoContext;
 import com.sk89q.worldedit.history.change.Change;
 import com.sk89q.worldedit.history.changeset.ChangeSet;
+import java.util.List;
 import org.primesoft.mcpainter.BlocksHubIntegration;
 import org.primesoft.mcpainter.blocksplacer.IChange;
 import org.primesoft.mcpainter.utils.BaseBlock;
@@ -38,7 +39,6 @@ import org.primesoft.mcpainter.utils.Vector;
  * @author SBPrime
  */
 class WorldEditEditSession extends BaseEditSession {
-
     private static class ChangeWrapper implements Change {
 
         private final IChange m_change;
@@ -94,4 +94,10 @@ class WorldEditEditSession extends BaseEditSession {
         command.redo();
         cs.add(new ChangeWrapper(command));
     }
+    
+    @Override
+    public List<IChange> getChangeSet() {
+        return null;
+    }
+
 }

@@ -57,6 +57,9 @@ public class WorldEditFactory {
         }
         
         MCPainterMain.log("WorldEdit not found - using stub wrapper classes.");
-        return new StubWrapper(plugin.getBlocksHub());
+        
+        StubWrapper result = new StubWrapper(plugin.getBlocksHub(), plugin.getBlockPlacer());
+        plugin.getServer().getPluginManager().registerEvents(result, plugin);
+        return result;
     }
 }

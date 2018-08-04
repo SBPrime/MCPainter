@@ -23,6 +23,8 @@
  */
 package org.primesoft.mcpainter.worldEdit;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.Chunk;
@@ -36,6 +38,8 @@ import org.primesoft.mcpainter.blocksplacer.IChange;
  * @author SBPrime
  */
 class StubEditEditSession extends BaseEditSession {
+    private final List<IChange> m_changeSet= new ArrayList<>();
+    
     public StubEditEditSession(ILocalPlayer localPlayer, BlocksHubIntegration bh) {
         super(localPlayer, bh);
     }
@@ -48,7 +52,7 @@ class StubEditEditSession extends BaseEditSession {
             chunk.load();
         }
         Block b = l.getBlock();
-        
+
         return new BaseBlock(b.getBlockData().clone());
     }
 
@@ -59,15 +63,57 @@ class StubEditEditSession extends BaseEditSession {
         if (!chunk.isLoaded()) {
             chunk.load();
         }
-                
-        Block b = l.getBlock();        
-        BaseBlock oldBlock = new BaseBlock(b.getBlockData().clone());        
-        b.setBlockData(block.Data);        
-        logBlock(location, oldBlock, block);
+
+        Block b = l.getBlock();
+        BaseBlock oldBlock = new BaseBlock(b.getBlockData().clone());
+        b.setBlockData(block.Data);
+
+        IChange setBlockUndo = new UndoSetBlock(l, oldBlock);
+        logBlock(location, oldBlock, block);        
+        m_changeSet.add(setBlockUndo);
     }
 
     @Override
     public void doCustom(IChange command) throws MaxChangedBlocksException {
         command.redo();
+        
+        m_changeSet.add(command);
+    }
+
+    @Override
+    public List<IChange> getChangeSet() {
+        return m_changeSet;
+    }
+
+    private static class UndoSetBlock implements IChange {
+
+        private final Location m_location;
+        private final BaseBlock m_block;
+
+        public UndoSetBlock(Location l, BaseBlock oldBlock) {
+            m_location = l;
+            m_block = oldBlock;
+        }
+
+        @Override
+        public Location getLocation() {
+            return m_location;
+        }
+
+        @Override
+        public void redo() {
+            throw new UnsupportedOperationException("Not supported, this is only for undo.");
+        }
+
+        @Override
+        public void undo() {
+            Chunk chunk = m_location.getChunk();
+            if (!chunk.isLoaded()) {
+                chunk.load();
+            }
+
+            Block b = m_location.getBlock();
+            b.setBlockData(m_block.Data);
+        }
     }
 }

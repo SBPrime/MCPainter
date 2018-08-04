@@ -21,17 +21,17 @@
             <url>https://raw.githubusercontent.com/SBPrime/BlocksHub/maven-artifact/</url>
         </repository>
         <repository>
+            <id>sk89q</id>
+            <url>http://maven.sk89q.com/artifactory/repo</url>
+        </repository>        
+        <repository>
             <id>herocraft</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases/</url>
         </repository>
         <repository>
             <id>spigot</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>sk89q</id>
-            <url>http://maven.sk89q.com/repo/</url>
-        </repository>
+        </repository>        
     </repositories>
 
     <dependencies>
@@ -44,15 +44,21 @@
         
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-bukkit</artifactId>
-            <version>7.0.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <artifactId>worldedit-core</artifactId>
+            <version>6.1</version>
+            <type>jar</type>
         </dependency>
 
         <dependency>
             <groupId>org.primesoft</groupId>
             <artifactId>BlocksHubBukkitApi</artifactId>
             <version>[3.0.0, 4.0.0)</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.sk89q.worldedit</groupId>
+            <artifactId>worldedit-bukkit</artifactId>
+            <version>6.1.5</version>
             <type>jar</type>
         </dependency>
         <dependency>

@@ -90,4 +90,11 @@ class WorldEditWrapper implements IWorldEdit {
         throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");     //TODO: 1.13
         //return null;//TODO: Implement me! new BaseBlock(Material.getMaterial(v.getType()), v.getData());
     }
+
+    @Override
+    public void undo(Player player) {
+        com.sk89q.worldedit.entity.Player lPlayer = m_worldEdit.wrapPlayer(player);
+        m_worldEdit.getSession(player).undo(null, lPlayer);
+        
+    }
 }

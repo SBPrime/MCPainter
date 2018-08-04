@@ -38,5 +38,6 @@ public interface IWorldEdit {
     public ILocalPlayer wrapPlayer(Player player);
 
     public CuboidSelection getSelection(Player player);
-    
+
+    public void undo(Player player);
 }

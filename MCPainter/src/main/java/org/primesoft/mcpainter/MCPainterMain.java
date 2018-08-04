@@ -242,7 +242,11 @@ public class MCPainterMain extends JavaPlugin {
             args = Commands.insertArgs(args, Commands.COMMAND_BLOCK);
         } else if (commandName.equalsIgnoreCase(Commands.ALT_RENDER)) {
             args = Commands.insertArgs(args, Commands.COMMAND_RENDER);
-        } else if (!commandName.equalsIgnoreCase(Commands.COMMAND_MAIN)) {
+        } else if (!m_worldEdit.isRealWorldEdit() && commandName.equalsIgnoreCase(Commands.ALT_UNDO)) {
+            m_worldEdit.undo(player);
+            return true;
+        }
+        else if (!commandName.equalsIgnoreCase(Commands.COMMAND_MAIN)) {
             return false;
         }
 
@@ -293,6 +297,9 @@ public class MCPainterMain extends JavaPlugin {
         } else if (name.equalsIgnoreCase(Commands.COMMAND_RENDER)) {
             doRender(player, args);
             return true;
+        } else if (!m_worldEdit.isRealWorldEdit() && name.equalsIgnoreCase(Commands.COMMAND_UNDO)) {
+            m_worldEdit.undo(player);
+             return true;
         }
 
         return Help.ShowHelp(player, null);
