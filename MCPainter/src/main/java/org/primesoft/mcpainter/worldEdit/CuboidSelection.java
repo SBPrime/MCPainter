@@ -21,45 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package org.primesoft.mcpainter.worldEdit;
 
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import org.bukkit.Location;
+import org.bukkit.World;
+import org.primesoft.mcpainter.utils.Vector;
 
 /**
  *
  * @author SBPrime
  */
-public class WorldEditCuboidSelection implements ICuboidSelection {
+public final class CuboidSelection {
 
-    private final CuboidSelection m_selection;
-
-    public WorldEditCuboidSelection(CuboidSelection cSelection) {
-        m_selection = cSelection;
+    private final Vector m_pointMin;
+    private final Vector m_pointMax;
+    private final World m_world;
+    
+    public CuboidSelection(Location from, Location to) {
+        m_pointMin = new Vector(from);
+        m_pointMax = new Vector(to);
+        m_world = from.getWorld();
+    }
+    
+    public CuboidSelection(World w, Vector from, Vector to) {
+        m_pointMin = from;
+        m_pointMax = to;
+        m_world = w;
     }
 
-    @Override
-    public Location getMinimumPoint() {
-        return m_selection.getMinimumPoint();
+    public Vector getMinimumPoint() {
+        return m_pointMin;
     }
 
-    @Override
-    public Location getMaximumPoint() {
-        return m_selection.getMaximumPoint();
+    public Vector getMaximumPoint() {
+        return m_pointMax;
     }
 
-    @Override
-    public int getLength() {
-        return m_selection.getLength();
+    public World getWorld() {
+        return m_world;
     }
-
-    @Override
-    public int getWidth() {
-        return m_selection.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return m_selection.getHeight();
-    }
+    
 }

@@ -54,7 +54,7 @@ class StubWrapper implements IWorldEdit {
     }
 
     @Override
-    public ICuboidSelection getSelection(Player player) {
+    public CuboidSelection getSelection(Player player) {
         return null;
     }
 }

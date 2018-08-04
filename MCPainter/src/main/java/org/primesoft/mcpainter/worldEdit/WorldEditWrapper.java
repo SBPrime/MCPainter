@@ -25,8 +25,8 @@ package org.primesoft.mcpainter.worldEdit;
 
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
+import org.bukkit.Location;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.entity.Player;
@@ -65,13 +65,12 @@ class WorldEditWrapper implements IWorldEdit {
     }
 
     @Override
-    public ICuboidSelection getSelection(Player player) {
+    public CuboidSelection getSelection(Player player) {
         Selection selection = m_worldEdit.getSelection(player);
-        if (!(selection instanceof CuboidSelection)) {
-            return null;
-        }
-
-        return new WorldEditCuboidSelection((CuboidSelection) selection);
+        Location pMin = selection.getMinimumPoint();
+        Location pMax = selection.getMaximumPoint();        
+        
+        return new CuboidSelection(pMin, pMax);
     }
 
     static com.sk89q.worldedit.Vector convert(Vector v) {

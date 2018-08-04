@@ -25,7 +25,6 @@ package org.primesoft.mcpainter.commands;
 
 import java.awt.image.BufferedImage;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
-import org.primesoft.mcpainter.blocksplacer.BlockPlacer;
 import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.dilters.CropFilter;
 import org.primesoft.mcpainter.drawing.dilters.FilterManager;
@@ -35,7 +34,7 @@ import org.primesoft.mcpainter.Help;
 import org.primesoft.mcpainter.mapdrawer.MapHelper;
 import org.primesoft.mcpainter.PermissionManager;
 import org.primesoft.mcpainter.MCPainterMain;
-import org.primesoft.mcpainter.worldEdit.ICuboidSelection;
+import org.primesoft.mcpainter.worldEdit.CuboidSelection;
 import org.primesoft.mcpainter.worldEdit.IEditSession;
 import org.primesoft.mcpainter.worldEdit.ILocalPlayer;
 import org.primesoft.mcpainter.worldEdit.ILocalSession;
@@ -54,6 +53,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
 import org.primesoft.mcpainter.blocksplacer.IChange;
+import org.primesoft.mcpainter.utils.Vector;
 
 /**
  * @author SBPrime
@@ -67,13 +67,34 @@ public class HdImageCommand {
     }
 
     public void Execute(MCPainterMain sender, Player player, IWorldEdit worldEdit, String[] args) {
-        if (args.length != 2) {
+        if (args.length != 2 && args.length != 4) {
             Help.ShowHelp(player, Commands.COMMAND_IMAGEHD);
             return;
         }
 
         String url = args[1];
-        final ICuboidSelection selection = worldEdit.getSelection(player);
+        final CuboidSelection selection;
+        if (args.length == 2) {
+            selection = worldEdit.getSelection(player);
+        } else {
+            final World w = player.getWorld();
+            Vector v1 = Vector.parse(args[2]);
+            Vector v2 = Vector.parse(args[3]);
+
+            if (v1 == null || v2 == null) {
+                selection = null;
+            } else {
+                selection = new CuboidSelection(w, new Vector(
+                        Math.min(v1.getX(), v2.getX()),
+                        Math.min(v1.getY(), v2.getY()),
+                        Math.min(v1.getZ(), v2.getZ())),
+                        new Vector(
+                                Math.max(v1.getX(), v2.getX()),
+                                Math.max(v1.getY(), v2.getY()),
+                                Math.max(v1.getZ(), v2.getZ())));
+            }
+        }
+
         if (selection == null) {
             MCPainterMain.say(player, ChatColor.RED + "No selection.");
             return;
@@ -109,11 +130,10 @@ public class HdImageCommand {
         private final BufferedImage m_img;
         private final MapHelper m_mapHelper;
         private final BlockFace m_rotation;
-        
+
         private Material m_oldMaterial;
         private ItemFrame m_frame;
         private MapView m_mapView;
-        
 
         private DrawMapCommand(Location location, BlockFace face,
                 int offsetX, int offsetY, BufferedImage img,
@@ -127,9 +147,7 @@ public class HdImageCommand {
             m_mapHelper = mapHelper;
             m_rotation = face;
         }
-        
-        
-        
+
         @Override
         public void redo() {
             Chunk chunk = m_location.getChunk();
@@ -171,7 +189,7 @@ public class HdImageCommand {
 
     private class CommandThread implements Runnable {
 
-        private final ICuboidSelection m_selection;
+        private final CuboidSelection m_selection;
         private final String m_url;
         private final Player m_player;
         private final MCPainterMain m_sender;
@@ -181,7 +199,7 @@ public class HdImageCommand {
         private final BlockFace m_rotation;
 
         private CommandThread(HdImageCommand command, MCPainterMain sender, Player player,
-                String url, IWorldEdit worldEdit, ICuboidSelection selection) {
+                String url, IWorldEdit worldEdit, CuboidSelection selection) {
             m_this = command;
             m_sender = sender;
             m_player = player;
@@ -219,17 +237,19 @@ public class HdImageCommand {
                     return;
                 }
 
-                Location minPoint = m_selection.getMinimumPoint();
-                Location maxPoint = m_selection.getMaximumPoint();
-                int l = m_selection.getLength();
-                int w = m_selection.getWidth();
-                int h = m_selection.getHeight();
+                Vector minPoint = m_selection.getMinimumPoint();
+                Vector maxPoint = m_selection.getMaximumPoint();
+
+                int dx = (int) (maxPoint.getX() - minPoint.getX());
+                int dz = (int) (maxPoint.getZ() - minPoint.getZ());
+                int dy = (int) (maxPoint.getY() - minPoint.getY());
+
                 int kx, kz;
 
-                if (w > 1 && l > 1) {
+                if (dx > 1 && dz > 1) {
                     MCPainterMain.say(m_player, ChatColor.RED + "Invalid selection area.");
                     return;
-                } else if (w > l) {
+                } else if (dx > dz) {
                     kx = 1;
                     kz = 0;
                 } else {
@@ -239,12 +259,12 @@ public class HdImageCommand {
 
                 int bHeight = imgH / 128 + (imgH % 128 != 0 ? 1 : 0);
                 int bWidth = imgW / 128 + (imgW % 128 != 0 ? 1 : 0);
-                if (h < bHeight || (w < bWidth && l < bWidth)) {
+                if (dy < bHeight || (dx < bWidth && dz < bWidth)) {
                     MCPainterMain.say(m_player, ChatColor.RED + "The selection is to smal, required: " + bWidth + "x" + bHeight);
                     return;
                 }
 
-                Location pos = new Location(minPoint.getWorld(), minPoint.getBlockX(), maxPoint.getBlockY(), minPoint.getBlockZ());
+                Location pos = new Location(m_selection.getWorld(), minPoint.getBlockX(), maxPoint.getBlockY(), minPoint.getBlockZ());
                 if (m_rotation == BlockFace.NORTH
                         || m_rotation == BlockFace.EAST) {
                     pos = pos.add(kx * (bWidth - 1), 0, kz * (bWidth - 1));

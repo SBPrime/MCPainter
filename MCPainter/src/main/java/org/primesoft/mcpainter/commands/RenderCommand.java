@@ -81,7 +81,7 @@ public class RenderCommand implements Runnable {
 
         Vector size = parseSize(sizeArg);
         Vector[] clip = parseClip(clipArg);
-        Vector offset = parseOffset(offsetArg);
+        Vector offset = Vector.parse(offsetArg);
         if (size == null || clip == null || offset == null) {
             Help.ShowHelp(player, Commands.COMMAND_RENDER);
             return;
@@ -147,25 +147,6 @@ public class RenderCommand implements Runnable {
                 new Vector(Double.parseDouble(xc[0]), Double.parseDouble(yc[0]), Double.parseDouble(zc[0])),
                 new Vector(Double.parseDouble(xc[1]), Double.parseDouble(yc[1]), Double.parseDouble(zc[1]))
             };
-        } catch (NumberFormatException ex) {
-            return null;
-        }
-    }
-
-    private static Vector parseOffset(String offsetArg) {
-        if (offsetArg == null) {
-            return null;
-        }
-
-        String[] parts = offsetArg.split(",");
-        if (parts.length != 3) {
-            return null;
-        }
-
-        try {
-            return new Vector(Double.parseDouble(parts[0]),
-                    Double.parseDouble(parts[1]),
-                    Double.parseDouble(parts[2]));
         } catch (NumberFormatException ex) {
             return null;
         }
