@@ -26,13 +26,18 @@ package org.primesoft.mcpainter.worldEdit;
 
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.primesoft.mcpainter.BlocksHubIntegration;
 
 /**
  *
  * @author SBPrime
  */
 class StubLocalSession implements ILocalSession {
-    public StubLocalSession(Player player) {        
+
+    private final BlocksHubIntegration m_bh;
+    
+    public StubLocalSession(BlocksHubIntegration bh) {
+        m_bh = bh;
     }
 
     @Override
@@ -43,8 +48,9 @@ class StubLocalSession implements ILocalSession {
     public IEditSession createEditSession(ILocalPlayer localPlayer) {
         if (!(localPlayer instanceof StubLocalPlayer)) {
             throw new UnsupportedOperationException("Invalid argument."); 
-        }                
-        return new StubEditEditSession((StubLocalPlayer)localPlayer);
+        }
+        
+        return new StubEditEditSession((StubLocalPlayer)localPlayer, m_bh);
     }
     
 }

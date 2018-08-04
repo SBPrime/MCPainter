@@ -27,20 +27,17 @@ import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockState;
+import org.primesoft.mcpainter.BlocksHubIntegration;
+import org.primesoft.mcpainter.blocksplacer.IChange;
 
 /**
  *
  * @author SBPrime
  */
-class StubEditEditSession implements IEditSession {
-
-    private final World m_world;
-
-    public StubEditEditSession(StubLocalPlayer stubLocalPlayer) {
-        m_world = stubLocalPlayer.getWorld();
+class StubEditEditSession extends BaseEditSession {
+    public StubEditEditSession(ILocalPlayer localPlayer, BlocksHubIntegration bh) {
+        super(localPlayer, bh);
     }
 
     @Override
@@ -62,8 +59,15 @@ class StubEditEditSession implements IEditSession {
         if (!chunk.isLoaded()) {
             chunk.load();
         }
-        Block b = l.getBlock();
-        b.setBlockData(block.Data);
+                
+        Block b = l.getBlock();        
+        BaseBlock oldBlock = new BaseBlock(b.getBlockData().clone());        
+        b.setBlockData(block.Data);        
+        logBlock(location, oldBlock, block);
     }
 
+    @Override
+    public void doCustom(IChange command) throws MaxChangedBlocksException {
+        command.redo();
+    }
 }

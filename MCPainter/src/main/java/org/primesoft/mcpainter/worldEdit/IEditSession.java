@@ -26,6 +26,7 @@ package org.primesoft.mcpainter.worldEdit;
 
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
+import org.primesoft.mcpainter.blocksplacer.IChange;
 
 /**
  *
@@ -36,5 +37,6 @@ public interface IEditSession {
     public BaseBlock getBlock(Vector location);
 
     public void setBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException;
-    
+
+    public void doCustom(IChange command)  throws MaxChangedBlocksException;
 }

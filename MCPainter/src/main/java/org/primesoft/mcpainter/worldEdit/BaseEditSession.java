@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 SBPrime.
+ * Copyright 2018 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,30 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.primesoft.mcpainter.blocksplacer;
+package org.primesoft.mcpainter.worldEdit;
+
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.primesoft.mcpainter.BlocksHubIntegration;
+import org.primesoft.mcpainter.utils.BaseBlock;
+import org.primesoft.mcpainter.utils.Vector;
 
 /**
  *
  * @author SBPrime
  */
-public class CommandEntry extends BlockLogerEntry {
-    private final ILoggerCommand m_command;
-        
-    public CommandEntry(BlockLoger loger, ILoggerCommand command) {
-        super(loger);
-        
-        m_command = command;
-    }
-
-    @Override
-    public boolean canRemove() {
-        return true;
-    }    
+abstract class BaseEditSession implements IEditSession {
+    private final Player m_player;
+    private final BlocksHubIntegration m_bh;
+    protected final World m_world;
     
-    
-    @Override
-    public void execute(BlockPlacer blockPlacer) {
-        m_command.execute(blockPlacer, m_loger);
+    protected BaseEditSession(ILocalPlayer p, BlocksHubIntegration bh) {
+        m_bh = bh;
+        m_world = p.getWorld();
+        m_player = p.getPlayer();
     }
     
+    protected void logBlock(Vector location, BaseBlock oldBlock, BaseBlock newBlock) {
+        m_bh.logBlock(m_player, m_world, location, oldBlock, newBlock);
+    }
 }

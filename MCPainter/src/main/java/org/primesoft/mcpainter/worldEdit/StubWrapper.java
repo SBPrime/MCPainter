@@ -25,13 +25,19 @@
 package org.primesoft.mcpainter.worldEdit;
 
 import org.bukkit.entity.Player;
+import org.primesoft.mcpainter.BlocksHubIntegration;
 
 /**
  *
  * @author SBPrime
  */
 public class StubWrapper implements IWorldEdit {
-
+    private final BlocksHubIntegration m_bh;
+    
+    public StubWrapper(BlocksHubIntegration bh) {
+        m_bh = bh;
+    }
+    
     @Override
     public boolean isRealWorldEdit() {
         return false;
@@ -39,7 +45,7 @@ public class StubWrapper implements IWorldEdit {
 
     @Override
     public ILocalSession getSession(Player player) {
-        return new StubLocalSession(player);
+        return new StubLocalSession(m_bh);
     }
 
     @Override

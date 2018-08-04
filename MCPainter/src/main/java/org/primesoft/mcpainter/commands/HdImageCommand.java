@@ -32,7 +32,6 @@ import org.primesoft.mcpainter.drawing.dilters.FilterManager;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 import org.primesoft.mcpainter.FoundManager;
 import org.primesoft.mcpainter.Help;
-import org.primesoft.mcpainter.blocksplacer.ILoggerCommand;
 import org.primesoft.mcpainter.mapdrawer.MapHelper;
 import org.primesoft.mcpainter.PermissionManager;
 import org.primesoft.mcpainter.MCPainterMain;
@@ -54,6 +53,7 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
+import org.primesoft.mcpainter.blocksplacer.IChange;
 
 /**
  * @author SBPrime
@@ -103,7 +103,7 @@ public class HdImageCommand {
         return m.isSolid() && m.isBlock();
     }
 
-    private class DrawMapCommand implements ILoggerCommand {
+    private class DrawMapCommand implements IChange {
 
         private final Location m_location;
         private final BufferedImage m_img;
@@ -128,8 +128,10 @@ public class HdImageCommand {
             m_rotation = face;
         }
         
+        
+        
         @Override
-        public void execute(BlockPlacer blockPlacer, BlockLoger loger) {
+        public void redo() {
             Chunk chunk = m_location.getChunk();
             if (!chunk.isLoaded()) {
                 if (!chunk.load()) {
@@ -155,6 +157,10 @@ public class HdImageCommand {
             m_mapHelper.storeMap(m_mapView, m_img);
             m_mapHelper.drawImage(m_mapView, m_img);
             m_frame.setItem(new ItemStack(Material.MAP, 1, m_mapView.getId()));
+        }
+
+        @Override
+        public void undo() {
         }
 
         @Override
@@ -251,7 +257,7 @@ public class HdImageCommand {
                 for (int py = 0; py < bHeight; py++) {
                     Location tmp = pos.clone();
                     for (int px = 0; px < bWidth; px++) {
-                        loger.logCommand(new DrawMapCommand(tmp.clone(), m_rotation,
+                        loger.logChange(new DrawMapCommand(tmp.clone(), m_rotation,
                                 px * 128, py * 128, fImg, m_mapHelper));
                         tmp = tmp.add(kx, 0, kz);
                     }

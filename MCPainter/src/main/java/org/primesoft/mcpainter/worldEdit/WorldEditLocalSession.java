@@ -25,6 +25,7 @@ package org.primesoft.mcpainter.worldEdit;
 
 import com.sk89q.worldedit.EditSession;
 import com.sk89q.worldedit.LocalSession;
+import org.primesoft.mcpainter.BlocksHubIntegration;
 
 /**
  *
@@ -32,9 +33,12 @@ import com.sk89q.worldedit.LocalSession;
  */
 public class WorldEditLocalSession implements ILocalSession {
     private final LocalSession m_localSession;
+    
+    private final BlocksHubIntegration m_bh;
 
-    public WorldEditLocalSession(LocalSession localSession) {
+    public WorldEditLocalSession(LocalSession localSession, BlocksHubIntegration bh) {
         m_localSession = localSession;
+        m_bh = bh;
     }
 
     public LocalSession getLocalSession() {
@@ -57,6 +61,6 @@ public class WorldEditLocalSession implements ILocalSession {
         }
         
         EditSession session = m_localSession.createEditSession(((WorldEditLocalPlayer)localPlayer).getLocalPlayer());
-        return new WorldEditEditSession(session);
+        return new WorldEditEditSession(localPlayer, session, m_bh);
     }
 }

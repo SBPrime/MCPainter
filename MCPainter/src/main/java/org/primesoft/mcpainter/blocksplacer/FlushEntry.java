@@ -42,8 +42,7 @@ public class FlushEntry extends BlockLogerEntry {
     
     
     @Override
-    public void execute(BlockPlacer blockPlacer) {
-        IEditSession eSession = m_loger.getEditSession();
-        m_loger.getLocalSession().remember(eSession);
+    public void execute() {
+        m_loger.getLocalSession().remember(m_loger.getEditSession());
     }    
 }

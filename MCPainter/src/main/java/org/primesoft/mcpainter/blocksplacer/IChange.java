@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 SBPrime.
+ * Copyright 2018 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,32 +23,16 @@
  */
 package org.primesoft.mcpainter.blocksplacer;
 
-import com.sk89q.worldedit.WorldEditException;
-import com.sk89q.worldedit.history.UndoContext;
-import com.sk89q.worldedit.history.change.Change;
-import org.primesoft.mcpainter.MCPainterMain;
-import org.bukkit.entity.Player;
+import org.bukkit.Location;
+import org.primesoft.mcpainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *
  * @author SBPrime
  */
-public class ChangeMessage implements Change {
-    private final Player m_player;
-    private final String m_msg;
+public interface IChange {
+    Location getLocation();
     
-    public ChangeMessage(Player player, String msg) {
-        m_player = player;
-        m_msg = msg;
-    }
-    
-    
-    @Override
-    public void undo(UndoContext uc) throws WorldEditException {
-    }
-
-    @Override
-    public void redo(UndoContext uc) throws WorldEditException {
-        MCPainterMain.say(m_player, m_msg);
-    }
+    void redo();
+    void undo();
 }

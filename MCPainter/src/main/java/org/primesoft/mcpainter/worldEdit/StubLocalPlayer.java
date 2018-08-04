@@ -40,6 +40,11 @@ class StubLocalPlayer implements ILocalPlayer {
     }
 
     @Override
+    public Player getPlayer() {
+        return m_player;
+    }
+    
+    @Override
     public Vector getPosition() {
         return new Vector(m_player.getLocation());
     }
@@ -54,6 +59,7 @@ class StubLocalPlayer implements ILocalPlayer {
         return m_player.getLocation().getPitch();
     }
 
+    @Override
     public World getWorld() {
         return m_player.getWorld();
     }

@@ -23,8 +23,6 @@
  */
 package org.primesoft.mcpainter.blocksplacer;
 
-import org.primesoft.mcpainter.utils.BaseBlock;
-import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.entity.Player;
 
 
@@ -51,7 +49,6 @@ public abstract class BlockLogerEntry {
     
     /**
      * Execute the command
-     * @param blockPlacer
      */
-    public abstract void execute(BlockPlacer blockPlacer);
+    public abstract void execute();
 }

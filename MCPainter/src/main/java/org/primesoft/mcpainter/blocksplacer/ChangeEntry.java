@@ -21,16 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.primesoft.mcpainter.blocksplacer;
 
-import org.bukkit.Location;
+import org.primesoft.mcpainter.MCPainterMain;
+import org.primesoft.mcpainter.worldEdit.MaxChangedBlocksException;
 
 /**
- * Block logger commadn
+ *
  * @author SBPrime
  */
-public interface ILoggerCommand {
-    void execute(BlockPlacer blockPlacer, BlockLoger loger);
-    Location getLocation();
+public class ChangeEntry extends BlockLogerEntry {
+
+    private final IChange m_change;
+
+    public ChangeEntry(BlockLoger loger, IChange change) {
+        super(loger);
+
+        m_change = change;
+    }
+
+    @Override
+    public boolean canRemove() {
+        return true;
+    }
+
+    @Override
+    public void execute() {
+        try {
+            m_loger.getEditSession().doCustom(m_change);
+        } catch (MaxChangedBlocksException ex) {
+            MCPainterMain.say(getPlayer(), "Max block change reached");
+            MCPainterMain.log(ex.getMessage());
+        }
+    }
+
 }

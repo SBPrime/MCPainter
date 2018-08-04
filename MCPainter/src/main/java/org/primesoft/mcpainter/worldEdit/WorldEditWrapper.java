@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.primesoft.mcpainter.worldEdit;
 
 import com.sk89q.worldedit.LocalPlayer;
@@ -34,19 +33,22 @@ import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.primesoft.mcpainter.BlocksHubIntegration;
 
 /**
  *
  * @author SBPrime
  */
 public class WorldEditWrapper implements IWorldEdit {
+
     private final WorldEditPlugin m_worldEdit;
-    
-    public WorldEditWrapper(Plugin wePlugin) {
-        m_worldEdit = (WorldEditPlugin)wePlugin;
+    private final BlocksHubIntegration m_bh;
+
+    public WorldEditWrapper(Plugin wePlugin, BlocksHubIntegration bh) {
+        m_bh = bh;
+        m_worldEdit = (WorldEditPlugin) wePlugin;
     }
-    
-    
+
     @Override
     public boolean isRealWorldEdit() {
         return true;
@@ -55,13 +57,13 @@ public class WorldEditWrapper implements IWorldEdit {
     @Override
     public ILocalSession getSession(Player player) {
         LocalSession lSession = m_worldEdit.getSession(player);
-        return new WorldEditLocalSession(lSession);
+        return new WorldEditLocalSession(lSession, m_bh);
     }
 
     @Override
     public ILocalPlayer wrapPlayer(Player player) {
-        LocalPlayer lPlayer = m_worldEdit.wrapPlayer(player);
-        return new WorldEditLocalPlayer(lPlayer);
+        com.sk89q.worldedit.entity.Player lPlayer = m_worldEdit.wrapPlayer(player);
+        return new WorldEditLocalPlayer(lPlayer, player);
     }
 
     @Override
@@ -70,11 +72,10 @@ public class WorldEditWrapper implements IWorldEdit {
         if (!(selection instanceof CuboidSelection)) {
             return null;
         }
-        
-        return new WorldEditCuboidSelection((CuboidSelection)selection);
+
+        return new WorldEditCuboidSelection((CuboidSelection) selection);
     }
-    
-    
+
     public static com.sk89q.worldedit.Vector convert(Vector v) {
         return new com.sk89q.worldedit.Vector(v.getX(), v.getY(), v.getZ());
     }
@@ -82,12 +83,12 @@ public class WorldEditWrapper implements IWorldEdit {
     public static Vector convert(com.sk89q.worldedit.Vector v) {
         return new Vector(v.getX(), v.getY(), v.getZ());
     }
-    
+
     public static com.sk89q.worldedit.blocks.BaseBlock convert(BaseBlock v) {
         throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");     //TODO: 1.13
         //return new com.sk89q.worldedit.blocks.BaseBlock(v.getType(), v.getData());
     }
-        
+
     public static BaseBlock convert(com.sk89q.worldedit.blocks.BaseBlock v) {
         throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");     //TODO: 1.13
         //return null;//TODO: Implement me! new BaseBlock(Material.getMaterial(v.getType()), v.getData());

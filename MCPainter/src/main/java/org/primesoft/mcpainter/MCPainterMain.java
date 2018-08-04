@@ -171,6 +171,8 @@ public class MCPainterMain extends JavaPlugin {
 
         m_blocksProvider = new MultiBlockProvider();
         m_statueProvider = new ModStatueProvider();
+
+        m_blocksHub = new BlocksHubIntegration(this);
         m_worldEdit = WorldEditFactory.getWorldEditWrapper(this);
         if (m_worldEdit == null) {
             log("World edit not found.");
@@ -345,12 +347,11 @@ public class MCPainterMain extends JavaPlugin {
     private String initializeConfig() {
         m_textureManager.dispose();
         m_paletteManager.clear();
-        m_blocksHub = new BlocksHubIntegration(this);
 
         if (m_blockPlacer != null) {
             m_blockPlacer.queueStop();
         }
-        m_blockPlacer = new BlockPlacer(this, m_blocksHub);
+        m_blockPlacer = new BlockPlacer(this);
         m_modProvider = new ModsProvider(ConfigProvider.getModFolder());
 
         DataFile[] dataFiles = DataFile.processFiles(ConfigProvider.getDataFolder());
