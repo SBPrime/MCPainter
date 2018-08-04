@@ -23,14 +23,12 @@
  */
 package org.primesoft.mcpainter.worldEdit;
 
-import com.sk89q.worldedit.LocalPlayer;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import com.sk89q.worldedit.bukkit.selections.Selection;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.primesoft.mcpainter.BlocksHubIntegration;
@@ -39,12 +37,12 @@ import org.primesoft.mcpainter.BlocksHubIntegration;
  *
  * @author SBPrime
  */
-public class WorldEditWrapper implements IWorldEdit {
+class WorldEditWrapper implements IWorldEdit {
 
     private final WorldEditPlugin m_worldEdit;
     private final BlocksHubIntegration m_bh;
 
-    public WorldEditWrapper(Plugin wePlugin, BlocksHubIntegration bh) {
+    WorldEditWrapper(Plugin wePlugin, BlocksHubIntegration bh) {
         m_bh = bh;
         m_worldEdit = (WorldEditPlugin) wePlugin;
     }
@@ -76,20 +74,20 @@ public class WorldEditWrapper implements IWorldEdit {
         return new WorldEditCuboidSelection((CuboidSelection) selection);
     }
 
-    public static com.sk89q.worldedit.Vector convert(Vector v) {
+    static com.sk89q.worldedit.Vector convert(Vector v) {
         return new com.sk89q.worldedit.Vector(v.getX(), v.getY(), v.getZ());
     }
 
-    public static Vector convert(com.sk89q.worldedit.Vector v) {
+    static Vector convert(com.sk89q.worldedit.Vector v) {
         return new Vector(v.getX(), v.getY(), v.getZ());
     }
 
-    public static com.sk89q.worldedit.blocks.BaseBlock convert(BaseBlock v) {
+    static com.sk89q.worldedit.blocks.BaseBlock convert(BaseBlock v) {
         throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");     //TODO: 1.13
         //return new com.sk89q.worldedit.blocks.BaseBlock(v.getType(), v.getData());
     }
 
-    public static BaseBlock convert(com.sk89q.worldedit.blocks.BaseBlock v) {
+    static BaseBlock convert(com.sk89q.worldedit.blocks.BaseBlock v) {
         throw new UnsupportedOperationException("Not supported yet. Need to port to 1.13");     //TODO: 1.13
         //return null;//TODO: Implement me! new BaseBlock(Material.getMaterial(v.getType()), v.getData());
     }

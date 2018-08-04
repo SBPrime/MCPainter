@@ -31,7 +31,7 @@ import org.primesoft.mcpainter.BlocksHubIntegration;
  *
  * @author SBPrime
  */
-public class StubWrapper implements IWorldEdit {
+class StubWrapper implements IWorldEdit {
     private final BlocksHubIntegration m_bh;
     
     public StubWrapper(BlocksHubIntegration bh) {

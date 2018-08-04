@@ -24,7 +24,6 @@
 
 package org.primesoft.mcpainter.worldEdit;
 
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.primesoft.mcpainter.BlocksHubIntegration;
 

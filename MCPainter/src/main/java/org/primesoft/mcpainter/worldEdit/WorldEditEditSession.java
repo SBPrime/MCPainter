@@ -28,8 +28,6 @@ import com.sk89q.worldedit.WorldEditException;
 import com.sk89q.worldedit.history.UndoContext;
 import com.sk89q.worldedit.history.change.Change;
 import com.sk89q.worldedit.history.changeset.ChangeSet;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
 import org.primesoft.mcpainter.BlocksHubIntegration;
 import org.primesoft.mcpainter.blocksplacer.IChange;
 import org.primesoft.mcpainter.utils.BaseBlock;
