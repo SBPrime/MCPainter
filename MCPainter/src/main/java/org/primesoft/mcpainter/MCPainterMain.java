@@ -44,7 +44,6 @@ import org.primesoft.mcpainter.drawing.dilters.FilterManager;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.drawing.statue.PlayerStatueDescription;
 import org.primesoft.mcpainter.drawing.statue.StatueDescription;
-import org.primesoft.mcpainter.drawing.MetricsLite;
 import org.primesoft.mcpainter.mapdrawer.MapHelper;
 import org.primesoft.mcpainter.texture.TextureManager;
 import org.primesoft.mcpainter.texture.TexturePack;
@@ -63,6 +62,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.primesoft.mcpainter.mcstats.MetricsLite;
 
 /**
  * @author SBPrime
@@ -159,9 +159,8 @@ public class MCPainterMain extends JavaPlugin {
         try {
             m_metrics = new MetricsLite(this);
             m_metrics.start();
-        } catch (IOException e) {
-            ExceptionHelper.printException(e, "Error initializing MCStats");
-        }
+        } catch (IOException ex) {            
+        }        
 
         if (!FoundManager.load(this)) {
             log("Error initializing eco.");
