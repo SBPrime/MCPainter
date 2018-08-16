@@ -24,6 +24,7 @@
 package org.primesoft.mcpainter.commands;
 
 import java.awt.image.BufferedImage;
+import java.util.stream.Stream;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.dilters.CropFilter;
@@ -48,9 +49,11 @@ import org.bukkit.Rotation;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.MapMeta;
 import org.bukkit.map.MapView;
 import org.primesoft.mcpainter.blocksplacer.IChange;
 import org.primesoft.mcpainter.utils.Vector;
@@ -160,6 +163,7 @@ public class HdImageCommand {
             World w = m_location.getWorld();
             Block block = w.getBlockAt(m_location);
             Material material = block.getType();
+
             if (!isSolid(material)) {
                 m_oldMaterial = material;
                 block.setType(Material.BARRIER);
@@ -167,14 +171,47 @@ public class HdImageCommand {
                 m_oldMaterial = null;
             }
 
-            m_frame = (ItemFrame) w.spawn(block.getRelative(m_rotation).getLocation(), ItemFrame.class);
-            m_frame.setFacingDirection(m_rotation, true);
-            m_frame.setRotation(Rotation.NONE);
+            Location ifLocation = block.getRelative(m_rotation).getLocation();
+            ItemFrame tFrame = Stream.of(chunk.getEntities())
+                    .filter(e -> EntityType.ITEM_FRAME.equals(e.getType()))
+                    .map(e -> new Object() {
+                final ItemFrame frame = (ItemFrame) e;
+                final BlockFace facing = ((ItemFrame) e).getFacing();
+                final Location location = e.getLocation();
+            })
+                    .filter(e -> m_rotation.equals(e.facing)
+                    && ifLocation.getBlockX() == e.location.getBlockX()
+                    && ifLocation.getBlockY() == e.location.getBlockY()
+                    && ifLocation.getBlockZ() == e.location.getBlockZ())
+                    .map(e -> e.frame)
+                    .findAny()
+                    .orElse((ItemFrame) null);
 
-            m_mapView = Bukkit.createMap(w);
+            if (tFrame == null) {
+                tFrame = (ItemFrame) w.spawn(ifLocation, ItemFrame.class);
+                tFrame.setFacingDirection(m_rotation, true);
+                tFrame.setRotation(Rotation.NONE);
+            }
+
+            m_frame = tFrame;
+            ItemStack frameContent = m_frame.getItem();
+            MapView mapView = null;
+
+            if (Material.FILLED_MAP.equals(frameContent.getType())) {
+                mapView = Bukkit.getMap((short) ((MapMeta) frameContent.getItemMeta()).getMapId());
+            } else {
+                mapView = Bukkit.createMap(w);
+                frameContent = new ItemStack(Material.FILLED_MAP, 1);
+                MapMeta mm = ((MapMeta)frameContent.getItemMeta());
+                mm .setMapId(mapView.getId());
+                frameContent.setItemMeta(mm);
+
+                m_frame.setItem(frameContent);                
+            }
+
+            m_mapView = mapView;
             m_mapHelper.storeMap(m_mapView, m_img);
             m_mapHelper.drawImage(m_mapView, m_img);
-            m_frame.setItem(new ItemStack(Material.MAP, 1, m_mapView.getId()));
         }
 
         @Override

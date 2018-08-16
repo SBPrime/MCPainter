@@ -40,6 +40,8 @@
             <artifactId>bukkit</artifactId>
             <version>[1.13, 1.14)</version>
             <type>jar</type>
+            <scope>system</scope>            
+            <systemPath>${project.basedir}/libs/spigot-1.13-fe3ab0d-0611294.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>org.primesoft</groupId>
