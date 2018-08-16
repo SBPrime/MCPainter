@@ -76,16 +76,19 @@ public final class BlockHelper {
         TextureEntry[] textures = new TextureEntry[textureList.size()];
         int idx = 0;
         for (Iterator<String> it = textureList.iterator(); it.hasNext();) {
-            String data = it.next();
+            String data = it.next();                        
             TextureDescription td = TextureDescription.parse(data);
-            if (td != null) {
-                textures[idx] = textureManager.get(td);
-            } else {
-                textures[idx] = null;
+            if (td == null) {
+                throw new IllegalArgumentException("Unable to parse texture description");
+            }
+
+            textures[idx] = textureManager.get(td);
+            if (textures[idx] == null) {
+                throw new IllegalArgumentException("Unable to get texture " + td.toString());
+                //textures[idx] = null;
             }
             idx++;
         }
-
 
         int texturesCnt = textures.length;
         RawImage[] result = new RawImage[texturesCnt];
@@ -111,7 +114,7 @@ public final class BlockHelper {
      * Parse texture
      *
      * @param textureManager
-     * @param textureList
+     * @param texture
      * @return
      */
     public static RawImage parseTexture(TextureManager textureManager, String texture) {
@@ -120,13 +123,13 @@ public final class BlockHelper {
         }
 
         TextureDescription td = TextureDescription.parse(texture);
-        TextureEntry tex = null;
-        if (td != null) {
-            tex = textureManager.get(td);
+        if (td == null) {
+            throw new IllegalArgumentException("Unable to parse texture description");
         }
 
+        TextureEntry tex = textureManager.get(td);
         if (tex == null) {
-            return null;
+            throw new IllegalArgumentException("Unable to get texture " + td.toString());
         }
 
         RawImage[] result = tex.getImages();

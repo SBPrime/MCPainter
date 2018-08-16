@@ -25,7 +25,6 @@ package org.primesoft.mcpainter.texture;
 
 import java.io.File;
 import org.primesoft.mcpainter.drawing.RawImage;
-import org.primesoft.mcpainter.MCPainterMain;
 
 /**
  *
@@ -118,7 +117,7 @@ public class TextureProvider {
             if (img == null) {
                 img = m_specified.getFile(files[i]);
             }
-            if (img == null) {
+            if (img == null) {                
                 return null;
             }
 
