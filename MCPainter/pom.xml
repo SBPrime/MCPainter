@@ -41,14 +41,6 @@
             <version>[1.13, 1.14)</version>
             <type>jar</type>
         </dependency>
-        
-        <dependency>
-            <groupId>com.sk89q.worldedit</groupId>
-            <artifactId>worldedit-core</artifactId>
-            <version>6.1</version>
-            <type>jar</type>
-        </dependency>
-
         <dependency>
             <groupId>org.primesoft</groupId>
             <artifactId>BlocksHubBukkitApi</artifactId>
@@ -58,8 +50,10 @@
         <dependency>
             <groupId>com.sk89q.worldedit</groupId>
             <artifactId>worldedit-bukkit</artifactId>
-            <version>6.1.5</version>
+            <version>7.0.0-SNAPSHOT</version>
             <type>jar</type>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/worldedit-bukkit-7.0.0-SNAPSHOT-dist.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>commons-codec</groupId>

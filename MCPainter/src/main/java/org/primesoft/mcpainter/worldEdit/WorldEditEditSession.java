@@ -78,7 +78,7 @@ class WorldEditEditSession extends BaseEditSession {
     public void setBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {
         com.sk89q.worldedit.Vector weLocaton = WorldEditWrapper.convert(location);
         BaseBlock oldBlock = WorldEditWrapper.convert(m_editSession.getBlock(weLocaton));
-        com.sk89q.worldedit.blocks.BaseBlock weBlock = WorldEditWrapper.convert(block);
+        com.sk89q.worldedit.world.block.BlockState weBlock = WorldEditWrapper.convert(block);
         try {
             m_editSession.setBlock(weLocaton, weBlock);
         } catch (com.sk89q.worldedit.MaxChangedBlocksException ex) {

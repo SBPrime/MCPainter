@@ -24,7 +24,6 @@
 
 package org.primesoft.mcpainter.worldEdit;
 
-import com.sk89q.worldedit.LocalPlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.primesoft.mcpainter.utils.Vector;
@@ -48,17 +47,17 @@ public class WorldEditLocalPlayer implements ILocalPlayer {
     
     @Override
     public Vector getPosition() {
-        return WorldEditWrapper.convert(m_localPlayer.getPosition());
+        return WorldEditWrapper.convert(m_localPlayer.getLocation().toVector());
     }
 
     @Override
     public double getYaw() {
-        return m_localPlayer.getYaw();
+        return m_localPlayer.getLocation().getYaw();
     }
 
     @Override
     public double getPitch() {
-        return m_localPlayer.getPitch();
+        return m_localPlayer.getLocation().getPitch();
     }
 
     @Override
