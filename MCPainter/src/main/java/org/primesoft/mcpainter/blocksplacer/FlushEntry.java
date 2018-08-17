@@ -23,8 +23,6 @@
  */
 package org.primesoft.mcpainter.blocksplacer;
 
-import org.primesoft.mcpainter.worldEdit.IEditSession;
-
 /**
  *
  * @author SBPrime
@@ -39,11 +37,8 @@ public class FlushEntry extends BlockLogerEntry {
         return false;
     }
     
-    
-    
     @Override
-    public void execute(BlockPlacer blockPlacer) {
-        IEditSession eSession = m_loger.getEditSession();
-        m_loger.getLocalSession().remember(eSession);
+    public void execute() {
+        m_loger.getLocalSession().remember(m_loger.getEditSession());
     }    
 }

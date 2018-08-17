@@ -30,7 +30,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import org.primesoft.mcpainter.BlockLoger;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.drawing.ColorMap;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 

@@ -21,25 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.primesoft.mcpainter.blocksplacer;
 
-package org.primesoft.mcpainter.worldEdit;
-
-import org.bukkit.Location;
+import org.primesoft.mcpainter.MCPainterMain;
+import org.primesoft.mcpainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *
  * @author SBPrime
  */
-public interface ICuboidSelection {
+public class ChangeEntry extends BlockLogerEntry {
 
-    public Location getMinimumPoint();
+    private final IChange m_change;
 
-    public Location getMaximumPoint();
+    public ChangeEntry(BlockLoger loger, IChange change) {
+        super(loger);
 
-    public int getLength();
+        m_change = change;
+    }
 
-    public int getWidth();
+    @Override
+    public boolean canRemove() {
+        return true;
+    }
 
-    public int getHeight();
-    
+    @Override
+    public void execute() {
+        try {
+            m_loger.getEditSession().doCustom(m_change);
+        } catch (MaxChangedBlocksException ex) {
+            MCPainterMain.say(getPlayer(), "Max block change reached");
+            MCPainterMain.log(ex.getMessage());
+        }
+    }
+
 }

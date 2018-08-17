@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 SBPrime.
+ * Copyright 2014 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,34 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.primesoft.mcpainter.blocksplacer;
 
-import com.sk89q.worldedit.WorldEditException;
-import com.sk89q.worldedit.history.UndoContext;
-import com.sk89q.worldedit.history.change.Change;
-import org.primesoft.mcpainter.MCPainterMain;
-import org.bukkit.entity.Player;
+package org.primesoft.mcpainter.worldEdit;
+
+import org.bukkit.Location;
+import org.bukkit.World;
+import org.primesoft.mcpainter.utils.Vector;
 
 /**
  *
  * @author SBPrime
  */
-public class ChangeMessage implements Change {
-    private final Player m_player;
-    private final String m_msg;
+public final class CuboidSelection {
+
+    private final Vector m_pointMin;
+    private final Vector m_pointMax;
+    private final World m_world;
     
-    public ChangeMessage(Player player, String msg) {
-        m_player = player;
-        m_msg = msg;
+    public CuboidSelection(Location from, Location to) {
+        m_pointMin = new Vector(from);
+        m_pointMax = new Vector(to);
+        m_world = from.getWorld();
     }
     
-    
-    @Override
-    public void undo(UndoContext uc) throws WorldEditException {
+    public CuboidSelection(World w, Vector from, Vector to) {
+        m_pointMin = from;
+        m_pointMax = to;
+        m_world = w;
     }
 
-    @Override
-    public void redo(UndoContext uc) throws WorldEditException {
-        MCPainterMain.say(m_player, m_msg);
+    public Vector getMinimumPoint() {
+        return m_pointMin;
     }
+
+    public Vector getMaximumPoint() {
+        return m_pointMax;
+    }
+
+    public World getWorld() {
+        return m_world;
+    }
+    
 }

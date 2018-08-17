@@ -34,40 +34,35 @@ public class TextureDescription {
     private int m_column;
     private int m_row;
 
-    public static TextureDescription parse(String s) {
+    public static TextureDescription parse(String s) {        
         if (s == null) {
             return null;
         }
         String[] parts = s.split(":");
-        if (parts.length < 2)
-        {
+        if (parts.length < 2) {
             return null;
         }
-        
+
         String tPack = parts[0];
         String file = parts[1];
         int column = -1;
         int row = -1;
-        
-        if (parts.length >= 3 && parts[2] != null)
-        {
+
+        if (parts.length >= 3 && parts[2] != null) {
             try {
                 column = Integer.parseInt(parts[2]);
-            } catch (NumberFormatException ex)
-            {
-                
+            } catch (NumberFormatException ex) {
+
             }
         }
-        if (parts.length >= 4 && parts[3] != null)
-        {
+        if (parts.length >= 4 && parts[3] != null) {
             try {
                 row = Integer.parseInt(parts[3]);
-            } catch (NumberFormatException ex)
-            {
-                
+            } catch (NumberFormatException ex) {
+
             }
         }
-        
+
         return new TextureDescription(tPack, file, column, row);
     }
 
@@ -104,11 +99,13 @@ public class TextureDescription {
         sb.append(m_texturePack);
         sb.append(":");
         sb.append(m_file);
-        sb.append(":");
-        sb.append(m_column);
-        sb.append("x");
-        sb.append(m_row);
+        if (m_column >= 0 || m_row >= 0) {
+            sb.append(":");
+            sb.append(m_column);
+            sb.append("x");
+            sb.append(m_row);
+        }
 
         return sb.toString();
-    }       
+    }
 }

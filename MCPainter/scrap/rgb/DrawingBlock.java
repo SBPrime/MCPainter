@@ -28,8 +28,8 @@ import com.sk89q.worldedit.Vector;
 import com.sk89q.worldedit.blocks.BaseBlock;
 import java.awt.Color;
 import java.util.EnumSet;
-import org.primesoft.mcpainter.Configuration.BlockEntry;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.BlockEntry;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 
 /**

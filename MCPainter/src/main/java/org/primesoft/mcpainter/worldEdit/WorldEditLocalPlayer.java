@@ -24,7 +24,8 @@
 
 package org.primesoft.mcpainter.worldEdit;
 
-import com.sk89q.worldedit.LocalPlayer;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.primesoft.mcpainter.utils.Vector;
 
 /**
@@ -32,28 +33,40 @@ import org.primesoft.mcpainter.utils.Vector;
  * @author SBPrime
  */
 public class WorldEditLocalPlayer implements ILocalPlayer {
-    private final LocalPlayer m_localPlayer;
+    private final com.sk89q.worldedit.entity.Player m_localPlayer;
+    private final Player m_player;
         
-    public WorldEditLocalPlayer(LocalPlayer localPlayer) {
+    public WorldEditLocalPlayer(com.sk89q.worldedit.entity.Player localPlayer, Player player) {
         m_localPlayer = localPlayer;
+        m_player = player;
     }
     
-    public LocalPlayer getLocalPlayer(){
+    public com.sk89q.worldedit.entity.Player getLocalPlayer(){
         return m_localPlayer;
     }
     
     @Override
     public Vector getPosition() {
-        return WorldEditWrapper.convert(m_localPlayer.getPosition());
+        return WorldEditWrapper.convert(m_localPlayer.getLocation().toVector());
     }
 
     @Override
     public double getYaw() {
-        return m_localPlayer.getYaw();
+        return m_localPlayer.getLocation().getYaw();
     }
 
     @Override
     public double getPitch() {
-        return m_localPlayer.getPitch();
+        return m_localPlayer.getLocation().getPitch();
+    }
+
+    @Override
+    public World getWorld() {
+        return m_player.getWorld();
+    }
+
+    @Override
+    public Player getPlayer() {
+        return m_player;
     }
 }

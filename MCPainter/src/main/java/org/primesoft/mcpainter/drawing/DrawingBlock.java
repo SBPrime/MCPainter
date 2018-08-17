@@ -25,8 +25,8 @@ package org.primesoft.mcpainter.drawing;
 
 import java.awt.Color;
 import java.util.EnumSet;
-import org.primesoft.mcpainter.Configuration.BlockEntry;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.BlockEntry;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;

@@ -36,7 +36,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.primesoft.mcpainter.commands.*;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.blocks.IBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.MultiBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.VanillaBlockProvider;
@@ -44,7 +44,6 @@ import org.primesoft.mcpainter.drawing.dilters.FilterManager;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.drawing.statue.PlayerStatueDescription;
 import org.primesoft.mcpainter.drawing.statue.StatueDescription;
-import org.primesoft.mcpainter.drawing.MetricsLite;
 import org.primesoft.mcpainter.mapdrawer.MapHelper;
 import org.primesoft.mcpainter.texture.TextureManager;
 import org.primesoft.mcpainter.texture.TexturePack;
@@ -63,6 +62,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.primesoft.mcpainter.mcstats.MetricsLite;
 
 /**
  * @author SBPrime
@@ -159,9 +159,8 @@ public class MCPainterMain extends JavaPlugin {
         try {
             m_metrics = new MetricsLite(this);
             m_metrics.start();
-        } catch (IOException e) {
-            ExceptionHelper.printException(e, "Error initializing MCStats");
-        }
+        } catch (IOException ex) {            
+        }        
 
         if (!FoundManager.load(this)) {
             log("Error initializing eco.");
@@ -171,6 +170,8 @@ public class MCPainterMain extends JavaPlugin {
 
         m_blocksProvider = new MultiBlockProvider();
         m_statueProvider = new ModStatueProvider();
+
+        m_blocksHub = new BlocksHubIntegration(this);
         m_worldEdit = WorldEditFactory.getWorldEditWrapper(this);
         if (m_worldEdit == null) {
             log("World edit not found.");
@@ -240,7 +241,11 @@ public class MCPainterMain extends JavaPlugin {
             args = Commands.insertArgs(args, Commands.COMMAND_BLOCK);
         } else if (commandName.equalsIgnoreCase(Commands.ALT_RENDER)) {
             args = Commands.insertArgs(args, Commands.COMMAND_RENDER);
-        } else if (!commandName.equalsIgnoreCase(Commands.COMMAND_MAIN)) {
+        } else if (!m_worldEdit.isRealWorldEdit() && commandName.equalsIgnoreCase(Commands.ALT_UNDO)) {
+            m_worldEdit.undo(player);
+            return true;
+        }
+        else if (!commandName.equalsIgnoreCase(Commands.COMMAND_MAIN)) {
             return false;
         }
 
@@ -291,6 +296,9 @@ public class MCPainterMain extends JavaPlugin {
         } else if (name.equalsIgnoreCase(Commands.COMMAND_RENDER)) {
             doRender(player, args);
             return true;
+        } else if (!m_worldEdit.isRealWorldEdit() && name.equalsIgnoreCase(Commands.COMMAND_UNDO)) {
+            m_worldEdit.undo(player);
+             return true;
         }
 
         return Help.ShowHelp(player, null);
@@ -345,12 +353,11 @@ public class MCPainterMain extends JavaPlugin {
     private String initializeConfig() {
         m_textureManager.dispose();
         m_paletteManager.clear();
-        m_blocksHub = new BlocksHubIntegration(this);
 
         if (m_blockPlacer != null) {
             m_blockPlacer.queueStop();
         }
-        m_blockPlacer = new BlockPlacer(this, m_blocksHub);
+        m_blockPlacer = new BlockPlacer(this);
         m_modProvider = new ModsProvider(ConfigProvider.getModFolder());
 
         DataFile[] dataFiles = DataFile.processFiles(ConfigProvider.getDataFolder());
@@ -417,7 +424,7 @@ public class MCPainterMain extends JavaPlugin {
 
             log("* " + modConfig.getName() + "...");
             
-            final List<IBlockProvider> bProviders = new ArrayList<IBlockProvider>();
+            final List<IBlockProvider> bProviders = new ArrayList<>();
 
             if (blocks != null) {
                 final IBlockProvider bProvider = ModBlockProvider.load(m_textureManager, blocks);

@@ -25,7 +25,7 @@ package org.primesoft.mcpainter.voxelyzer;
 
 import java.awt.Color;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 import org.primesoft.mcpainter.drawing.RawImage;

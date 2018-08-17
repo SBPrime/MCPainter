@@ -26,7 +26,7 @@ package org.primesoft.mcpainter.MC3D;
 import com.sk89q.worldedit.LocalPlayer;
 import java.awt.image.BufferedImage;
 import org.primesoft.mcpainter.BlockLoger;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.drawing.ColorMap;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 

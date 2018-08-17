@@ -94,4 +94,23 @@ public class Vector {
     public Vector subtract(Vector v) {
         return new Vector(m_x - v.m_x, m_y - v.m_y, m_z - v.m_z);
     }
+    
+    public static Vector parse(String s) {
+        if (s == null) {
+            return null;
+        }
+
+        String[] parts = s.split(",");
+        if (parts.length != 3) {
+            return null;
+        }
+
+        try {
+            return new Vector(Double.parseDouble(parts[0]),
+                    Double.parseDouble(parts[1]),
+                    Double.parseDouble(parts[2]));
+        } catch (NumberFormatException ex) {
+            return null;
+        }
+    }
 }

@@ -28,12 +28,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Queue;
-import org.primesoft.mcpainter.BlocksHubIntegration;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.MCPainterMain;
-import org.primesoft.mcpainter.utils.BaseBlock;
-import org.primesoft.mcpainter.utils.Vector;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
@@ -48,10 +44,6 @@ public class BlockPlacer implements Runnable {
      */
     private final Object m_mutex = new Object();
 
-    /**
-     * The block hub
-     */
-    private final BlocksHubIntegration m_blocksHub;
     /**
      * Bukkit scheduler
      */
@@ -81,11 +73,9 @@ public class BlockPlacer implements Runnable {
      * Initialize new instance of the block placer
      *
      * @param plugin parent
-     * @param blocksHub
      */
-    public BlockPlacer(MCPainterMain plugin, BlocksHubIntegration blocksHub) {
-        m_blocksHub = blocksHub;
-        m_blocks = new HashMap<String, Queue<BlockLogerEntry>>();
+    public BlockPlacer(MCPainterMain plugin) {
+        m_blocks = new HashMap<>();
         m_scheduler = plugin.getServer().getScheduler();
         m_queueHard = ConfigProvider.getQueueHardLimit();
         m_queueSoft = ConfigProvider.getQueueSoftLimit();
@@ -251,20 +241,6 @@ public class BlockPlacer implements Runnable {
         if (entry == null) {
             return;
         }
-        entry.execute(this);
-    }
-
-    /**
-     * Log block operation for core protection
-     *
-     * @param v block possition
-     * @param oldBlock old block
-     * @param newBlock new block
-     * @param p player
-     * @param world world
-     */
-    public void logBlock(Vector v, BaseBlock oldBlock, BaseBlock newBlock,
-            Player p, World world) {
-        m_blocksHub.logBlock(p, world, v, oldBlock, newBlock);
+        entry.execute();
     }
 }

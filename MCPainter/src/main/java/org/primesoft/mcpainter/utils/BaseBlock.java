@@ -23,36 +23,32 @@
  */
 package org.primesoft.mcpainter.utils;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 
 /**
  *
  * @author SBPrime
  */
 public class BaseBlock {
-
-    private final Material m_material;
-    private final int m_data;
+    public static final BaseBlock AIR = new BaseBlock(Material.AIR);
     
-    public int getData(){
-        return m_data;
-    }
+    public final BlockData Data;
     
-    public int getType() {
-        return m_material.getId();
-    }
-
-    public Material getMaterial() {
-        return m_material;
-    }
-    
-    public BaseBlock(Material material, int data) {
-        m_material = material;
-        m_data = data;
+    public BaseBlock(Material material, String data) {
+        Data = Bukkit.getServer().createBlockData(material, data);
     }
 
     public BaseBlock(Material material) {
-        m_material = material;
-        m_data = 0;
+        Data = Bukkit.getServer().createBlockData(material);
+    }
+    
+    public BaseBlock(String data) {
+        Data = Bukkit.getServer().createBlockData(data);
+    }
+    
+    public BaseBlock(BlockData data) {
+        Data = data.clone();
     }
 }

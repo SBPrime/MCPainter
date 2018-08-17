@@ -1,0 +1,25 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of concrete blocks, no powder blocks
+################################################################################
+name: ConcreteNoPowder
+blocks:
+# Concrete
+  - minecraft:black_concrete;VANILLA:assets/minecraft/textures/block/black_concrete.png
+  - minecraft:blue_concrete;VANILLA:assets/minecraft/textures/block/blue_concrete.png
+  - minecraft:brown_concrete;VANILLA:assets/minecraft/textures/block/brown_concrete.png
+  - minecraft:cyan_concrete;VANILLA:assets/minecraft/textures/block/cyan_concrete.png
+  - minecraft:gray_concrete;VANILLA:assets/minecraft/textures/block/gray_concrete.png
+  - minecraft:green_concrete;VANILLA:assets/minecraft/textures/block/green_concrete.png
+  - minecraft:light_blue_concrete;VANILLA:assets/minecraft/textures/block/light_blue_concrete.png
+  - minecraft:light_gray_concrete;VANILLA:assets/minecraft/textures/block/light_gray_concrete.png
+  - minecraft:lime_concrete;VANILLA:assets/minecraft/textures/block/lime_concrete.png
+  - minecraft:magenta_concrete;VANILLA:assets/minecraft/textures/block/magenta_concrete.png
+  - minecraft:orange_concrete;VANILLA:assets/minecraft/textures/block/orange_concrete.png
+  - minecraft:pink_concrete;VANILLA:assets/minecraft/textures/block/pink_concrete.png
+  - minecraft:purple_concrete;VANILLA:assets/minecraft/textures/block/purple_concrete.png
+  - minecraft:red_concrete;VANILLA:assets/minecraft/textures/block/red_concrete.png
+  - minecraft:white_concrete;VANILLA:assets/minecraft/textures/block/white_concrete.png
+  - minecraft:yellow_concrete;VANILLA:assets/minecraft/textures/block/yellow_concrete.png

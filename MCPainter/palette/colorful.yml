@@ -1,0 +1,117 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting out of "colorful" blocks
+################################################################################
+name: Colorful
+blocks:
+# Wools
+  - minecraft:black_wool;VANILLA:assets/minecraft/textures/block/black_wool.png
+  - minecraft:blue_wool;VANILLA:assets/minecraft/textures/block/blue_wool.png
+  - minecraft:brown_wool;VANILLA:assets/minecraft/textures/block/brown_wool.png
+  - minecraft:cyan_wool;VANILLA:assets/minecraft/textures/block/cyan_wool.png
+  - minecraft:gray_wool;VANILLA:assets/minecraft/textures/block/gray_wool.png
+  - minecraft:green_wool;VANILLA:assets/minecraft/textures/block/green_wool.png
+  - minecraft:light_blue_wool;VANILLA:assets/minecraft/textures/block/light_blue_wool.png
+  - minecraft:light_gray_wool;VANILLA:assets/minecraft/textures/block/light_gray_wool.png
+  - minecraft:lime_wool;VANILLA:assets/minecraft/textures/block/lime_wool.png
+  - minecraft:magenta_wool;VANILLA:assets/minecraft/textures/block/magenta_wool.png
+  - minecraft:orange_wool;VANILLA:assets/minecraft/textures/block/orange_wool.png
+  - minecraft:pink_wool;VANILLA:assets/minecraft/textures/block/pink_wool.png
+  - minecraft:purple_wool;VANILLA:assets/minecraft/textures/block/purple_wool.png
+  - minecraft:red_wool;VANILLA:assets/minecraft/textures/block/red_wool.png
+  - minecraft:white_wool;VANILLA:assets/minecraft/textures/block/white_wool.png
+  - minecraft:yellow_wool;VANILLA:assets/minecraft/textures/block/yellow_wool.png
+
+# Concrete
+  - minecraft:black_concrete;VANILLA:assets/minecraft/textures/block/black_concrete.png
+  - minecraft:blue_concrete;VANILLA:assets/minecraft/textures/block/blue_concrete.png
+  - minecraft:brown_concrete;VANILLA:assets/minecraft/textures/block/brown_concrete.png
+  - minecraft:cyan_concrete;VANILLA:assets/minecraft/textures/block/cyan_concrete.png
+  - minecraft:gray_concrete;VANILLA:assets/minecraft/textures/block/gray_concrete.png
+  - minecraft:green_concrete;VANILLA:assets/minecraft/textures/block/green_concrete.png
+  - minecraft:light_blue_concrete;VANILLA:assets/minecraft/textures/block/light_blue_concrete.png
+  - minecraft:light_gray_concrete;VANILLA:assets/minecraft/textures/block/light_gray_concrete.png
+  - minecraft:lime_concrete;VANILLA:assets/minecraft/textures/block/lime_concrete.png
+  - minecraft:magenta_concrete;VANILLA:assets/minecraft/textures/block/magenta_concrete.png
+  - minecraft:orange_concrete;VANILLA:assets/minecraft/textures/block/orange_concrete.png
+  - minecraft:pink_concrete;VANILLA:assets/minecraft/textures/block/pink_concrete.png
+  - minecraft:purple_concrete;VANILLA:assets/minecraft/textures/block/purple_concrete.png
+  - minecraft:red_concrete;VANILLA:assets/minecraft/textures/block/red_concrete.png
+  - minecraft:white_concrete;VANILLA:assets/minecraft/textures/block/white_concrete.png
+  - minecraft:yellow_concrete;VANILLA:assets/minecraft/textures/block/yellow_concrete.png
+
+# Concrete powder
+#  - minecraft:black_concrete_powder;VANILLA:assets/minecraft/textures/block/black_concrete_powder.png
+#  - minecraft:blue_concrete_powder;VANILLA:assets/minecraft/textures/block/blue_concrete_powder.png
+#  - minecraft:brown_concrete_powder;VANILLA:assets/minecraft/textures/block/brown_concrete_powder.png
+#  - minecraft:cyan_concrete_powder;VANILLA:assets/minecraft/textures/block/cyan_concrete_powder.png
+#  - minecraft:gray_concrete_powder;VANILLA:assets/minecraft/textures/block/gray_concrete_powder.png
+#  - minecraft:green_concrete_powder;VANILLA:assets/minecraft/textures/block/green_concrete_powder.png
+#  - minecraft:light_blue_concrete_powder;VANILLA:assets/minecraft/textures/block/light_blue_concrete_powder.png
+#  - minecraft:light_gray_concrete_powder;VANILLA:assets/minecraft/textures/block/light_gray_concrete_powder.png
+#  - minecraft:lime_concrete_powder;VANILLA:assets/minecraft/textures/block/lime_concrete_powder.png
+#  - minecraft:magenta_concrete_powder;VANILLA:assets/minecraft/textures/block/magenta_concrete_powder.png
+#  - minecraft:orange_concrete_powder;VANILLA:assets/minecraft/textures/block/orange_concrete_powder.png
+#  - minecraft:pink_concrete_powder;VANILLA:assets/minecraft/textures/block/pink_concrete_powder.png
+#  - minecraft:purple_concrete_powder;VANILLA:assets/minecraft/textures/block/purple_concrete_powder.png
+#  - minecraft:red_concrete_powder;VANILLA:assets/minecraft/textures/block/red_concrete_powder.png
+#  - minecraft:white_concrete_powder;VANILLA:assets/minecraft/textures/block/white_concrete_powder.png
+#  - minecraft:yellow_concrete_powder;VANILLA:assets/minecraft/textures/block/yellow_concrete_powder.png
+
+# Glazed terracotta
+  - minecraft:black_glazed_terracotta;VANILLA:assets/minecraft/textures/block/black_glazed_terracotta.png
+  - minecraft:blue_glazed_terracotta;VANILLA:assets/minecraft/textures/block/blue_glazed_terracotta.png
+  - minecraft:brown_glazed_terracotta;VANILLA:assets/minecraft/textures/block/brown_glazed_terracotta.png
+  - minecraft:cyan_glazed_terracotta;VANILLA:assets/minecraft/textures/block/cyan_glazed_terracotta.png
+  - minecraft:gray_glazed_terracotta;VANILLA:assets/minecraft/textures/block/gray_glazed_terracotta.png
+  - minecraft:green_glazed_terracotta;VANILLA:assets/minecraft/textures/block/green_glazed_terracotta.png
+  - minecraft:light_blue_glazed_terracotta;VANILLA:assets/minecraft/textures/block/light_blue_glazed_terracotta.png
+  - minecraft:lime_glazed_terracotta;VANILLA:assets/minecraft/textures/block/lime_glazed_terracotta.png
+  - minecraft:magenta_glazed_terracotta;VANILLA:assets/minecraft/textures/block/magenta_glazed_terracotta.png
+  - minecraft:orange_glazed_terracotta;VANILLA:assets/minecraft/textures/block/orange_glazed_terracotta.png
+  - minecraft:pink_glazed_terracotta;VANILLA:assets/minecraft/textures/block/pink_glazed_terracotta.png
+  - minecraft:purple_glazed_terracotta;VANILLA:assets/minecraft/textures/block/purple_glazed_terracotta.png
+  - minecraft:red_glazed_terracotta;VANILLA:assets/minecraft/textures/block/red_glazed_terracotta.png
+  - minecraft:light_gray_glazed_terracotta;VANILLA:assets/minecraft/textures/block/light_gray_glazed_terracotta.png
+  - minecraft:white_glazed_terracotta;VANILLA:assets/minecraft/textures/block/white_glazed_terracotta.png
+  - minecraft:yellow_glazed_terracotta;VANILLA:assets/minecraft/textures/block/yellow_glazed_terracotta.png
+
+# Terracotta
+  - minecraft:terracotta;VANILLA:assets/minecraft/textures/block/terracotta.png
+  - minecraft:black_terracotta;VANILLA:assets/minecraft/textures/block/black_terracotta.png
+  - minecraft:blue_terracotta;VANILLA:assets/minecraft/textures/block/blue_terracotta.png
+  - minecraft:brown_terracotta;VANILLA:assets/minecraft/textures/block/brown_terracotta.png
+  - minecraft:cyan_terracotta;VANILLA:assets/minecraft/textures/block/cyan_terracotta.png
+  - minecraft:gray_terracotta;VANILLA:assets/minecraft/textures/block/gray_terracotta.png
+  - minecraft:green_terracotta;VANILLA:assets/minecraft/textures/block/green_terracotta.png
+  - minecraft:light_blue_terracotta;VANILLA:assets/minecraft/textures/block/light_blue_terracotta.png
+  - minecraft:light_gray_terracotta;VANILLA:assets/minecraft/textures/block/light_gray_terracotta.png
+  - minecraft:lime_terracotta;VANILLA:assets/minecraft/textures/block/lime_terracotta.png
+  - minecraft:magenta_terracotta;VANILLA:assets/minecraft/textures/block/magenta_terracotta.png
+  - minecraft:orange_terracotta;VANILLA:assets/minecraft/textures/block/orange_terracotta.png
+  - minecraft:pink_terracotta;VANILLA:assets/minecraft/textures/block/pink_terracotta.png
+  - minecraft:purple_terracotta;VANILLA:assets/minecraft/textures/block/purple_terracotta.png
+  - minecraft:red_terracotta;VANILLA:assets/minecraft/textures/block/red_terracotta.png
+  - minecraft:white_terracotta;VANILLA:assets/minecraft/textures/block/white_terracotta.png
+  - minecraft:yellow_terracotta;VANILLA:assets/minecraft/textures/block/yellow_terracotta.png
+
+# Glass
+  - minecraft:glass;VANILLA:assets/minecraft/textures/block/glass.png
+  - minecraft:black_stained_glass;VANILLA:assets/minecraft/textures/block/black_stained_glass.png
+  - minecraft:blue_stained_glass;VANILLA:assets/minecraft/textures/block/blue_stained_glass.png
+  - minecraft:brown_stained_glass;VANILLA:assets/minecraft/textures/block/brown_stained_glass.png
+  - minecraft:cyan_stained_glass;VANILLA:assets/minecraft/textures/block/cyan_stained_glass.png
+  - minecraft:gray_stained_glass;VANILLA:assets/minecraft/textures/block/gray_stained_glass.png
+  - minecraft:green_stained_glass;VANILLA:assets/minecraft/textures/block/green_stained_glass.png
+  - minecraft:light_blue_stained_glass;VANILLA:assets/minecraft/textures/block/light_blue_stained_glass.png
+  - minecraft:light_gray_stained_glass;VANILLA:assets/minecraft/textures/block/light_gray_stained_glass.png
+  - minecraft:lime_stained_glass;VANILLA:assets/minecraft/textures/block/lime_stained_glass.png
+  - minecraft:magenta_stained_glass;VANILLA:assets/minecraft/textures/block/magenta_stained_glass.png
+  - minecraft:orange_stained_glass;VANILLA:assets/minecraft/textures/block/orange_stained_glass.png
+  - minecraft:pink_stained_glass;VANILLA:assets/minecraft/textures/block/pink_stained_glass.png
+  - minecraft:red_stained_glass;VANILLA:assets/minecraft/textures/block/red_stained_glass.png
+  - minecraft:purple_stained_glass;VANILLA:assets/minecraft/textures/block/purple_stained_glass.png
+  - minecraft:white_stained_glass;VANILLA:assets/minecraft/textures/block/white_stained_glass.png
+  - minecraft:yellow_stained_glass;VANILLA:assets/minecraft/textures/block/yellow_stained_glass.png

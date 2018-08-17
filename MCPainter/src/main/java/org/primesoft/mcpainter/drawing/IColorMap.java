@@ -24,7 +24,7 @@
 package org.primesoft.mcpainter.drawing;
 
 import java.awt.Color;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.drawing.dilters.IColorPalette;
 
 /**

@@ -30,7 +30,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import javax.imageio.ImageIO;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.MCPainterMain;
 import org.primesoft.mcpainter.utils.ExceptionHelper;
 import org.bukkit.Bukkit;

@@ -29,7 +29,7 @@ import com.sk89q.worldedit.extent.Extent;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import org.primesoft.mcpainter.Configuration.OperationType;
+import org.primesoft.mcpainter.configuration.OperationType;
 import org.primesoft.mcpainter.blocksplacer.BlockLoger;
 import org.primesoft.mcpainter.blocksplacer.ILoggerCommand;
 import org.bukkit.Chunk;

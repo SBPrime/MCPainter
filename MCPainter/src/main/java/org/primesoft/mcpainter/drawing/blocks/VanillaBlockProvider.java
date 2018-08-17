@@ -36,7 +36,7 @@ import org.bukkit.Material;
 public class VanillaBlockProvider implements IBlockProvider {
 
     private final VanillaTextureProvider m_tex;
-    private final Map<Integer, IDrawableElement> m_blockFaces;
+    private final Map<Material, IDrawableElement> m_blockFaces;
 
     @Override
     public int getBlocksCount() {
@@ -51,12 +51,12 @@ public class VanillaBlockProvider implements IBlockProvider {
         }
 
         m_tex = textureManager.getVanilla();
-        m_blockFaces = new HashMap<Integer, IDrawableElement>();
-        m_blockFaces.put(0x1d, new Piston(m_tex, true)); //1d - Sticky piston
-        m_blockFaces.put(0x21, new Piston(m_tex, false)); //21 - Piston
-        m_blockFaces.put(0x22, new PistonExtension(m_tex)); //22 - Piston extended
-        m_blockFaces.put(0x63, new Shroom(m_tex, 3)); //63 - Huge brow mushroom
-        m_blockFaces.put(0x64, new Shroom(m_tex, 2)); //64 - Huge red mushroom
+        m_blockFaces = new HashMap<>();
+        m_blockFaces.put(Material.STICKY_PISTON, new Piston(m_tex, true)); //1d - Sticky piston
+        m_blockFaces.put(Material.PISTON, new Piston(m_tex, false)); //21 - Piston
+        m_blockFaces.put(Material.PISTON_HEAD, new PistonExtension(m_tex)); //22 - Piston extended
+        m_blockFaces.put(Material.BROWN_MUSHROOM_BLOCK, new Shroom(m_tex, 3)); //63 - Huge brow mushroom
+        m_blockFaces.put(Material.RED_MUSHROOM_BLOCK, new Shroom(m_tex, 2)); //64 - Huge red mushroom
     }
 
     @Override
@@ -67,16 +67,6 @@ public class VanillaBlockProvider implements IBlockProvider {
         }
 
         int materialId = blockMaterial.getId();
-        return getBlock(materialId);
-    }
-
-    @Override
-    public IDrawableElement getBlock(int materialId) {
-        if (m_blockFaces.containsKey(materialId))
-        {
-            return m_blockFaces.get(materialId);
-        }
-
-        return null;
+        return m_blockFaces.get(blockMaterial);
     }
 }

@@ -40,7 +40,6 @@ import org.bukkit.configuration.ConfigurationSection;
  */
 public class ModBlockProvider implements IBlockProvider {
 
-    private final HashMap<Integer, IDrawableElement> m_idBlocks;
     private final HashMap<String, IDrawableElement> m_nameBlocks;
     private final int m_cnt;
 
@@ -52,12 +51,10 @@ public class ModBlockProvider implements IBlockProvider {
     
     private ModBlockProvider(TextureManager texture, 
             ConfigurationSection blocksSection) {
-        HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks = new HashMap<String, HashMap<Short, IDrawableElement>>();
-        HashMap<Integer, HashMap<Short, IDrawableElement>> definedBlocksId = new HashMap<Integer, HashMap<Short, IDrawableElement>>();
-        m_cnt = loadBlocks(blocksSection, texture, definedBlocks, definedBlocksId);
+        HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks = new HashMap<>();
+        m_cnt = loadBlocks(blocksSection, texture, definedBlocks);
 
         m_nameBlocks = aggregateBlocksName(definedBlocks);
-        m_idBlocks = aggregateBlocksId(definedBlocksId);
     }
 
     /**
@@ -66,12 +63,10 @@ public class ModBlockProvider implements IBlockProvider {
      * @param blocksSection
      * @param texture
      * @param definedBlocks
-     * @param definedBlocksId
      * @return
      */
     private int loadBlocks(ConfigurationSection blocksSection, TextureManager texture,
-            HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks,
-            HashMap<Integer, HashMap<Short, IDrawableElement>> definedBlocksId) {
+            HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks) {
         Set<String> sections = blocksSection.getKeys(false);
         int cnt = 0;
         for (String sName : sections) {
@@ -82,7 +77,6 @@ public class ModBlockProvider implements IBlockProvider {
 
             String name = blockDefinition.getString("Name", "").toUpperCase();
             String type = blockDefinition.getString("Type", "").toUpperCase();
-            int id = blockDefinition.getInt("Id", -1);
             int[] data = getData(blockDefinition);
             int[] flags = BlockHelper.parseIntListEntry(blockDefinition.getIntegerList("Flags"));
             if (flags != null && flags.length > 0) {
@@ -91,8 +85,8 @@ public class ModBlockProvider implements IBlockProvider {
 
             ConfigurationSection instruction = blockDefinition.getConfigurationSection("Instruction");
 
-            if (name.length() == 0 && id == -1) {
-                MCPainterMain.log(sName + ": block Id or name is required.");
+            if (name.length() == 0) {
+                MCPainterMain.log(sName + ": block name is required.");
                 continue;
             }
             if (instruction == null) {
@@ -143,7 +137,7 @@ public class ModBlockProvider implements IBlockProvider {
                 MCPainterMain.log(sName + ": Warning multi block detected, ignoring data value");
                 data = null;
             }
-            boolean added = addBlock(name, definedBlocks, id, definedBlocksId, data, sName, block);
+            boolean added = addBlock(name, definedBlocks, data, sName, block);
             if (added) {
                 cnt++;
             }
@@ -152,7 +146,6 @@ public class ModBlockProvider implements IBlockProvider {
     }
 
     private boolean addBlock(String name, HashMap<String, HashMap<Short, IDrawableElement>> definedBlocks,
-            int id, HashMap<Integer, HashMap<Short, IDrawableElement>> definedBlocksId,
             int[] data, String sectionName, IDrawableElement block) {
         if (data == null) {
             data = new int[]{0};
@@ -160,7 +153,7 @@ public class ModBlockProvider implements IBlockProvider {
         boolean added = false;
         if (name != null && name.length() != 0) {
             if (!definedBlocks.containsKey(name)) {
-                definedBlocks.put(name, new HashMap<Short, IDrawableElement>());
+                definedBlocks.put(name, new HashMap<>());
             }
 
             HashMap<Short, IDrawableElement> blockEntries = definedBlocks.get(name);
@@ -174,32 +167,6 @@ public class ModBlockProvider implements IBlockProvider {
                 } else {
                     blockEntries.put((short) i, block);
                     added = true;
-                }
-            }
-            Material mat = Material.getMaterial(name);
-            if (mat != null && mat.getId() == id) {
-                id = -1;
-            }
-        }
-        if (id != -1) {
-            Material mat = Material.getMaterial(id);
-            if (mat == null || name == null || !mat.toString().equalsIgnoreCase(name)) {
-                if (!definedBlocksId.containsKey(id)) {
-                    definedBlocksId.put(id, new HashMap<Short, IDrawableElement>());
-                }
-
-                HashMap<Short, IDrawableElement> blockEntries = definedBlocksId.get(id);
-                for (int i : data) {
-                    if (i > Short.MAX_VALUE || i < 0) {
-                        MCPainterMain.log(sectionName + ": invalid block data " + i + ".");
-                        continue;
-                    }
-                    if (blockEntries.containsKey((short) i)) {
-                        MCPainterMain.log(sectionName + ": duplicate block data value " + i + ".");
-                    } else {
-                        blockEntries.put((short) i, block);
-                        added = true;
-                    }
                 }
             }
         }
@@ -218,35 +185,6 @@ public class ModBlockProvider implements IBlockProvider {
         }
 
         name = name.toUpperCase();
-        if (m_nameBlocks.containsKey(name)) {
-            return m_nameBlocks.get(name);
-        }
-
-        Material mat = Material.getMaterial(name);
-        if (mat == null) {
-            return null;
-        }
-
-        int id = mat.getId();
-        if (m_idBlocks.containsKey(id)) {
-            return m_idBlocks.get(id);
-        }
-
-        return null;
-    }
-
-    @Override
-    public IDrawableElement getBlock(int materialId) {
-        if (m_idBlocks.containsKey(materialId)) {
-            return m_idBlocks.get(materialId);
-        }
-
-        Material mat = Material.getMaterial(materialId);
-        if (mat == null) {
-            return null;
-        }
-
-        String name = mat.toString();
         if (m_nameBlocks.containsKey(name)) {
             return m_nameBlocks.get(name);
         }

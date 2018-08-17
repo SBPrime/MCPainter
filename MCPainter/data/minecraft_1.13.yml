@@ -1,12 +1,12 @@
 ################################################################################
 # MCPainter mod definition file
-# Mod name: Minecraft 1.10.x
+# Mod name: Minecraft 1.13.x
 # Author:   SBPrime
 # Description:
 #   Vanilla minecraft texture resources definition file
 ################################################################################
-DisplayName: Minecraft 1.10.x
-ModId: 1\.10\..+
+DisplayName: Minecraft 1.13.x
+ModId: 1\.13\..+
 ModIdAlternative: VANILLA
 Version:
 TextureRes: 16

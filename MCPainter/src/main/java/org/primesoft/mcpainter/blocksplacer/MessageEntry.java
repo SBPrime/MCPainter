@@ -31,22 +31,22 @@ import org.primesoft.mcpainter.MCPainterMain;
  */
 public class MessageEntry extends BlockLogerEntry {
     private final String m_message;
-        
+
     public MessageEntry(BlockLoger loger, String msg) {
         super(loger);
-        
+
         m_message = msg;                 
     }
 
     @Override
     public boolean canRemove() {
         return true;
-    }    
-    
-    
+    }
+
+
     @Override
-    public void execute(BlockPlacer blockPlacer) {
+    public void execute() {
         MCPainterMain.say(getPlayer(), m_message);        
     }
-    
+
 }

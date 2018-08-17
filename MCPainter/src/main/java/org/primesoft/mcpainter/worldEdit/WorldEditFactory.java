@@ -48,15 +48,18 @@ public class WorldEditFactory {
         }
     }
 
-    public static IWorldEdit getWorldEditWrapper(JavaPlugin plugin) {
+    public static IWorldEdit getWorldEditWrapper(MCPainterMain plugin) {
         Plugin wePlugin = getWorldEdit(plugin);
         
         if (wePlugin != null) {
             MCPainterMain.log("WorldEdit found - using the \"real thing\".");
-            return new WorldEditWrapper(wePlugin);
+            return new WorldEditWrapper(wePlugin, plugin.getBlocksHub());
         }
         
         MCPainterMain.log("WorldEdit not found - using stub wrapper classes.");
-        return new StubWrapper();
+        
+        StubWrapper result = new StubWrapper(plugin.getBlocksHub(), plugin.getBlockPlacer());
+        plugin.getServer().getPluginManager().registerEvents(result, plugin);
+        return result;
     }
 }

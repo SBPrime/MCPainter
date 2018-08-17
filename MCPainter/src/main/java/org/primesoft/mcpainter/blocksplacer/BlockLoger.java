@@ -25,7 +25,7 @@ package org.primesoft.mcpainter.blocksplacer;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.MCPainterMain;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
@@ -40,11 +40,12 @@ import org.bukkit.entity.Player;
  * @author SBPrime
  */
 public class BlockLoger {
+
     /**
      * The MTA mutex
      */
     private final Object m_mutex = new Object();
-    
+
     private final Player m_player;
     private final List<BlockLogerEntry> m_blocks;
     private final ILocalSession m_session;
@@ -77,7 +78,7 @@ public class BlockLoger {
 
     public BlockLoger(Player player, ILocalSession session, IEditSession eSession,
             MCPainterMain main) {
-        m_blocks = new ArrayList<BlockLogerEntry>();
+        m_blocks = new ArrayList<>();
         m_player = player;
         m_session = session;
         m_editSession = eSession;
@@ -86,25 +87,28 @@ public class BlockLoger {
         m_blocksPlacer = main.getBlockPlacer();
     }
 
-    public void logCommand(ILoggerCommand command) {
+    public void logChange(IChange command) {
         Location location = command.getLocation();
-        if (m_mainPlugin.getBlocksHub().canPlace(m_player, m_world, location)) {
-            synchronized (m_mutex) {
-                m_blocks.add(new CommandEntry(this, command));
-            }
-            checkFlush();
+        if (location != null && !m_mainPlugin.getBlocksHub().canPlace(m_player, m_world, location)) {
+            return;
         }
-    }
-    
-    public void logBlock(Vector location, BaseBlock block) {
-        if (m_mainPlugin.getBlocksHub().canPlace(m_player, m_world, location)) {
-            synchronized (m_mutex) {
-                m_blocks.add(new BlockEntry(this, location, block));                
-            }
-            checkFlush();
+
+        synchronized (m_mutex) {
+            m_blocks.add(new ChangeEntry(this, command));
         }
+        checkFlush();
+
     }
 
+    public void logBlock(Vector location, BaseBlock block) {
+        if (!m_mainPlugin.getBlocksHub().canPlace(m_player, m_world, location)) {
+            return;
+        }
+        synchronized (m_mutex) {
+            m_blocks.add(new BlockEntry(this, location, block));
+        }
+        checkFlush();
+    }
     public void logEndSession() {
         synchronized (m_mutex) {
             m_blocks.add(new FlushEntry(this));
@@ -124,7 +128,7 @@ public class BlockLoger {
         synchronized (m_mutex) {
             shuldFlush = m_blocks.size() > ConfigProvider.getQueueHardLimit();
         }
-        
+
         if (shuldFlush) {
             flush();
         }
@@ -137,5 +141,5 @@ public class BlockLoger {
             m_blocks.clear();
         }
         m_blocksPlacer.addTasks(events, getPlayer());
-    }   
+    }
 }

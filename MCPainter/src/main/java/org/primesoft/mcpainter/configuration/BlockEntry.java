@@ -1,29 +1,38 @@
-package org.primesoft.mcpainter.Configuration;
+package org.primesoft.mcpainter.configuration;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.bukkit.Bukkit;
 import org.primesoft.mcpainter.texture.TextureDescription;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.bukkit.Material;
+import org.bukkit.Server;
+import org.bukkit.block.data.BlockData;
 
 /**
  * @author SBPrime
  */
 public class BlockEntry {
 
+    private static final Pattern PATTERN_ENTRY = Pattern.compile("^([^\\[;]+)"+ //Material
+            "(\\[([^\\]]+)\\])?;" + //Data
+            "([^;]+)"+ //Texture
+            "(;([0-9]+),([0-9]+))?" + //HSI
+            "(;([bsiBSI]+))?$"); //Block usage
+
     /**
      * Block of air
      */
-    public final static BlockEntry AIR = new BlockEntry(Material.AIR, 0, null,
-            EnumSet.of(OperationType.Block, OperationType.Image, OperationType.Statue));
+    public final static BlockEntry AIR = new BlockEntry();
+
     public final static Color AIR_COLOR = new Color(0, 0, 0, 0);
-    
+
     private final TextureDescription m_textureFile;
     private boolean m_isGrayscale;
-    private int[] m_grayscaleColor;    
+    private int[] m_grayscaleColor;
     private final BaseBlock m_block;
     private final EnumSet<OperationType> m_type;
 
@@ -43,19 +52,24 @@ public class BlockEntry {
         return m_type;
     }
 
-    private BlockEntry(Material m, int data, TextureDescription textureFile, 
-            EnumSet<OperationType> type) {
-        this(m, data, textureFile, type, null);        
+    private BlockEntry() {
+        this(Bukkit.getServer().createBlockData(Material.AIR), null,
+                EnumSet.of(OperationType.Block, OperationType.Image, OperationType.Statue), null);
     }
 
-    private BlockEntry(Material m, int data, TextureDescription textureFile, 
+    private BlockEntry(BlockData data, TextureDescription textureFile,
+            EnumSet<OperationType> type) {
+        this(data, textureFile, type, null);
+    }
+
+    private BlockEntry(BlockData data, TextureDescription textureFile,
             EnumSet<OperationType> type, int[] color) {
         m_isGrayscale = true;
         m_grayscaleColor = color;
         m_textureFile = textureFile;
         m_type = type;
 
-        m_block = new BaseBlock(m, data);
+        m_block = new BaseBlock(data);
     }
 
     @Override
@@ -68,49 +82,21 @@ public class BlockEntry {
 
         return sb.toString();
     }
-    
-        /**
+
+    /**
      * Parse string to material
      *
-     * @param s strng
+     * @param name the material name
      * @return Material value
      */
-    private static Material getMaterial(String s) {
-        Material material;
-        int matId;
-        try {
-            matId = Integer.parseInt(s);
+    private static Material getMaterial(String name) {
+        if (name == null || name.isEmpty()) {
+            return null;
         }
-        catch (NumberFormatException e) {
-            matId = -1;
-        }
-        if (matId == -1) {
-            material = Material.getMaterial(s);
-        } else {
-            material = Material.getMaterial(matId);
-        }
-        return material;
-    }    
-    
-    /**
-     * Parse string to int data
-     *
-     * @param s string
-     * @return int data
-     */
-    private static int getData(String s) {
-        if (s != null) {
-            try {
-                return Integer.parseInt(s);
-            }
-            catch (NumberFormatException e) {
-                return 0;
-            }
-        } else {
-            return 0;
-        }
+
+        return Material.getMaterial(name.toUpperCase());
     }
-    
+
     /**
      * Parse block description
      *
@@ -118,10 +104,7 @@ public class BlockEntry {
      * @return Block entry
      */
     public static BlockEntry parse(String s) {
-        final Pattern pattern = Pattern.compile("^([^:-]+)(\\:([^-]+))?-"
-                + "([^-]+)(-([0-9]+),([0-9]+))?(-([bsiBSI]+))?$");
-
-        Matcher m = pattern.matcher(s);
+        Matcher m = PATTERN_ENTRY.matcher(s);
         if (!m.matches()) {
             throw new NullPointerException("Invalid material entry " + s);
         }
@@ -138,32 +121,35 @@ public class BlockEntry {
             throw new NullPointerException("Invalid material entry " + s);
         }
 
-        Material material = getMaterial(sMaterial);
-
-        if (material == null) {
-            throw new NullPointerException("Invalid material " + sMaterial);
+        Server server = Bukkit.getServer();
+        BlockData blockData;
+        try {
+            if (sData != null && !sData.isEmpty()) {
+                blockData = server.createBlockData(sMaterial + "[" + sData + "]");
+            } else {
+                Material material = getMaterial(sMaterial);
+                blockData = material != null ? server.createBlockData(material) : server.createBlockData(sMaterial);
+            }
+        } catch (Exception ex) {
+            throw new IllegalArgumentException(String.format("Invalid block data %1$s[%2$s]", sMaterial, sData), ex);
         }
-
-        int data = getData(sData);
 
         EnumSet<OperationType> type = null;
         int[] gray = null;
-
         if (sS != null && sH != null) {
             try {
                 gray = new int[]{
                     Integer.parseInt(sH),
                     Integer.parseInt(sS)
                 };
-            }
-            catch (NumberFormatException ex) {
+            } catch (NumberFormatException ex) {
                 gray = null;
             }
         }
 
         if (sBlocks != null) {
             sBlocks = sBlocks.toLowerCase();
-            ArrayList<OperationType> blocks = new ArrayList<OperationType>();
+            ArrayList<OperationType> blocks = new ArrayList<>();
             if (sBlocks.contains("b")) {
                 blocks.add(OperationType.Block);
             }
@@ -181,9 +167,9 @@ public class BlockEntry {
             type = EnumSet.allOf(OperationType.class);
         }
         if (gray != null) {
-            return new BlockEntry(material, data, tex, type, gray);
+            return new BlockEntry(blockData, tex, type, gray);
         } else {
-            return new BlockEntry(material, data, tex, type);
+            return new BlockEntry(blockData, tex, type);
         }
     }
 }

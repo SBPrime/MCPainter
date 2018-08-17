@@ -6,38 +6,46 @@
 ################################################################################
 name: Classic
 blocks:
-  - WOOL:0-VANILLA:assets/minecraft/textures/blocks/wool_colored_white.png
-  - WOOL:1-VANILLA:assets/minecraft/textures/blocks/wool_colored_orange.png
-  - WOOL:2-VANILLA:assets/minecraft/textures/blocks/wool_colored_magenta.png
-  - WOOL:3-VANILLA:assets/minecraft/textures/blocks/wool_colored_light_blue.png
-  - WOOL:4-VANILLA:assets/minecraft/textures/blocks/wool_colored_yellow.png
-  - WOOL:5-VANILLA:assets/minecraft/textures/blocks/wool_colored_lime.png
-  - WOOL:6-VANILLA:assets/minecraft/textures/blocks/wool_colored_pink.png
-  - WOOL:7-VANILLA:assets/minecraft/textures/blocks/wool_colored_gray.png
-  - WOOL:8-VANILLA:assets/minecraft/textures/blocks/wool_colored_silver.png
-  - WOOL:9-VANILLA:assets/minecraft/textures/blocks/wool_colored_cyan.png
-  - WOOL:10-VANILLA:assets/minecraft/textures/blocks/wool_colored_purple.png
-  - WOOL:11-VANILLA:assets/minecraft/textures/blocks/wool_colored_blue.png
-  - WOOL:12-VANILLA:assets/minecraft/textures/blocks/wool_colored_brown.png
-  - WOOL:13-VANILLA:assets/minecraft/textures/blocks/wool_colored_green.png
-  - WOOL:14-VANILLA:assets/minecraft/textures/blocks/wool_colored_red.png
-  - WOOL:15-VANILLA:assets/minecraft/textures/blocks/wool_colored_black.png
+# Wools
+  - minecraft:black_wool;VANILLA:assets/minecraft/textures/block/black_wool.png
+  - minecraft:blue_wool;VANILLA:assets/minecraft/textures/block/blue_wool.png
+  - minecraft:brown_wool;VANILLA:assets/minecraft/textures/block/brown_wool.png
+  - minecraft:cyan_wool;VANILLA:assets/minecraft/textures/block/cyan_wool.png
+  - minecraft:gray_wool;VANILLA:assets/minecraft/textures/block/gray_wool.png
+  - minecraft:green_wool;VANILLA:assets/minecraft/textures/block/green_wool.png
+  - minecraft:light_blue_wool;VANILLA:assets/minecraft/textures/block/light_blue_wool.png
+  - minecraft:light_gray_wool;VANILLA:assets/minecraft/textures/block/light_gray_wool.png
+  - minecraft:lime_wool;VANILLA:assets/minecraft/textures/block/lime_wool.png
+  - minecraft:magenta_wool;VANILLA:assets/minecraft/textures/block/magenta_wool.png
+  - minecraft:orange_wool;VANILLA:assets/minecraft/textures/block/orange_wool.png
+  - minecraft:pink_wool;VANILLA:assets/minecraft/textures/block/pink_wool.png
+  - minecraft:purple_wool;VANILLA:assets/minecraft/textures/block/purple_wool.png
+  - minecraft:red_wool;VANILLA:assets/minecraft/textures/block/red_wool.png
+  - minecraft:white_wool;VANILLA:assets/minecraft/textures/block/white_wool.png
+  - minecraft:yellow_wool;VANILLA:assets/minecraft/textures/block/yellow_wool.png
 
-  - STONE-VANILLA:assets/minecraft/textures/blocks/stone.png
-  - DIRT-VANILLA:assets/minecraft/textures/blocks/dirt.png
+# Wood
+  - minecraft:oak_wood;VANILLA:assets/minecraft/textures/block/oak_log.png
+  - minecraft:oak_planks;VANILLA:assets/minecraft/textures/block/oak_planks.png
 
-  - BRICK-VANILLA:assets/minecraft/textures/blocks/brick.png
-  - COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/stonebrick.png
-  - BEDROCK-VANILLA:assets/minecraft/textures/blocks/bedrock.png
-  
-  - LOG:12-VANILLA:assets/minecraft/textures/blocks/log_oak.png  
-  - WOOD:0-VANILLA:assets/minecraft/textures/blocks/planks_oak.png    
-  
-  - IRON_BLOCK-VANILLA:assets/minecraft/textures/blocks/iron_block.png
-  - GOLD_BLOCK-VANILLA:assets/minecraft/textures/blocks/gold_block.png
-  - GOLD_ORE-VANILLA:assets/minecraft/textures/blocks/gold_ore.png
-  - IRON_ORE-VANILLA:assets/minecraft/textures/blocks/iron_ore.png
-  - COAL_ORE-VANILLA:assets/minecraft/textures/blocks/coal_ore.png
-  - MOSSY_COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/cobblestone_mossy.png
-  - OBSIDIAN-VANILLA:assets/minecraft/textures/blocks/obsidian.png
-  - SPONGE-VANILLA:assets/minecraft/textures/blocks/sponge.png
+# Ore
+  - minecraft:coal_ore;VANILLA:assets/minecraft/textures/block/coal_ore.png
+  - minecraft:gold_ore;VANILLA:assets/minecraft/textures/block/gold_ore.png
+  - minecraft:iron_ore;VANILLA:assets/minecraft/textures/block/iron_ore.png
+
+# Ore blocks
+  - minecraft:gold_block;VANILLA:assets/minecraft/textures/block/gold_block.png
+  - minecraft:iron_block;VANILLA:assets/minecraft/textures/block/iron_block.png
+
+# Stone
+  - minecraft:cobblestone;VANILLA:assets/minecraft/textures/block/cobblestone.png
+  - minecraft:stone;VANILLA:assets/minecraft/textures/block/stone.png
+  - minecraft:mossy_cobblestone;VANILLA:assets/minecraft/textures/block/mossy_cobblestone.png
+
+# Other
+  - minecraft:bedrock;VANILLA:assets/minecraft/textures/block/bedrock.png
+  - minecraft:bricks;VANILLA:assets/minecraft/textures/block/bricks.png
+  - minecraft:dirt;VANILLA:assets/minecraft/textures/block/dirt.png
+  - minecraft:obsidian;VANILLA:assets/minecraft/textures/block/obsidian.png
+  - minecraft:sponge;VANILLA:assets/minecraft/textures/block/sponge.png
+

@@ -23,18 +23,17 @@
  */
 package org.primesoft.mcpainter;
 
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.primesoft.blockshub.IBlocksHubApi;
 import org.primesoft.blockshub.IBlocksHubApiProvider;
-import org.primesoft.blockshub.api.BlockData;
+import org.primesoft.blockshub.api.platform.BukkitBlockData;
 
 /**
  *
@@ -71,45 +70,36 @@ public class BlocksHubIntegration {
         m_isInitialized = m_blocksApi != null && m_blocksApi.getVersion() >= 1.0;
     }
 
-    public boolean canPlace(Player player, World world, Location location) {
-        return canPlace(player, world, 
-                new org.primesoft.blockshub.api.Vector(location.getX(), location.getY(), location.getZ()));
-    }
-    
     public boolean canPlace(Player player, World world, Vector location) {
-        return canPlace(player, world, 
-                new org.primesoft.blockshub.api.Vector(location.getX(), location.getY(), location.getZ()));
+        return canPlace(player, world, location.getBlockX(), location.getBlockY(), location.getBlockZ());
     }
     
-    public boolean canPlace(Player player, World world, 
-            org.primesoft.blockshub.api.Vector location) {
+    public boolean canPlace(Player player, World world, Location location) {
+        return canPlace(player, world, location.getBlockX(), location.getBlockY(), location.getBlockZ());
+    }
+
+    public boolean canPlace(Player player, World world, double x, double y, double z) {
         if (!m_isInitialized || !ConfigProvider.getCheckAccess()) {
             return true;
         }
 
-        return m_blocksApi.hasAccess(player.getUniqueId(), world.getUID(), location);
+        return m_blocksApi.hasAccess(player.getUniqueId(), world.getUID(),
+                x, y, z);
     }
 
     public void logBlock(Player player, World world, Vector location, BaseBlock oldBlock, BaseBlock newBlock) {
-        if (location == null || !ConfigProvider.getLogBlocks())
-        {
+        if (location == null || !ConfigProvider.getLogBlocks()) {
             return;
         }
+       
+        final BukkitBlockData oldBlockData = oldBlock != null && oldBlock.Data != null ? new BukkitBlockData(oldBlock.Data) : null;
+        final BukkitBlockData newBlockData = newBlock != null && newBlock.Data != null ? new BukkitBlockData(newBlock.Data) : null;
         
-        if (oldBlock == null)
-        {
-            oldBlock = new BaseBlock(Material.AIR);
-        }
-        if (newBlock == null)
-        {
-            newBlock = new BaseBlock(Material.AIR);
-        }
-        
-
-        m_blocksApi.logBlock(
-                new org.primesoft.blockshub.api.Vector(location.getX(), location.getY(), location.getZ()),
-                player.getUniqueId(), world.getUID(), 
-                new BlockData(oldBlock.getType(), oldBlock.getData()), 
-                new BlockData(newBlock.getType(), newBlock.getData()));
+        m_blocksApi.logBlock(                
+                player.getUniqueId(), world.getUID(),
+                location.getX(), location.getY(), location.getZ(),
+                oldBlockData,
+                newBlockData
+        );
     }
 }

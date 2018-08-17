@@ -24,6 +24,13 @@
 package org.primesoft.mcpainter.worldEdit;
 
 import com.sk89q.worldedit.EditSession;
+import com.sk89q.worldedit.WorldEditException;
+import com.sk89q.worldedit.history.UndoContext;
+import com.sk89q.worldedit.history.change.Change;
+import com.sk89q.worldedit.history.changeset.ChangeSet;
+import java.util.List;
+import org.primesoft.mcpainter.BlocksHubIntegration;
+import org.primesoft.mcpainter.blocksplacer.IChange;
 import org.primesoft.mcpainter.utils.BaseBlock;
 import org.primesoft.mcpainter.utils.Vector;
 
@@ -31,11 +38,30 @@ import org.primesoft.mcpainter.utils.Vector;
  *
  * @author SBPrime
  */
-public class WorldEditEditSession implements IEditSession {
+class WorldEditEditSession extends BaseEditSession {
+    private static class ChangeWrapper implements Change {
+
+        private final IChange m_change;
+
+        public ChangeWrapper(IChange c) {
+            m_change = c;
+        }
+
+        @Override
+        public void undo(UndoContext uc) throws WorldEditException {
+            m_change.redo();
+        }
+
+        @Override
+        public void redo(UndoContext uc) throws WorldEditException {
+            m_change.undo();
+        }
+    }
 
     private final EditSession m_editSession;
 
-    public WorldEditEditSession(EditSession editSession) {
+    public WorldEditEditSession(ILocalPlayer p, EditSession editSession, BlocksHubIntegration bh) {
+        super(p, bh);
         m_editSession = editSession;
     }
 
@@ -45,20 +71,33 @@ public class WorldEditEditSession implements IEditSession {
 
     @Override
     public BaseBlock getBlock(Vector location) {
-        com.sk89q.worldedit.Vector v = WorldEditWrapper.convert(location);
-        com.sk89q.worldedit.blocks.BaseBlock block = m_editSession.getBlock(v);
-
-        return WorldEditWrapper.convert(block);
+        return WorldEditWrapper.convert(m_editSession.getBlock(WorldEditWrapper.convert(location)));
     }
 
     @Override
     public void setBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {
-        com.sk89q.worldedit.blocks.BaseBlock weBlock = WorldEditWrapper.convert(block);
         com.sk89q.worldedit.Vector weLocaton = WorldEditWrapper.convert(location);
+        BaseBlock oldBlock = WorldEditWrapper.convert(m_editSession.getBlock(weLocaton));
+        com.sk89q.worldedit.world.block.BlockState weBlock = WorldEditWrapper.convert(block);
         try {
             m_editSession.setBlock(weLocaton, weBlock);
         } catch (com.sk89q.worldedit.MaxChangedBlocksException ex) {
             throw new MaxChangedBlocksException();
         }
+
+        logBlock(location, oldBlock, block);
     }
+
+    @Override
+    public void doCustom(IChange command) throws MaxChangedBlocksException {
+        ChangeSet cs = m_editSession.getChangeSet();
+        command.redo();
+        cs.add(new ChangeWrapper(command));
+    }
+    
+    @Override
+    public List<IChange> getChangeSet() {
+        return null;
+    }
+
 }

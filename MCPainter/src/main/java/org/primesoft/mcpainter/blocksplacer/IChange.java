@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2014 SBPrime.
+ * Copyright 2018 SBPrime.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,45 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.primesoft.mcpainter.worldEdit;
+package org.primesoft.mcpainter.blocksplacer;
 
-import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 import org.bukkit.Location;
+import org.primesoft.mcpainter.worldEdit.MaxChangedBlocksException;
 
 /**
  *
  * @author SBPrime
  */
-public class WorldEditCuboidSelection implements ICuboidSelection {
-
-    private final CuboidSelection m_selection;
-
-    public WorldEditCuboidSelection(CuboidSelection cSelection) {
-        m_selection = cSelection;
-    }
-
-    @Override
-    public Location getMinimumPoint() {
-        return m_selection.getMinimumPoint();
-    }
-
-    @Override
-    public Location getMaximumPoint() {
-        return m_selection.getMaximumPoint();
-    }
-
-    @Override
-    public int getLength() {
-        return m_selection.getLength();
-    }
-
-    @Override
-    public int getWidth() {
-        return m_selection.getWidth();
-    }
-
-    @Override
-    public int getHeight() {
-        return m_selection.getHeight();
-    }
+public interface IChange {
+    Location getLocation();
+    
+    void redo();
+    void undo();
 }

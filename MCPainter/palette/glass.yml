@@ -6,19 +6,20 @@
 ################################################################################
 name: Glass
 blocks:
-  - STAINED_GLASS:0-VANILLA:assets/minecraft/textures/blocks/glass_white.png
-  - STAINED_GLASS:1-VANILLA:assets/minecraft/textures/blocks/glass_orange.png
-  - STAINED_GLASS:2-VANILLA:assets/minecraft/textures/blocks/glass_magenta.png
-  - STAINED_GLASS:3-VANILLA:assets/minecraft/textures/blocks/glass_light_blue.png
-  - STAINED_GLASS:4-VANILLA:assets/minecraft/textures/blocks/glass_yellow.png
-  - STAINED_GLASS:5-VANILLA:assets/minecraft/textures/blocks/glass_lime.png
-  - STAINED_GLASS:6-VANILLA:assets/minecraft/textures/blocks/glass_pink.png
-  - STAINED_GLASS:7-VANILLA:assets/minecraft/textures/blocks/glass_gray.png
-  - STAINED_GLASS:8-VANILLA:assets/minecraft/textures/blocks/glass_silver.png
-  - STAINED_GLASS:9-VANILLA:assets/minecraft/textures/blocks/glass_cyan.png
-  - STAINED_GLASS:10-VANILLA:assets/minecraft/textures/blocks/glass_purple.png
-  - STAINED_GLASS:11-VANILLA:assets/minecraft/textures/blocks/glass_blue.png
-  - STAINED_GLASS:12-VANILLA:assets/minecraft/textures/blocks/glass_brown.png
-  - STAINED_GLASS:13-VANILLA:assets/minecraft/textures/blocks/glass_green.png
-  - STAINED_GLASS:14-VANILLA:assets/minecraft/textures/blocks/glass_red.png
-  - STAINED_GLASS:15-VANILLA:assets/minecraft/textures/blocks/glass_black.png
+  - minecraft:glass;VANILLA:assets/minecraft/textures/block/glass.png
+  - minecraft:black_stained_glass;VANILLA:assets/minecraft/textures/block/black_stained_glass.png
+  - minecraft:blue_stained_glass;VANILLA:assets/minecraft/textures/block/blue_stained_glass.png
+  - minecraft:brown_stained_glass;VANILLA:assets/minecraft/textures/block/brown_stained_glass.png
+  - minecraft:cyan_stained_glass;VANILLA:assets/minecraft/textures/block/cyan_stained_glass.png
+  - minecraft:gray_stained_glass;VANILLA:assets/minecraft/textures/block/gray_stained_glass.png
+  - minecraft:green_stained_glass;VANILLA:assets/minecraft/textures/block/green_stained_glass.png
+  - minecraft:light_blue_stained_glass;VANILLA:assets/minecraft/textures/block/light_blue_stained_glass.png
+  - minecraft:light_gray_stained_glass;VANILLA:assets/minecraft/textures/block/light_gray_stained_glass.png
+  - minecraft:lime_stained_glass;VANILLA:assets/minecraft/textures/block/lime_stained_glass.png
+  - minecraft:magenta_stained_glass;VANILLA:assets/minecraft/textures/block/magenta_stained_glass.png
+  - minecraft:orange_stained_glass;VANILLA:assets/minecraft/textures/block/orange_stained_glass.png
+  - minecraft:pink_stained_glass;VANILLA:assets/minecraft/textures/block/pink_stained_glass.png
+  - minecraft:red_stained_glass;VANILLA:assets/minecraft/textures/block/red_stained_glass.png
+  - minecraft:purple_stained_glass;VANILLA:assets/minecraft/textures/block/purple_stained_glass.png
+  - minecraft:white_stained_glass;VANILLA:assets/minecraft/textures/block/white_stained_glass.png
+  - minecraft:yellow_stained_glass;VANILLA:assets/minecraft/textures/block/yellow_stained_glass.png

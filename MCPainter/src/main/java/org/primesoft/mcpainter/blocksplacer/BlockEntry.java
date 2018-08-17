@@ -47,13 +47,11 @@ public class BlockEntry extends BlockLogerEntry {
     }
 
     @Override
-    public void execute(BlockPlacer blockPlacer) {
+    public void execute() {
         Player p = getPlayer();
         IEditSession eSession = m_loger.getEditSession();
-        try {
-            BaseBlock oldBlock = eSession.getBlock(m_location);
-            eSession.setBlock(m_location, m_newBlock);
-            blockPlacer.logBlock(m_location, oldBlock, m_newBlock, p, m_loger.getWorld());
+        try {            
+            eSession.setBlock(m_location, m_newBlock);            
         } catch (MaxChangedBlocksException ex) {
             MCPainterMain.say(p, "Max block change reached");
             MCPainterMain.log(ex.getMessage());

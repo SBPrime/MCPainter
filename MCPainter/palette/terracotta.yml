@@ -1,0 +1,44 @@
+################################################################################
+# MCPainter palette definition file
+# Author:   SBPrime
+# Description:
+#   Palette consisting only of terracotta blocks
+################################################################################
+name: Terracota
+blocks:
+# Glazed terracotta
+  - minecraft:black_glazed_terracotta;VANILLA:assets/minecraft/textures/block/black_glazed_terracotta.png
+  - minecraft:blue_glazed_terracotta;VANILLA:assets/minecraft/textures/block/blue_glazed_terracotta.png
+  - minecraft:brown_glazed_terracotta;VANILLA:assets/minecraft/textures/block/brown_glazed_terracotta.png
+  - minecraft:cyan_glazed_terracotta;VANILLA:assets/minecraft/textures/block/cyan_glazed_terracotta.png
+  - minecraft:gray_glazed_terracotta;VANILLA:assets/minecraft/textures/block/gray_glazed_terracotta.png
+  - minecraft:green_glazed_terracotta;VANILLA:assets/minecraft/textures/block/green_glazed_terracotta.png
+  - minecraft:light_blue_glazed_terracotta;VANILLA:assets/minecraft/textures/block/light_blue_glazed_terracotta.png
+  - minecraft:lime_glazed_terracotta;VANILLA:assets/minecraft/textures/block/lime_glazed_terracotta.png
+  - minecraft:magenta_glazed_terracotta;VANILLA:assets/minecraft/textures/block/magenta_glazed_terracotta.png
+  - minecraft:orange_glazed_terracotta;VANILLA:assets/minecraft/textures/block/orange_glazed_terracotta.png
+  - minecraft:pink_glazed_terracotta;VANILLA:assets/minecraft/textures/block/pink_glazed_terracotta.png
+  - minecraft:purple_glazed_terracotta;VANILLA:assets/minecraft/textures/block/purple_glazed_terracotta.png
+  - minecraft:red_glazed_terracotta;VANILLA:assets/minecraft/textures/block/red_glazed_terracotta.png
+  - minecraft:light_gray_glazed_terracotta;VANILLA:assets/minecraft/textures/block/light_gray_glazed_terracotta.png
+  - minecraft:white_glazed_terracotta;VANILLA:assets/minecraft/textures/block/white_glazed_terracotta.png
+  - minecraft:yellow_glazed_terracotta;VANILLA:assets/minecraft/textures/block/yellow_glazed_terracotta.png
+
+# Terracotta
+  - minecraft:terracotta;VANILLA:assets/minecraft/textures/block/terracotta.png
+  - minecraft:black_terracotta;VANILLA:assets/minecraft/textures/block/black_terracotta.png
+  - minecraft:blue_terracotta;VANILLA:assets/minecraft/textures/block/blue_terracotta.png
+  - minecraft:brown_terracotta;VANILLA:assets/minecraft/textures/block/brown_terracotta.png
+  - minecraft:cyan_terracotta;VANILLA:assets/minecraft/textures/block/cyan_terracotta.png
+  - minecraft:gray_terracotta;VANILLA:assets/minecraft/textures/block/gray_terracotta.png
+  - minecraft:green_terracotta;VANILLA:assets/minecraft/textures/block/green_terracotta.png
+  - minecraft:light_blue_terracotta;VANILLA:assets/minecraft/textures/block/light_blue_terracotta.png
+  - minecraft:light_gray_terracotta;VANILLA:assets/minecraft/textures/block/light_gray_terracotta.png
+  - minecraft:lime_terracotta;VANILLA:assets/minecraft/textures/block/lime_terracotta.png
+  - minecraft:magenta_terracotta;VANILLA:assets/minecraft/textures/block/magenta_terracotta.png
+  - minecraft:orange_terracotta;VANILLA:assets/minecraft/textures/block/orange_terracotta.png
+  - minecraft:pink_terracotta;VANILLA:assets/minecraft/textures/block/pink_terracotta.png
+  - minecraft:purple_terracotta;VANILLA:assets/minecraft/textures/block/purple_terracotta.png
+  - minecraft:red_terracotta;VANILLA:assets/minecraft/textures/block/red_terracotta.png
+  - minecraft:white_terracotta;VANILLA:assets/minecraft/textures/block/white_terracotta.png
+  - minecraft:yellow_terracotta;VANILLA:assets/minecraft/textures/block/yellow_terracotta.png

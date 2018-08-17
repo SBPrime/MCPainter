@@ -6,10 +6,17 @@
 ################################################################################
 name: Stone
 blocks:
-  - STONE-VANILLA:assets/minecraft/textures/blocks/stone.png
-  - COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/stonebrick.png
-  - SMOOTH_BRICK:0-VANILLA:assets/minecraft/textures/blocks/stonebrick.png
-  - SMOOTH_BRICK:1-VANILLA:assets/minecraft/textures/blocks/stonebrick_mossy.png
-  - SMOOTH_BRICK:2-VANILLA:assets/minecraft/textures/blocks/stonebrick_cracked.png
-  - SMOOTH_BRICK:3-VANILLA:assets/minecraft/textures/blocks/stonebrick_carved.png
-  - MOSSY_COBBLESTONE-VANILLA:assets/minecraft/textures/blocks/cobblestone_mossy.png
+  - minecraft:andesite;VANILLA:assets/minecraft/textures/block/andesite.png
+  - minecraft:diorite;VANILLA:assets/minecraft/textures/block/diorite.png
+  - minecraft:granite;VANILLA:assets/minecraft/textures/block/granite.png
+  - minecraft:polished_andesite;VANILLA:assets/minecraft/textures/block/polished_andesite.png
+  - minecraft:polished_diorite;VANILLA:assets/minecraft/textures/block/polished_diorite.png
+  - minecraft:polished_granite;VANILLA:assets/minecraft/textures/block/polished_granite.png
+  - minecraft:chiseled_stone_bricks;VANILLA:assets/minecraft/textures/block/chiseled_stone_bricks.png
+  - minecraft:cobblestone;VANILLA:assets/minecraft/textures/block/cobblestone.png
+  - minecraft:stone;VANILLA:assets/minecraft/textures/block/stone.png
+  - minecraft:mossy_cobblestone;VANILLA:assets/minecraft/textures/block/mossy_cobblestone.png
+  - minecraft:cracked_stone_bricks;VANILLA:assets/minecraft/textures/block/cracked_stone_bricks.png
+  - minecraft:mossy_stone_bricks;VANILLA:assets/minecraft/textures/block/mossy_stone_bricks.png
+  - minecraft:smooth_stone;VANILLA:assets/minecraft/textures/block/stone_slab_top.png
+  - minecraft:stone_bricks;VANILLA:assets/minecraft/textures/block/stone_bricks.png

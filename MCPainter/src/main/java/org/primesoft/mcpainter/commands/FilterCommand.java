@@ -25,7 +25,7 @@ package org.primesoft.mcpainter.commands;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.dilters.FilterEntry;
 import org.primesoft.mcpainter.drawing.dilters.FilterManager;
 import org.primesoft.mcpainter.drawing.dilters.IImageFilter;

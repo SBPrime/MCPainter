@@ -41,12 +41,4 @@ public interface IBlockProvider {
      * @return 
      */
     IDrawableElement getBlock(String name);
-    
-    
-    /**
-     * Get a block
-     * @param name
-     * @return 
-     */
-    IDrawableElement getBlock(int materialId);
 }

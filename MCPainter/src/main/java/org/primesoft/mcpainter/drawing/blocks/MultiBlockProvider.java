@@ -84,18 +84,4 @@ public class MultiBlockProvider implements IBlockProvider {
         }
         return null;
     }
-
-    @Override
-    public IDrawableElement getBlock(int materialId) {
-        synchronized (m_blockProviders) {
-            for (IBlockProvider blockProvider : m_blockProviders) {
-                IDrawableElement result = blockProvider.getBlock(materialId);
-                if (result != null) {
-                    return result;
-                }
-            }
-        }
-
-        return null;
-    }
 }

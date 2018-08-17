@@ -24,7 +24,7 @@
 package org.primesoft.mcpainter.commands;
 
 import java.awt.image.BufferedImage;
-import org.primesoft.mcpainter.Configuration.ConfigProvider;
+import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.dilters.FilterManager;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 import org.primesoft.mcpainter.FoundManager;
@@ -37,6 +37,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.MapMeta;
 import org.bukkit.map.MapView;
 
 /**
@@ -70,8 +71,8 @@ public class MapCommand {
 
             ItemStack inHand = player.getItemInHand();
 
-            if (inHand != null && inHand.getType() == Material.MAP) {
-                mapId = inHand.getDurability();
+            if (inHand != null && Material.FILLED_MAP.equals(inHand.getType())) {
+                mapId = (short) ((MapMeta)inHand.getItemMeta()).getMapId();
             }
         }
 
@@ -82,7 +83,13 @@ public class MapCommand {
         if (mapId == -1 && !reset) {
             mapView = Bukkit.createMap(player.getWorld());
             mapId = mapView.getId();
-            player.setItemInHand(new ItemStack(Material.MAP, 1, mapId));
+            
+            ItemStack is = new ItemStack(Material.FILLED_MAP, 1);
+            MapMeta mm = (MapMeta) is.getItemMeta();
+            mm.setMapId(mapId);
+            is.setItemMeta(mm);
+            
+            player.setItemInHand(is);
         }
         if (mapView == null) {
             try {

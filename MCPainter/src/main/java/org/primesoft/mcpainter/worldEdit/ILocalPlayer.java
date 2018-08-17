@@ -24,6 +24,8 @@
 
 package org.primesoft.mcpainter.worldEdit;
 
+import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.primesoft.mcpainter.utils.Vector;
 
 /**
@@ -37,5 +39,8 @@ public interface ILocalPlayer {
     public double getYaw();
 
     public double getPitch();
-    
+
+    public World getWorld();
+
+    public Player getPlayer();
 }

@@ -2,9 +2,9 @@
 # MCPainter palette definition file
 # Author:   SBPrime
 # Description:
-#   Default palette
+#   All 1.13 blocks
 ################################################################################
-name: Default
+name: All
 blocks:
 # Wools
   - minecraft:black_wool;VANILLA:assets/minecraft/textures/block/black_wool.png
@@ -43,22 +43,22 @@ blocks:
   - minecraft:yellow_concrete;VANILLA:assets/minecraft/textures/block/yellow_concrete.png
 
 # Concrete powder
-#  - minecraft:black_concrete_powder;VANILLA:assets/minecraft/textures/block/black_concrete_powder.png
-#  - minecraft:blue_concrete_powder;VANILLA:assets/minecraft/textures/block/blue_concrete_powder.png
-#  - minecraft:brown_concrete_powder;VANILLA:assets/minecraft/textures/block/brown_concrete_powder.png
-#  - minecraft:cyan_concrete_powder;VANILLA:assets/minecraft/textures/block/cyan_concrete_powder.png
-#  - minecraft:gray_concrete_powder;VANILLA:assets/minecraft/textures/block/gray_concrete_powder.png
-#  - minecraft:green_concrete_powder;VANILLA:assets/minecraft/textures/block/green_concrete_powder.png
-#  - minecraft:light_blue_concrete_powder;VANILLA:assets/minecraft/textures/block/light_blue_concrete_powder.png
-#  - minecraft:light_gray_concrete_powder;VANILLA:assets/minecraft/textures/block/light_gray_concrete_powder.png
-#  - minecraft:lime_concrete_powder;VANILLA:assets/minecraft/textures/block/lime_concrete_powder.png
-#  - minecraft:magenta_concrete_powder;VANILLA:assets/minecraft/textures/block/magenta_concrete_powder.png
-#  - minecraft:orange_concrete_powder;VANILLA:assets/minecraft/textures/block/orange_concrete_powder.png
-#  - minecraft:pink_concrete_powder;VANILLA:assets/minecraft/textures/block/pink_concrete_powder.png
-#  - minecraft:purple_concrete_powder;VANILLA:assets/minecraft/textures/block/purple_concrete_powder.png
-#  - minecraft:red_concrete_powder;VANILLA:assets/minecraft/textures/block/red_concrete_powder.png
-#  - minecraft:white_concrete_powder;VANILLA:assets/minecraft/textures/block/white_concrete_powder.png
-#  - minecraft:yellow_concrete_powder;VANILLA:assets/minecraft/textures/block/yellow_concrete_powder.png
+  - minecraft:black_concrete_powder;VANILLA:assets/minecraft/textures/block/black_concrete_powder.png
+  - minecraft:blue_concrete_powder;VANILLA:assets/minecraft/textures/block/blue_concrete_powder.png
+  - minecraft:brown_concrete_powder;VANILLA:assets/minecraft/textures/block/brown_concrete_powder.png
+  - minecraft:cyan_concrete_powder;VANILLA:assets/minecraft/textures/block/cyan_concrete_powder.png
+  - minecraft:gray_concrete_powder;VANILLA:assets/minecraft/textures/block/gray_concrete_powder.png
+  - minecraft:green_concrete_powder;VANILLA:assets/minecraft/textures/block/green_concrete_powder.png
+  - minecraft:light_blue_concrete_powder;VANILLA:assets/minecraft/textures/block/light_blue_concrete_powder.png
+  - minecraft:light_gray_concrete_powder;VANILLA:assets/minecraft/textures/block/light_gray_concrete_powder.png
+  - minecraft:lime_concrete_powder;VANILLA:assets/minecraft/textures/block/lime_concrete_powder.png
+  - minecraft:magenta_concrete_powder;VANILLA:assets/minecraft/textures/block/magenta_concrete_powder.png
+  - minecraft:orange_concrete_powder;VANILLA:assets/minecraft/textures/block/orange_concrete_powder.png
+  - minecraft:pink_concrete_powder;VANILLA:assets/minecraft/textures/block/pink_concrete_powder.png
+  - minecraft:purple_concrete_powder;VANILLA:assets/minecraft/textures/block/purple_concrete_powder.png
+  - minecraft:red_concrete_powder;VANILLA:assets/minecraft/textures/block/red_concrete_powder.png
+  - minecraft:white_concrete_powder;VANILLA:assets/minecraft/textures/block/white_concrete_powder.png
+  - minecraft:yellow_concrete_powder;VANILLA:assets/minecraft/textures/block/yellow_concrete_powder.png
 
 # Glazed terracotta
   - minecraft:black_glazed_terracotta;VANILLA:assets/minecraft/textures/block/black_glazed_terracotta.png
@@ -98,31 +98,31 @@ blocks:
   - minecraft:yellow_terracotta;VANILLA:assets/minecraft/textures/block/yellow_terracotta.png
 
 # Glass
-#  - minecraft:glass;VANILLA:assets/minecraft/textures/block/glass.png
-#  - minecraft:black_stained_glass;VANILLA:assets/minecraft/textures/block/black_stained_glass.png
-#  - minecraft:blue_stained_glass;VANILLA:assets/minecraft/textures/block/blue_stained_glass.png
-#  - minecraft:brown_stained_glass;VANILLA:assets/minecraft/textures/block/brown_stained_glass.png
-#  - minecraft:cyan_stained_glass;VANILLA:assets/minecraft/textures/block/cyan_stained_glass.png
-#  - minecraft:gray_stained_glass;VANILLA:assets/minecraft/textures/block/gray_stained_glass.png
-#  - minecraft:green_stained_glass;VANILLA:assets/minecraft/textures/block/green_stained_glass.png
-#  - minecraft:light_blue_stained_glass;VANILLA:assets/minecraft/textures/block/light_blue_stained_glass.png
-#  - minecraft:light_gray_stained_glass;VANILLA:assets/minecraft/textures/block/light_gray_stained_glass.png
-#  - minecraft:lime_stained_glass;VANILLA:assets/minecraft/textures/block/lime_stained_glass.png
-#  - minecraft:magenta_stained_glass;VANILLA:assets/minecraft/textures/block/magenta_stained_glass.png
-#  - minecraft:orange_stained_glass;VANILLA:assets/minecraft/textures/block/orange_stained_glass.png
-#  - minecraft:pink_stained_glass;VANILLA:assets/minecraft/textures/block/pink_stained_glass.png
-#  - minecraft:red_stained_glass;VANILLA:assets/minecraft/textures/block/red_stained_glass.png
-#  - minecraft:purple_stained_glass;VANILLA:assets/minecraft/textures/block/purple_stained_glass.png
-#  - minecraft:white_stained_glass;VANILLA:assets/minecraft/textures/block/white_stained_glass.png
-#  - minecraft:yellow_stained_glass;VANILLA:assets/minecraft/textures/block/yellow_stained_glass.png
+  - minecraft:glass;VANILLA:assets/minecraft/textures/block/glass.png
+  - minecraft:black_stained_glass;VANILLA:assets/minecraft/textures/block/black_stained_glass.png
+  - minecraft:blue_stained_glass;VANILLA:assets/minecraft/textures/block/blue_stained_glass.png
+  - minecraft:brown_stained_glass;VANILLA:assets/minecraft/textures/block/brown_stained_glass.png
+  - minecraft:cyan_stained_glass;VANILLA:assets/minecraft/textures/block/cyan_stained_glass.png
+  - minecraft:gray_stained_glass;VANILLA:assets/minecraft/textures/block/gray_stained_glass.png
+  - minecraft:green_stained_glass;VANILLA:assets/minecraft/textures/block/green_stained_glass.png
+  - minecraft:light_blue_stained_glass;VANILLA:assets/minecraft/textures/block/light_blue_stained_glass.png
+  - minecraft:light_gray_stained_glass;VANILLA:assets/minecraft/textures/block/light_gray_stained_glass.png
+  - minecraft:lime_stained_glass;VANILLA:assets/minecraft/textures/block/lime_stained_glass.png
+  - minecraft:magenta_stained_glass;VANILLA:assets/minecraft/textures/block/magenta_stained_glass.png
+  - minecraft:orange_stained_glass;VANILLA:assets/minecraft/textures/block/orange_stained_glass.png
+  - minecraft:pink_stained_glass;VANILLA:assets/minecraft/textures/block/pink_stained_glass.png
+  - minecraft:red_stained_glass;VANILLA:assets/minecraft/textures/block/red_stained_glass.png
+  - minecraft:purple_stained_glass;VANILLA:assets/minecraft/textures/block/purple_stained_glass.png
+  - minecraft:white_stained_glass;VANILLA:assets/minecraft/textures/block/white_stained_glass.png
+  - minecraft:yellow_stained_glass;VANILLA:assets/minecraft/textures/block/yellow_stained_glass.png
 
 # Leaves
-#  - minecraft:acacia_leaves;VANILLA:assets/minecraft/textures/block/acacia_leaves.png;102,86
-#  - minecraft:birch_leaves;VANILLA:assets/minecraft/textures/block/birch_leaves.png;88,49
-#  - minecraft:dark_oak_leaves;VANILLA:assets/minecraft/textures/block/dark_oak_leaves.png;102,87
-#  - minecraft:jungle_leaves;VANILLA:assets/minecraft/textures/block/jungle_leaves.png;107,99
-#  - minecraft:oak_leaves;VANILLA:assets/minecraft/textures/block/oak_leaves.png;102,87
-#  - minecraft:spruce_leaves;VANILLA:assets/minecraft/textures/block/spruce_leaves.png;120,37
+  - minecraft:acacia_leaves;VANILLA:assets/minecraft/textures/block/acacia_leaves.png;102,86
+  - minecraft:birch_leaves;VANILLA:assets/minecraft/textures/block/birch_leaves.png;88,49
+  - minecraft:dark_oak_leaves;VANILLA:assets/minecraft/textures/block/dark_oak_leaves.png;102,87
+  - minecraft:jungle_leaves;VANILLA:assets/minecraft/textures/block/jungle_leaves.png;107,99
+  - minecraft:oak_leaves;VANILLA:assets/minecraft/textures/block/oak_leaves.png;102,87
+  - minecraft:spruce_leaves;VANILLA:assets/minecraft/textures/block/spruce_leaves.png;120,37
 
 # Wood
   - minecraft:acacia_wood;VANILLA:assets/minecraft/textures/block/acacia_log.png
@@ -192,9 +192,9 @@ blocks:
   - minecraft:smooth_red_sandstone;VANILLA:assets/minecraft/textures/block/red_sandstone_top.png
 
 # Ice
-#  - minecraft:ice;VANILLA:assets/minecraft/textures/block/ice.png
-#  - minecraft:packed_ice;VANILLA:assets/minecraft/textures/block/packed_ice.png
-#  - minecraft:blue_ice;VANILLA:assets/minecraft/textures/block/blue_ice.png
+  - minecraft:ice;VANILLA:assets/minecraft/textures/block/ice.png
+  - minecraft:packed_ice;VANILLA:assets/minecraft/textures/block/packed_ice.png
+  - minecraft:blue_ice;VANILLA:assets/minecraft/textures/block/blue_ice.png
 
 # Coral
   - minecraft:brain_coral_block;VANILLA:assets/minecraft/textures/block/brain_coral_block.png
@@ -209,7 +209,7 @@ blocks:
   - minecraft:dead_tube_coral_block;VANILLA:assets/minecraft/textures/block/dead_tube_coral_block.png
 
 # Other
-#  - minecraft:bedrock;VANILLA:assets/minecraft/textures/block/bedrock.png
+  - minecraft:bedrock;VANILLA:assets/minecraft/textures/block/bedrock.png
   - minecraft:bone_block;VANILLA:assets/minecraft/textures/block/bone_block_side.png
   - minecraft:bricks;VANILLA:assets/minecraft/textures/block/bricks.png
   - minecraft:brown_mushroom_block;VANILLA:assets/minecraft/textures/block/brown_mushroom_block.png
@@ -233,7 +233,7 @@ blocks:
   - minecraft:obsidian;VANILLA:assets/minecraft/textures/block/obsidian.png
   - minecraft:prismarine;VANILLA:assets/minecraft/textures/block/prismarine.png
   - minecraft:prismarine_bricks;VANILLA:assets/minecraft/textures/block/prismarine_bricks.png
-#  - minecraft:pumpkin;VANILLA:assets/minecraft/textures/block/pumpkin_side.png
+  - minecraft:pumpkin;VANILLA:assets/minecraft/textures/block/pumpkin_side.png
   - minecraft:purpur_block;VANILLA:assets/minecraft/textures/block/purpur_block.png
   - minecraft:purpur_pillar;VANILLA:assets/minecraft/textures/block/purpur_pillar.png
   - minecraft:quartz_block;VANILLA:assets/minecraft/textures/block/quartz_block_side.png
@@ -244,7 +244,7 @@ blocks:
   - minecraft:sea_lantern;VANILLA:assets/minecraft/textures/block/sea_lantern.png
   - minecraft:slime_block;VANILLA:assets/minecraft/textures/block/slime_block.png
   - minecraft:smooth_quartz;VANILLA:assets/minecraft/textures/block/quartz_block_top.png
-#  - minecraft:snow_block;VANILLA:assets/minecraft/textures/block/snow.png
+  - minecraft:snow_block;VANILLA:assets/minecraft/textures/block/snow.png
   - minecraft:soul_sand;VANILLA:assets/minecraft/textures/block/soul_sand.png
   - minecraft:sponge;VANILLA:assets/minecraft/textures/block/sponge.png
   - minecraft:wet_sponge;VANILLA:assets/minecraft/textures/block/wet_sponge.png
