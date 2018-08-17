@@ -79,7 +79,7 @@ public final class BlockHelper {
             String data = it.next();                        
             TextureDescription td = TextureDescription.parse(data);
             if (td == null) {
-                throw new IllegalArgumentException("Unable to parse texture description");
+                continue;
             }
 
             textures[idx] = textureManager.get(td);
@@ -124,7 +124,7 @@ public final class BlockHelper {
 
         TextureDescription td = TextureDescription.parse(texture);
         if (td == null) {
-            throw new IllegalArgumentException("Unable to parse texture description");
+            return null;
         }
 
         TextureEntry tex = textureManager.get(td);

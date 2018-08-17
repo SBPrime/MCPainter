@@ -84,26 +84,26 @@ public class VanillaTextureProvider {
     }
 
     public TextureEntry getAnvil() {
-        final String[] files = new String[]{"blocks/anvil_base.png", "blocks/anvil_top_damaged_0.png", "blocks/anvil_top_damaged_1.png", "blocks/anvil_top_damaged_2.png"};
+        final String[] files = new String[]{"block/anvil.png", "block/anvil_top.png", "block/chipped_anvil_top.png", "block/damaged_anvil_top.png"};
         return getTexture(files, "Anvil");
     }
 
     public TextureEntry getBeacon() {
-        return getTexture("blocks/beacon.png", "Beacon");
+        return getTexture("block/beacon.png", "Beacon");
     }
 
     public TextureEntry getBrewingStand() {
-        final String[] files = new String[]{"blocks/brewing_stand.png", "blocks/brewing_stand_base.png"};
+        final String[] files = new String[]{"block/brewing_stand.png", "block/brewing_stand_base.png"};
         return getTexture(files, "BrewingStand");
     }
     
     public TextureEntry getMushroomBlock() {
-        final String[] files = new String[]{"blocks/mushroom_block_skin_stem.png", "blocks/mushroom_block_inside.png", "blocks/mushroom_block_skin_red.png", "blocks/mushroom_block_skin_brown.png"};
+        final String[] files = new String[]{"block/mushroom_stem.png", "block/mushroom_block_inside.png", "block/red_mushroom_block.png", "block/brown_mushroom_block.png"};
         return getTexture(files, "MushroomBlock");
     }
 
     public TextureEntry getPiston() {
-        final String[] files = new String[]{"blocks/piston_side.png", "blocks/piston_bottom.png", "blocks/piston_top_normal.png", "blocks/piston_top_sticky.png", "blocks/piston_inner.png"};
+        final String[] files = new String[]{"block/piston_side.png", "block/piston_bottom.png", "block/piston_top.png", "block/piston_top_sticky.png", "block/piston_inner.png"};
         return getTexture(files, "Piston");
     }
 }

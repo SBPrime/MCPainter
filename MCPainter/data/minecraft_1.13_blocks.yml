@@ -1,27 +1,27 @@
 ################################################################################
 # MCPainter mod definition file
-# Mod name: Minecraft 1.10.x
+# Mod name: Minecraft 1.13.x
 # Author:   SBPrime
 # Description:
 #   Vanilla minecraft blocks definition file
 ################################################################################
-DisplayName: Minecraft 1.10.x - blocks
+DisplayName: Minecraft 1.13.x - blocks
 Blocks:
   Stone:
     Name: STONE
     Id: 1
-    Type: BASE    
+    Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/stone.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone.png
   Grass:
     Name: GRASS
     Id: 2
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/grass_side.png
-        - VANILLA:assets/minecraft/textures/blocks/grass_top.png
-        - VANILLA:assets/minecraft/textures/blocks/dirt.png
+        - VANILLA:assets/minecraft/textures/block/grass_block_side.png
+        - VANILLA:assets/minecraft/textures/block/grass_block_top.png
+        - VANILLA:assets/minecraft/textures/block/dirt.png
       Color: [96, 61]
       Gray: [4]
   Dirt:
@@ -29,135 +29,135 @@ Blocks:
     Id: 3
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/dirt.png
+      Texture: VANILLA:assets/minecraft/textures/block/dirt.png
   Cobblestone:
     Name: COBBLESTONE
     Id: 4
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/cobblestone.png
+      Texture: VANILLA:assets/minecraft/textures/block/cobblestone.png
   Planks:
     Name: WOOD
     Id: 5
     Type: MULTI
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/planks_oak.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_birch.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png
+        - VANILLA:assets/minecraft/textures/block/oak_planks.png
+        - VANILLA:assets/minecraft/textures/block/spruce_planks.png
+        - VANILLA:assets/minecraft/textures/block/birch_planks.png
+        - VANILLA:assets/minecraft/textures/block/jungle_planks.png
+        - VANILLA:assets/minecraft/textures/block/acacia_planks.png
+        - VANILLA:assets/minecraft/textures/block/dark_oak_planks.png
   Sapling_oak:
     Name: SAPLING
     Id: 6
     Data: 0
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sapling_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_sapling.png
   Sapling_spruce:
     Name: SAPLING
     Id: 6
     Data: 1
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sapling_spruce.png
+      Texture: VANILLA:assets/minecraft/textures/block/spruce_sapling.png
   Sapling_birch:
     Name: SAPLING
     Id: 6
     Data: 2
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sapling_birch.png
+      Texture: VANILLA:assets/minecraft/textures/block/birch_sapling.png
   Sapling_jungle:
     Name: SAPLING
     Id: 6
     Data: 3
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sapling_jungle.png
+      Texture: VANILLA:assets/minecraft/textures/block/jungle_sapling.png
   Sapling_acacia:
     Name: SAPLING
     Id: 6
     Data: 4
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sapling_acacia.png
+      Texture: VANILLA:assets/minecraft/textures/block/acacia_sapling.png
   Sapling_dark_oak:
     Name: SAPLING
     Id: 6
     Data: 5
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sapling_roofed_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/dark_oak_sapling.png
   Bedrock:
     Name: BEDROCK
     Id: 7
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/bedrock.png
+      Texture: VANILLA:assets/minecraft/textures/block/bedrock.png
   WaterFlow:
     Name: WATER
     Id: 8
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/water_flow.png
+      Texture: VANILLA:assets/minecraft/textures/block/water_flow.png
   Water:
     Name: STATIONARY_WATER
     Id: 9
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/water_still.png      
+      Texture: VANILLA:assets/minecraft/textures/block/water_still.png      
   LavaFlow:
     Name: LAVA
     Id: 10
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/lava_flow.png
+      Texture: VANILLA:assets/minecraft/textures/block/lava_flow.png
   Lava:
     Name: STATIONARY_LAVA
     Id: 11
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/lava_still.png
+      Texture: VANILLA:assets/minecraft/textures/block/lava_still.png
   Sand:
     Name: SAND
     Data: 0
     Id: 12
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sand.png
+      Texture: VANILLA:assets/minecraft/textures/block/sand.png
   RedSand:
     Name: SAND
     Data: 1
     Id: 12
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/red_sand.png
+      Texture: VANILLA:assets/minecraft/textures/block/red_sand.png
   Gravel:
     Name: GRAVEL
     Id: 13
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/gravel.png
+      Texture: VANILLA:assets/minecraft/textures/block/gravel.png
   GoldOre:
     Name: GOLD_ORE
     Id: 14
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/gold_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/gold_ore.png
   IronOre:
     Name: IRON_ORE
     Id: 15
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/iron_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/iron_ore.png
   CoalOre:
     Name: COAL_ORE
     Id: 16
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/coal_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/coal_ore.png
   Log_Oak:
     Name: LOG
     Id: 17
@@ -167,8 +167,8 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/log_oak.png
-        - VANILLA:assets/minecraft/textures/blocks/log_oak_top.png
+        - VANILLA:assets/minecraft/textures/block/oak_log.png
+        - VANILLA:assets/minecraft/textures/block/oak_log_top.png
   Log_Spruce:
     Name: LOG
     Id: 17
@@ -178,8 +178,8 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/log_spruce.png
-        - VANILLA:assets/minecraft/textures/blocks/log_spruce_top.png
+        - VANILLA:assets/minecraft/textures/block/spruce_log.png
+        - VANILLA:assets/minecraft/textures/block/spruce_log_top.png
   Log_Birch:
     Name: LOG
     Id: 17
@@ -189,8 +189,8 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/log_birch.png
-        - VANILLA:assets/minecraft/textures/blocks/log_birch_top.png
+        - VANILLA:assets/minecraft/textures/block/birch_log.png
+        - VANILLA:assets/minecraft/textures/block/birch_log_top.png
   Log_Jungle:
     Name: LOG
     Id: 17
@@ -200,8 +200,8 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/log_jungle.png
-        - VANILLA:assets/minecraft/textures/blocks/log_jungle_top.png
+        - VANILLA:assets/minecraft/textures/block/jungle_log.png
+        - VANILLA:assets/minecraft/textures/block/jungle_log_top.png
   Leaves_Oak:
     Name: LEAVES
     Id: 18
@@ -210,7 +210,7 @@ Blocks:
     Instruction:
       Gray: [0, 1, 2, 3, 4, 5, 6]
       Color: [84, 75]
-      Texture: VANILLA:assets/minecraft/textures/blocks/leaves_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_leaves.png
   Leaves_Spruce:
     Name: LEAVES
     Id: 18
@@ -219,7 +219,7 @@ Blocks:
     Instruction:
       Gray: [0, 1, 2, 3, 4, 5, 6]
       Color: [120, 58]
-      Texture: VANILLA:assets/minecraft/textures/blocks/leaves_spruce.png
+      Texture: VANILLA:assets/minecraft/textures/block/spruce_leaves.png
   Leaves_Birch:
     Name: LEAVES
     Id: 18
@@ -228,7 +228,7 @@ Blocks:
     Instruction:
       Gray: [0, 1, 2, 3, 4, 5, 6]
       Color: [88, 58]
-      Texture: VANILLA:assets/minecraft/textures/blocks/leaves_oak.png      
+      Texture: VANILLA:assets/minecraft/textures/block/oak_leaves.png      
   Leaves_Jungle:
     Name: LEAVES
     Id: 18
@@ -237,31 +237,31 @@ Blocks:
     Instruction:
       Gray: [0, 1, 2, 3, 4, 5, 6]
       Color: [85, 74]
-      Texture: VANILLA:assets/minecraft/textures/blocks/leaves_jungle.png  
+      Texture: VANILLA:assets/minecraft/textures/block/jungle_leaves.png  
   Sponge:
     Name: SPONGE
     Id: 19
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/sponge.png
+      Texture: VANILLA:assets/minecraft/textures/block/sponge.png
   Glass:
     Name: GLASS
     Id: 20
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/glass.png
+      Texture: VANILLA:assets/minecraft/textures/block/glass.png
   LapisOre:
     Name: LAPIS_ORE
     Id: 21
     Type: BASE
     Instruction:      
-      Texture: VANILLA:assets/minecraft/textures/blocks/lapis_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/lapis_ore.png
   LapisBlock:
     Name: LAPIS_BLOCK
     Id: 22
     Type: BASE
     Instruction:      
-      Texture: VANILLA:assets/minecraft/textures/blocks/lapis_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/lapis_block.png
   Dispenser:
     Name: DISPENSER
     Id: 23
@@ -269,10 +269,10 @@ Blocks:
     Data: 0
     Instruction:      
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/dispenser_front_horizontal.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/dispenser_front.png
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
   DispenserTop:
     Name: DISPENSER
     Id: 23
@@ -280,9 +280,9 @@ Blocks:
     Data: 1
     Instruction:      
       Textures:        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png
-        - VANILLA:assets/minecraft/textures/blocks/dispenser_front_vertical.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png
+        - VANILLA:assets/minecraft/textures/block/dispenser_front_vertical.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
   DispenserBottom:
     Name: DISPENSER
     Id: 23
@@ -290,9 +290,9 @@ Blocks:
     Data: 2
     Instruction:
       Textures:        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
-        - VANILLA:assets/minecraft/textures/blocks/dispenser_front_vertical.png
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/dispenser_front_vertical.png
   Sandstone_normal:
     Name: SANDSTONE
     Id: 24
@@ -300,9 +300,9 @@ Blocks:
     Data: 0
     Instruction:      
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_normal.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   Sandstone_carved:
     Name: SANDSTONE
     Id: 24
@@ -310,9 +310,9 @@ Blocks:
     Data: 1
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_carved.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/chiseled_sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   Sandstone_smooth:
     Name: SANDSTONE
     Id: 24
@@ -320,80 +320,80 @@ Blocks:
     Data: 2
     Instruction:      
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_smooth.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cut_sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   Noteblock:
     Name: NOTE_BLOCK
     Id: 25
     Type: BASE
     Instruction:      
-      Texture: VANILLA:assets/minecraft/textures/blocks/noteblock.png
-  Bed:
-    Name: BED
-    Id: 26
-    Type: CUSTOM
-    Instruction:
-      UsePitch: false
-      UseYaw: true  
-      Size: [16, 16, 32]
-      TextureColumns: [0, 16]
-      TextureRows: [0, 16, 7, 16]
-      TexturesRes: [16, 16, 16, 16, 16, 16, 16]
-      Textures:
-        - VANILLA:assets/minecraft/textures/blocks/bed_feet_side.png
-        - VANILLA:assets/minecraft/textures/blocks/bed_head_side.png
-        - VANILLA:assets/minecraft/textures/blocks/bed_feet_end.png
-        - VANILLA:assets/minecraft/textures/blocks/bed_head_end.png
-        - VANILLA:assets/minecraft/textures/blocks/bed_feet_top.png
-        - VANILLA:assets/minecraft/textures/blocks/bed_head_top.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_oak.png
-      Parts:
-        Bottom1:
-          Pos: [0, 3, 0]
-          Size: [16, 16, 16]
-          Faces:
-            - _none_
-            - _none_
-            - _none_
-            - _none_
-            - _none_
-            - 0,0,1,1,true,6
-        Bottom2:
-          Pos: [0, 3, 16]
-          Size: [16, 16, 16]
-          Faces:
-            - _none_
-            - _none_
-            - _none_
-            - _none_
-            - _none_
-            - 0,0,1,1,true,6
-        Head:
-          Pos: [0, 0, 0]
-          Size: [16, 9, 16]
-          Faces:
-            - _none_
-            - 0,3,1,-1,false,3
-            - 1,3,-1,-1,false,1
-            - 1,3,-1,-1,false,1
-            - 1,1,-1,-1,true,5
-        Feet:
-          Pos: [0, 0, 16]
-          Size: [16, 9, 16]
-          Faces:
-            - 0,3,1,-1,false,2
-            - _none_            
-            - 1,3,-1,-1,false,0
-            - 1,3,-1,-1,false,0
-            - 1,1,-1,-1,true,4
+      Texture: VANILLA:assets/minecraft/textures/block/note_block.png
+#  Bed:
+#    Name: BED
+#    Id: 26
+#    Type: CUSTOM
+#    Instruction:
+#      UsePitch: false
+#      UseYaw: true  
+#      Size: [16, 16, 32]
+#      TextureColumns: [0, 16]
+#      TextureRows: [0, 16, 7, 16]
+#      TexturesRes: [16, 16, 16, 16, 16, 16, 16]
+#      Textures:
+#        - VANILLA:assets/minecraft/textures/block/bed_feet_side.png
+#        - VANILLA:assets/minecraft/textures/block/bed_head_side.png
+#        - VANILLA:assets/minecraft/textures/block/bed_feet_end.png
+#        - VANILLA:assets/minecraft/textures/block/bed_head_end.png
+#        - VANILLA:assets/minecraft/textures/block/bed_feet_top.png
+#        - VANILLA:assets/minecraft/textures/block/bed_head_top.png
+#        - VANILLA:assets/minecraft/textures/block/oak_planks.png
+#      Parts:
+#        Bottom1:
+#          Pos: [0, 3, 0]
+#          Size: [16, 16, 16]
+#          Faces:
+#            - _none_
+#            - _none_
+#            - _none_
+#            - _none_
+#            - _none_
+#            - 0,0,1,1,true,6
+#        Bottom2:
+#          Pos: [0, 3, 16]
+#          Size: [16, 16, 16]
+#          Faces:
+#            - _none_
+#            - _none_
+#            - _none_
+#            - _none_
+#            - _none_
+#            - 0,0,1,1,true,6
+#        Head:
+#          Pos: [0, 0, 0]
+#          Size: [16, 9, 16]
+#          Faces:
+#            - _none_
+#            - 0,3,1,-1,false,3
+#            - 1,3,-1,-1,false,1
+#            - 1,3,-1,-1,false,1
+#            - 1,1,-1,-1,true,5
+#        Feet:
+#          Pos: [0, 0, 16]
+#          Size: [16, 9, 16]
+#          Faces:
+#            - 0,3,1,-1,false,2
+#            - _none_            
+#            - 1,3,-1,-1,false,0
+#            - 1,3,-1,-1,false,0
+#            - 1,1,-1,-1,true,4
   PoweredRail_0:
     Name: POWERED_RAIL
     Id: 27
     Type: FLAT
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail.png
       Face: Bottom
   PoweredRail_2:
     Name: POWERED_RAIL
@@ -403,7 +403,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail.png
       Faces: [Right]
   PoweredRail_3:
     Name: POWERED_RAIL
@@ -413,7 +413,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail.png
       Faces: [Left]
   PoweredRail_4:
     Name: POWERED_RAIL
@@ -423,7 +423,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail.png
       Faces: [Back]
   PoweredRail_5:
     Name: POWERED_RAIL
@@ -433,7 +433,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail.png
       Faces: [Front]
   PoweredRail_8:
     Name: POWERED_RAIL
@@ -441,7 +441,7 @@ Blocks:
     Type: FLAT
     Data: 8
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail_on.png
       Face: Bottom
   PoweredRail_10:
     Name: POWERED_RAIL
@@ -451,7 +451,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail_on.png
       Faces: [Right]
   PoweredRail_11:
     Name: POWERED_RAIL
@@ -461,7 +461,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail_on.png
       Faces: [Left]
   PoweredRail_12:
     Name: POWERED_RAIL
@@ -471,7 +471,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail_on.png
       Faces: [Back]
   PoweredRail_13:
     Name: POWERED_RAIL
@@ -481,7 +481,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_golden_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/powered_rail_on.png
       Faces: [Front]
   DetectorRail_0:
     Name: DETECTOR_RAIL
@@ -489,7 +489,7 @@ Blocks:
     Type: FLAT
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail.png
       Face: Bottom
   DetectorRail_2:
     Name: DETECTOR_RAIL
@@ -499,7 +499,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail.png
       Faces: [Right]
   DetectorRail_3:
     Name: DETECTOR_RAIL
@@ -509,7 +509,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail.png
       Faces: [Left]
   DetectorRail_4:
     Name: DETECTOR_RAIL
@@ -519,7 +519,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail.png
       Faces: [Back]
   DetectorRail_5:
     Name: DETECTOR_RAIL
@@ -529,7 +529,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail.png
       Faces: [Front]
   DetectorRail_8:
     Name: DETECTOR_RAIL
@@ -537,7 +537,7 @@ Blocks:
     Type: FLAT
     Data: 8
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail_on.png
       Face: Bottom
   DetectorRail_10:
     Name: DETECTOR_RAIL
@@ -547,7 +547,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail_on.png
       Faces: [Right]
   DetectorRail_11:
     Name: DETECTOR_RAIL
@@ -557,7 +557,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail_on.png
       Faces: [Left]
   DetectorRail_12:
     Name: DETECTOR_RAIL
@@ -567,7 +567,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail_on.png
       Faces: [Back]
   DetectorRail_13:
     Name: DETECTOR_RAIL
@@ -577,7 +577,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_detector_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/detector_rail_on.png
       Faces: [Front]
   #piston
   Web:
@@ -587,7 +587,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/web.png
+      Texture: VANILLA:assets/minecraft/textures/block/cobweb.png
   Grass_deadBush:
     Name: LONG_GRASS
     Id: 31
@@ -596,17 +596,17 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/deadbush.png
-  Grass_tallGrass:
-    Name: LONG_GRASS
-    Id: 31
-    Data: 1
-    Type: DIAGONAL
-    Instruction:
-      UsePitch: false
-      UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/tallgrass.png
-      Color: [96, 61]
+      Texture: VANILLA:assets/minecraft/textures/block/dead_bush.png
+#  Grass_tallGrass:
+#    Name: LONG_GRASS
+#    Id: 31
+#    Data: 1
+#    Type: DIAGONAL
+#    Instruction:
+#      UsePitch: false
+#      UseYaw: false
+#      Texture: VANILLA:assets/minecraft/textures/block/tallgrass.png
+#      Color: [96, 61]
   Grass_fern:
     Name: LONG_GRASS
     Id: 31
@@ -615,7 +615,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/fern.png
+      Texture: VANILLA:assets/minecraft/textures/block/fern.png
       Color: [96, 61]
   DeadBush:
     Name: DEAD_BUSH
@@ -624,7 +624,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/deadbush.png
+      Texture: VANILLA:assets/minecraft/textures/block/dead_bush.png
   #33 - piston
   #34 - piston extended
   Wool:
@@ -633,115 +633,115 @@ Blocks:
     Type: MULTI
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_white.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_orange.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_magenta.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_light_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_yellow.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_lime.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_pink.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_gray.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_silver.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_cyan.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_purple.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_brown.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_green.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_red.png
-        - VANILLA:assets/minecraft/textures/blocks/wool_colored_black.png
+        - VANILLA:assets/minecraft/textures/block/white_wool.png
+        - VANILLA:assets/minecraft/textures/block/orange_wool.png
+        - VANILLA:assets/minecraft/textures/block/magenta_wool.png
+        - VANILLA:assets/minecraft/textures/block/light_blue_wool.png
+        - VANILLA:assets/minecraft/textures/block/yellow_wool.png
+        - VANILLA:assets/minecraft/textures/block/lime_wool.png
+        - VANILLA:assets/minecraft/textures/block/pink_wool.png
+        - VANILLA:assets/minecraft/textures/block/gray_wool.png
+        - VANILLA:assets/minecraft/textures/block/light_gray_wool.png
+        - VANILLA:assets/minecraft/textures/block/cyan_wool.png
+        - VANILLA:assets/minecraft/textures/block/purple_wool.png
+        - VANILLA:assets/minecraft/textures/block/blue_wool.png
+        - VANILLA:assets/minecraft/textures/block/brown_wool.png
+        - VANILLA:assets/minecraft/textures/block/green_wool.png
+        - VANILLA:assets/minecraft/textures/block/red_wool.png
+        - VANILLA:assets/minecraft/textures/block/black_wool.png
   Flower_dandelion:
     Name: YELLOW_FLOWER
     Id: 37
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_dandelion.png
-  Flower_poppy:
-    Name: RED_ROSE
-    Id: 38
-    Data: 0
-    Type: DIAGONAL
-    Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_rose.png
+      Texture: VANILLA:assets/minecraft/textures/block/dandelion.png
+#  Flower_poppy:
+#    Name: RED_ROSE
+#    Id: 38
+#    Data: 0
+#    Type: DIAGONAL
+#    Instruction:
+#      Texture: VANILLA:assets/minecraft/textures/block/rose.png
   Flower_blueOrchid:
     Name: RED_ROSE
     Id: 38
     Data: 1
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_blue_orchid.png
+      Texture: VANILLA:assets/minecraft/textures/block/blue_orchid.png
   Flower_allium:
     Name: RED_ROSE
     Id: 38
     Data: 2
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_allium.png
-  Flower_azureBluet:
-    Name: RED_ROSE
-    Id: 38
-    Data: 3
-    Type: DIAGONAL
-    Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_houstonia.png
+      Texture: VANILLA:assets/minecraft/textures/block/allium.png
+#  Flower_azureBluet:
+#    Name: RED_ROSE
+#    Id: 38
+#    Data: 3
+#    Type: DIAGONAL
+#    Instruction:
+#      Texture: VANILLA:assets/minecraft/textures/block/houstonia.png
   Flower_tulipRed:
     Name: RED_ROSE
     Id: 38
     Data: 4
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_tulip_red.png
+      Texture: VANILLA:assets/minecraft/textures/block/red_tulip.png
   Flower_tulipOrange:
     Name: RED_ROSE
     Id: 38
     Data: 5
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_tulip_orange.png
+      Texture: VANILLA:assets/minecraft/textures/block/orange_tulip.png
   Flower_tulipWhite:
     Name: RED_ROSE
     Id: 38
     Data: 6
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_tulip_white.png
+      Texture: VANILLA:assets/minecraft/textures/block/white_tulip.png
   Flower_tulipPink:
     Name: RED_ROSE
     Id: 38
     Data: 7
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_tulip_pink.png
+      Texture: VANILLA:assets/minecraft/textures/block/pink_tulip.png
   Flower_oxeyeDaisy:
     Name: RED_ROSE
     Id: 38
     Data: 8
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/flower_oxeye_daisy.png
+      Texture: VANILLA:assets/minecraft/textures/block/oxeye_daisy.png
   Mushroom_brown:
     Name: BROWN_MUSHROOM
     Id: 39
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/mushroom_brown.png
+      Texture: VANILLA:assets/minecraft/textures/block/brown_mushroom.png
   Mushroom_red:
     Name: RED_MUSHROOM
     Id: 40
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/mushroom_red.png
+      Texture: VANILLA:assets/minecraft/textures/block/red_mushroom.png
   GoldBlock:
     Name: GOLD_BLOCK
     Id: 41
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/gold_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/gold_block.png
   IronBlock:
     Name: IRON_BLOCK
     Id: 42
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/iron_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/iron_block.png
   DoubleStep_stone:
     Name: DOUBLE_STEP
     Id: 43
@@ -749,8 +749,8 @@ Blocks:
     Type: BASE
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/stone_slab_side.png
-        - VANILLA:assets/minecraft/textures/blocks/stone_slab_top.png
+        - VANILLA:assets/minecraft/textures/block/stone_slab_side.png
+        - VANILLA:assets/minecraft/textures/block/stone_slab_top.png
   DoubleStep_sandstone:
     Name: DOUBLE_STEP
     Id: 43
@@ -758,44 +758,44 @@ Blocks:
     Type: BASE
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_normal.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   DoubleStep_oak:
     Name: DOUBLE_STEP
     Id: 43
     Data: 2
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
   DoubleStep_cobble:
     Name: DOUBLE_STEP
     Id: 43
     Data: 3
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/cobblestone.png
+      Texture: VANILLA:assets/minecraft/textures/block/cobblestone.png
   DoubleStep_brick:
     Name: DOUBLE_STEP
     Id: 43
     Data: 4
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/bricks.png
   DoubleStep_stone2:
     Name: DOUBLE_STEP
     Id: 43
     Data: 5
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone_bricks.png
   DoubleStep_nether:
     Name: DOUBLE_STEP
     Id: 43
     Data: 6
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_bricks.png
   DoubleStep_quartz:
     Name: DOUBLE_STEP
     Id: 43
@@ -803,9 +803,9 @@ Blocks:
     Type: BASE
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_side.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_top.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_side.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_bottom.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_top.png
   Step_stone:
     Name: STEP
     Id: 44
@@ -813,8 +813,8 @@ Blocks:
     Type: SLAB
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/stone_slab_side.png
-        - VANILLA:assets/minecraft/textures/blocks/stone_slab_top.png
+        - VANILLA:assets/minecraft/textures/block/stone_slab_side.png
+        - VANILLA:assets/minecraft/textures/block/stone_slab_top.png
   Step_sandstone:
     Name: STEP
     Id: 44
@@ -822,44 +822,44 @@ Blocks:
     Type: SLAB
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_normal.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   Step_oak:
     Name: STEP
     Id: 44
     Data: 2
     Type: SLAB
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
   Step_cobble:
     Name: STEP
     Id: 44
     Data: 3
     Type: SLAB
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/cobblestone.png
+      Texture: VANILLA:assets/minecraft/textures/block/cobblestone.png
   Step_brick:
     Name: STEP
     Id: 44
     Data: 4
     Type: SLAB
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/bricks.png
   Step_stone2:
     Name: STEP
     Id: 44
     Data: 5
     Type: SLAB
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone_bricks.png
   Step_nether:
     Name: STEP
     Id: 44
     Data: 6
     Type: SLAB
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_bricks.png
   Step_quartz:
     Name: STEP
     Id: 44
@@ -867,9 +867,9 @@ Blocks:
     Type: SLAB
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_side.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_top.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_side.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_bottom.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_top.png
   StepTop_stone:
     Name: STEP
     Id: 44
@@ -878,8 +878,8 @@ Blocks:
     Instruction:
       IsTop: true
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/stone_slab_side.png
-        - VANILLA:assets/minecraft/textures/blocks/stone_slab_top.png
+        - VANILLA:assets/minecraft/textures/block/stone_slab_side.png
+        - VANILLA:assets/minecraft/textures/block/stone_slab_top.png
   StepTop_sandstone:
     Name: STEP
     Id: 44
@@ -888,9 +888,9 @@ Blocks:
     Instruction:
       IsTop: true
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_normal.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   StepTop_oak:
     Name: STEP
     Id: 44
@@ -898,7 +898,7 @@ Blocks:
     Type: SLAB
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
   StepTop_cobble:
     Name: STEP
     Id: 44
@@ -906,7 +906,7 @@ Blocks:
     Type: SLAB
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/cobblestone.png
+      Texture: VANILLA:assets/minecraft/textures/block/cobblestone.png
   StepTop_brick:
     Name: STEP
     Id: 44
@@ -914,7 +914,7 @@ Blocks:
     Type: SLAB
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/bricks.png
   StepTop_stone2:
     Name: STEP
     Id: 44
@@ -922,7 +922,7 @@ Blocks:
     Type: SLAB
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone_bricks.png
   StepTop_nether:
     Name: STEP
     Id: 44
@@ -930,7 +930,7 @@ Blocks:
     Type: SLAB
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_bricks.png
   StepTop_quartz:
     Name: STEP
     Id: 44
@@ -939,50 +939,50 @@ Blocks:
     Instruction:
       IsTop: true
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_side.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_top.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_side.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_bottom.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_top.png
   Brick:
     Name: BRICK
     Id: 45
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/bricks.png
   Tnt:
     Name: TNT
     Id: 46
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/tnt_side.png
-        - VANILLA:assets/minecraft/textures/blocks/tnt_top.png
-        - VANILLA:assets/minecraft/textures/blocks/tnt_bottom.png
+        - VANILLA:assets/minecraft/textures/block/tnt_side.png
+        - VANILLA:assets/minecraft/textures/block/tnt_top.png
+        - VANILLA:assets/minecraft/textures/block/tnt_bottom.png
   BookShelf:
     Name: BOOKSHELF
     Id: 47
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/bookshelf.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+        - VANILLA:assets/minecraft/textures/block/bookshelf.png
+        - VANILLA:assets/minecraft/textures/block/oak_planks.png
   MosStone:
     Name: MOSSY_COBBLESTONE
     Id: 48
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/cobblestone_mossy.png
+      Texture: VANILLA:assets/minecraft/textures/block/mossy_cobblestone.png
   Obsidian:
     Name: OBSIDIAN
     Id: 49
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/obsidian.png
+      Texture: VANILLA:assets/minecraft/textures/block/obsidian.png
   Torch:
     Name: TORCH
     Id: 50
     Type: TORCH
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/torch_on.png
+      Texture: VANILLA:assets/minecraft/textures/block/torch.png
   Fire:
     Name: Fire
     Id: 51
@@ -995,7 +995,7 @@ Blocks:
       TextureRows: [0, 16]
       TexturesRes: [16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/fire_layer_0.png
+        - VANILLA:assets/minecraft/textures/block/fire_0.png
       Parts:
         Part1:
           Pos: [0, 0, 0]
@@ -1023,14 +1023,14 @@ Blocks:
     Id: 52
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/mob_spawner.png
+      Texture: VANILLA:assets/minecraft/textures/block/spawner.png
   OakStairs:
     Name: WOOD_STAIRS
     Id: 53
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+        - VANILLA:assets/minecraft/textures/block/oak_planks.png
   Chest_normal:
     Name: CHEST
     Id: 54
@@ -1067,29 +1067,29 @@ Blocks:
     Id: 56
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/diamond_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/diamond_ore.png
   DiamondOre:
     Name: DIAMOND_ORE
     Id: 56
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/diamond_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/diamond_ore.png
   DiamondBlock:
     Name: DIAMOND_BLOCK
     Id: 57
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/diamond_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/diamond_block.png
   WoorkBench:
     Name: WORKBENCH
     Id: 58
     Type: BASE
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/crafting_table_front.png
-        - VANILLA:assets/minecraft/textures/blocks/crafting_table_side.png
-        - VANILLA:assets/minecraft/textures/blocks/crafting_table_top.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+        - VANILLA:assets/minecraft/textures/block/crafting_table_front.png
+        - VANILLA:assets/minecraft/textures/block/crafting_table_side.png
+        - VANILLA:assets/minecraft/textures/block/crafting_table_top.png
+        - VANILLA:assets/minecraft/textures/block/oak_planks.png
   Crops_0:
     Name: CROPS
     Id: 59
@@ -1097,7 +1097,7 @@ Blocks:
     Data: 0
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_0.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage0.png
   Crops_1:
     Name: CROPS
     Id: 59
@@ -1105,7 +1105,7 @@ Blocks:
     Data: 1
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_1.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage1.png
   Crops_2:
     Name: CROPS
     Id: 59
@@ -1113,7 +1113,7 @@ Blocks:
     Data: 2
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_2.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage2.png
   Crops_3:
     Name: CROPS
     Id: 59
@@ -1121,7 +1121,7 @@ Blocks:
     Data: 3
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_3.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage3.png
   Crops_4:
     Name: CROPS
     Id: 59
@@ -1129,7 +1129,7 @@ Blocks:
     Data: 4
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_4.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage4.png
   Crops_5:
     Name: CROPS
     Id: 59
@@ -1137,7 +1137,7 @@ Blocks:
     Data: 5
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_5.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage5.png
   Crops_6:
     Name: CROPS
     Id: 59
@@ -1145,7 +1145,7 @@ Blocks:
     Data: 6
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_6.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage6.png
   Crops_7:
     Name: CROPS
     Id: 59
@@ -1153,7 +1153,7 @@ Blocks:
     Data: 7
     Instruction:
       Delta: 3
-      Texture: VANILLA:assets/minecraft/textures/blocks/wheat_stage_7.png
+      Texture: VANILLA:assets/minecraft/textures/block/wheat_stage7.png
   Soil_0:
     Name: SOIL
     Id: 60
@@ -1162,9 +1162,9 @@ Blocks:
     Instruction:
       Size: [16,15,16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/dirt.png
-        - VANILLA:assets/minecraft/textures/blocks/farmland_dry.png
-        - VANILLA:assets/minecraft/textures/blocks/dirt.png
+        - VANILLA:assets/minecraft/textures/block/dirt.png
+        - VANILLA:assets/minecraft/textures/block/farmland.png
+        - VANILLA:assets/minecraft/textures/block/dirt.png
   Soil_1:
     Name: SOIL
     Id: 60
@@ -1173,29 +1173,29 @@ Blocks:
     Instruction:
       Size: [16,15,16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/dirt.png
-        - VANILLA:assets/minecraft/textures/blocks/farmland_wet.png
-        - VANILLA:assets/minecraft/textures/blocks/dirt.png
+        - VANILLA:assets/minecraft/textures/block/dirt.png
+        - VANILLA:assets/minecraft/textures/block/farmland_moist.png
+        - VANILLA:assets/minecraft/textures/block/dirt.png
   Furnace:
     Name: FURNACE
     Id: 61
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/furnace_front_off.png        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_front.png        
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png        
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
   FurnaceBurning:
     Name: BURNING_FURNACE
     Id: 62
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/furnace_front_on.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_front_on.png
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png        
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
   #63 - SIGN_POST
   WoodenDoor_0:
     Name: WOODEN_DOOR
@@ -1206,8 +1206,8 @@ Blocks:
       Face: Back
       Flip: false
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_upper.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_top.png
   WoodenDoor_1:
     Name: WOODEN_DOOR
     Id: 324
@@ -1217,8 +1217,8 @@ Blocks:
       Face: Back
       Flip: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_upper.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_top.png
   WoodenDoor_2:
     Name: WOODEN_DOOR
     Id: 324
@@ -1228,8 +1228,8 @@ Blocks:
       Face: Front
       Flip: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_upper.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_top.png
   WoodenDoor_3:
     Name: WOODEN_DOOR
     Id: 324
@@ -1239,15 +1239,15 @@ Blocks:
       Face: Front
       Flip: false
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_wood_upper.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/oak_door_top.png
   Ladder:
     Name: LADDER
     Id: 65
     Type: FLAT
     Instruction:
       Face: Front
-      Texture: VANILLA:assets/minecraft/textures/blocks/ladder.png
+      Texture: VANILLA:assets/minecraft/textures/block/ladder.png
   Rails_0:
     Name: RAILS
     Id: 66
@@ -1255,7 +1255,7 @@ Blocks:
     Data: 0
     Instruction:
       Face: Bottom
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_normal.png
+      Texture: VANILLA:assets/minecraft/textures/block/rail.png
   Rails_2:
     Name: RAILS
     Id: 66
@@ -1264,7 +1264,7 @@ Blocks:
     Instruction:
       Face: Right
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_normal.png
+      Texture: VANILLA:assets/minecraft/textures/block/rail.png
   Rails_3:
     Name: RAILS
     Id: 66
@@ -1273,7 +1273,7 @@ Blocks:
     Instruction:
       Face: Left
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_normal.png
+      Texture: VANILLA:assets/minecraft/textures/block/rail.png
   Rails_4:
     Name: RAILS
     Id: 66
@@ -1282,7 +1282,7 @@ Blocks:
     Instruction:
       Face: Back
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_normal.png
+      Texture: VANILLA:assets/minecraft/textures/block/rail.png
   Rails_5:
     Name: RAILS
     Id: 66
@@ -1291,7 +1291,7 @@ Blocks:
     Instruction:
       Face: Front
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_normal.png
+      Texture: VANILLA:assets/minecraft/textures/block/rail.png
   Rails_6:
     Name: RAILS
     Id: 66
@@ -1299,14 +1299,14 @@ Blocks:
     Data: 6
     Instruction:
       Face: Bottom
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_normal_turned.png
+      Texture: VANILLA:assets/minecraft/textures/block/rail_corner.png
   CobblestoneStairs:
     Name: COBBLESTONE_STAIRS
     Id: 67
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cobblestone.png
+        - VANILLA:assets/minecraft/textures/block/cobblestone.png
   #68 - Wall sign
   #69 - Lever
   StonePlate:
@@ -1314,7 +1314,7 @@ Blocks:
     Id: 70
     Type: FLAT
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/stone.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone.png
       Size: [14,14,1]
   IrronDoor_0:
     Name: IRON_DOOR_BLOCK
@@ -1325,8 +1325,8 @@ Blocks:
       Face: Back
       Flip: false
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_upper.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_top.png
   IrronDoor_1:
     Name: IRON_DOOR_BLOCK
     Id: 330
@@ -1336,8 +1336,8 @@ Blocks:
       Face: Back
       Flip: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_upper.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_top.png
   IrronDoor_2:
     Name: IRON_DOOR_BLOCK
     Id: 330
@@ -1347,8 +1347,8 @@ Blocks:
       Face: Front
       Flip: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_upper.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_top.png
   IrronDoor_3:
     Name: IRON_DOOR_BLOCK
     Id: 330
@@ -1358,46 +1358,46 @@ Blocks:
       Face: Front
       Flip: false
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_lower.png
-        - VANILLA:assets/minecraft/textures/blocks/door_iron_upper.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_bottom.png
+        - VANILLA:assets/minecraft/textures/block/iron_door_top.png
   WoodPlate:
     Name: WOOD_PLATE
     Id: 72
     Type: FLAT
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
       Size: [14,14,1]
   RedstoneOre:
     Name: REDSTONE_ORE
     Id: 73
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_ore.png
   RedstoneOreOn:
     Name: GLOWING_REDSTONE_ORE
     Id: 74
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_ore.png
   RedstoneTorch:
     Name: REDSTONE_TORCH_OFF
     Id: 75
     Type: TORCH
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_torch_off.png
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_torch_off.png
   RedstoneTorchOn:
     Name: REDSTONE_TORCH_ON
     Id: 76
     Type: TORCH
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_torch_on.png
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_torch.png
   StoneButton:
     Name: STONE_BUTTON
     Id: 77
     Type: FLAT
     Instruction:
       Size: [6,4,2]
-      Texture: VANILLA:assets/minecraft/textures/blocks/stone.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone.png
   Snow_0:
     Name: SNOW
     Id: 78
@@ -1406,7 +1406,7 @@ Blocks:
     Instruction:
       CropFacesV: [14, 0, 14, 0, 14, 0, 14, 0, 0, 0]
       Delta: [0, 0, 0, 0, 14, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_1:
     Name: SNOW
     Id: 78
@@ -1415,7 +1415,7 @@ Blocks:
     Instruction:
       CropFacesV: [12, 0, 12, 0, 12, 0, 12, 0, 0, 0]
       Delta: [0, 0, 0, 0, 12, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_2:
     Name: SNOW
     Id: 78
@@ -1424,7 +1424,7 @@ Blocks:
     Instruction:
       CropFacesV: [10, 0, 10, 0, 10, 0, 10, 0, 0, 0]
       Delta: [0, 0, 0, 0, 10, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_3:
     Name: SNOW
     Id: 78
@@ -1433,7 +1433,7 @@ Blocks:
     Instruction:
       CropFacesV: [8, 0, 8, 0, 8, 0, 8, 0, 0, 0]
       Delta: [0, 0, 0, 0, 8, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_4:
     Name: SNOW
     Id: 78
@@ -1442,7 +1442,7 @@ Blocks:
     Instruction:
       CropFacesV: [6, 0, 6, 0, 6, 0, 6, 0, 0, 0]
       Delta: [0, 0, 0, 0, 6, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_5:
     Name: SNOW
     Id: 78
@@ -1451,7 +1451,7 @@ Blocks:
     Instruction:
       CropFacesV: [4, 0, 4, 0, 4, 0, 4, 0, 0, 0]
       Delta: [0, 0, 0, 0, 4, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_6:
     Name: SNOW
     Id: 78
@@ -1460,26 +1460,26 @@ Blocks:
     Instruction:
       CropFacesV: [2, 0, 2, 0, 2, 0, 2, 0, 0, 0]
       Delta: [0, 0, 0, 0, 2, 0]
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Snow_7:
     Name: SNOW
     Id: 78
     Data: 7
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Ice:
     Name: ICE
     Id: 79
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/ice.png
+      Texture: VANILLA:assets/minecraft/textures/block/ice.png
   SnowBlock:
     Name: SNOW_BLOCK
     Id: 80
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/snow.png
+      Texture: VANILLA:assets/minecraft/textures/block/snow.png
   Cactus:
     Name: CACTUS
     Id: 81
@@ -1489,30 +1489,30 @@ Blocks:
       UseYaw: false
       Delta: [1, 1, 1, 1, 0, 0]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cactus_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cactus_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cactus_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cactus_side.png
+        - VANILLA:assets/minecraft/textures/block/cactus_top.png
+        - VANILLA:assets/minecraft/textures/block/cactus_bottom.png
   ClayBlock:
     Name: CLAY
     Id: 82
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/clay.png
+      Texture: VANILLA:assets/minecraft/textures/block/clay.png
   SugerCane:
     Name: SUGAR_CANE_BLOCK
     Id: 83
     Type: DIAGONAL
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/reeds.png
+      Texture: VANILLA:assets/minecraft/textures/block/sugar_cane.png
   Jukebox:
     Name: JUKEBOX
     Id: 84
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/jukebox_side.png
-        - VANILLA:assets/minecraft/textures/blocks/jukebox_top.png
-        - VANILLA:assets/minecraft/textures/blocks/jukebox_side.png
+        - VANILLA:assets/minecraft/textures/block/jukebox_side.png
+        - VANILLA:assets/minecraft/textures/block/jukebox_top.png
+        - VANILLA:assets/minecraft/textures/block/jukebox_side.png
   #85 - Fence
   Pumpkin:
     Name: PUMPKIN
@@ -1520,28 +1520,28 @@ Blocks:
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_face_off.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_side.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_top.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_top.png
+        - VANILLA:assets/minecraft/textures/block/carved_pumpkin.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_side.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_top.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_top.png
   Netherack:
     Name: NETHERRACK
     Id: 87
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/netherrack.png
+      Texture: VANILLA:assets/minecraft/textures/block/netherrack.png
   SoulSand:
     Name: SOUL_SAND
     Id: 88
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/soul_sand.png
+      Texture: VANILLA:assets/minecraft/textures/block/soul_sand.png
   Glowstone:
     Name: GLOWSTONE
     Id: 89
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/glowstone.png
+      Texture: VANILLA:assets/minecraft/textures/block/glowstone.png
   #90 - Nether portal  
   JackOLantern:
     Name: JACK_O_LANTERN
@@ -1549,10 +1549,10 @@ Blocks:
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_face_on.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_side.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_top.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_top.png
+        - VANILLA:assets/minecraft/textures/block/jack_o_lantern.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_side.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_top.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_top.png
   Cake_0:
     Name: CAKE
     Id: 92
@@ -1561,9 +1561,9 @@ Blocks:
     Instruction:
       Delta: [1, 1, 1, 1, 8, 0]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   Cake_1:
     Name: CAKE
     Id: 92
@@ -1574,10 +1574,10 @@ Blocks:
       CropFacesH: [0, 0, 0, 0, 0, 3, 3, 0, 0, 0, 0, 0]
       CropFacesV: [0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 3]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_inner.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   Cake_2:
     Name: CAKE
     Id: 92
@@ -1588,10 +1588,10 @@ Blocks:
       CropFacesH: [0, 0, 0, 0, 0, 5, 5, 0, 0, 0, 0, 0]
       CropFacesV: [0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_inner.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   Cake_3:
     Name: CAKE
     Id: 92
@@ -1602,10 +1602,10 @@ Blocks:
       CropFacesH: [0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0]
       CropFacesV: [0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_inner.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   Cake_4:
     Name: CAKE
     Id: 92
@@ -1616,10 +1616,10 @@ Blocks:
       CropFacesH: [0, 0, 0, 0, 0, 9, 9, 0, 0, 0, 0, 0]
       CropFacesV: [0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 9]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_inner.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   Cake_5:
     Name: CAKE
     Id: 92
@@ -1630,10 +1630,10 @@ Blocks:
       CropFacesH: [0, 0, 0, 0, 0, 11, 11, 0, 0, 0, 0, 0]
       CropFacesV: [0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 11]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_inner.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   Cake_6:
     Name: CAKE
     Id: 92
@@ -1644,10 +1644,10 @@ Blocks:
       CropFacesH: [0, 0, 0, 0, 0, 13, 13, 0, 0, 0, 0, 0]
       CropFacesV: [0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 13]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cake_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cake_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cake_inner.png
+        - VANILLA:assets/minecraft/textures/block/cake_side.png
+        - VANILLA:assets/minecraft/textures/block/cake_top.png
+        - VANILLA:assets/minecraft/textures/block/cake_bottom.png
   #93 - Redstone repeater
   #94 - Redstone repeater on
   StainedGlass:
@@ -1656,22 +1656,22 @@ Blocks:
     Type: MULTI
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_white.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_orange.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_magenta.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_light_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_yellow.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_lime.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pink.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_gray.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_silver.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_cyan.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_purple.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_brown.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_green.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_red.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_black.png
+        - VANILLA:assets/minecraft/textures/block/white_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/orange_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/magenta_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/light_blue_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/yellow_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/lime_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/pink_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/gray_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/light_gray_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/cyan_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/purple_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/blue_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/brown_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/green_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/red_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/black_stained_glass.png
   TrapDoor_0:
     Name: TRAP_DOOR
     Id: 96
@@ -1679,7 +1679,7 @@ Blocks:
     Data: 0
     Instruction:
       Face: Bottom
-      Texture: VANILLA:assets/minecraft/textures/blocks/trapdoor.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_trapdoor.png
   TrapDoor_4:
     Name: TRAP_DOOR
     Id: 96
@@ -1687,7 +1687,7 @@ Blocks:
     Data: 4
     Instruction:
       Face: Front
-      Texture: VANILLA:assets/minecraft/textures/blocks/trapdoor.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_trapdoor.png
   TrapDoor_5:
     Name: TRAP_DOOR
     Id: 96
@@ -1695,7 +1695,7 @@ Blocks:
     Data: 5
     Instruction:
       Face: Back
-      Texture: VANILLA:assets/minecraft/textures/blocks/trapdoor.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_trapdoor.png
   TrapDoor_6:
     Name: TRAP_DOOR
     Id: 96
@@ -1703,7 +1703,7 @@ Blocks:
     Data: 6
     Instruction:
       Face: Left
-      Texture: VANILLA:assets/minecraft/textures/blocks/trapdoor.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_trapdoor.png
   TrapDoor_7:
     Name: TRAP_DOOR
     Id: 96
@@ -1711,7 +1711,7 @@ Blocks:
     Data: 7
     Instruction:
       Face: Right
-      Texture: VANILLA:assets/minecraft/textures/blocks/trapdoor.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_trapdoor.png
   TrapDoor_8:
     Name: TRAP_DOOR
     Id: 96
@@ -1719,38 +1719,38 @@ Blocks:
     Data: 8
     Instruction:
       Face: Top
-      Texture: VANILLA:assets/minecraft/textures/blocks/trapdoor.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_trapdoor.png
   MonsterEgg_Stone:
     Name: MONSTER_EGGS
     Id: 97
     Data: 0
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/stone.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone.png
   MonsterEgg_Cobble:
     Name: MONSTER_EGGS
     Id: 97
     Data: 1
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/cobblestone.png
+      Texture: VANILLA:assets/minecraft/textures/block/cobblestone.png
   MonsterEgg_Brick:
     Name: MONSTER_EGGS
     Id: 97
     Data: 2
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+      Texture: VANILLA:assets/minecraft/textures/block/stone_bricks.png
   StoneBricks:
     Name: SMOOTH_BRICK
     Id: 98
     Type: MULTI
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/stonebrick.png
-        - VANILLA:assets/minecraft/textures/blocks/stonebrick_mossy.png
-        - VANILLA:assets/minecraft/textures/blocks/stonebrick_cracked.png
-        - VANILLA:assets/minecraft/textures/blocks/stonebrick_carved.png
+        - VANILLA:assets/minecraft/textures/block/stone_bricks.png
+        - VANILLA:assets/minecraft/textures/block/mossy_stone_bricks.png
+        - VANILLA:assets/minecraft/textures/block/cracked_stone_bricks.png
+        - VANILLA:assets/minecraft/textures/block/chiseled_stone_bricks.png
   #99 - Huge brow mushroom
   #100 - Huge red mushroom
   IronBar:
@@ -1758,39 +1758,39 @@ Blocks:
     Id: 101
     Type: PLANE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/iron_bars.png
+      Texture: VANILLA:assets/minecraft/textures/block/iron_bars.png
   GlasPlane:
     Name: THIN_GLASS
     Id: 102
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top.png
+        - VANILLA:assets/minecraft/textures/block/glass.png
+        - VANILLA:assets/minecraft/textures/block/glass_pane_top.png
   Melon:
     Name: MELON_BLOCK
     Id: 103
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/melon_side.png
-        - VANILLA:assets/minecraft/textures/blocks/melon_top.png
+        - VANILLA:assets/minecraft/textures/block/melon_side.png
+        - VANILLA:assets/minecraft/textures/block/melon_top.png
   PumpkinStem:
     Name: PUMPKIN_STEM
     Id: 104
     Type: STEM
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_stem_disconnected.png
-        - VANILLA:assets/minecraft/textures/blocks/pumpkin_stem_connected.png
+        - VANILLA:assets/minecraft/textures/block/pumpkin_stem.png
+        - VANILLA:assets/minecraft/textures/block/attached_pumpkin_stem.png
   MelonStem:
     Name: MELON_STEM
     Id: 105
     Type: STEM
     Instruction:
       Textures:       
-        - VANILLA:assets/minecraft/textures/blocks/melon_stem_disconnected.png
-        - VANILLA:assets/minecraft/textures/blocks/melon_stem_connected.png
+        - VANILLA:assets/minecraft/textures/block/melon_stem.png
+        - VANILLA:assets/minecraft/textures/block/attached_melon_stem.png
   Vine:
     Name: VINE
     Id: 106
@@ -1799,7 +1799,7 @@ Blocks:
     Instruction:
       Face: Front
       Color: [84, 75]
-      Texture: VANILLA:assets/minecraft/textures/blocks/vine.png
+      Texture: VANILLA:assets/minecraft/textures/block/vine.png
   Vine_top:
     Name: VINE
     Id: 106
@@ -1810,10 +1810,10 @@ Blocks:
       Color: [84, 75]
       Textures:         
         - __none__
-        - VANILLA:assets/minecraft/textures/blocks/vine.png
+        - VANILLA:assets/minecraft/textures/block/vine.png
         - __none__
         - __none__
-        - VANILLA:assets/minecraft/textures/blocks/vine.png
+        - VANILLA:assets/minecraft/textures/block/vine.png
         - __none__
   #107 - FENCE_GATE
   BrickStairs:
@@ -1822,23 +1822,23 @@ Blocks:
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/brick.png
+        - VANILLA:assets/minecraft/textures/block/bricks.png
   SmoothStairs:
     Name: SMOOTH_STAIRS
     Id: 109
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/stonebrick.png
+        - VANILLA:assets/minecraft/textures/block/stone_bricks.png
   Mycel:
     Name: MYCEL
     Id: 110
     Type: BASE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/mycelium_side.png
-        - VANILLA:assets/minecraft/textures/blocks/mycelium_top.png
-        - VANILLA:assets/minecraft/textures/blocks/dirt.png
+        - VANILLA:assets/minecraft/textures/block/mycelium_side.png
+        - VANILLA:assets/minecraft/textures/block/mycelium_top.png
+        - VANILLA:assets/minecraft/textures/block/dirt.png
   WaterLily:
     Name: WATER_LILY
     Id: 111
@@ -1846,27 +1846,27 @@ Blocks:
     Instruction:
       Color: [96, 61]
       Face: Bottom
-      Texture: VANILLA:assets/minecraft/textures/blocks/waterlily.png
+      Texture: VANILLA:assets/minecraft/textures/block/lily_pad.png
   NetherBrick:
     Name: NETHER_BRISK
     Id: 112
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_brick.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_bricks.png
   NetherBrickStairs:
     Name: NETHER_BRISK_STAIRS
     Id: 114
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/nether_brick.png
+        - VANILLA:assets/minecraft/textures/block/nether_bricks.png
   NetherWarts_0:
     Name: NETHER_WARTS
     Id: 115
     Type: CROPS
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_wart_stage_0.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_wart_stage0.png
       Delta: 3
   NetherWarts_1:
     Name: NETHER_WARTS
@@ -1874,7 +1874,7 @@ Blocks:
     Type: CROPS
     Data: 1
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_wart_stage_1.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_wart_stage1.png
       Delta: 3
   NetherWarts_2:
     Name: NETHER_WARTS
@@ -1882,7 +1882,7 @@ Blocks:
     Type: CROPS
     Data: 2
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/nether_wart_stage_2.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_wart_stage2.png
       Delta: 3
   Cauldron_0:
     Name: CAULDRON
@@ -1897,11 +1897,11 @@ Blocks:
       TextureRows: [0, 16]
       TexturesRes: [16, 16, 16, 16, 16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/water_still.png        
+        - VANILLA:assets/minecraft/textures/block/cauldron_top.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_side.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_inner.png
+        - VANILLA:assets/minecraft/textures/block/water_still.png        
       Parts:        
         Watter:
           Pos: [0, 3, 0]
@@ -1936,11 +1936,11 @@ Blocks:
       TextureRows: [0, 16]
       TexturesRes: [16, 16, 16, 16, 16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/water_still.png        
+        - VANILLA:assets/minecraft/textures/block/cauldron_top.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_side.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_inner.png
+        - VANILLA:assets/minecraft/textures/block/water_still.png        
       Parts:        
         Watter:
           Pos: [0, 3, 0]
@@ -1975,11 +1975,11 @@ Blocks:
       TextureRows: [0, 16]
       TexturesRes: [16, 16, 16, 16, 16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/water_still.png        
+        - VANILLA:assets/minecraft/textures/block/cauldron_top.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_side.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_inner.png
+        - VANILLA:assets/minecraft/textures/block/water_still.png        
       Parts:        
         Watter:
           Pos: [0, 3, 0]
@@ -2014,11 +2014,11 @@ Blocks:
       TextureRows: [0, 16]
       TexturesRes: [16, 16, 16, 16, 16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_top.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_bottom.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_side.png
-        - VANILLA:assets/minecraft/textures/blocks/cauldron_inner.png
-        - VANILLA:assets/minecraft/textures/blocks/water_still.png        
+        - VANILLA:assets/minecraft/textures/block/cauldron_top.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_bottom.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_side.png
+        - VANILLA:assets/minecraft/textures/block/cauldron_inner.png
+        - VANILLA:assets/minecraft/textures/block/water_still.png        
       Parts:        
         Watter:
           Pos: [0, 3, 0]
@@ -2045,73 +2045,73 @@ Blocks:
     Id: 121
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/end_stone.png
+      Texture: VANILLA:assets/minecraft/textures/block/end_stone.png
   RsLamp_off:
     Name: REDSTONE_LAMP_OFF
     Id: 123
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_lamp_off.png 
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_lamp.png 
   RsLamp_on:
     Name: REDSTONE_LAMP_ON
     Id: 124
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_lamp_on.png
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_lamp_on.png
   Slab_wood_dbl:
     Name: WOOD_DOUBLE_STEP
     Id: 125
     Type: MULTI
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/planks_oak.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_birch.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
-        - VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png
+        - VANILLA:assets/minecraft/textures/block/oak_planks.png
+        - VANILLA:assets/minecraft/textures/block/spruce_planks.png
+        - VANILLA:assets/minecraft/textures/block/birch_planks.png
+        - VANILLA:assets/minecraft/textures/block/jungle_planks.png
+        - VANILLA:assets/minecraft/textures/block/acacia_planks.png
+        - VANILLA:assets/minecraft/textures/block/dark_oak_planks.png
   Slab_oak:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
   Slab_spruce:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 1
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
+      Texture: VANILLA:assets/minecraft/textures/block/spruce_planks.png
   Slab_birch:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 2
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_birch.png
+      Texture: VANILLA:assets/minecraft/textures/block/birch_planks.png
   Slab_jungle:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 3
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
+      Texture: VANILLA:assets/minecraft/textures/block/jungle_planks.png
   Slab_acacia:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 4
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
+      Texture: VANILLA:assets/minecraft/textures/block/acacia_planks.png
   Slab_darkOak:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 5
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/dark_oak_planks.png
   Slab_oak_up:
     Name: WOOD_STEP
     Id: 126
@@ -2119,7 +2119,7 @@ Blocks:
     Data: 8
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
   Slab_spruce_up:
     Name: WOOD_STEP
     Id: 126
@@ -2127,7 +2127,7 @@ Blocks:
     Data: 9
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
+      Texture: VANILLA:assets/minecraft/textures/block/spruce_planks.png
   Slab_birch_up:
     Name: WOOD_STEP
     Id: 126
@@ -2135,7 +2135,7 @@ Blocks:
     Data: 10
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_birch.png
+      Texture: VANILLA:assets/minecraft/textures/block/birch_planks.png
   Slab_jungle_up:
     Name: WOOD_STEP
     Id: 126
@@ -2143,36 +2143,36 @@ Blocks:
     Data: 11
     Instruction:
       IsTop: true
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
+      Texture: VANILLA:assets/minecraft/textures/block/jungle_planks.png
   Slab_acacia_up:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 12
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
+      Texture: VANILLA:assets/minecraft/textures/block/acacia_planks.png
   Slab_darkOak_up:
     Name: WOOD_STEP
     Id: 126
     Type: SLAB
     Data: 13
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/dark_oak_planks.png
   SandstoneStairs:
     Name: SANDSTONE_STAIRS
     Id: 128
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_normal.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_top.png
-        - VANILLA:assets/minecraft/textures/blocks/sandstone_bottom.png
+        - VANILLA:assets/minecraft/textures/block/sandstone.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_top.png
+        - VANILLA:assets/minecraft/textures/block/sandstone_bottom.png
   EmeraldOre:
     Name: EMERALD_ORE
     Id: 129
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/emerald_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/emerald_ore.png
   EnderChest:
     Name: ENDER_CHEST
     Id: 130
@@ -2184,41 +2184,47 @@ Blocks:
     Id: 133
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/emerald_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/emerald_block.png
   SpruceStairs:
     Name: SPRUCE_WOOD_STAIRS
     Id: 134
     Type: STAIRS
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/planks_spruce.png
+        - VANILLA:assets/minecraft/textures/block/spruce_planks.png
   BirchStairs:
     Name: BIRCH_WOOD_STAIRS
     Id: 135
     Type: STAIRS
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/planks_birch.png
+        - VANILLA:assets/minecraft/textures/block/birch_planks.png
   JungleStairs:
     Name: JUNGLE_WOOD_STAIRS
     Id: 136
     Type: STAIRS
     Instruction:
       Textures: 
-        - VANILLA:assets/minecraft/textures/blocks/planks_jungle.png
+        - VANILLA:assets/minecraft/textures/block/jungle_planks.png
   CommandBlock:
     Name: COMMAND
     Id: 137
     Type: Base
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/command_block.png
+      Textures:
+        - VANILLA:assets/minecraft/textures/block/command_block_back.png
+        - VANILLA:assets/minecraft/textures/block/command_block_front.png
+        - VANILLA:assets/minecraft/textures/block/command_block_side.png
+        - VANILLA:assets/minecraft/textures/block/command_block_side.png
+        - VANILLA:assets/minecraft/textures/block/command_block_side.png
+        - VANILLA:assets/minecraft/textures/block/command_block_side.png
   Carrot_0:
     Name: CARROT
     Id: 391
     Type: CROPS
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/carrots_stage_0.png
+      Texture: VANILLA:assets/minecraft/textures/block/carrots_stage0.png
       Delta: 3
   Carrot_1:
     Name: CARROT
@@ -2226,7 +2232,7 @@ Blocks:
     Type: CROPS
     Data: 1
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/carrots_stage_1.png
+      Texture: VANILLA:assets/minecraft/textures/block/carrots_stage1.png
       Delta: 3
   Carrot_2:
     Name: CARROT
@@ -2234,7 +2240,7 @@ Blocks:
     Type: CROPS
     Data: 2
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/carrots_stage_2.png
+      Texture: VANILLA:assets/minecraft/textures/block/carrots_stage2.png
       Delta: 3
   Carrot_3:
     Name: CARROT
@@ -2242,7 +2248,7 @@ Blocks:
     Type: CROPS
     Data: 3
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/carrots_stage_3.png
+      Texture: VANILLA:assets/minecraft/textures/block/carrots_stage3.png
       Delta: 3
   Potatoes_0:
     Name: POTATO
@@ -2250,7 +2256,7 @@ Blocks:
     Type: CROPS
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/potatoes_stage_0.png
+      Texture: VANILLA:assets/minecraft/textures/block/potatoes_stage0.png
       Delta: 3
   Potatoes_1:
     Name: POTATO
@@ -2258,7 +2264,7 @@ Blocks:
     Type: CROPS
     Data: 1
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/potatoes_stage_1.png
+      Texture: VANILLA:assets/minecraft/textures/block/potatoes_stage1.png
       Delta: 3
   Potatoes_2:
     Name: POTATO
@@ -2266,7 +2272,7 @@ Blocks:
     Type: CROPS
     Data: 2
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/potatoes_stage_2.png
+      Texture: VANILLA:assets/minecraft/textures/block/potatoes_stage2.png
       Delta: 3
   Potatoes_3:
     Name: POTATO
@@ -2274,14 +2280,14 @@ Blocks:
     Type: CROPS
     Data: 3
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/potatoes_stage_3.png
+      Texture: VANILLA:assets/minecraft/textures/block/potatoes_stage3.png
       Delta: 3
   WoodButton:
     Name: WOOD_BUTTON
     Id: 143
     Type: FLAT
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/planks_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/oak_planks.png
       Size: [6, 4, 2]
       Face: Back
   TrappedChest:
@@ -2304,14 +2310,14 @@ Blocks:
     Id: 147
     Type: FLAT
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/gold_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/gold_block.png
       Size: [14,14,1]
   IronPlate:    
     Name: IRON_PLATE
     Id: 148
     Type: FLAT
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/iron_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/iron_block.png
       Size: [14,14,1]
   DayLightDetector:
     Name: DAYLIGHT_DETECTOR
@@ -2325,8 +2331,8 @@ Blocks:
       TextureRows: [0, 7, 16]
       TexturesRes: [16, 16]
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/daylight_detector_top.png
-        - VANILLA:assets/minecraft/textures/blocks/daylight_detector_side.png
+        - VANILLA:assets/minecraft/textures/block/daylight_detector_top.png
+        - VANILLA:assets/minecraft/textures/block/daylight_detector_side.png
       Parts:
         Main:
           Pos: [0, 0, 0]
@@ -2343,13 +2349,13 @@ Blocks:
     Id: 152
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/redstone_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/redstone_block.png
   QuartzOre:
     Name: QUARTZ_ORE
     Id: 153
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/quartz_ore.png
+      Texture: VANILLA:assets/minecraft/textures/block/nether_quartz_ore.png
   QuartzBlock:
     Name: QUARTZ_BLOCK
     Id: 155
@@ -2357,9 +2363,9 @@ Blocks:
     Data: 0
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_side.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_top.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_bottom.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_side.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_top.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_bottom.png
   QuartzBlock_Chiseled:
     Name: QUARTZ_BLOCK
     Id: 155
@@ -2367,8 +2373,8 @@ Blocks:
     Data: 1
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_chiseled.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_chiseled_top.png
+        - VANILLA:assets/minecraft/textures/block/chiseled_quartz_block.png
+        - VANILLA:assets/minecraft/textures/block/chiseled_quartz_block_top.png
   QuartzBlock_Pilar:
     Name: QUARTZ_BLOCK
     Id: 155
@@ -2378,24 +2384,24 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_lines.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_lines_top.png
+        - VANILLA:assets/minecraft/textures/block/quartz_pillar.png
+        - VANILLA:assets/minecraft/textures/block/quartz_pillar_top.png
   QuartzStairs:
     Name: QUARTZ_STAIRS
     Id: 156
     Type: STAIRS
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_side.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_top.png
-        - VANILLA:assets/minecraft/textures/blocks/quartz_block_bottom.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_side.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_top.png
+        - VANILLA:assets/minecraft/textures/block/quartz_block_bottom.png
   ActivatorRail_0:
     Name: ACTIVATOR_RAIL
     Id: 157
     Type: FLAT
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail.png
       Face: Bottom
   ActivatorRail_2:
     Name: ACTIVATOR_RAIL
@@ -2405,7 +2411,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail.png
       Faces: [Right]
   ActivatorRail_3:
     Name: ACTIVATOR_RAIL
@@ -2415,7 +2421,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail.png
       Faces: [Left]
   ActivatorRail_4:
     Name: ACTIVATOR_RAIL
@@ -2425,7 +2431,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail.png
       Faces: [Back]
   ActivatorRail_5:
     Name: ACTIVATOR_RAIL
@@ -2435,7 +2441,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail.png
       Faces: [Front]
   ActivatorRail_8:
     Name: ACTIVATOR_RAIL
@@ -2443,7 +2449,7 @@ Blocks:
     Type: FLAT
     Data: 8
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail_on.png
       Face: Bottom
   ActivatorRail_10:
     Name: ACTIVATOR_RAIL
@@ -2453,7 +2459,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail_on.png
       Faces: [Right]
   ActivatorRail_11:
     Name: ACTIVATOR_RAIL
@@ -2463,7 +2469,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail_on.png
       Faces: [Left]
   ActivatorRail_12:
     Name: ACTIVATOR_RAIL
@@ -2473,7 +2479,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail_on.png
       Faces: [Back]
   ActivatorRail_13:
     Name: ACTIVATOR_RAIL
@@ -2483,7 +2489,7 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/rail_activator_powered.png
+      Texture: VANILLA:assets/minecraft/textures/block/activator_rail_on.png
       Faces: [Front]
   Dropper:
     Name: DROPPER
@@ -2492,10 +2498,10 @@ Blocks:
     Data: 0
     Instruction:      
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/dropper_front_horizontal.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/dropper_front.png
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
   DropperTop:
     Name: DROPPER
     Id: 158
@@ -2503,9 +2509,9 @@ Blocks:
     Data: 1
     Instruction:      
       Textures:        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png
-        - VANILLA:assets/minecraft/textures/blocks/dropper_front_vertical.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png
+        - VANILLA:assets/minecraft/textures/block/dropper_front_vertical.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
   DropperBottom:
     Name: DROPPER
     Id: 158
@@ -2513,31 +2519,31 @@ Blocks:
     Data: 2
     Instruction:
       Textures:        
-        - VANILLA:assets/minecraft/textures/blocks/furnace_side.png
-        - VANILLA:assets/minecraft/textures/blocks/furnace_top.png
-        - VANILLA:assets/minecraft/textures/blocks/dropper_front_vertical.png
-  StainedClay:
-    Name: STAINED_CLAY
+        - VANILLA:assets/minecraft/textures/block/furnace_side.png
+        - VANILLA:assets/minecraft/textures/block/furnace_top.png
+        - VANILLA:assets/minecraft/textures/block/dropper_front_vertical.png
+  StainedTerracotta:
+    Name: STAINED_TERRACOTTA
     Id: 159
     Type: MULTI
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_white.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_orange.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_magenta.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_light_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_yellow.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_lime.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_pink.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_gray.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_silver.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_cyan.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_purple.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_brown.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_green.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_red.png
-        - VANILLA:assets/minecraft/textures/blocks/hardened_clay_stained_black.png
+        - VANILLA:assets/minecraft/textures/block/white_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/orange_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/magenta_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/light_blue_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/yellow_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/lime_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/pink_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/gray_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/light_gray_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/cyan_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/purple_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/blue_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/brown_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/green_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/red_terracotta.png
+        - VANILLA:assets/minecraft/textures/block/black_terracotta.png
   WhiteGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2546,8 +2552,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_white.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_white.png  
+        - VANILLA:assets/minecraft/textures/block/white_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/white_stained_glass_pane_top.png  
   OrangeGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2556,8 +2562,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_orange.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_orange.png
+        - VANILLA:assets/minecraft/textures/block/orange_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/orange_stained_glass_pane_top.png
   MagentaGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2566,8 +2572,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_magenta.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_magenta.png  
+        - VANILLA:assets/minecraft/textures/block/magenta_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/magenta_stained_glass_pane_top.png  
   LBlueGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2576,8 +2582,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_light_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_light_blue.png
+        - VANILLA:assets/minecraft/textures/block/light_blue_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/light_blue_stained_glass_pane_top.png
   YellowGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2586,8 +2592,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_yellow.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_yellow.png  
+        - VANILLA:assets/minecraft/textures/block/yellow_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/yellow_stained_glass_pane_top.png  
   LimeGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2596,8 +2602,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_lime.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_lime.png
+        - VANILLA:assets/minecraft/textures/block/lime_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/lime_stained_glass_pane_top.png
   PinkGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2606,8 +2612,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_pink.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_pink.png  
+        - VANILLA:assets/minecraft/textures/block/pink_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/pink_stained_glass_pane_top.png  
   GrayGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2616,8 +2622,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_gray.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_gray.png
+        - VANILLA:assets/minecraft/textures/block/gray_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/gray_stained_glass_pane_top.png
   SilverGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2626,8 +2632,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_silver.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_silver.png
+        - VANILLA:assets/minecraft/textures/block/light_gray_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/light_gray_stained_glass_pane_top.png
   CyanGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2636,8 +2642,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_cyan.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_cyan.png
+        - VANILLA:assets/minecraft/textures/block/cyan_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/cyan_stained_glass_pane_top.png
   PurpleGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2646,8 +2652,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_purple.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_purple.png
+        - VANILLA:assets/minecraft/textures/block/purple_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/purple_stained_glass_pane_top.png
   BlueGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2656,8 +2662,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_blue.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_blue.png
+        - VANILLA:assets/minecraft/textures/block/blue_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/blue_stained_glass_pane_top.png
   BrownGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2666,8 +2672,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_brown.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_brown.png
+        - VANILLA:assets/minecraft/textures/block/brown_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/brown_stained_glass_pane_top.png
   GreenGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2676,8 +2682,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_green.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_green.png
+        - VANILLA:assets/minecraft/textures/block/green_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/green_stained_glass_pane_top.png
   RedGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2686,8 +2692,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_red.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_red.png
+        - VANILLA:assets/minecraft/textures/block/red_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/red_stained_glass_pane_top.png
   BlackGlasPlane:
     Name: STAINED_THIN_GLASS
     Id: 160
@@ -2696,8 +2702,8 @@ Blocks:
     Type: PLANE
     Instruction:
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/glass_black.png
-        - VANILLA:assets/minecraft/textures/blocks/glass_pane_top_black.png  
+        - VANILLA:assets/minecraft/textures/block/black_stained_glass.png
+        - VANILLA:assets/minecraft/textures/block/black_stained_glass_pane_top.png  
   Leaves_Acacia:
     Name: LEAVES_2
     Id: 161
@@ -2706,7 +2712,7 @@ Blocks:
     Instruction:
       Gray: [0, 1, 2, 3, 4, 5, 6]
       Color: [84, 75]
-      Texture: VANILLA:assets/minecraft/textures/blocks/leaves_acacia.png  
+      Texture: VANILLA:assets/minecraft/textures/block/acacia_leaves.png  
   Leaves_BigOak:
     Name: LEAVES_2
     Id: 161
@@ -2715,7 +2721,7 @@ Blocks:
     Instruction:
       Gray: [0, 1, 2, 3, 4, 5, 6]
       Color: [84, 75]
-      Texture: VANILLA:assets/minecraft/textures/blocks/leaves_big_oak.png
+      Texture: VANILLA:assets/minecraft/textures/block/dark_oak_leaves.png
   Log_Acacia:
     Name: LOG_2
     Id: 162
@@ -2725,8 +2731,8 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/log_acacia.png
-        - VANILLA:assets/minecraft/textures/blocks/log_acacia_top.png
+        - VANILLA:assets/minecraft/textures/block/acacia_log.png
+        - VANILLA:assets/minecraft/textures/block/acacia_log_top.png
   Log_DarkOak:
     Name: LOG_2
     Id: 162
@@ -2736,22 +2742,22 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/log_big_oak.png
-        - VANILLA:assets/minecraft/textures/blocks/log_big_oak_top.png
+        - VANILLA:assets/minecraft/textures/block/dark_oak_log.png
+        - VANILLA:assets/minecraft/textures/block/dark_oak_log_top.png
   AcaciaStairs:
     Name: ACACIA_STAIRS
     Id: 163
     Type: STAIRS
     Instruction:
       Textures: 
-      - VANILLA:assets/minecraft/textures/blocks/planks_acacia.png
+      - VANILLA:assets/minecraft/textures/block/acacia_planks.png
   DarkOakStairs:
     Name: DARK_OAK_STAIRS
     Id: 164
     Type: STAIRS
     Instruction:
       Textures:
-      - VANILLA:assets/minecraft/textures/blocks/planks_big_oak.png
+      - VANILLA:assets/minecraft/textures/block/dark_oak_planks.png
   HayBlock:
     Name: HAY_BLOCK
     Id: 170
@@ -2760,15 +2766,15 @@ Blocks:
       UsePitch: true
       UseYaw: true
       Textures:
-        - VANILLA:assets/minecraft/textures/blocks/hay_block_side.png
-        - VANILLA:assets/minecraft/textures/blocks/hay_block_top.png
+        - VANILLA:assets/minecraft/textures/block/hay_block_side.png
+        - VANILLA:assets/minecraft/textures/block/hay_block_top.png
   Carpet_0:
     Name: CARPET
     Id: 171
     Type: FLAT
     Data: 0
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_white.png
+      Texture: VANILLA:assets/minecraft/textures/block/white_wool.png
       Face: Bottom
   Carpet_1:
     Name: CARPET
@@ -2776,7 +2782,7 @@ Blocks:
     Type: FLAT
     Data: 1
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_orange.png
+      Texture: VANILLA:assets/minecraft/textures/block/orange_wool.png
       Face: Bottom
   Carpet_2:
     Name: CARPET
@@ -2784,7 +2790,7 @@ Blocks:
     Type: FLAT
     Data: 2
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_magenta.png
+      Texture: VANILLA:assets/minecraft/textures/block/magenta_wool.png
       Face: Bottom
   Carpet_3:
     Name: CARPET
@@ -2792,7 +2798,7 @@ Blocks:
     Type: FLAT
     Data: 3
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_light_blue.png
+      Texture: VANILLA:assets/minecraft/textures/block/light_blue_wool.png
       Face: Bottom
   Carpet_4:
     Name: CARPET
@@ -2800,7 +2806,7 @@ Blocks:
     Type: FLAT
     Data: 4
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_yellow.png
+      Texture: VANILLA:assets/minecraft/textures/block/yellow_wool.png
       Face: Bottom
   Carpet_5:
     Name: CARPET
@@ -2808,7 +2814,7 @@ Blocks:
     Type: FLAT
     Data: 5
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_lime.png
+      Texture: VANILLA:assets/minecraft/textures/block/lime_wool.png
       Face: Bottom
   Carpet_6:
     Name: CARPET
@@ -2816,7 +2822,7 @@ Blocks:
     Type: FLAT
     Data: 6
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_pink.png
+      Texture: VANILLA:assets/minecraft/textures/block/pink_wool.png
       Face: Bottom
   Carpet_7:
     Name: CARPET
@@ -2824,7 +2830,7 @@ Blocks:
     Type: FLAT
     Data: 7
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_gray.png
+      Texture: VANILLA:assets/minecraft/textures/block/gray_wool.png
       Face: Bottom
   Carpet_8:
     Name: CARPET
@@ -2832,7 +2838,7 @@ Blocks:
     Type: FLAT
     Data: 8
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_silver.png
+      Texture: VANILLA:assets/minecraft/textures/block/light_gray_wool.png
       Face: Bottom
   Carpet_9:
     Name: CARPET
@@ -2840,7 +2846,7 @@ Blocks:
     Type: FLAT
     Data: 9
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_cyan.png
+      Texture: VANILLA:assets/minecraft/textures/block/cyan_wool.png
       Face: Bottom
   Carpet_10:
     Name: CARPET
@@ -2848,7 +2854,7 @@ Blocks:
     Type: FLAT
     Data: 10
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_purple.png
+      Texture: VANILLA:assets/minecraft/textures/block/purple_wool.png
       Face: Bottom
   Carpet_11:
     Name: CARPET
@@ -2856,7 +2862,7 @@ Blocks:
     Type: FLAT
     Data: 11
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_blue.png
+      Texture: VANILLA:assets/minecraft/textures/block/blue_wool.png
       Face: Bottom
   Carpet_12:
     Name: CARPET
@@ -2864,7 +2870,7 @@ Blocks:
     Type: FLAT
     Data: 12
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_brown.png
+      Texture: VANILLA:assets/minecraft/textures/block/brown_wool.png
       Face: Bottom
   Carpet_13:
     Name: CARPET
@@ -2872,7 +2878,7 @@ Blocks:
     Type: FLAT
     Data: 13
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_green.png
+      Texture: VANILLA:assets/minecraft/textures/block/green_wool.png
       Face: Bottom
   Carpet_14:
     Name: CARPET
@@ -2880,7 +2886,7 @@ Blocks:
     Type: FLAT
     Data: 14
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_red.png
+      Texture: VANILLA:assets/minecraft/textures/block/red_wool.png
       Face: Bottom
   Carpet_15:
     Name: CARPET
@@ -2888,20 +2894,20 @@ Blocks:
     Type: FLAT
     Data: 15
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/wool_colored_black.png
+      Texture: VANILLA:assets/minecraft/textures/block/black_wool.png
       Face: Bottom
-  HardenedClay:
-    Name: HARD_CLAY
+  Terracotta:
+    Name: TERRACOTTA
     Id: 172
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/hardened_clay.png      
+      Texture: VANILLA:assets/minecraft/textures/block/terracotta.png
   CoalBlock:
     Name: COAL_BLOCK
     Id: 173
     Type: BASE
     Instruction:
-      Texture: VANILLA:assets/minecraft/textures/blocks/coal_block.png
+      Texture: VANILLA:assets/minecraft/textures/block/coal_block.png
   PackedIce:
     Name: PACKED_ICE
     Id: 174
@@ -2909,5 +2915,5 @@ Blocks:
     Instruction:
       UsePitch: false
       UseYaw: false
-      Texture: VANILLA:assets/minecraft/textures/blocks/ice_packed.png
+      Texture: VANILLA:assets/minecraft/textures/block/packed_ice.png
 #Large Flowers 175

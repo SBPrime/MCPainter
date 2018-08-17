@@ -34,7 +34,7 @@ public class TextureDescription {
     private int m_column;
     private int m_row;
 
-    public static TextureDescription parse(String s) {
+    public static TextureDescription parse(String s) {        
         if (s == null) {
             return null;
         }
