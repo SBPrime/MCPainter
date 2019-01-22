@@ -29,7 +29,7 @@ import org.primesoft.mcpainter.utils.Utils;
 import java.awt.image.BufferedImage;
 import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.IColorMap;
-import org.primesoft.mcpainter.drawing.dilters.FilterManager;
+import org.primesoft.mcpainter.drawing.filters.FilterManager;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 import org.primesoft.mcpainter.*;
 import org.primesoft.mcpainter.utils.Vector;

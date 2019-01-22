@@ -40,7 +40,7 @@ import org.primesoft.mcpainter.configuration.ConfigProvider;
 import org.primesoft.mcpainter.drawing.blocks.IBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.MultiBlockProvider;
 import org.primesoft.mcpainter.drawing.blocks.VanillaBlockProvider;
-import org.primesoft.mcpainter.drawing.dilters.FilterManager;
+import org.primesoft.mcpainter.drawing.filters.FilterManager;
 import org.primesoft.mcpainter.drawing.IColorMap;
 import org.primesoft.mcpainter.drawing.statue.PlayerStatueDescription;
 import org.primesoft.mcpainter.drawing.statue.StatueDescription;

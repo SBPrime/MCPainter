@@ -25,7 +25,7 @@ package org.primesoft.mcpainter.commands;
 
 import java.awt.image.BufferedImage;
 import org.primesoft.mcpainter.configuration.ConfigProvider;
-import org.primesoft.mcpainter.drawing.dilters.FilterManager;
+import org.primesoft.mcpainter.drawing.filters.FilterManager;
 import org.primesoft.mcpainter.drawing.ImageHelper;
 import org.primesoft.mcpainter.FoundManager;
 import org.primesoft.mcpainter.Help;
@@ -57,7 +57,7 @@ public class MapCommand {
             return;
         }
 
-        short mapId = -1;
+        int mapId = -1;
         String url = null;
         int offset;
 
@@ -93,7 +93,7 @@ public class MapCommand {
         }
         if (mapView == null) {
             try {
-                mapView = Bukkit.getMap(mapId);
+                mapView = Bukkit.getMap((short) mapId);
             } catch (Exception ex) {
                 ExceptionHelper.printException(ex, "Unable to get map #" + mapId);
             }
