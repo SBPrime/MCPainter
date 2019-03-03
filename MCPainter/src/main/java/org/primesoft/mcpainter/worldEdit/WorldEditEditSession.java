@@ -29,6 +29,8 @@ import com.sk89q.worldedit.history.UndoContext;
 import com.sk89q.worldedit.history.change.Change;
 import com.sk89q.worldedit.history.changeset.ChangeSet;
 import java.util.List;
+
+import com.sk89q.worldedit.math.BlockVector3;
 import org.primesoft.mcpainter.BlocksHubIntegration;
 import org.primesoft.mcpainter.blocksplacer.IChange;
 import org.primesoft.mcpainter.utils.BaseBlock;
@@ -76,7 +78,7 @@ class WorldEditEditSession extends BaseEditSession {
 
     @Override
     public void setBlock(Vector location, BaseBlock block) throws MaxChangedBlocksException {
-        com.sk89q.worldedit.Vector weLocaton = WorldEditWrapper.convert(location);
+        BlockVector3 weLocaton = WorldEditWrapper.convert(location);
         BaseBlock oldBlock = WorldEditWrapper.convert(m_editSession.getBlock(weLocaton));
         com.sk89q.worldedit.world.block.BlockState weBlock = WorldEditWrapper.convert(block);
         try {

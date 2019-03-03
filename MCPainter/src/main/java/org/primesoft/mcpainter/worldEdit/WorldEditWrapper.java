@@ -27,8 +27,9 @@ import com.sk89q.worldedit.IncompleteRegionException;
 import com.sk89q.worldedit.LocalSession;
 import com.sk89q.worldedit.bukkit.BukkitAdapter;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.math.BlockVector3;
+import com.sk89q.worldedit.math.Vector3;
 import com.sk89q.worldedit.regions.Region;
-import com.sk89q.worldedit.world.block.BlockState;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -88,8 +89,8 @@ class WorldEditWrapper implements IWorldEdit {
             return null;
         }
 
-        com.sk89q.worldedit.Vector pMin = selection.getMinimumPoint();
-        com.sk89q.worldedit.Vector pMax = selection.getMaximumPoint();
+        BlockVector3 pMin = selection.getMinimumPoint();
+        BlockVector3 pMax = selection.getMaximumPoint();
 
         Server s = Bukkit.getServer();
         World w = s.getWorld(sWorld.getName());
@@ -100,12 +101,12 @@ class WorldEditWrapper implements IWorldEdit {
         );
     }
 
-    static com.sk89q.worldedit.Vector convert(Vector v) {
-        return new com.sk89q.worldedit.Vector(v.getX(), v.getY(), v.getZ());
+    static Vector convert(Vector3 v) {
+        return new Vector(v.getX(), v.getY(), v.getZ());
     }
 
-    static Vector convert(com.sk89q.worldedit.Vector v) {
-        return new Vector(v.getX(), v.getY(), v.getZ());
+    static BlockVector3 convert(Vector v) {
+        return BlockVector3.at(v.getX(), v.getY(), v.getZ());
     }
 
     static com.sk89q.worldedit.world.block.BlockState convert(BaseBlock v) {

@@ -49,7 +49,7 @@ public class MapHelper {
      * @param mapView map view to remove map
      */
     public void deleteMap(MapView mapView) {
-        short mapId = mapView.getId();
+        int mapId = mapView.getId();
         List<MapRenderer> renderers = mapView.getRenderers();
         File fileName = new File(ConfigProvider.getImgFolder(), mapId + ".png");
         if (fileName.exists()) {
@@ -80,7 +80,7 @@ public class MapHelper {
      */
     public void storeMap(MapView mapView, BufferedImage img) {
         List<MapRenderer> renderers = mapView.getRenderers();
-        short mapId = mapView.getId();
+        int mapId = mapView.getId();
 
         for (MapRenderer r : renderers) {
             mapView.removeRenderer(r);
